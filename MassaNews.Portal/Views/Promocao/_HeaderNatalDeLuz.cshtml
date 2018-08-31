@@ -1,0 +1,17 @@
+﻿<div class="banner">
+  <div class="g-container">
+    <a href="/natal-de-luz" class="logo"><img src="@Url.Content("~/content/images/landing/natal-de-luz/logo.png")" class="logo-img" alt="Natal de Luz - Curitiba"></a>
+
+    <div class="text">
+      <h2 class="h1">Concurso Cultural Natal de Luz de Curitiba!</h2>
+      <p>Uma das épocas mais bonitas do ano está chegando e que tal começar a decorar a sua casa para o Natal?! A sua casa ou rua pode ser eleita a mais bem decorada de Curitiba!</p>
+      <p>Participe, leia o regulamento e inscreva-se!</p>
+      <p>As inscrições podem ser feitas até o dia 15 de dezembro, inscreva-se e chame seus amigos para votarem na sua foto!</p>
+      @if (ViewBag.ConcursoAberto){
+        <a href="/natal-de-luz/enviar" class="c-button--white c-button--small" title="Envie sua foto"><i class="fa fa-image"></i>&nbsp;&nbsp; Envie sua foto</a>
+      } else {
+        <h2>Votação encerrada!</h2>
+      }
+    </div>
+  </div>
+</div>

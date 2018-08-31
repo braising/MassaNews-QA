@@ -1,0 +1,82 @@
+﻿@using MassaNews.Service.Util
+@model List<MassaNews.Portal.ViewModels.NoticiaByCategoria>
+
+@foreach (var item in Model)
+{
+    if (item.NoticiasHighlights.Count != 0)
+    {
+<section id="section-@String.Format("t-{0}", item.Categoria.Theme.Value)" class="track-headlines-home track-headlines-sections-home sections-home">
+    <div class="c-category-title c-category-title--gray @string.Format("t-{0}", item.Categoria.Theme.Value)">
+        <h2 class="title">
+            <a href="/@string.Format("{0}", item.UrlEditorial)/@string.Format("{0}", item.Categoria.Url)" class="title-section" title="@string.Format("{0}", item.Categoria.Url)">@string.Format("{0}", item.Categoria.Titulo)</a>
+        </h2>
+
+        <a href="/@string.Format("{0}", item.UrlEditorial)/@string.Format("{0}", item.Categoria.Url)" class="link-see-all fa fa-plus-circle fa-2x" title="Ler todas"></a>
+    </div>
+    <div class="g-3columns g-headlines--category t-module">
+        @for (int i = 0; i < item.NoticiasHighlights.Count; i++)
+        {
+        <div class="g-column">
+            <div class="c-headline @String.Format("t-{0}", item.Categoria.Theme.Value)" data-position="@String.Format("{0}",i + 1)">
+                <picture class="image">
+                    <a href="/@String.Format("{0}", item.UrlEditorial)/@String.Format("{0}", item.NoticiasHighlights[i].Categoria.Url)/@item.NoticiasHighlights[i].Url.ToString()" title="@item.NoticiasHighlights[i].Titulo.ToString()">
+                        <img class="lazy loaded" data-original="@item.NoticiasHighlights[i].ImgSm.ToString()" alt="@item.NoticiasHighlights[i].Titulo.ToString()" src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.NoticiasHighlights[i].ImgSm}")" style="display: inline;">
+                    </a>
+                </picture>
+                <div class="texts">
+                    <h3 class="hat">
+                        <a href="/@String.Format("{0}", item.UrlEditorial)/">@item.NoticiasHighlights[i].Categoria.Titulo</a>
+                        <time class="date" datetime="@Convert.ToDateTime(item.NoticiasHighlights[i].DataPublicacao).ToString("yyyy-MM-dd HH:mm")">
+                            <text>-</text>
+                            @if (Convert.ToDateTime(item.NoticiasHighlights[i].DataPublicacao).ToShortDateString() == DateTime.Now.ToShortDateString())
+                            {<text>@Convert.ToDateTime(item.NoticiasHighlights[i].DataPublicacao).ToString("HH\\hmm")</text>}
+                            else
+                            {<text>@Convert.ToDateTime(item.NoticiasHighlights[i].DataPublicacao).ToString("dd/MM/yyyy")</text>}
+                        </time>
+
+                    </h3>
+                    <h2 class="title">
+                        <a href="/@String.Format("{0}", item.UrlEditorial)/@item.NoticiasHighlights[i].Categoria.Url/@item.NoticiasHighlights[i].Url.ToString()" title="@item.NoticiasHighlights[i].Titulo.ToString()">
+                            @item.NoticiasHighlights[i].Titulo.ToString()
+                        </a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        }
+        <div class="g-column c-headline--minis">
+            @for (int i = 0; i < item.Noticias.Count(); i++)
+            {
+            <div class="c-headline" data-position="@String.Format("{0}",i + 3)">
+                @if (item.Noticias[i].ImgThumb != null)
+                {
+                <picture class="image">
+                    <a href="/@String.Format("{0}", item.UrlEditorial)/@String.Format("{0}", item.Noticias[i].Categoria.Url)/@item.Noticias[i].Url.ToString()" title="@item.Noticias[i].Titulo.ToString()">
+                        <img class="lazy loaded" data-original="@item.Noticias[i].ImgThumb.ToString()" alt="@item.Noticias[i].Titulo.ToString()" src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.Noticias[i].ImgThumb}")" style="display: inline;">
+                    </a>
+                </picture>
+                }
+                <div class="texts">
+                    <h3 class="hat">
+                        <a href="/@String.Format("{0}", item.UrlEditorial)/">@item.Noticias[i].Categoria.Titulo</a>
+                        <time class="date" datetime="@Convert.ToDateTime(item.Noticias[i].DataPublicacao).ToString("yyyy-MM-dd HH:mm")">
+                            <text>-</text>
+                            @if (Convert.ToDateTime(item.Noticias[i].DataPublicacao).ToShortDateString() == DateTime.Now.ToShortDateString())
+                            {<text>@Convert.ToDateTime(item.Noticias[i].DataPublicacao).ToString("HH\\hmm")</text>}
+                            else
+                            {<text>@Convert.ToDateTime(item.Noticias[i].DataPublicacao).ToString("dd/MM/yyyy")</text>}
+                        </time>
+                    </h3>
+                    <h2 class="title">
+                        <a href="/@String.Format("{0}", item.UrlEditorial)/@item.Noticias[i].Categoria.Url/@item.Noticias[i].Url.ToString()" title="@item.Noticias[i].Titulo.ToString()">
+                            @item.Noticias[i].Titulo.ToString()
+                        </a>
+                    </h2>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+  }
+}

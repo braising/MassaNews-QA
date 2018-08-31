@@ -1,0 +1,952 @@
+//
+// Basic Bootstrap table
+//
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 2rem;
+  background-color: transparent; // Reset for nesting within parents with `background-color`.
+
+  th,
+  td {
+    padding: .50rem .75rem;
+    vertical-align: top;
+    border-top: 1px solid #e9ecef;
+  }
+
+  thead th {
+    text-align: left;
+    vertical-align: bottom;
+    border-bottom: (2 * 1px) solid #e9ecef;
+  }
+
+  tbody + tbody {
+    border-top: (2 * 1px) solid #e9ecef;
+  }
+
+  .table {
+    background-color: #fff;
+  }
+}
+
+
+//
+// Condensed table w/ half padding
+//
+
+.table-sm {
+  th,
+  td {
+    padding: .3rem;
+  }
+}
+
+
+// Bordered version
+//
+// Add borders all around the table and between all the columns.
+
+.table-bordered {
+  border: 1px solid #e9ecef;
+
+  th,
+  td {
+    border: 1px solid #e9ecef;
+  }
+
+  thead {
+    th,
+    td {
+      border-bottom-width: (2 * 1px);
+    }
+  }
+}
+
+
+// Zebra-striping
+//
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+
+.table-striped {
+  tbody tr:nth-of-type(odd) {
+    background-color: rgba(#000,.05);
+  }
+}
+
+
+// Hover effect
+//
+// Placed here since it has to come after the potential zebra striping
+
+// .table-hover {
+//   tbody tr {
+//     @include hover {
+//       background-color: rgba(#000,.075);
+//     }
+//   }
+// }
+
+
+// Table backgrounds
+//
+// Exact selectors below required to override `.table-striped` and prevent
+// inheritance to nested tables.
+
+// @each $color, $value in $theme-colors {
+//   @include table-row-variant($color, theme-color-level($color, -9));
+// }
+
+// @include table-row-variant(active, $table-active-bg);
+
+
+// Dark styles
+//
+// Same table markup, but inverted color scheme: dark background and light text.
+
+// stylelint-disable-next-line no-duplicate-selectors
+.table {
+  .thead-light {
+    th {
+      color: #495057;
+      background-color: #e5e5e5;
+      border-color: #e5e5e5;
+    }
+  }
+}
+
+// .table-dark {
+//   color: $table-dark-color;
+//   background-color: $table-dark-bg;
+
+//   th,
+//   td,
+//   thead th {
+//     border-color: $table-dark-border-color;
+//   }
+
+//   &.table-bordered {
+//     border: 0;
+//   }
+
+//   &.table-striped {
+//     tbody tr:nth-of-type(odd) {
+//       background-color: $table-dark-accent-bg;
+//     }
+//   }
+
+//   &.table-hover {
+//     tbody tr {
+//       @include hover {
+//         background-color: $table-dark-hover-bg;
+//       }
+//     }
+//   }
+// }
+
+
+// Responsive tables
+//
+// Generate series of `.table-responsive-*` classes for configuring the screen
+// size of where your table will overflow.
+
+// .table-responsive {
+//   @each $breakpoint in map-keys($grid-breakpoints) {
+//     $next: breakpoint-next($breakpoint, $grid-breakpoints);
+//     $infix: breakpoint-infix($next, $grid-breakpoints);
+
+//     &#{$infix} {
+//       @include media-breakpoint-down($breakpoint) {
+//         display: block;
+//         width: 100%;
+//         overflow-x: auto;
+//         -webkit-overflow-scrolling: touch;
+//         -ms-overflow-style: -ms-autohiding-scrollbar; // See https://github.com/twbs/bootstrap/pull/10057
+
+//         // Prevent double border on horizontal scroll due to use of `display: block;`
+//         &.table-bordered {
+//           border: 0;
+//         }
+//       }
+//     }
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+/*
+tbl.css
+Desenvolvido por Tabela Fácil
+www.tabelafacil.com
+
+Este arquivo é dividido em:
+
+- Fontes (todas as tabelas)
+- Cores (todas as tabelas)
+- Classificação
+- Posição por rodada
+- Cores da classificação
+- Tabela geral dinâmica
+- Tabela geral estática
+- Cores da tabela geral
+- Listas de jogos
+- Listas de artilharia
+
+Todas as classes começam com o prefixo "tbl-".
+Os ids das tabelas são o mesmo nome do arquivo HTML, definidos na área de administração do site.
+*/
+
+table{
+  &#classificacao,
+  &#Classificacao,
+  &#classificacaoGrupo,
+  &#jogosRodada,
+  &#resumoClassificacao,
+  &#resumoClassificacaoPrimeiros,
+  &#jogosPorFase,
+  &#jogosFase,
+  &#jogosPorRodada{
+    width: 100%;
+  }
+}
+
+table{
+  &#classificacao,
+  &#Classificacao,
+  &#classificacaoGrupo,
+  &#resumoClassificacao{
+    td{
+      &.tbl-st-team{
+        & > span{
+          padding: 0;
+        }
+
+        a{
+          display: inline-block;
+        }
+      }
+    }
+    
+  }
+}
+
+table{
+  &#resumoClassificacao,
+  &#resumoClassificacaoPrimeiros{
+    .tbl-st-team{
+      a,
+      span{
+        padding-left: 0;
+      }
+    }
+
+    &.tbl-stand {
+      th,
+      td{
+        height: 30px;
+      }
+
+      th{
+        a{
+          height: 30px;
+          padding-top: 6px;
+          background-color: $gray-lightest;
+          color: $gray-dark;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
+
+table{
+  &#jogosRodada,
+  &#resumoClassificacaoPrimeiros{
+    .shild{
+      display: none;
+    }
+  }
+}
+
+// Menu
+#tab-menu-times{
+  [class^=tbl-team-]{
+    .shild{
+      margin-right: 0!important;
+    }
+  }
+}
+
+// Sidebar
+#tab-resumo-brasileirao{
+  table{
+    width: 100%;
+
+    tr:nth-child(1n+7){
+      display: none;
+    }
+  }
+}
+
+// Página da tabela
+.tabela-facil{
+  .h2{
+    text-align: center;
+  }
+
+  .group-table{
+    padding: 0 100px;
+  }
+
+  .table-rounds{
+    .title{
+      text-align: center;
+    }
+  }
+
+  .group-button{
+    text-align: center;
+  }
+
+  .tbl-st-pts{
+    font-weight: bold;
+  }
+
+  .credito{
+    width: 100%;
+    margin: 20px 0 10px 0;
+    text-align: center;
+
+    img{
+      margin-left: 5px;
+      opacity: .3;
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+      -o-filter: grayscale(100%);
+      filter: grayscale(100%);
+      transition: all .3s;
+
+      &:hover{
+        opacity: .9;
+        -webkit-filter: grayscale(0);
+        -moz-filter: grayscale(0);
+        -ms-filter: grayscale(0);
+        -o-filter: grayscale(0);
+        filter: grayscale(0);
+      }
+    }
+  }
+
+  .slick-slider {
+    .slick-arrow{
+      &:before{
+        color: $tema-esportes;
+      }
+    }
+  }
+}
+
+.pg-tabela-copa-do-mundo{
+  [class^=tbl-team-]{
+    .shild{
+      display: none;
+    }
+  }
+}
+
+
+/* Fontes (todas as tabelas)
+Para alterar as fontes, copie este código no CSS usado em seu site, defina as fontes desejadas e coloque-o após o tbl.css. */
+
+.tbl-stand, .tbl-stand-pos, .tbl-matrix-over, .tbl-matrix, .tbl-topscorers, .tbl-owngoals, .tbl-results {
+  font-size: 14px;
+  line-height: 18px;
+}
+/* fonte menor para data, hora, colunas com nome de fase, grupo e rodada */
+td.tbl-round, td.tbl-date, td.tbl-time { font-size: 12px; }
+
+
+
+/* Cores (todas as tabelas)
+Para alterar as cores, copie este código no CSS usado em seu site, defina as fontes desejadas e coloque-o após o tbl.css. */
+
+/* cor do texto */
+.tbl-stand, .tbl-stand-pos, .tbl-matrix-over, .tbl-matrix, .tbl-topscorers, .tbl-owngoals, .tbl-results, .tbl-matrix-over th.tbl-code a
+  { color: #333; }
+/* cor do link */
+.tbl-stand a, .tbl-stand-pos a, .tbl-matrix-over a, .tbl-matrix a, .tbl-topscorers a, .tbl-owngoals a, .tbl-results a
+  { color: #000; }
+/* cor do cabeçalho */
+.tbl-stand th, .tbl-stand-pos th, .tbl-matrix-over th.tbl-head, .tbl-matrix-over tr.tbl-line1:hover th, .tbl-matrix-over tr.tbl-line0:hover th a,
+.tbl-matrix-over tr.tbl-line0:hover th, .tbl-matrix-over tr.tbl-line0:hover th a, .tbl-matrix-over th.tbl-hover, .tbl-matrix-over th.tbl-hover a,
+.tbl-matrix th.tbl-head i, .tbl-matrix th.tbl-head span, .tbl-matrix th.tbl-code, .tbl-matrix th.tbl-code a, .tbl-matrix th.tbl-head,
+.tbl-topscorers th, .tbl-owngoals th, .tbl-results th, .tbl-stand th a, .tbl-stand-pos th a, .tbl-topscorers th a, .tbl-owngoals th a
+  { background-color: $tema-esportes; color: #FFF; }
+/* cor do cabeçalho selecionado e mouse over */
+.tbl-stand th a:hover, .tbl-stand th.tbl-sort-asce a, .tbl-stand th.tbl-sort-desce a, .tbl-stand-pos th a:hover, .tbl-stand-pos th.tbl-sort-asce a,
+.tbl-stand-pos th.tbl-sort-desce a, .tbl-matrix-over th.tbl-head:hover, .tbl-matrix-over th a:hover, .tbl-matrix-over th.tbl-hover a:hover,
+.tbl-matrix-over th.tbl-sort-asce a, .tbl-matrix-over th.tbl-sort-desce a, .tbl-matrix-over th.tbl-head.tbl-sort-asce,
+.tbl-matrix-over th.tbl-head.tbl-sort-desce, .tbl-topscorers th a:hover, .tbl-topscorers th.tbl-sort-asce a, .tbl-topscorers th.tbl-sort-desce a,
+.tbl-owngoals th a:hover, .tbl-owngoals th.tbl-sort-asce a, .tbl-owngoals th.tbl-sort-desce a
+  { background-color: darken($tema-esportes, 5%); color: #FFF; }
+/* cor da linha ímpar */
+.tbl-stand, .tbl-stand-pos .tbl-line1, .tbl-matrix-over, .tbl-matrix, .tbl-matrix, .tbl-matrix .tbl-line1 th, .tbl-topscorers, .tbl-owngoals, .tbl-results
+  { background: #fff; }
+/* cor da linha par */
+.tbl-stand .tbl-line0, .tbl-stand-pos .tbl-line0, .tbl-matrix-over th, .tbl-matrix-over tr.tbl-line1:hover, .tbl-matrix-over tr.tbl-line0:hover,
+.tbl-matrix-over td.tbl-hover, .tbl-matrix-over td.tbl-hover a, .tbl-matrix .tbl-line0, .tbl-matrix .tbl-line0 th, .tbl-results .tbl-line0,
+.tbl-topscorers .tbl-line0, .tbl-owngoals .tbl-line0
+  { background: $gray-lightest; }
+
+
+
+
+/* Classificação */
+
+.tbl-stand th, .tbl-stand td { width: 32px; height: 40px; text-align: center; }
+.tbl-stand .tbl-st-pos { width: 42px; }
+.tbl-stand .tbl-st-team { width: 120px; text-align: left; }
+.tbl-stand .tbl-st-team a, .tbl-stand .tbl-st-team span { padding-left: 12px; text-align: left;}
+.tbl-stand th a { cursor: pointer; display: block; height: 40px; padding-top: 11px; }
+.tbl-stand th.tbl-sort-asce a { background-image: url('../images/icons/table/img-sort-asce.gif'); background-repeat: no-repeat; background-position: 4px 18px; padding-left: 10px }
+.tbl-stand th.tbl-sort-desce a { background-image: url('../images/icons/table/img-sort-desce.gif'); background-repeat: no-repeat; background-position: 4px 18px; padding-left: 10px }
+.tbl-stand th.tbl-st-team.tbl-sort-asce a, .tbl-stand th.tbl-st-team.tbl-sort-desce a { padding-left: 22px; /*background-position: 12px 12px;*/ }
+.tbl-stand .tbl-st-var-up { background-image: url('../images/icons/table/img-stand-up.gif'); background-repeat: no-repeat; background-position: 8px 12px; padding-left: 5px; width: 30px; }
+.tbl-stand .tbl-st-var-none { text-indent: -5000px; }
+.tbl-stand .tbl-st-var-down { background-image: url('../images/icons/table/img-stand-down.gif'); background-repeat: no-repeat; background-position: 8px 13px }
+
+
+
+/* Posição por rodada */
+
+.tbl-stand-pos th, .tbl-stand-pos td { width: 32px; height: 30px; text-align: center; }
+.tbl-stand-pos .tbl-st-team { width: 130px; text-align: left; }
+.tbl-stand-pos .tbl-st-team a, .tbl-stand-pos .tbl-st-team span { padding-left: 12px; text-align: left; }
+.tbl-stand-pos th a { cursor: pointer; display: block; height: 22px; padding-top: 5px; }
+.tbl-stand-pos th.tbl-sort-asce a { background-image: url('../images/icons/table/img-sort-asce.gif'); background-repeat: no-repeat; background-position: 4px 12px; padding-left: 10px }
+.tbl-stand-pos th.tbl-sort-desce a { background-image: url('../images/icons/table/img-sort-desce.gif'); background-repeat: no-repeat; background-position: 4px 12px; padding-left: 10px }
+.tbl-stand-pos th.tbl-st-team.tbl-sort-asce a, .tbl-stand-pos th.tbl-st-team.tbl-sort-desce a { padding-left: 22px; background-position: 12px 12px; }
+
+
+
+/* Cores da classificação */
+
+/* zona de classificação 1 (verde) */
+.tbl-stand .tbl-line1.tbl-st-pos1 .tbl-st-pos, .tbl-stand-pos .tbl-line1 .tbl-st-pos1 { color: #090; }
+.tbl-stand .tbl-line0.tbl-st-pos1 .tbl-st-pos, .tbl-stand-pos .tbl-line0 .tbl-st-pos1 { color: #090; }
+/* zona de classificação 2 (azul) */
+//.tbl-stand .tbl-line1.tbl-st-pos2 .tbl-st-pos, .tbl-stand-pos .tbl-line1 .tbl-st-pos2 { color: #9ebfd8; }
+.tbl-stand .tbl-line1.tbl-st-pos2 .tbl-st-pos, .tbl-stand-pos .tbl-line1 .tbl-st-pos2 { color: #42A2FF; }
+.tbl-stand .tbl-line0.tbl-st-pos2 .tbl-st-pos, .tbl-stand-pos .tbl-line0 .tbl-st-pos2 { color: #42A2FF; }
+/* zona de classificação 3 (amarelo) */
+// .tbl-stand .tbl-line1.tbl-st-pos3 .tbl-st-pos, .tbl-stand-pos .tbl-line1 .tbl-st-pos3 { background: #d8d391; }
+// .tbl-stand .tbl-line0.tbl-st-pos3 .tbl-st-pos, .tbl-stand-pos .tbl-line0 .tbl-st-pos3 { background: #c1ba84; }
+/* campeão da Copa do Brasil, classificado para Libertadores (verde) */
+.tbl-stand .tbl-line1.tbl-st-pos4 .tbl-st-pos, .tbl-stand-pos .tbl-line1 .tbl-st-pos4 { color: #090; }
+.tbl-stand .tbl-line0.tbl-st-pos4 .tbl-st-pos, .tbl-stand-pos .tbl-line0 .tbl-st-pos4 { color: #090; }
+/* campeão da Libertadores, classificado para Libertadores (verde) */
+.tbl-stand .tbl-line1.tbl-st-pos5 .tbl-st-pos, .tbl-stand-pos .tbl-line1 .tbl-st-pos5 { color: #090; }
+.tbl-stand .tbl-line0.tbl-st-pos5 .tbl-st-pos, .tbl-stand-pos .tbl-line0 .tbl-st-pos5 { color: #090; }
+/* zona de classificação 9 (vermelho) */
+.tbl-stand .tbl-line1.tbl-st-pos9 .tbl-st-pos, .tbl-stand-pos .tbl-line1 .tbl-st-pos9 { color: $brand-primary; }
+.tbl-stand .tbl-line0.tbl-st-pos9 .tbl-st-pos, .tbl-stand-pos .tbl-line0 .tbl-st-pos9 { color: $brand-primary; }
+/* variação de posição */
+.tbl-stand .tbl-st-var-up { color: #090; }
+.tbl-stand .tbl-st-var-down { color: #C00; }
+
+
+
+/* Tabela geral dinâmica */
+
+.tbl-matrix-over th { width: 42; height: 30px; text-align: center; }
+.tbl-matrix-over td { text-align: center; padding: 0px 4px 0px 3px }
+.tbl-matrix-over .tbl-team { width: 108px; text-align: left; padding-left: 12px }
+.tbl-matrix-over .tbl-team a, .tbl-matrix-over .tbl-team span { padding-left: 12px; text-align: left; }
+.tbl-matrix-over th.tbl-head { text-align: left; padding-left: 12px }
+.tbl-matrix-over th.tbl-code a { display: block; width: 100%; height: 26px; padding-top: 6px; }
+.tbl-matrix-over th.tbl-sort-asce a { background-image: url('../images/icons/table/img-sort-asce.gif'); background-repeat: no-repeat; background-position: center 21px; padding-top: 3px; padding-bottom: 3px; }
+.tbl-matrix-over th.tbl-sort-desce a { background-image: url('../images/icons/table/img-sort-desce.gif'); background-repeat: no-repeat; background-position: center 22px; padding-top: 3px; padding-bottom: 3px; }
+.tbl-matrix-over th.tbl-head.tbl-sort-asce { padding-left: 22px; background-image: url('../images/icons/table/img-sort-asce.gif'); background-repeat: no-repeat; background-position: 12px 15px; }
+.tbl-matrix-over th.tbl-head.tbl-sort-desce { padding-left: 22px; background-image: url('../images/icons/table/img-sort-desce.gif'); background-repeat: no-repeat; background-position: 12px 15px; }
+.tbl-matrix-over th.tbl-head, .tbl-matrix-over th.tbl-code { cursor: pointer; }
+.tbl-matrix-over th.tbl-code { height: 32px; }
+.tbl-matrix-over s { display: none; }
+.tbl-matrix-over .tbl-team i { display: none; }
+.tbl-matrix-over i { font-style: normal; background: none }
+.tbl-matrix-over b { font-weight: normal; }
+.tbl-matrix-over sup { font-size: 8px; line-height: 10px; }
+.tbl-matrix-over a { font-weight: bold }
+.tbl-matrix-over th.tbl-head span, .tbl-matrix-over th.tbl-head i { background: none; }
+
+
+
+/* Tabela geral estática */
+
+.tbl-matrix th { width: 32px; height: 30px; text-align: center; }
+.tbl-matrix td { text-align: center; padding: 0px 4px 0px 3px }
+.tbl-matrix .tbl-st-pos { width: 42px; }
+.tbl-matrix .tbl-team { width: 108px; text-align: left; padding-left: 12px }
+.tbl-matrix .tbl-team a, .tbl-matrix .tbl-team span { padding-left: 12px; text-align: left; }
+.tbl-matrix th.tbl-head { text-align: left; padding-left: 12px; }
+.tbl-matrix sup { font-size: 8px; line-height: 10px; }
+.tbl-matrix i { font-style: normal }
+.tbl-matrix b { font-weight: normal; }
+.tbl-matrix a { font-weight: bold }
+
+
+
+/* Cores da tabela geral
+Copie o esquema de cores desejado e coloque no CSS usado em seu site. */
+
+/* cores para turno (verde) e returno (azul)
+.tbl-matrix .tbl-line1 .tbl-cor4, .tbl-matrix-over .tbl-cor4 { color: #090; }
+.tbl-matrix .tbl-line0 .tbl-cor4, .tbl-matrix-over .tbl-cor4.tbl-hover, .tbl-matrix-over tr:hover .tbl-cor4 { color: #090; }
+.tbl-matrix .tbl-line1 .tbl-cor5, .tbl-matrix-over .tbl-cor5 { background: #9ebfd8; }
+.tbl-matrix .tbl-line0 .tbl-cor5, .tbl-matrix-over .tbl-cor5.tbl-hover, .tbl-matrix-over tr:hover .tbl-cor5 { background: #8da9c4; }
+*/
+/* cores para vitória do mandante (verde), empate (amarelo), vitória do visitante (vermelho)
+.tbl-matrix .tbl-line1 .tbl-cor1, .tbl-matrix-over .tbl-cor1 { color: #090; }
+.tbl-matrix .tbl-line0 .tbl-cor1, .tbl-matrix-over .tbl-cor1.tbl-hover, .tbl-matrix-over tr:hover .tbl-cor1 { color: #090; }
+.tbl-matrix .tbl-line1 .tbl-cor2, .tbl-matrix-over .tbl-cor2 { background: #d8d391; }
+.tbl-matrix .tbl-line0 .tbl-cor2, .tbl-matrix-over .tbl-cor2.tbl-hover, .tbl-matrix-over tr:hover .tbl-cor2 { background: #c1ba84; }
+.tbl-matrix .tbl-line1 .tbl-cor3, .tbl-matrix-over .tbl-cor3 { background: #c4aba2; }
+.tbl-matrix .tbl-line0 .tbl-cor3, .tbl-matrix-over .tbl-cor3.tbl-hover, .tbl-matrix-over tr:hover .tbl-cor3 { background: #ae9794; }
+*/
+
+
+
+/* Lista de jogos */
+
+.tbl-results th, .tbl-results td { height: 22px; text-align: center; padding: 5px 0px 5px 0px; }
+.tbl-results .tbl-st-pos { width: 42px; }
+.tbl-results .tbl-st-team { width: 120px; text-align: left; }
+.tbl-results .tbl-st-team a, .tbl-results .tbl-st-team span { padding-left: 12px; text-align: left; }
+.tbl-results .tbl-round, .tbl-results .tbl-date, .tbl-results .tbl-time, .tbl-results .tbl-score { width: 50px; }
+.tbl-results td.tbl-home { width: 150px; text-align: right }
+.tbl-results td.tbl-away { width: 150px; text-align: left }
+.tbl-results .tbl-venue { width: 120px; text-align: left }
+.tbl-results .tbl-city { width: 120px; text-align: left }
+.tbl-results td { vertical-align: top; }
+.tbl-results td p { margin: 0px; font-size: 12px; display: none }
+.tbl-results td.tbl-home p span { float: right; padding-left: 5px }
+.tbl-results td.tbl-away p span { float: left; padding-right: 5px }
+.tbl-results td i { font-style: normal }
+/*.tbl-results tr:hover p { display: block }*/
+//.tbl-results a { font-weight: bold }
+/* colunas ocultas da lista de jogos. Para exibir uma das colunas use "display: table-cell" */
+.tbl-stage, .tbl-group, .tbl-links { display: none }
+.tbl-results .tbl-home{text-align: right;}
+.tbl-results .tbl-away{text-align: left;}
+
+
+/* Lista de artilharia  e gols contra*/
+
+.tbl-topscorers th, .tbl-topscorers td { width: 42px; height: 30px; text-align: center; }
+.tbl-topscorers .tbl-st-team, .tbl-topscorers .tbl-team { width: 120px; text-align: left; }
+.tbl-topscorers td.tbl-player { width: 108px; padding-left: 12px; text-align: left; }
+.tbl-topscorers .tbl-player a, .tbl-topscorers .tbl-team a { padding-left: 12px; display: block }
+.tbl-topscorers th.tbl-player, .tbl-topscorers th.tbl-st-team { width: 120px; text-align: left; }
+.tbl-topscorers td.tbl-player { padding: 4px 0px 4px 12px; }
+.tbl-topscorers .tbl-st-team a, .tbl-topscorers .tbl-st-team span { padding: 4px 0px 4px 12px; text-align: left; display: block }
+.tbl-topscorers th a { cursor: pointer; display: block; height: 22px; padding-top: 5px; }
+.tbl-topscorers th.tbl-sort-asce a { background-image: url('../images/icons/table/img-sort-asce.gif'); background-repeat: no-repeat; background-position: 4px 12px; padding-left: 12px }
+.tbl-topscorers th.tbl-sort-desce a { background-image: url('../images/icons/table/img-sort-desce.gif'); background-repeat: no-repeat; background-position: 4px 12px; padding-left: 12px }
+.tbl-topscorers th.tbl-team.tbl-sort-asce a, .tbl-topscorers th.tbl-team.tbl-sort-desce a, .tbl-topscorers th.tbl-player.tbl-sort-asce a, .tbl-topscorers th.tbl-player.tbl-sort-desce a { padding-left: 22px; background-position: 12px 12px; }
+.tbl-owngoals th, .tbl-owngoals td { width: 42px; height: 30px; text-align: center; }
+.tbl-owngoals .tbl-st-team, .tbl-owngoals .tbl-team { width: 110px; text-align: left; }
+.tbl-owngoals td.tbl-player { width: 98px; padding-left: 12px; text-align: left; }
+.tbl-owngoals .tbl-player a, .tbl-owngoals .tbl-team a { padding-left: 12px; display: block }
+.tbl-owngoals th.tbl-player, .tbl-owngoals th.tbl-st-team { width: 110px; text-align: left; }
+.tbl-owngoals td.tbl-player { padding: 4px 0px 4px 12px; }
+.tbl-owngoals .tbl-st-team a, .tbl-owngoals .tbl-st-team span { padding: 4px 0px 4px 12px; text-align: left; display: block }
+.tbl-owngoals th a { cursor: pointer; display: block; height: 22px; padding-top: 5px; }
+.tbl-owngoals th.tbl-sort-asce a { background-image: url('../images/icons/table/img-sort-asce.gif'); background-repeat: no-repeat; background-position: 4px 12px; padding-left: 12px }
+.tbl-owngoals th.tbl-sort-desce a { background-image: url('../images/icons/table/img-sort-desce.gif'); background-repeat: no-repeat; background-position: 4px 12px; padding-left: 12px }
+.tbl-owngoals th.tbl-team.tbl-sort-asce a, .tbl-owngoals th.tbl-team.tbl-sort-desce a, .tbl-owngoals th.tbl-player.tbl-sort-asce a, .tbl-owngoals th.tbl-player.tbl-sort-desce a { padding-left: 22px; background-position: 12px 12px; }
+
+@media all and (max-width: bp(10)) {
+  .tabela-facil{
+    .tbl-round{
+      display: none;
+    }    
+  }
+}
+
+@media all and (max-width: bp(8)) {
+  .tabela-facil{
+    .tbl-results{
+      .tbl-venue{
+        display: none;
+      }
+    }
+
+    #classificacao{
+      .tbl-st-per,
+      .tbl-st-gf,
+      .tbl-st-ga{
+        display: none;
+      }
+    }
+  }
+}
+
+@media all and (max-width: bp(6)) {
+  .tabela-facil{
+    .tbl-results{
+      .tbl-city{
+        display: none;
+      }
+    }
+  }
+
+  .tabela-facil-resumo{
+    .c-button{
+      display: none;
+    }
+  }
+}
+
+@media all and (max-width: 500px) {
+  .tabela-facil{
+    .slick-slider{
+      margin: 0;
+    }
+
+    .group-table{
+      padding: 0;
+
+      .tbl-results{
+        .tbl-time{
+          display: none;
+        }
+      }
+    }
+
+    #classificacao{
+      .tbl-st-pld,
+      .tbl-st-gd{
+        display: none;
+      }
+    }
+  }
+}
+
+@media all and (max-width: bp(4)) {
+  .tabela-facil{
+    #classificacao{
+      .tbl-st-w,
+      .tbl-st-d,
+      .tbl-st-l{
+        display: none;
+      }
+    }
+  }
+}
+
+// Times
+[class^="tbl-team-"]{
+  display: inline-block;
+
+  .shild{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background: red;
+    display: inline-block;
+    float: left;
+    background: url('../images/icons/shild/sprite-team.png') no-repeat;
+  }
+
+  &.tbl-team-ATL{
+    .shild{
+      background-position: 0 0;
+    }
+  }
+  &.tbl-team-CAS{
+    .shild{
+      background-position: -20px 0;
+    }
+  }
+  &.tbl-team-CFC{
+    .shild{
+      background-position: -40px 0;
+    }
+  }
+  &.tbl-team-FOZ{
+    .shild{
+      background-position: -60px 0;
+    }
+  }
+  &.tbl-team-JMA{
+    .shild{
+      background-position: -80px 0;
+    }
+  }
+  &.tbl-team-LON{
+    .shild{
+      background-position: -100px 0;
+    }
+  }
+  &.tbl-team-MAR{
+    .shild{
+      background-position: -120px 0;
+    }
+  }
+  &.tbl-team-OPE{
+    .shild{
+      background-position: -140px 0;
+    }
+  }
+  &.tbl-team-PAR{
+    .shild{
+      background-position: -160px 0;
+    }
+  }
+  &.tbl-team-PST{
+    .shild{
+      background-position: -180px 0;
+    }
+  }
+  &.tbl-team-RIO{
+    .shild{
+      background-position: -200px 0;
+    }
+  }
+  &.tbl-team-TOL{
+    .shild{
+      background-position: -220px 0;
+    }
+  }
+  &.tbl-team-PON{
+    .shild{
+      background-position: -240px 0;
+    }
+  }
+  &.tbl-team-AME,
+  &.tbl-team-AMG{
+    .shild{
+      background-position: -260px 0;
+    }
+  }
+  &.tbl-team-BOT{
+    .shild{
+      background-position: -280px 0;
+    }
+  }
+  &.tbl-team-CRU{
+    .shild{
+      background-position: -300px 0;
+    }
+  }
+  &.tbl-team-SAN{
+    .shild{
+      background-position: -320px 0;
+    }
+  }
+  &.tbl-team-SPO{
+    .shild{
+      background-position: -340px 0;
+    }
+  }
+  &.tbl-team-VIT{
+    .shild{
+      background-position: -360px 0;
+    }
+  }
+  &.tbl-team-PAL{
+    .shild{
+      background-position: -380px 0;
+    }
+  }
+  &.tbl-team-STC{
+    .shild{
+      background-position: -400px 0;
+    }
+  }
+  &.tbl-team-CAM{
+    .shild{
+      background-position: -420px 0;
+    }
+  }
+  &.tbl-team-FLA{
+    .shild{
+      background-position: -440px 0;
+    }
+  }
+  &.tbl-team-FLU{
+    .shild{
+      background-position: -460px 0;
+    }
+  }
+  &.tbl-team-SPL{
+    .shild{
+      background-position: -480px 0;
+    }
+  }
+  &.tbl-team-CHA{
+    .shild{
+      background-position: -500px 0;
+    }
+  }
+  &.tbl-team-COR{
+    .shild{
+      background-position: -520px 0;
+    }
+  }
+  &.tbl-team-FIG{
+    .shild{
+      background-position: -540px 0;
+    }
+  }
+  &.tbl-team-GRE{
+    .shild{
+      background-position: -560px 0;
+    }
+  }
+  &.tbl-team-INT{
+    .shild{
+      background-position: -580px 0;
+    }
+  }
+  &.tbl-team-OES{
+    .shild{
+      background-position: -600px 0;
+    }
+  }
+  &.tbl-team-BRS{
+    .shild{
+      background-position: -620px 0;
+    }
+  }
+  &.tbl-team-AVA{
+    .shild{
+      background-position: -640px 0;
+    }
+  }
+  &.tbl-team-CEA{
+    .shild{
+      background-position: -660px 0;
+    }
+  }
+  &.tbl-team-CRI{
+    .shild{
+      background-position: -680px 0;
+    }
+  }
+  &.tbl-team-ATG,
+  &.tbl-team-ACG{
+    .shild{
+      background-position: -700px 0;
+    }
+  }
+  &.tbl-team-BAH{
+    .shild{
+      background-position: -720px 0;
+    }
+  }
+  &.tbl-team-BRG{
+    .shild{
+      background-position: -740px 0;
+    }
+  }
+  &.tbl-team-CRB{
+    .shild{
+      background-position: -760px 0;
+    }
+  }
+  &.tbl-team-GOI{
+    .shild{
+      background-position: -780px 0;
+    }
+  }
+  &.tbl-team-LUV{
+    .shild{
+      background-position: -800px 0;
+    }
+  }
+  &.tbl-team-PAY{
+    .shild{
+      background-position: -820px 0;
+    }
+  }
+  &.tbl-team-SAM{
+    .shild{
+      background-position: -840px 0;
+    }
+  }
+  &.tbl-team-JOI{
+    .shild{
+      background-position: -860px 0;
+    }
+  }
+  &.tbl-team-NAU{
+    .shild{
+      background-position: -880px 0;
+    }
+  }
+  &.tbl-team-TUP{
+    .shild{
+      background-position: -900px 0;
+    }
+  }
+  &.tbl-team-VAS{
+    .shild{
+      background-position: -920px 0;
+    }
+  }
+  &.tbl-team-VIL{
+    .shild{
+      background-position: -940px 0;
+    }
+  }
+  &.tbl-team-PRU{
+    .shild{
+      background-position: -960px 0;
+    }
+  }
+  &.tbl-team-CIA{
+    .shild{
+      background-position: -980px 0;
+    }
+  }
+  &.tbl-team-FOR{
+    .shild{
+      background-position: -1000px 0;
+    }
+  }
+  &.tbl-team-CSA{
+    .shild{
+      background-position: -1020px 0;
+    }
+  }
+  &.tbl-team-BEC,
+  &.tbl-team-BOA{
+    .shild{
+      background-position: -1040px 0;
+    }
+  }
+  &.tbl-team-SBN,
+  &.tbl-team-BEN{
+    .shild{
+      background-position: -1060px 0;
+    }
+  }
+  &.tbl-team-GUA{
+    .shild{
+      background-position: -1080px 0;
+    }
+  }
+  &.tbl-team-JUV{
+    .shild{
+      background-position: -1100px 0;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+﻿@{ Layout = null; }
+
+@model MassaNews.Service.Models.Tag
+
+@* <div class="c-regua c-regua--tags c-regua--tags-olimpiadas">
+  <div class="g-container">
+    <h2 class="h1 title"><a href="/tags/olimpiadas-2016" title="Rio 2016" class="ticker--title-link"><span class="label">Rio 2016</span> <span class="icon"></span></a></h2>
+    <div class="trigger-ticker ticker tag-last-news">
+      <ul>
+        @{var index = 1;}
+        @foreach (var noticia in Model.GetLastestNews(5)){
+          <li><a href="@noticia.UrlFull" title="@noticia.Titulo" class="track-link-regua ticker--link" data-index="@index">@noticia.Titulo</a></li>
+          index++;
+        }
+      </ul>
+    </div>
+    <a href="/tags/@Model.Url" class="fa fa-chevron-right fa-lg u-right icon-see-all ticker--arrow" title="Tudo sobre Rio 2016"></a>
+  </div>
+</div> *@
+
+@* REGUA - PADRÃO (TAG) *@
+@* <div class="c-regua c-regua--tags c-regua--tags-@Model.Url">
+  <div class="g-container">
+    <h2 class="title"><a href="/tags/@Model.Url" title="@Model.Titulo" class="ticker--title-link"><span class="label">@Model.Titulo</span></a></h2>
+    <div class="trigger-ticker ticker tag-last-news">
+      <ul>
+        @{var index = 1;}
+        @foreach (var noticia in Model.GetLastestNews(0, 5, null)){
+          <li><a href="@noticia.UrlFull" title="@noticia.Titulo" class="track-link-regua ticker--link" data-index="@index">@noticia.Titulo</a></li>
+          index++;
+        }
+      </ul>
+    </div>
+    <a href="/tags/@Model.Url" class="fa fa-chevron-right fa-lg u-right icon-see-all ticker--arrow" title="Tudo sobre @Model.Titulo"></a>
+  </div>
+</div> *@
+
+@* REGUA - DESAFIANDO CHEFS *@
+@* <div class="c-regua c-regua--tags c-regua--tags-desafiando-chefs t-module">
+  <div class="g-container">
+    <h2 class="title"><a href="@Url.Action("DesafiandoChefs", "Land")" title="Desafiando Chefs" class="ticker--title-link"><span class="label">Desafiando Chefs</span></a></h2>
+    <div class="trigger-ticker ticker tag-last-news">
+      <ul>
+        @{var index = 1;}
+        @foreach (var noticia in Model.GetLastestNews(0, 5, null)){
+          <li><a href="@noticia.UrlFull" title="@noticia.Titulo" class="track-link-regua ticker--link" data-index="@index">@noticia.Titulo</a></li>
+          index++;
+        }
+      </ul>
+    </div>
+    <a href="@Url.Action("DesafiandoChefs", "Land")" class="fa fa-chevron-right fa-lg u-right icon-see-all ticker--arrow" title="Desafiando Chefs"></a>
+  </div>
+</div> *@
+
+@* REGUA - MASSA NA RÚSSIA *@
+<div class="c-regua c-regua--tags c-regua--tags-massa-na-russia t-module">
+  <div class="g-container">
+    <h2 class="title"><a href="/narussia" target="_blank" title="Massa na Rússia" class="ticker--title-link"><span class="label">Massa na Rússia</span></a></h2>
+    <div class="trigger-ticker ticker tag-last-news">
+      <ul>
+        @{var index = 1;}
+        @foreach (var noticia in Model.GetLastestNews(0, 5, null)){
+          <li><a href="@noticia.UrlFull" title="@noticia.Titulo" class="track-link-regua ticker--link" data-index="@index">@noticia.Titulo</a></li>
+          index++;
+        }
+      </ul>
+    </div>
+    <a href="/narussia" target="_blank" class="fa fa-chevron-right fa-lg u-right icon-see-all ticker--arrow" title="Massa na Rússia"></a>
+  </div>
+</div>

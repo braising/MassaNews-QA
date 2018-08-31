@@ -1,0 +1,56 @@
+﻿@model MassaNews.Service.Models.Autor
+
+<section class="c-author-profile">
+  <div class="c-author-profile__inner">
+    <span class="c-author-profile__avatar">
+      @if (Model.Avatar != null)
+      {
+        <img src="@Model.Avatar" alt="@Model.Nome">
+      }
+      else
+      {
+        <img src="@Url.Content("~/content/images/placeholders/no-avatar.png")" alt="@Model.Nome">
+      }
+    </span>
+    <ul class="c-author-profile__social">
+      @if (!string.IsNullOrEmpty(Model.Facebook))
+      {
+        <li>
+          <a href="@Model.Facebook" target="_blank" class="link-facebook" title="facebook">
+            <span class="fa-stack color-facebook">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+        </li>
+      }
+      @if (!string.IsNullOrEmpty(Model.Twitter))
+      {
+        <li>
+          <a href="@Model.Twitter" target="_blank" class="link-twitter" title="twitter">
+            <span class="fa-stack color-twitter">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+        </li>
+      }
+      @if (!string.IsNullOrEmpty(Model.Email))
+      {
+        <li>
+          <a href="@($"mailto:{Model.Email}")" target="_blank" class="link-mail" title="e-mail">
+            <span class="fa-stack c-share__icon">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+        </li>
+      }
+    </ul>
+    <h3 class="c-author-profile__name t-page-color">@Model.Nome</h3>
+  </div>
+  <div class="c-author-profile__description">
+    <p class="resume">@Html.Raw(Model.Descricao)</p>
+  </div>
+</section>
+

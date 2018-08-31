@@ -1,0 +1,170 @@
+﻿@model MassaNews.Portal.ViewModels.NewsletterUpdateViewModel
+
+@section bodyClass{@Html.Raw("pg-newsletter-update")}
+
+<main class="g-main">
+  <div class="g-container">
+    <section class="institucinais__center">
+      <h2 class="send is-success">Dados atualizados com sucesso!</h2>
+      <h2 class="send is-error">Houve um erro ao enviar. Por favor tente novamente.</h2>
+      
+      @if (Model.GoBack)
+      {
+       <h2>Seu cadastro foi reativado com sucesso!</h2> 
+      }
+
+      <p>Atualize suas preferências e receba e-mails personalizados para você.</p>
+      <form action="#" method="post" id="form-newsletter-update" class="form-newsletter-update">
+        <input type="hidden" id="form-newsletter-update--hash" name="form-newsletter-update--hash" value="@Model.UserHash" />
+
+        <ul class="c-forms--labels">
+          <li class="input-half input-fulls">
+            <label for="form-newsletter-update--nome">Nome</label>
+            <input type="text" name="form-newsletter-update--nome" id="form-newsletter-update--nome" maxlength="120" placeholder="Seu nome" value="@Model.UserNewsletter.Nome">
+            <span class="field-validation-error" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+          <li class="input-half input-fulls">
+            <label for="form-newsletter-update--email">E-mail</label>
+            <input type="email" name="form-newsletter-update--email" id="form-newsletter-update--email" maxlength="120" placeholder="Seu e-mail" value="@Model.UserNewsletter.Email" disabled="">
+          </li>
+        </ul>
+
+        <ul class="c-forms--labels">
+          <li class="input-half">
+            <label for="form-newsletter-update--cidade">Cidade</label>
+            <div class="mask-select">
+              @Html.DropDownList("CityLetter", null, new { })
+            </div>
+          </li>
+
+          <li class="input-medium">
+            <label for="form-newsletter-update--celular">Celular</label>
+            <input type="tel" name="form-newsletter-update--celular" id="form-newsletter-update--celular" class="trigger-mask-phone" maxlength="120" placeholder="(00) 0000-0000" value="@Model.UserNewsletter.Celular">
+            <span class="field-validation-error" data-valmsg-for="celular" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+            <span class="field-validation-error invalid-celular" data-valmsg-for="celular" data-valmsg-replace="true" style="display: none;">*Celular inválido</span>
+          </li>
+        </ul>
+
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            <label>Qual período do dia deseja receber nossos e-mails?</label>
+            <label for="manha"><input type="radio" id="manha" name="gender" value="1" @(Model.UserNewsletter.PeriodoId == 1 ? "checked" : string.Empty)> Manhã</label>
+            <label for="tarde"><input type="radio" id="tarde" name="gender" value="2" @(Model.UserNewsletter.PeriodoId == 2 ? "checked" : string.Empty)> Tarde</label>
+            <label for="noite"><input type="radio" id="noite" name="gender" value="3" @(Model.UserNewsletter.PeriodoId == 3 || !Model.UserNewsletter.PeriodoId.HasValue  ? "checked" : string.Empty) > Noite</label>
+            <span class="field-validation-error" data-valmsg-for="cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+            <span class="field-validation-error invalid-cidade" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Período inválida</span>
+          </li>
+        </ul>
+
+        <label>Escolha os assuntos que você tem interesse em receber:</label>
+
+        @foreach (var group in Model.PreferenceGroups)
+        {
+          <label><strong>@group.Name</strong></label>
+          <ul class="c-forms--labels options-news">
+            <li class="input-full">
+              @foreach (var preference in group.Preferences)
+              {
+                <label for="form-@preference.Id"><input type="checkbox" name="@preference.Name" value="@preference.Id" id="form-@preference.Id" @(Model.UserNewsletter.Preferences.Any(p => p.Id == preference.Id) ? "checked" : string.Empty)> @preference.Name</label>
+              }
+            </li>
+          </ul>
+
+          @* <ul class="c-forms--labels">
+            <li class="input-third">
+              @{ var count = (group.Preferences.Count() / 3) + 1; }
+              @foreach (var preference in group.Preferences.Skip(0 * count).Take(count))
+              {
+                <label for="form-@preference.Id"><input type="checkbox" name="@preference.Name" value="@preference.Id" id="form-@preference.Id" @(Model.UserNewsletter.Preferences.Any(p => p.Id == preference.Id) ? "checked" : string.Empty)> @preference.Name</label>
+              }
+            </li>
+            <li class="input-third">
+              @foreach (var preference in group.Preferences.Skip(1 * count).Take(count))
+              {
+                <label for="form-@preference.Id"><input type="checkbox" name="@preference.Name" value="@preference.Id" id="form-@preference.Id" @(Model.UserNewsletter.Preferences.Any(p => p.Id == preference.Id) ? "checked" : string.Empty)> @preference.Name</label>
+              }
+            </li>
+            <li class="input-third">
+              @foreach (var preference in group.Preferences.Skip(2 * count))
+              {
+                <label for="form-@preference.Id"><input type="checkbox" name="@preference.Name" value="@preference.Id" id="form-@preference.Id" @(Model.UserNewsletter.Preferences.Any(p => p.Id == preference.Id) ? "checked" : string.Empty)> @preference.Name</label>
+              }
+            </li>
+          </ul> *@
+        }
+
+        @*<ul class="c-forms--labels">
+          <label>Escolha os assuntos que você tem interesse em receber:</label>
+
+          @*<li class="input-third">
+            <label><strong>Notícias regionais</strong></label>
+            <label for="form-noticias--select-all-noticias-regionais" class="select-all"><input type="checkbox" name="" value="" id="form-noticias--select-all-noticias-regionais"> Selecionar tudo</label>
+            <label for="form-noticias--curitiba"><input type="checkbox" name="" value="" id="form-noticias--curitiba" checked> Curitiba e região</label>
+            <label for="form-noticias--londrina"><input type="checkbox" name="" value="" id="form-noticias--londrina"> Londrina e região</label>
+            <label for="form-noticias--maringa"><input type="checkbox" name="" value="" id="form-noticias--maringa"> Maringá e região</label>
+            <label for="form-noticias--foz-do-iguacu"><input type="checkbox" name="" value="" id="form-noticias--foz-do-iguacu"> Foz do Iguaçu e região</label>
+            <label for="form-noticias--ponta-grossa"><input type="checkbox" name="" value="" id="form-noticias--ponta-grossa"> Ponta Grossa e região</label>
+
+            <label class="u-margin-top"><strong>Mais notícias</strong></label>
+            <label for="form-noticias--select-all-noticias" class="select-all"><input type="checkbox" name="" value="" id="form-noticias--select-all-noticias" checked> Selecionar tudo</label>
+            <label for="form-noticias--parana"><input type="checkbox" name="" value="" id="form-noticias--parana"> Paraná</label>
+            <label for="form-noticias--politica"><input type="checkbox" name="" value="" id="form-noticias--politica"> Política</label>
+            <label for="form-noticias--economia"><input type="checkbox" name="" value="" id="form-noticias--economia"> Economia</label>
+            <label for="form-noticias--brasil"><input type="checkbox" name="" value="" id="form-noticias--brasil"> Brasil</label>
+            <label for="form-noticias--mundo"><input type="checkbox" name="" value="" id="form-noticias--mundo"> Mundo</label>
+            <label for="form-noticias--educacao"><input type="checkbox" name="" value="" id="form-noticias--educacao"> Educação</label>
+            <label for="form-noticias--ciencia-e-saude"><input type="checkbox" name="" value="" id="form-noticias--ciencia-e-saude"> Ciência e saúde</label>
+            <label for="form-noticias--inovacao-e-tecnologia"><input type="checkbox" name="" value="" id="form-noticias--inovacao-e-tecnologia"> Inovação e Tecnologia</label>
+            <label for="form-noticias--turismo-e-viagem"><input type="checkbox" name="" value="" id="form-noticias--turismo-e-viagem"> Turismo e Viagem</label>
+          </li>*@
+
+          @*<li class="input-third">
+            <label><strong>Esportes</strong></label>
+            <label for="form-noticias--select-all-esportes" class="select-all"><input type="checkbox" name="" value="" id="form-noticias--select-all-esportes" checked> Selecionar tudo</label>
+            <label for="form-newsletter-update--futebol"><input type="checkbox" name="" value="" id="form-newsletter-update--futebol"> Futebol</label>
+            <label for="form-newsletter-update--basquete"><input type="checkbox" name="" value="" id="form-newsletter-update--basquete"> Basquete</label>
+            <label for="form-newsletter-update--futsal"><input type="checkbox" name="" value="" id="form-newsletter-update--futsal"> Futsal</label>
+            <label for="form-newsletter-update--olimpiadas"><input type="checkbox" name="" value="" id="form-newsletter-update--olimpiadas"> Olimpíadas</label>
+            <label for="form-newsletter-update--tenis"><input type="checkbox" name="" value="" id="form-newsletter-update--tenis"> Tênis</label>
+            <label for="form-newsletter-update--volei"><input type="checkbox" name="" value="" id="form-newsletter-update--volei"> Vôlei</label>
+            <label for="form-newsletter-update--artes-marciais"><input type="checkbox" name="" value="" id="form-newsletter-update--artes-marciais"> Artes Marciais</label>
+            <label for="form-newsletter-update--automobilismo"><input type="checkbox" name="" value="" id="form-newsletter-update--automobilismo"> Automobilismo</label>
+            <label for="form-newsletter-update--atletismo"><input type="checkbox" name="" value="" id="form-newsletter-update--atletismo"> Atletismo</label>
+            <label for="form-newsletter-update--boxe"><input type="checkbox" name="" value="" id="form-newsletter-update--boxe"> Boxe</label>
+            <label for="form-newsletter-update--ciclismo"><input type="checkbox" name="" value="" id="form-newsletter-update--ciclismo"> Ciclismo</label>
+            <label for="form-newsletter-update--corpo-e-mente"><input type="checkbox" name="" value="" id="form-newsletter-update--corpo-e-mente"> Corpo e mente</label>
+            <label for="form-newsletter-update--esportes-radicais"><input type="checkbox" name="" value="" id="form-newsletter-update--esportes-radicais"> Esportes radicais</label>
+            <label for="form-newsletter-update--futebol-americano"><input type="checkbox" name="" value="" id="form-newsletter-update--futebol-americano"> Futebol americano</label>
+            <label for="form-newsletter-update--ginastica"><input type="checkbox" name="" value="" id="form-newsletter-update--ginastica"> Ginástica</label>
+            <label for="form-newsletter-update--golfe"><input type="checkbox" name="" value="" id="form-newsletter-update--golfe"> Golfe</label>
+            <label for="form-newsletter-update--handebol"><input type="checkbox" name="" value="" id="form-newsletter-update--handebol"> Handebol</label>
+            <label for="form-newsletter-update--judo"><input type="checkbox" name="" value="" id="form-newsletter-update--judo"> Judô</label>
+            <label for="form-newsletter-update--mma"><input type="checkbox" name="" value="" id="form-newsletter-update--mma"> MMA</label>
+            <label for="form-newsletter-update--natacao"><input type="checkbox" name="" value="" id="form-newsletter-update--natacao"> Natação</label>
+            <label for="form-newsletter-update--motovelocidade"><input type="checkbox" name="" value="" id="form-newsletter-update--motovelocidade"> Motovelocidade</label>
+            <label for="form-newsletter-update--surfe"><input type="checkbox" name="" value="" id="form-newsletter-update--surfe"> Surfe</label>
+            <label for="form-newsletter-update--vela"><input type="checkbox" name="" value="" id="form-newsletter-update--vela"> Vela</label>
+          </li>*@
+
+          @*<li class="input-third">
+            <label><strong>Entretenimento</strong></label>
+            <label for="form-noticias--select-all-entretenimento" class="select-all"><input type="checkbox" name="" value="" id="form-noticias--select-all-entretenimento" checked> Selecionar tudo</label>
+            <label for="form-newsletter-update--arte"><input type="checkbox" name="" value="" id="form-newsletter-update--arte"> Arte</label>
+            <label for="form-newsletter-update--cinema"><input type="checkbox" name="" value="" id="form-newsletter-update--cinema"> Cinema</label>
+            <label for="form-newsletter-update--cultura"><input type="checkbox" name="" value="" id="form-newsletter-update--cultura"> Cultura</label>
+            <label for="form-newsletter-update--diversao"><input type="checkbox" name="" value="" id="form-newsletter-update--diversao"> Diversão</label>
+            <label for="form-newsletter-update--famosos"><input type="checkbox" name="" value="" id="form-newsletter-update--famosos"> Famosos</label>
+            <label for="form-newsletter-update--gastronomia"><input type="checkbox" name="" value="" id="form-newsletter-update--gastronomia"> Gastronomia</label>
+            <label for="form-newsletter-update--moda"><input type="checkbox" name="" value="" id="form-newsletter-update--moda"> Moda</label>
+            <label for="form-newsletter-update--musica"><input type="checkbox" name="" value="" id="form-newsletter-update--musica"> Música</label>
+            <label for="form-newsletter-update--televisao"><input type="checkbox" name="" value="" id="form-newsletter-update--televisao"> Televisão</label>
+            <label for="form-newsletter-update--vida-digital"><input type="checkbox" name="" value="" id="form-newsletter-update--vida-digital"> Vida Digital</label>
+          </li>
+        </ul>*@
+
+        <button type="button" data-urlsubscribe="@Url.Action("Update", "Newsletter")" class="c-button submit trigger-newsletter-update"  title="Atualizar preferências de email">Salvar</button>
+        <div>ou <a href="/newsletter/descadastrar/@Model.UserHash "><u>Remover da lista</u></a></div>
+      </form>
+    </section>
+  </div>
+</main>

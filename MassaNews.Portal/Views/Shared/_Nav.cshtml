@@ -1,0 +1,737 @@
+﻿@using MassaNews.Portal.Models;
+<nav id="ml-menu" class="menu">
+  <div class="c-nav__header">
+    <a href="@Url.Action("Index", "Home")" class="logo" title="Massa News">
+      <img src="//cdn.massanews.com/static/images/logos/massa-news.svg" alt="Massa News">
+    </a>
+  </div><!-- c-nav__header -->
+  <button class="action action--close fa fa-close fa-3x" aria-label="Close Menu"></button>
+  <div class="minha-conta-lateral">
+    <a href="/minha-conta/entrar" class="menu__account u-cut" title="Minha conta"><i class="fa fa-user"></i> &nbsp;Minha conta</a>
+  </div>  
+  @*@if (CurrentUser.Valido)
+  {
+    <a href="/minha-conta" class="menu__account u-cut" title="Minha conta"><i class="fa fa-user"></i> &nbsp;Olá, @CurrentUser.Data.PrimeiroNome </a>*@
+    @*<a href="/minha-conta" rel="modal" data-modal="modal-login" class="menu__account u-cut" title="Minha conta"><i class="fa fa-user"></i> &nbsp;Olá, @MassaNews.Portal.Models.CurrentUser.Data.PrimeiroNome </a>*@
+  @*}
+  else
+  {
+    <a href="/minha-conta/entrar" class="menu__account u-cut" title="Minha conta"><i class="fa fa-user"></i> &nbsp;Minha conta</a>*@
+    @*<a href="/minha-conta/entrar" rel="modal" data-modal="modal-login" class="menu__account u-cut" title="Minha conta"><i class="fa fa-user"></i> &nbsp;Minha conta</a>*@
+  @*}*@
+  <a href="#" rel="modal" data-modal="modal-geo" class="menu__home u-cut" title="Você está em @ViewBag.CurrentCity.Nome"><i class="fa fa-map-marker"></i> &nbsp;Você está em <span class="trigger-get-city-location">@ViewBag.CurrentCity.Nome</span></a>
+  <div class="menu__wrap" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+    <ul data-menu="main" class="menu__level">
+      <li class="menu__item"><a class="menu__link menu__link-primary menu--noticias" data-submenu="submenu-1" href="#">Notícias<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link menu__link-primary menu--esportes" data-submenu="submenu-2" href="#">Esportes<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link menu__link-primary menu--entretenimento" data-submenu="submenu-3" href="#">Entretenimento<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link menu__link-primary menu--negocios-da-terra" data-submenu="submenu-11" href="#">Negócios da Terra<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link menu__link-primary menu--viajar-e-massa" data-submenu="submenu-12" href="#">Viajar é Massa<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link menu__link-primary menu--especiais" data-submenu="submenu-4" href="#">Especiais<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link menu__link-primary menu--blogs" href="@Url.Action("Index", "Blogs")">Blogs e Opinião</a></li>
+      <li class="menu__item"><a class="menu__link menu__link-primary menu--videos" data-submenu="submenu-10" href="#">Vídeos<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item menu--regiao"><a class="menu__link menu__link-primary" data-submenu="submenu-5" href="#" id="map-regiao-tv-guara">TV Guará</a></li>
+      <li class="menu__item menu--regiao"><a class="menu__link menu__link-primary" data-submenu="submenu-6" href="#" id="map-regiao-tv-naipi">TV Naipi</a></li>
+      <li class="menu__item menu--regiao"><a class="menu__link menu__link-primary" data-submenu="submenu-7" href="#" id="map-regiao-tv-iguacu">TV Iguaçu</a></li>
+      <li class="menu__item menu--regiao"><a class="menu__link menu__link-primary" data-submenu="submenu-8" href="#" id="map-regiao-tv-cidade">TV Cidade</a></li>
+      <li class="menu__item menu--regiao"><a class="menu__link menu__link-primary" data-submenu="submenu-9" href="#" id="map-regiao-tv-tibagi">TV Tibagi</a></li>
+      <span class="see-all u-none">menu principal</span>
+      <li class="menu__item menu--mapa-cobertura">
+        <a class="menu__link" href="#"></a>
+        <span class="menu--title-custom">Navegue por região</span>
+        <svg xmlns="http://www.w3.org/2000/svg" id="mapa-regiao" data-name="Região" viewBox="0 0 790.33 555.64">
+          <path class="cls-1 trigger-map-regiao" data-regiao="tv-guara" d="M1004,1215.11h0m225.45,5.69,4.22,0.11v-5l2.24-2.72,1.66,0.21-0.27,6.29,2.07,0h0l1.51,0.09,0-8.29,6.6-3.76-0.15-3.95,8.34,0.07,9.28-10.4,4.72,2.91,2.88-3.2-2.94-1.86,6-5.95-15.42-15.46-0.14-9.84-18-18.69,0.11-6.85-5.54-5.58L1225,1141.09l0,6.66h-16.55l-2,2,0-10.36-1.34,0-4.83-4.95,0-5.79-12.24-12.57-2.62-.06-0.1,3.27,2.56,0,0,1.32-2.5.09,0.11,4.41-1.55.09,0,7.9-6.73,4.09h-3.45l-3.69-1.6-6.41-.16-5.29-3.22-4.32,4.72h0l-4.37-4.29-4.65-.15-3.32-2.94v-2.76l-2.7-.09-0.05-2.52-5.7-4.87-1.91,3.27,0,4.14L1128,1132h-5.65l-1.27-3,0.16-9.9,5.13,0.07,0-2.1H1129l-0.07-8.26-2.31-2.76h-2.14L1123,1105l-1.25-.9-2.59,3.25-9.64-5.39-7.1,12.62-11.59,0-4.36,7.35-3.89-.08-1.81.1-2.82,2-6.65-6.28,1.37-2.48,0-2.1-1.74-1-1.71,2.86-2.11,0-3.42,6,0,2.85-6,3.06-9.15-.13-3.48,3.92v4.53l3,1.89-0.18,1.41v10.11h-9.44l0.16,3.66-7,0,0-1.77-6.82,0-4.71,5H1015l-2.38,2.14,10.69,6.33,4.48,2.75,5.41,0.12-0.07,2.79,11.85,6.76,0,3.9,6.19,3.91-5.65,9.46-3.63,2.21,0,3.75-1.53,1h-0.17l-1.79-.81-7.38-4.07-1.86-.24-7.39-4.13-8.77,4.84-4.84-4.88-1.28-.06h-3.24l0,4.34-2.85,0-0.08,4.38h3l0.16,9.48-1.84,1.62v0.11l-3.08,3.16-2.68-.23-2.27-1.87-11,0-3.24,3.86-3.27.18-3.55-4-4.19,0-8-13.55-2-.12-1.29,1.49-0.25,2.88h-3.29l-0.19,2.57,2.5,0.18,1.09,2-4.78,4.71v5.14l-14.18,0,0.1-2.05-3-3.56-0.06-5.88-1.21-1.32-4,4,2.13,2.11,0.16,4.12-3.93-.08-7.23,7.63,2.91,0,2.3,3.75,2.79,0,4.24,7.42,1.52,0,4.53,8.14,0,0.19-0.21,2.15-2.69-.06,0.11,1.17-3.33.08v2.88l-3,.17,0,4,4.58,4.9-9.24-.14-6.46,6.3,0.07,4.49h0l-4.68-.18,0,2.14h-1.09l-4,.24-0.59-.82-4.37,0,3.8,3.65-2.36.07-3.81-3.6-2.11-.06,0.06,5.17-3-.1-0.08,4.39-2,0-0.09-4.35-1.55,1.17v6.44l-1.83-.08,0-4.85-2.57,2.49-0.08-.12-1.72-2.82-0.09-3-2.21-.2-2.71,4.36,0-2.41-2.38-.11,0-3.73-2,.12-0.11,3.6-2.38,0-0.07,2.25-3.66,0,0-3.47-3.33-.05,0-3.09,3.77,0.07-3.42-4-3,.08-1.21-1.47-3.05,3.26,3.31,3.79v1.35l-7.38,8V1290l-2.42,2.88,3.85,3.89v2l-7.1,0-7.33,3.64,0,2.37,15.89,0,0.08,3.22-3,0,0.1,3.35-3.94,3.83,0,9.66-5.08-.07,0,3.75-3.17,3.14,1.69,0-3.62,6.46-0.53,9.24-3.62,5.14-1.19-.11,0-2.61-2.79,0,0,3.53-5.77,0,0.06-4.86-6.07-3.89-2.84,3.17-2.24-.09,0.18-4-2.2-.94-3.37,1.76,0,3.85-3.28,0-5.38-.08,0,1.68,7.36,0,0,2-4.13.08,0.08,2.37,5.14-.08,0,1.15h0l-3.85,2v2.16l-3.65,4-2.71,0-1.59,1.71-4.73.08-1.73,1.56-2.07.08-0.05,1.65,3.18,0.11,4.4,3.93,0,3.48-5.33-.1,0,2.31-4.84,4.55,0,3.12-2.33,2.25-1.72,0-1.24-1.68-5.29,5.6-0.1,2.13,0,0.93-1.75.06,0,3.09h0l-2.64,3.23,0,6.21h0l-4.2,2.83-8.11,0-3.61,2.66-5.85-6.38,3.14-3.68-2-1-3-2-8.61,4.48-2.73-.07-10.66,11v5.46l8,8.48,3.34,3.38-0.08,5.72,1.57,0.78,3.11,1.66,2.79,0.07,4.23,4.45,13.2-.08,3-2.57,2.48-2.45,2.41-1,3.72,0,2.91,1.12,4.95-1.85,4.33,7.36,0.06,0.1,9.9,5.43,3.71,0,0,2.64,7.14,4,6-3.11,5.34-3.68,5.45,3.53,1.41-2.16,2.82,0h0l3.5-1.6,14.17-.12,1.28-.66,2.49,1.45h3.21l9,5.19v2.46l7.56-.09,1.06-.8,3.69-.13h0l7.43,4.88h16.26l4.47,2.74,10.17,0,3.29,1.42,7.82,0.08,0,3.94,17,9.88h7l2.31,2.32h10l5.13-2.84,12.84-.06,1,1.26,15.43-.11h0l9.33,16.83h4.43l0.07-7,10.46,0,8.13-8,0-7.56-5.79-5.78,3.91-3.35-7.27-7.4,6.61-6.77-0.7-.94,0.7,0.94v-3.43l4.35-3.95h4.25l11.32-6.69,0.07-4.06H1058l2.47,5,4.67,0.07-1.76-3.64,0-1.71,4.62,3.1,0.08,4.52,2.92,0,0.07-6.24,3.21,0,2,4.24,4.26-6.59,5.77-.07,2.12,3.45,3.51,0-3.48-5.71,5.35-4.76,5.62-5.69-1.26-2.71,3.34-5.87,0.05-.1,9.19,0,0.09-2.43-4.74-.1-0.29-4.71,4.2,0V1408l11.63,0,16.64,16.76,0.12-10.41,6.45-4,9.56,5.79,3.37-5.45,17.87,0-0.06-4.57,1.58,0,0-1.62,2.47,0,0.07-5.55-4.55-4.9-0.05-6-17.54.18-4.33-7.3-4.88,0,0-4H1154v-3.36l2.76-.08,6.07-6-4-4.31,6.88-7.16h1l6.81,0.15-0.18-4.75,6,0.12,9.24,0.13,0.11-3.41,4.47,0,0.06-2.64,8,0.08,0-7.11,4.13-4,3.41-3.84,0.06-10.41-6.36-11.63-1.84,0-0.95-1.08,1.51-.91-2.66-4.29,9.19-4.84,1.66,3.12,7.59-4.69-6.39-10.56,0-6,3.24-3.17,3.6-4.09,6.39,0,3.28-3,11.82-11.87-8.85-15.72,5.22-8.5-4.52-4.35-5.54,0-2.48-4.35,6.87-3.61" transform="translate(-623.92 -943.19)" />
+          <polyline class="cls-2 trigger-map-regiao" data-regiao="tv-iguacu" points="612.01 289.78 606.79 298.28 615.64 314 615.59 314.04 603.81 325.93 603.81 325.93 600.54 328.96 594.15 328.94 590.55 333.03 587.3 336.2 587.26 342.22 593.65 352.78 586.06 357.47 584.41 354.35 575.21 359.2 577.88 363.49 576.37 364.4 577.31 365.48 579.16 365.46 585.51 377.09 585.46 387.5 582.04 391.33 577.92 395.35 577.94 402.46 569.94 402.38 569.88 405.02 565.41 405 565.3 408.42 556.05 408.31 550.14 408.07 550.32 412.87 542.51 412.81 535.64 419.88 539.68 424.11 533.62 430.13 530.85 430.21 530.87 433.57 525.18 433.58 525.22 437.55 530.1 437.53 534.43 444.83 551.97 444.65 552.02 450.67 556.57 455.58 556.5 461.13 554.03 461.1 554.06 462.71 556.79 462.86 556.74 468.7 559.09 468.65 559.07 463.06 560.14 463.12 583.78 477.11 583.7 481.91 606.75 495.06 614.76 486.59 618.17 483.84 627.98 483.9 630.62 479.4 630.62 479.4 632.38 479.45 644.87 466.42 650.16 463.46 676.85 463.48 676.89 459.71 712.16 459.79 715.42 457 719.05 461 724.65 451.79 724.57 446.71 717.46 446.73 717.48 453.34 715.98 453.39 716.01 446.68 705.84 446.7 705.82 443.79 711.82 443.85 719.53 436.75 719.53 436.75 721.52 438.77 723.54 440.82 723.46 443.39 725.65 443.4 727.86 443.41 727.82 437.44 735.19 425.32 735.2 425.31 743.5 410.35 749.14 410.35 749.07 404.14 737.01 404.04 737.01 404.04 730.7 397.7 725.08 397.73 722.01 400.79 717.72 400.75 717.71 396.81 711.35 396.73 711.35 396.73 711.34 395.53 711.34 395.47 711.39 391.65 705.06 385.08 705.16 379.97 709.74 384.25 713.76 384.26 713.75 388.77 716.01 388.73 715.96 390.44 716.75 391.5 716.76 391.5 731.3 391.52 732.99 394.06 738.64 393.99 738.63 388.57 742.15 388.76 742.2 384.19 740.03 381.7 737.93 383.45 737.93 385.42 737.93 387.39 737.2 387.4 736.46 387.42 736.46 387.39 736.49 382.39 736.49 382.39 738.79 380.33 740.92 380.3 740.69 377.08 733.78 376.82 733.79 373.61 742.2 373.56 742.2 368.97 738.81 365.18 742.02 365.15 741.88 360.8 744.1 360.64 744.28 365.24 745.88 365.25 745.93 370.39 749.24 373.96 752.82 370.97 748.89 367.05 751.02 365.43 750.99 361.82 754.35 361.82 754.5 374.29 752.36 376.7 754.05 378.51 760.21 372.51 758.38 369.25 760.06 369.25 762.28 372.83 769.83 369 776.58 368.95 777.44 367.13 778.96 367.06 777.34 370.43 771.48 370.49 762.94 385.21 762.93 392.41 768.05 392.4 768.08 388.38 775.52 376.72 777.64 376.65 782.73 367.6 785.61 367.63 790.33 360.03 786.89 360.03 785.06 362.8 777.53 362.68 773.81 359.05 771.24 359.12 771.44 355.69 774.58 352.45 774.61 348.22 768.79 342.69 768.85 323.9 772.08 320.73 767.09 317.85 765.03 314.08 760.21 314.15 756.4 312.19 750.84 312.17 747.24 316.75 747.19 318.4 739.77 325.77 739.73 334.96 734.7 335 734.62 338.75 730.72 345.56 722.72 330.63 728.76 325.16 728.72 319.1 728.7 319.02 728.68 315.57 730.47 313.95 728.6 312.15 728.55 306.11 738.32 296.29 727.38 285.16 722.69 285.23 717.65 290.73 714.54 290.67 716.77 288.12 703.61 288.23 699.95 285.27 675.09 285.29 676.64 281.11 673.24 281.24 670.65 285.45 661.66 285.48 651.38 285.45 651.25 290.18 651.25 290.21 639.57 283.26 639.78 269.93 642.82 265.57 641.19 262.21 646.59 257.08 646.59 252.99 641.87 250.09 632.59 260.49 624.25 260.42 624.4 264.37 617.8 268.13 617.77 276.41 616.26 276.32 614.19 276.35 614.46 270.06 612.8 269.85 610.56 272.57 610.55 277.62 606.33 277.51 599.46 281.12 601.95 285.47 607.49 285.43 612.01 289.78" />
+          <polyline class="cls-3 trigger-map-regiao" data-regiao="tv-naipi" points="197.5 288.83 197.57 287.39 192.96 284.83 199.75 278.58 199.72 274.35 204.38 269.5 204.38 266.08 207.09 262.94 207.06 255.04 204.3 250.41 195.84 250.49 195.91 240.66 195.75 240.68 202.16 236.91 208.64 237.02 208.58 215.02 208.48 215.02 208.5 211.54 199.08 206.29 193.1 206.31 189.46 203.57 184.54 206.82 179.9 206.81 176.5 208.45 176.5 214.61 171.13 214.65 167.77 212.84 165.59 213.95 167.22 215 163.76 217.36 163.75 217.38 158.19 217.32 158.34 219.54 156.32 219.44 156.33 221.89 153.54 221.85 153.34 221.85 153.52 206.46 151.34 202.19 151.39 196.3 149.26 191.98 144 186.89 138.02 192.37 133.15 197.49 129.07 203.96 129.21 204.04 126.95 207.91 114.66 220.9 113.31 223.69 113.26 223.69 107.9 219.99 107.83 219.99 102.87 220.05 104.2 218.57 104.15 214.6 100.53 217.5 100.53 217.5 96.56 210.44 96.48 197.44 85.58 197.33 80.56 200.76 75.51 200.69 75.25 200.71 75.21 197.11 75.28 195.07 69.18 195.16 69.23 198.15 66.39 199.89 60.6 199.95 53.13 204.8 51.9 204.88 51.9 204.88 39.09 205.01 30.03 213.83 30.2 229.43 38.97 238.69 39.08 248.18 39.07 248.25 38.97 250.96 31.46 258.91 31.44 262.51 31.44 262.51 31.47 269.14 33.1 272.87 33.12 274.25 33.12 274.28 33.19 284.21 33.16 288.95 31.69 291.32 31.7 291.32 31.69 291.32 24.03 304.59 24.03 316.12 19.92 323.19 19.89 328.2 17.72 332.7 17.7 335.95 17.7 336.03 17.7 346.08 20.26 349.09 20.4 352.66 15.84 361.02 15.84 361.02 15.84 361.02 15.84 361.02 15.84 361.02 15.87 365.28 11.61 372.17 11.61 372.19 7.52 379.59 7.51 379.62 0 392.74 2.23 397.28 2.12 409.79 10.43 409.75 10.43 414.14 11.43 414.2 13.74 411.9 21.55 419.59 21.71 422.69 22.86 422.69 23.01 418.1 26.61 414.69 26.61 410.44 34.35 410.51 34.29 406.2 37.54 404.61 37.55 404.61 40.7 404.59 45.84 410.25 45.86 405.54 47.44 405.51 53.28 408.98 53.29 406.28 47.63 403.38 48.95 401.7 53.64 401.66 56.06 400.01 56.06 400.01 60.73 394.44 63.54 397.18 59.91 403.47 59.91 407.2 62.68 412.13 62.55 405.06 64.13 403.6 65.7 403.64 66.8 406.2 69.88 406.35 70.93 404.37 72.42 404.38 76.52 408.69 76.52 408.69 76.78 409.38 76.76 412.24 78.04 412.27 77.96 416.05 80.19 416.16 80.35 412.57 83.13 412.57 88.65 417.73 89.78 417.7 92.25 421.85 89.5 424 89.33 429.39 92 429.32 92.6 429.53 90.74 431.66 92.52 432.59 92.52 432.59 94.64 436.17 91.79 441.29 94.76 446.61 92.94 447.6 95.58 449.13 95.74 452.65 93.14 455.16 93.15 458.4 105.06 471 105.05 472.44 115.72 461.46 118.45 461.52 127.06 457.04 127.15 456.96 130.14 458.94 132.09 459.91 128.95 463.59 134.8 469.97 138.41 467.31 146.53 467.27 150.72 464.44 150.76 458.23 153.39 454.99 153.35 451.9 153.35 451.9 155.1 451.84 155.08 451 155.08 450.91 155.18 448.78 160.47 443.19 161.71 444.87 163.44 444.9 165.77 442.66 165.79 439.54 170.63 434.99 170.6 432.68 175.93 432.78 175.89 429.3 171.49 425.38 168.3 425.26 168.36 423.61 170.43 423.53 172.16 421.97 176.88 421.89 178.35 420.19 181.06 420.22 181.18 420.22 184.82 416.27 184.84 414.11 188.68 412.11 188.66 410.97 183.53 411.05 183.45 408.68 187.58 408.6 187.54 406.63 180.18 406.6 180.22 404.92 185.6 404.99 185.64 405 188.92 404.95 188.96 401.1 192.33 399.34 194.52 400.28 194.34 404.31 196.58 404.39 199.42 401.22 205.49 405.11 205.44 409.97 211.2 409.95 211.22 406.56 214.02 406.6 214 409.21 215.19 409.33 218.82 404.19 220.97 404.19 220.89 401.62 219.25 401.5 219.34 394.94 222.94 388.47 221.24 388.49 224.41 385.35 224.43 381.6 229.51 381.67 229.48 372.01 233.42 368.18 233.32 364.82 236.32 364.79 236.24 361.57 220.68 361.57 220.66 359.2 228.41 355.4 235.52 355.44 235.51 353.47 231.66 349.58 229.77 347.66 216.36 347.71 216.44 312.9 221.06 310.27 220.18 309.13 222.41 307.94 220.91 305.8 218.04 307.6 215.77 304.98 221.94 301.48 216.44 301.53 213.37 303.56 211.27 301.88 207.75 301.89 207.81 299.05 209.59 298.99 209.64 296.17 202.59 296.06 202.39 295.95 202.31 292.52 204.46 291.57 199.43 288.83 199.5 291.38 197.64 291.4 197.49 288.83" />
+          <polyline class="cls-4 trigger-map-regiao" data-regiao="tv-cidade" points="460.9 56.28 459.72 56.36 459.8 46.95 449.04 36.39 443.16 36.39 441.62 34.29 436.27 34.33 436.06 34.33 432.64 34.3 427.77 31.96 419.66 31.96 413.77 28.52 413.77 28.5 409.25 26.04 401.43 18.12 394.26 18.03 394.22 18.03 386.19 18.06 383.67 16.17 379.48 16.15 376.85 21.1 370.81 21.16 370.81 21.16 364.63 21.2 358.66 17.57 346.62 17.66 346.64 22.68 349.81 27.34 349.88 33.33 353.3 35.22 356.71 35.31 356.75 41.5 353.44 47.74 347.7 47.92 345.55 50.09 347.8 53.84 341.85 57.14 337.91 63.72 343.07 66.81 343.06 66.88 343.05 68.41 353.09 73.45 358.7 76.51 360.33 76.51 362.51 78.62 362.47 79.87 359.87 84.49 359.84 93.62 362.06 98.96 359.91 101.96 359.77 104.77 350.81 113.08 352.06 114.49 354.2 114.55 355.83 116.2 355.83 114.03 358.86 116.55 358.82 118.9 364.03 118.86 364.07 118.89 362.39 120.69 378.69 129.48 380.96 127.5 385.11 131.61 390.92 131.68 394.29 134.76 398.74 134.88 398.95 134.88 399.89 137.29 409.14 137.33 409.09 140.15 410.88 140.17 410.77 143.94 409.47 143.79 409.52 150.98 404.98 158.89 406.85 163.05 410.77 162.99 413.48 165.34 415.38 165.36 416.47 164 417.75 164.01 417.75 164.01 417.81 167.61 414.9 167.52 411.31 173.24 411.2 173.36 405.79 169.82 402.61 175.58 402.56 180.92 402.56 180.92 398.25 181.02 391.68 177.08 383.87 176.97 381.84 177.12 384.43 181.29 386.6 181.19 390.91 183.37 393.99 183.46 393.93 193.85 387.22 205.66 385.52 205.64 383.92 209.43 380.41 211.46 382.93 216.14 385.06 215.09 385.05 213.31 387.25 215.56 388.64 214.22 391.02 212.09 396.25 212.09 400.96 207.07 407.79 207.05 407.77 208.82 414.78 208.77 414.72 205.11 424.35 205.13 424.35 195.01 424.35 194.94 424.34 193.53 421.13 191.64 421.14 187.1 425.67 183.48 433.74 183.29 439.73 180.24 439.69 177.38 443.11 171.39 445.21 171.41 446.92 168.55 447.22 168.08 446.92 168.55 448.66 169.56 448.63 171.66 447.25 174.14 453.91 180.42 456.73 178.41 458.58 178.37 462.46 178.45 466.82 171.11 478.41 171.06 485.51 158.45 485.51 158.44 495.15 163.84 497.74 160.59 498.99 161.49 499.13 161.49 500.56 162.57 502.7 162.57 502.7 162.57 505.01 165.33 505.08 173.58 502.52 173.59 502.49 175.69 498.4 175.88 498.25 185.78 499.52 188.78 505.16 188.77 508.62 183.52 508.6 179.37 510.51 176.1 510.68 176.24 515.37 180.84 515.42 183.36 518.13 183.45 518.12 186.21 521.44 189.15 526.09 189.29 530.46 193.58 534.78 188.86 535.1 188.85 540.39 192.07 546.8 192.23 550.49 193.84 553.93 193.84 560.66 189.75 560.62 181.85 562.17 181.76 562.06 177.35 564.56 177.25 564.59 175.94 562.04 175.97 562.13 172.69 564.75 172.75 564.73 172.67 576.97 185.24 576.92 191.03 581.75 195.98 583.09 196.01 583.06 206.37 585.03 204.32 601.58 204.31 601.6 197.65 613.34 185.42 605.55 178.13 605.62 174.71 605.62 174.71 607.76 174.62 607.71 172.09 610.45 172.13 610.35 160.29 611.63 160.32 611.55 157.11 607.47 149.37 605.42 149.43 605.42 149.31 605.49 146.63 603.47 144.41 603.39 141.68 605.9 139.85 605.88 134.66 604.75 132.83 604.75 132.83 604.75 132.83 604.75 132.83 604.75 132.83 602.83 130.67 606.99 122.05 606.98 113.34 604.73 108.78 604.73 108.59 603.43 105.35 603.39 99.62 599.25 92.63 599.26 87.82 590.48 79.21 590.43 75.13 581.28 75.16 580.15 72.91 579.45 71.17 573.34 71.32 567.74 68.06 570.73 62.2 560.8 56.87 560.8 56.87 560.77 55.16 562.68 51.76 560.52 48.82 558.21 48.88 558.05 51.83 556.24 51.95 551.07 48.59 549.49 51.56 546.1 51.5 543.66 52.86 538.91 52.89 535.15 55.26 532.45 55.33 527.13 55.36 527.02 53.08 521.25 53.08 518.65 55.13 516.88 55.25 515.63 53.87 515.63 53.87 511.1 49.58 506.04 49.64 506.06 54.14 493.31 54.12 493.38 51.18 490.18 49.17 485.96 49.02 484.19 51.58 480.01 49.72 479.96 49.72 478.06 48.55 474.05 48.61 471.86 52.49 471.95 55.49 469.15 57.35 466.6 57.41 464.24 56.14 461.37 56.1" />
+          <polyline class="cls-5 trigger-map-regiao" data-regiao="tv-tibagi" points="208.8 211.36 208.78 214.93 208.84 236.93 202.35 236.82 195.94 240.58 195.88 250.42 204.33 250.33 207.09 254.96 207.13 262.86 207.13 262.86 204.42 266 204.41 269.43 199.75 274.28 199.79 278.51 192.92 284.83 197.6 287.42 197.53 288.86 197.68 291.43 199.54 291.41 199.46 288.86 204.5 291.6 202.34 292.55 202.42 295.98 209.47 296.09 209.56 296.15 209.51 298.97 207.73 299.03 207.67 301.87 211.19 301.86 213.29 303.54 216.37 301.51 221.86 301.46 215.69 304.96 217.97 307.57 220.83 305.78 222.33 307.92 220.1 309.11 220.98 310.25 216.36 312.88 216.28 347.7 229.69 347.64 231.58 349.56 234 346.69 233.99 338.82 241.37 330.8 241.38 329.45 238.07 325.66 241.17 322.29 242.3 323.65 242.38 323.76 245.46 323.66 248.88 327.63 245.11 327.56 245.15 330.65 248.48 330.71 248.52 334.18 252.18 334.15 252.25 331.9 254.63 331.94 254.73 328.34 256.71 328.21 256.76 331.94 259.15 332.06 259.19 334.47 261.91 330.11 264.14 330.31 264.19 333.46 265.98 336.41 268.55 333.92 268.62 338.51 270.45 338.6 270.43 332.16 271.99 330.99 272.08 335.34 274.13 335.32 274.22 330.93 277.22 331.03 277.16 325.87 279.27 325.94 283.08 329.55 285.44 329.49 281.64 325.88 286.01 325.98 286.61 326.96 290.58 327.04 290.57 324.58 295.29 324.44 295.22 319.95 301.68 313.66 310.93 313.8 306.35 308.89 306.37 304.9 309.37 304.73 309.36 301.85 312.69 301.77 312.57 300.6 315.27 300.65 315.5 298.32 310.97 290.18 309.45 290.21 305.21 282.78 302.42 282.75 300.13 279 297.21 278.95 297.18 278.95 297.21 278.95 304.45 271.32 308.38 271.39 308.21 267.28 306.09 265.17 310.12 261.16 310.15 261.14 311.36 262.46 311.42 268.34 314.42 271.9 314.33 273.96 328.51 274.01 328.5 268.89 333.28 264.22 332.19 262.3 329.69 262.28 329.88 260.05 333.16 260.05 333.41 256.84 334.7 255.01 334.7 255.01 336.67 255.14 344.67 268.69 348.86 268.73 352.4 272.7 355.67 272.53 358.9 268.67 369.88 268.69 372.12 270.56 374.74 270.79 377.69 267.63 379.66 266.02 379.63 256.53 376.6 256.52 376.68 252.14 376.73 252.14 379.59 252.12 379.61 247.79 382.85 247.78 382.95 247.78 384.23 247.83 389.07 252.72 397.83 247.87 405.21 252 407.05 252.25 414.3 256.26 414.3 256.32 416.02 257.13 417.8 256.01 417.91 252.25 421.54 250.04 427.21 240.55 420.97 236.61 421 232.71 409.15 225.95 409.22 223.16 403.81 223.04 399.33 220.29 399.33 220.29 388.64 213.97 387.26 215.31 385.06 213.06 385.06 214.83 382.93 215.89 380.42 211.21 380.42 211.21 383.93 209.18 385.53 205.38 387.22 205.4 393.93 193.59 393.99 183.2 390.91 183.12 386.6 180.94 384.43 181.04 381.85 176.87 381.67 176.88 381.85 176.87 383.87 176.71 391.69 176.83 398.25 180.77 402.57 180.66 402.62 175.32 405.79 169.57 411.21 173.1 414.8 167.38 417.71 167.47 417.64 163.87 416.37 163.86 415.28 165.23 413.38 165.21 410.67 162.85 406.75 162.91 404.88 158.75 409.42 150.84 409.37 143.65 410.67 143.8 410.78 140.03 408.99 140.02 409 139.89 409.04 137.19 399.79 137.16 398.85 134.75 394.4 134.62 391.02 131.54 385.22 131.47 381.07 127.36 378.8 129.35 362.5 120.56 364.17 118.75 358.97 118.79 358.97 118.79 359.01 116.45 355.98 113.93 355.97 116.09 354.35 114.44 352.2 114.38 350.96 112.97 350.96 112.97 359.92 104.66 360.06 101.86 362.2 98.85 359.99 93.51 360.01 84.38 362.61 79.76 362.66 78.51 360.48 76.4 358.85 76.4 353.23 73.34 343.2 68.3 343.2 66.77 338.04 63.68 341.98 57.11 347.94 53.8 345.69 50.05 347.83 47.89 353.55 47.7 356.87 41.46 356.82 35.27 353.4 35.19 349.99 33.3 349.92 27.3 346.76 22.66 346.77 22.64 346.75 17.63 346.76 15.07 343.97 12.79 330.15 12.8 330.15 12.8 326.46 12.8 322.87 10.13 322.82 8.27 313.62 2.06 309.28 2.1 304.42 0.02 297.63 0 294.35 3.42 294.37 6.67 294.37 6.67 294.44 10 289.2 17.84 286.52 19.34 282.79 12.62 279.07 12.47 276.84 13.85 276.84 13.85 270.14 13.82 265.33 10.65 261.39 10.74 260.7 10.83 258.06 13.24 249.84 13.24 246.26 10.77 246.26 8.97 241.1 6.27 236.61 6.4 227.85 11.32 222.58 11.31 219.18 9.33 216.26 9.32 216.25 9.32 207.81 9.29 199.83 4.83 195.49 4.8 187.89 9.37 187.89 9.37 185.36 10.6 185.35 10.6 178.98 14.48 179.03 17.42 176.08 19.4 176.08 19.43 176.08 19.4 162.15 27.73 162.13 27.73 156.42 27.79 146.41 33.23 144.86 36.56 141.05 38.55 141.05 38.55 123.41 49.12 112.84 67.02 112.8 81.85 104.26 95.6 104.3 102.81 104.29 102.83 98.17 113.5 98.17 113.5 84.97 121.49 78.42 121.54 69.5 126.27 69.68 136.96 67.47 141.04 67.42 148.61 67.42 148.61 67.44 154.73 61.94 164.73 61.87 168.62 61.87 168.62 61.95 181.52 60.39 183.88 60.53 190.52 50.84 196.08 50.82 198.12 40 204.73 52.81 204.61 54.04 204.52 61.52 199.68 67.3 199.62 70.15 197.87 70.09 194.88 76.19 194.8 76.13 196.84 76.13 196.98 76.17 200.44 81.22 200.51 86.23 197.07 97.14 197.19 97.22 210.19 101.19 217.25 104.8 214.35 104.85 218.31 103.52 219.8 108.49 219.73 113.84 223.44 115.2 220.65 127.49 207.66 129.8 203.71 133.88 197.24 133.88 197.24 138.75 192.12 138.75 192.11 144.71 186.64 149.97 191.73 152.1 196.05 152.06 201.94 154.23 206.21 154.19 206.45 154.02 221.85 156.81 221.88 156.79 219.43 158.82 219.53 158.67 217.31 164.24 217.37 167.7 215.01 166.07 213.96 168.25 212.85 171.61 214.66 176.97 214.62 176.98 208.46 176.98 208.46 180.36 206.82 184.99 206.84 189.92 203.58 193.56 206.32 199.53 206.31 208.95 211.55" />
+          <text xmlns="http://www.w3.org/2000/svg" class="cls-7 text-tv-guara" transform="translate(533.79 320.81)">
+            <tspan x="-540" y="235">Ponta Grossa e</tspan>
+            <tspan x="-540" y="285">Francisco Beltrão</tspan>
+          </text>
+          <text xmlns="http://www.w3.org/2000/svg" class="cls-7 text-tv-naipi" transform="translate(533.79 320.81)">
+            <tspan x="-570" y="150">Foz do</tspan>
+            <tspan x="-570" y="200">Iguaçú</tspan>
+          </text>
+          <text xmlns="http://www.w3.org/2000/svg" class="cls-7 text-tv-tibagi" transform="translate(533.79 320.81)">
+            <tspan x="-580" y="-230">Maringá</tspan>
+          </text>
+          <text xmlns="http://www.w3.org/2000/svg" class="cls-7 text-tv-cidade" transform="translate(533.79 320.81)">
+            <tspan x="90" y="-230">Londrina</tspan>
+          </text>
+          <text xmlns="http://www.w3.org/2000/svg" class="cls-7 text-tv-iguacu" data-regiao="tv-iguacu" transform="translate(533.79 320.81)">
+            <tspan x="-50" y="220">Curitiba e Litoral</tspan>
+          </text>
+        </svg>
+      </li>
+
+      @* SOCIAL MEDIAS *@
+      <li class="menu__item menu__social-medias"><a class="menu__link menu__link-social-medias" title="WhatsApp" target="_blank" href="https://api.whatsapp.com/send?phone=5541992807915">
+        <span class="fa-stack color-whatsapp u-margin-right-small">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+        </span>WhatsApp</a>
+      </li>
+      <li class="menu__item menu__social-medias"><a class="menu__link menu__link-social-medias" title="Facebook" target="_blank" href="https://www.facebook.com/massanewspr/">
+        <span class="fa-stack color-facebook u-margin-right-small">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+        </span>Facebook</a>
+      </li>
+      <li class="menu__item menu__social-medias"><a class="menu__link menu__link-social-medias" title="YouTube" target="_blank" href="https://www.youtube.com/c/+massanewspr?sub_confirmation=1">
+        <span class="fa-stack color-youtube u-margin-right-small">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+        </span>YouTube</a>
+      </li>
+      <li class="menu__item menu__social-medias"><a class="menu__link menu__link-social-medias" title="Instagram" target="_blank" href="https://www.instagram.com/massanews/">
+        <span class="fa-stack color-instagram u-margin-right-small">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+        </span>Instagram</a>
+      </li>
+      <li class="menu__item menu__social-medias u-margin-bottom"><a class="menu__link menu__link-social-medias" title="Twitter" target="_blank" href="https://twitter.com/massanewspr">
+        <span class="fa-stack color-twitter u-margin-right-small">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+        </span>Twitter</a>
+      </li>
+
+      @* INSTITUTIONAL *@
+      <li class="menu__item menu-institucionais">
+        <a href="@Url.Action("Foto", "Editorial")" class="menu__link menu__link-institucionais" title="Fotos">Fotos</a>
+      </li>
+      @*
+        <li class="menu__item menu-institucionais">
+          <a href="@Url.Action("Video", "Editorial")" class="menu__link menu__link-institucionais" title="Vídeos">Vídeos</a>
+        </li>
+      *@
+      @* <li class="menu__item menu-institucionais">
+          <a href="/tags/enquetes" class="menu__link menu__link-institucionais" title="Enquetes">Enquetes</a>
+        </li> *@
+      <li class="menu__item menu-institucionais">
+        <a href="@string.Format("/previsao-do-tempo/{0}", ViewBag.CurrentCity.Url)" class="menu__link menu__link-institucionais" title="Previsão do tempo">Previsão do tempo</a>
+      </li>
+      <li class="menu__item menu-institucionais">
+        <a href="@Url.Action("Envie", "Institucional")" class="menu__link menu__link-institucionais" title="Envie sua notícia">Envie sua notícia</a>
+      </li>
+      <li class="menu__item menu-institucionais">
+        <a href="@Url.Action("Sobre", "Institucional")" class="menu__link menu__link-institucionais" title="Sobre nós">Sobre nós</a>
+      </li>
+      <li class="menu__item menu-institucionais u-margin-bottom">
+        <a href="@Url.Action("FaleConosco", "Institucional")" class="menu__link menu__link-institucionais" title="Fale conosco">Fale conosco</a>
+      </li>
+    </ul>
+    <!-- Submenu 1 -->
+    <ul data-menu="submenu-1" class="menu__level level-1">
+      <li class="menu__item" itemprop="name"><a class="menu__link see-all see-all-noticias" itemprop="url" href="@Url.Action("Noticias", "Editorial")" title="Notícias">Notícias</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "plantao" })" title="@ViewBag.CurrentCity.Nome e Região">Sua região</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("Parana", "Categorias")">Paraná</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "politica" })">Política</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "economia" })">Economia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "brasil" })">Brasil</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "mundo" })">Mundo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "educacao" })">Educação</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "e-bizarro" })">É Bizarro</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "ciencia-e-saude" })">Ciência e saúde</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "concursos-e-empregos" })">Concursos e Empregos</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "comportamento" })">Comportamento</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "curiosidades" })">Curiosidades</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "obituario" })">Obituário</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "inovacao-e-tecnologia" })">Inovação e Tecnologia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NoticiasWithCategory", "Categorias", new { categoria = "turismo-e-viagem" })">Turismo e Viagem</a></li>
+    </ul>
+    <!-- Submenu 2 -->
+    <ul data-menu="submenu-2" class="menu__level level-1">
+      <li class="menu__item" itemprop="name"><a class="menu__link see-all see-all-esportes" itemprop="url" href="@Url.Action("Esportes", "Editorial")" title="Esportes">Esportes</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" data-submenu="submenu-2-1" href="#">Futebol<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/narussia">Massa na Rússia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "basquete" })">Basquete</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "futsal" })">Futsal</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "olimpiadas" })">Olimpíadas</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "tenis" })">Tênis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "volei" })">Vôlei</a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-2-2" href="#">+ Esportes<i class="fa fa-angle-right fa-lg"></i></a></li>
+    </ul>
+    <!-- Submenu 2-1 -->
+    <ul data-menu="submenu-2-1" class="menu__level level-2">
+      <li class="menu__item" itemprop="name"><a class="menu__link see-all see-all-esportes" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "futebol" })" title="Futebol">Futebol</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/esportes/futebol/campeonatos/tabela-brasileirao-serie-a">Brasileirão Série A</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/esportes/futebol/campeonatos/tabela-brasileirao-serie-b">Brasileirão Série B</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/campeonato-paranaense">Campeonato Paranaense</a></li>
+      <li class="menu__item menu--times-futebol t-esportes">
+        <a class="menu__link" href="#"></a>
+        <span class="menu--title-custom">Navegue por times</span>
+        @Html.Partial("_Times")
+    </ul>
+    <!-- Submenu 2-2 -->
+    <ul data-menu="submenu-2-2" class="menu__level level-2">
+      <li class="menu__item" itemprop="name"><a class="menu__link see-all see-all-esportes" href="@Url.Action("Esportes", "Editorial")" title="+ Esportes">+ Esportes</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "artes-marciais" })">Artes Marciais</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "automobilismo" })">Automobilismo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "atletismo" })">Atletismo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "boxe" })">Boxe</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "ciclismo" })">Ciclismo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "corpo-e-mente" })">Corpo e mente</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "esportes-radicais" })">Esportes radicais</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "futebol-americano" })">Futebol americano</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "ginastica" })">Ginástica</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "golfe" })">Golfe</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "handebol" })">Handebol</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "judo" })">Judô</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "mma" })">MMA</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "natacao" })">Natação</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "motovelocidade" })">Motovelocidade</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "surfe" })">Surfe</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "vela" })">Vela</a></li>
+    </ul>
+    <!-- Submenu 3 -->
+    <ul data-menu="submenu-3" class="menu__level level-1">
+      <li class="menu__item" itemprop="name"><a class="menu__link see-all see-all-entretenimento" itemprop="url" href="@Url.Action("Entretenimento", "Editorial")" title="Entretenimento">Entretenimento</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EntretenimentoWithCategory", "Categorias", new { categoria = "arte" })">Arte</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EntretenimentoWithCategory", "Categorias", new { categoria = "cinema" })">Cinema</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EntretenimentoWithCategory", "Categorias", new { categoria = "cultura" })">Cultura</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EntretenimentoWithCategory", "Categorias", new { categoria = "diversao" })">Diversão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EntretenimentoWithCategory", "Categorias", new { categoria = "famosos" })">Famosos</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EntretenimentoWithCategory", "Categorias", new { categoria = "gastronomia" })">Gastronomia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EntretenimentoWithCategory", "Categorias", new { categoria = "moda" })">Moda</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EntretenimentoWithCategory", "Categorias", new { categoria = "musica" })">Música</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EntretenimentoWithCategory", "Categorias", new { categoria = "televisao" })">Televisão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EntretenimentoWithCategory", "Categorias", new { categoria = "vida-digital" })">Vida Digital</a></li>
+    </ul>
+    <!-- Submenu 4 -->
+    <ul data-menu="submenu-4" class="menu__level level-1">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Especiais</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("CuritibaCriativa", "Land")">Curitiba Criativa</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EducacaoFinanceira", "Land")">Educação Financeira</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("TransmitaCalor", "Land")">Nós Transmitimos Calor</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("ViajePelosCamposGerais", "Land")">Viaje pelos Campos Gerais</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("DesafiandoChefs", "Land")">Desafiando Chefs</a></li>
+    </ul>
+    <!-- Submenu 5 -->
+    <ul data-menu="submenu-5" class="menu__level level-1">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Selecione uma região</a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-5-1" href="#">Ponta Grossa<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-5-2" href="#">Guarapuava<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-5-3" href="#">Francisco Beltrão<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-5-4" href="#">Pato Branco<i class="fa fa-angle-right fa-lg"></i></a></li>
+    </ul>
+    <ul data-menu="submenu-5-1" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Ponta Grossa</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ponta-grossa" title="Ponta Grossa">Ponta Grossa</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/antonio-olinto" title="Antônio Olinto">Antônio Olinto</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/arapoti" title="Arapoti">Arapoti</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/bituruna" title="Bituruna">Bituruna</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/boa-ventura-de-sao-roque" title="Boa Ventura de São Roque">Boa Ventura de São Roque</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/candido-de-abreu" title="Cândido de Abreu">Cândido de Abreu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/carambei" title="Carambeí">Carambeí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/castro" title="Castro">Castro</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cruz-machado" title="Cruz Machado">Cruz Machado</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/curiuva" title="Curiúva">Curiúva</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/fernandes-pinheiro" title="Fernandes Pinheiro">Fernandes Pinheiro</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/guamiranga" title="Guamiranga">Guamiranga</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/imbau" title="Imbaú">Imbaú</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/imbituva" title="Imbituva">Imbituva</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ipiranga" title="Ipiranga">Ipiranga</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/irati" title="Irati">Irati</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ivai" title="Ivaí">Ivaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/jaguariaiva" title="Jaguariaíva">Jaguariaíva</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/mallet" title="Mallet">Mallet</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ortigueira" title="Ortigueira">Ortigueira</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/palmeira" title="Palmeira">Palmeira</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/paula-freitas" title="Paula Freitas">Paula Freitas</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/paulo-frontin" title="Paulo Frontin">Paulo Frontin</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pirai-do-sul" title="Piraí do Sul">Piraí do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/porto-amazonas" title="Porto Amazonas">Porto Amazonas</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/porto-vitoria" title="Porto Vitória">Porto Vitória</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/prudentopolis" title="Prudentópolis">Prudentópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/reboucas" title="Rebouças">Rebouças</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/reserva" title="Reserva">Reserva</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/rio-azul" title="Rio Azul">Rio Azul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-joao-do-triunfo" title="São João do Triunfo">São João do Triunfo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sapopema" title="Sapopema">Sapopema</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/senges" title="Sengés">Sengés</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/teixeira-soares" title="Teixeira Soares">Teixeira Soares</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/telemaco-borba" title="Telêmaco Borba">Telêmaco Borba</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/tibagi" title="Tibagi">Tibagi</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/turvo" title="Turvo">Turvo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/uniao-da-vitoria" title="União da Vitória">União da Vitória</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ventania" title="Ventania">Ventania</a></li>
+    </ul>
+    <ul data-menu="submenu-5-2" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Guarapuava</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/guarapuava" title="Guarapuava">Guarapuava</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/bom-jesus-do-sul" title="Bom Jesus do Sul">Bom Jesus do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/bom-sucesso-do-sul" title="Bom Sucesso do Sul">Bom Sucesso do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/campina-do-simao" title="Campina do Simão">Campina do Simão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/candoi" title="Candói">Candói</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cantagalo" title="Cantagalo">Cantagalo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/foz-do-jordao" title="Foz do Jordão">Foz do Jordão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/goioxim" title="Goioxim">Goioxim</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/inacio-martins" title="Inácio Martins">Inácio Martins</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/laranjeiras-do-sul" title="Laranjeiras do Sul">Laranjeiras do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/marquinho" title="Marquinho">Marquinho</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-laranjeiras" title="Nova Laranjeiras">Nova Laranjeiras</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/palmital" title="Palmital">Palmital</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pinhao" title="Pinhão">Pinhão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pitanga" title="Pitanga">Pitanga</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/rio-bonito-do-iguacu" title="Rio Bonito do Iguaçu">Rio Bonito do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-maria-do-oeste" title="Santa Maria do Oeste">Santa Maria do Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-mateus-do-sul" title="São Mateus do Sul">São Mateus do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/virmond" title="Virmond">Virmond</a></li>
+    </ul>
+    <ul data-menu="submenu-5-3" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Francisco Beltrão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/francisco-beltrao" title="Francisco Beltrão">Francisco Beltrão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/chopinzinho" title="Chopinzinho">Chopinzinho</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/clevelandia" title="Clevelândia">Clevelândia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/dois-vizinhos" title="Dois Vizinhos">Dois Vizinhos</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/eneas-marques" title="Enéas Marques">Enéas Marques</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/flor-da-serra-do-sul" title="Flor da Serra do Sul">Flor da Serra do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/honorio-serpa" title="Honório Serpa">Honório Serpa</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/itapejara-doeste" title="Itapejara d'Oeste">Itapejara d'Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-esperanca-do-sudoeste" title="Nova Esperança do Sudoeste">Nova Esperança do Sudoeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/porto-barreiro" title="Porto Barreiro">Porto Barreiro</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/renascenca" title="Renascença">Renascença</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/reserva-do-iguacu" title="Reserva do Iguaçu">Reserva do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/salgado-filho" title="Salgado Filho">Salgado Filho</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-joao" title="São João">São João</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-jorge-doeste" title="São Jorge d'Oeste">São Jorge d'Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/saudade-do-iguacu" title="Saudade do Iguaçu">Saudade do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sulina" title="Sulina">Sulina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/vere" title="Verê">Verê</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/vitorino" title="Vitorino">Vitorino</a></li>
+    </ul>
+    <ul data-menu="submenu-5-4" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Pato Branco</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pato-branco" title="Pato Branco">Pato Branco</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/barracao" title="Barracão">Barracão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/coronel-domingos-soares" title="Coronel Domingos Soares">Coronel Domingos Soares</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/coronel-vivida" title="Coronel Vivida">Coronel Vivida</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/general-carneiro" title="General Carneiro">General Carneiro</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/manfrinopolis" title="Manfrinópolis">Manfrinópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/mangueirinha" title="Mangueirinha">Mangueirinha</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/mariopolis" title="Mariópolis">Mariópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/marmeleiro" title="Marmeleiro">Marmeleiro</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/palmas" title="Palmas">Palmas</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pranchita" title="Pranchita">Pranchita</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santo-antonio-do-sudoeste" title="Santo Antônio do Sudoeste">Santo Antônio do Sudoeste</a></li>
+    </ul>
+    <!-- Submenu 6 -->
+    <ul data-menu="submenu-6" class="menu__level level-1">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Selecione uma região</a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-6-1" href="#">Foz do Iguaçu<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-6-2" href="#">Cascavel<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-6-3" href="#">Toledo<i class="fa fa-angle-right fa-lg"></i></a></li>
+    </ul>
+    <ul data-menu="submenu-6-1" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Foz do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/foz-do-iguacu" title="Foz do Iguaçu">Foz do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ampere" title="Ampére">Ampére</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/bela-vista-da-caroba" title="Bela Vista da Caroba">Bela Vista da Caroba</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/boa-esperanca-do-iguacu" title="Boa Esperança do Iguaçu">Boa Esperança do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ceu-azul" title="Céu Azul">Céu Azul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cruzeiro-do-iguacu" title="Cruzeiro do Iguaçu">Cruzeiro do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/diamante-doeste" title="Diamante d'Oeste">Diamante d'Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/itaipulandia" title="Itaipulândia">Itaipulândia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/matelandia" title="Matelândia">Matelândia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/missal" title="Missal">Missal</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pinhal-de-sao-bento" title="Pinhal de São Bento">Pinhal de São Bento</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/planalto" title="Planalto">Planalto</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ramilandia" title="Ramilândia">Ramilândia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/realeza" title="Realeza">Realeza</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/salto-do-lontra" title="Salto do Lontra">Salto do Lontra</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-helena" title="Santa Helena">Santa Helena</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-izabel-do-oeste" title="Santa Izabel do Oeste">Santa Izabel do Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-terezinha-de-itaipu" title="Santa Terezinha de Itaipu">Santa Terezinha de Itaipu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-jose-das-palmeiras" title="São José das Palmeiras">São José das Palmeiras</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-miguel-do-iguacu" title="São Miguel do Iguaçu">São Miguel do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/serranopolis-do-iguacu" title="Serranópolis do Iguaçu">Serranópolis do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/vera-cruz-do-oeste" title="Vera Cruz do Oeste">Vera Cruz do Oeste</a></li>
+    </ul>
+    <ul data-menu="submenu-6-2" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Cascavel</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cascavel" title="Cascavel">Cascavel</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/anahy" title="Anahy">Anahy</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/boa-vista-da-aparecida" title="Boa Vista da Aparecida">Boa Vista da Aparecida</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/braganey" title="Braganey">Braganey</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cafelandia" title="Cafelândia">Cafelândia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/campina-da-lagoa" title="Campina da Lagoa">Campina da Lagoa</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/campo-bonito" title="Campo Bonito">Campo Bonito</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/capanema" title="Capanema">Capanema</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/capitao-leonidas-marques" title="Capitão Leônidas Marques">Capitão Leônidas Marques</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/catanduvas" title="Catanduvas">Catanduvas</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/corbelia" title="Corbélia">Corbélia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/diamante-do-sul" title="Diamante do Sul">Diamante do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/espigao-alto-do-iguacu" title="Espigão Alto do Iguaçu">Espigão Alto do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/goioere" title="Goioerê">Goioerê</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/guaraniacu" title="Guaraniaçu">Guaraniaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ibema" title="Ibema">Ibema</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/igatu" title="Igatu">Igatu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/juranda" title="Juranda">Juranda</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/lindoeste" title="Lindoeste">Lindoeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/mambore" title="Mamborê">Mamborê</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-aurora" title="Nova Aurora">Nova Aurora</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-cantu" title="Nova Cantu">Nova Cantu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-prata-do-iguacu" title="Nova Prata do Iguaçu">Nova Prata do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/quedas-do-iguacu" title="Quedas do Iguaçu">Quedas do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/rancho-alegre-doeste" title="Rancho Alegre d'Oeste">Rancho Alegre d'Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-tereza-do-oeste" title="Santa Tereza do Oeste">Santa Tereza do Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/tres-barras-do-parana" title="Três Barras do Paraná">Três Barras do Paraná</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ubirata" title="Ubiratã">Ubiratã</a></li>
+    </ul>
+    <ul data-menu="submenu-6-3" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Toledo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/toledo" title="Toledo">Toledo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/alto-piquiri" title="Alto Piquiri">Alto Piquiri</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/assis-chateaubriand" title="Assis Chateaubriand">Assis Chateaubriand</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/brasilandia-do-sul" title="Brasilândia do Sul">Brasilândia do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/entre-rios-do-oeste" title="Entre Rios do Oeste">Entre Rios do Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/formosa-do-oeste" title="Formosa do Oeste">Formosa do Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/francisco-alves" title="Francisco Alves">Francisco Alves</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/guaira" title="Guaíra">Guaíra</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/iracema-do-oeste" title="Iracema do Oeste">Iracema do Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/jesuitas" title="Jesuítas">Jesuítas</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/marechal-candido-rondon" title="Marechal Cândido Rondon">Marechal Cândido Rondon</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/maripa" title="Maripá">Maripá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/medianeira" title="Medianeira">Medianeira</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/mercedes" title="Mercedes">Mercedes</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-santa-rosa" title="Nova Santa Rosa">Nova Santa Rosa</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ouro-verde-do-oeste" title="Ouro Verde do Oeste">Ouro Verde do Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/palotina" title="Palotina">Palotina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pato-bragado" title="Pato Bragado">Pato Bragado</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/perola-doeste" title="Pérola d'Oeste">Pérola d'Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/quarto-centenario" title="Quarto Centenário">Quarto Centenário</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/quatro-pontes" title="Quatro Pontes">Quatro Pontes</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-lucia" title="Santa Lúcia">Santa Lúcia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-pedro-do-iguacu" title="São Pedro do Iguaçu">São Pedro do Iguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/terra-roxa" title="Terra Roxa">Terra Roxa</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/tupassi" title="Tupãssi">Tupãssi</a></li>
+    </ul>
+    <!-- Submenu 7 -->
+    <ul data-menu="submenu-7" class="menu__level level-1">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Selecione uma região</a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-7-1" href="#">Curitiba<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-7-2" href="#">Litoral<i class="fa fa-angle-right fa-lg"></i></a></li>
+    </ul>
+    <ul data-menu="submenu-7-1" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Curitiba</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/curitiba" title="Curitiba">Curitiba</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/adrianopolis" title="Adrianópolis">Adrianópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/agudos-do-sul" title="Agudos do Sul">Agudos do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/almirante-tamandare" title="Almirante Tamandaré">Almirante Tamandaré</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/araucaria" title="Araucária">Araucária</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/balsa-nova" title="Balsa Nova">Balsa Nova</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/bocaiuva-do-sul" title="Bocaiúva do Sul">Bocaiúva do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/campina-grande-do-sul" title="Campina Grande do Sul">Campina Grande do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/campo-do-tenente" title="Campo do Tenente">Campo do Tenente</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/campo-largo" title="Campo Largo">Campo Largo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/campo-magro" title="Campo Magro">Campo Magro</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cerro-azul" title="Cerro Azul">Cerro Azul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/colombo" title="Colombo">Colombo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/contenda" title="Contenda">Contenda</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/doutor-ulysses" title="Doutor Ulysses">Doutor Ulysses</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/fazenda-rio-grande" title="Fazenda Rio Grande">Fazenda Rio Grande</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/itaperucu" title="Itaperuçu">Itaperuçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/lapa" title="Lapa">Lapa</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/mandirituba" title="Mandirituba">Mandirituba</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pien" title="Piên">Piên</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pinhais" title="Pinhais">Pinhais</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/piraquara" title="Piraquara">Piraquara</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/quatro-barras" title="Quatro Barras">Quatro Barras</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/quitandinha" title="Quitandinha">Quitandinha</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/rio-branco-do-sul" title="Rio Branco do Sul">Rio Branco do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/rio-negro" title="Rio Negro">Rio Negro</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-jose-dos-pinhais" title="São José dos Pinhais">São José dos Pinhais</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/tijucas-do-sul" title="Tijucas do Sul">Tijucas do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/tunas-do-parana" title="Tunas do Paraná">Tunas do Paraná</a></li>
+    </ul>
+    <ul data-menu="submenu-7-2" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Antonina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/antonina" title="Antonina">Antonina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/guaraquecaba" title="Guaraqueçaba">Guaraqueçaba</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/guaratuba" title="Guaratuba">Guaratuba</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/matinhos" title="Matinhos">Matinhos</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/morretes" title="Morretes">Morretes</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/paranagua" title="Paranaguá">Paranaguá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pontal-do-parana" title="Pontal do Paraná">Pontal do Paraná</a></li>
+    </ul>
+    <!-- Submenu 8 -->
+    <ul data-menu="submenu-8" class="menu__level level-1">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Selecione uma região</a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-8-1" href="#">Londrina<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-8-2" href="#">Cornélio Procópio<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-8-3" href="#">Santo Antônio da Platina<i class="fa fa-angle-right fa-lg"></i></a></li>
+    </ul>
+    <ul data-menu="submenu-8-1" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Londrina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/londrina" title="Londrina">Londrina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/alvorada-do-sul" title="Alvorada do Sul">Alvorada do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/arapongas" title="Arapongas">Arapongas</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/astorga" title="Astorga">Astorga</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/bela-vista-do-paraiso" title="Bela Vista do Paraíso">Bela Vista do Paraíso</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/borrazopolis" title="Borrazópolis">Borrazópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/california" title="Califórnia">Califórnia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cambe" title="Cambé">Cambé</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/centenario-do-sul" title="Centenário do Sul">Centenário do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/faxinal" title="Faxinal">Faxinal</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/florestopolis" title="Florestópolis">Florestópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/guaraci" title="Guaraci">Guaraci</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ibipora" title="Ibiporã">Ibiporã</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ivaipora" title="Ivaiporã">Ivaiporã</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/jaguapita" title="Jaguapitã">Jaguapitã</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/jandaia-do-sul" title="Jandaia do Sul">Jandaia do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/jataizinho" title="Jataizinho">Jataizinho</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/joaquim-tavora" title="Joaquim Távora">Joaquim Távora</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/lupionopolis" title="Lupionópolis">Lupionópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/maua-da-serra" title="Mauá da Serra">Mauá da Serra</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/miraselva" title="Miraselva">Miraselva</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pitangueiras" title="Pitangueiras">Pitangueiras</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/porecatu" title="Porecatu">Porecatu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/prado-ferreira" title="Prado Ferreira">Prado Ferreira</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/primeiro-de-maio" title="Primeiro de Maio">Primeiro de Maio</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/rolandia" title="Rolândia">Rolândia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sabaudia" title="Sabáudia">Sabáudia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sertanopolis" title="Sertanópolis">Sertanópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/tamarana" title="Tamarana">Tamarana</a></li>
+    </ul>
+    <ul data-menu="submenu-8-2" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Cornélio Procópio</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cornelio-procopio" title="Cornélio Procópio">Cornélio Procópio</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/abatia" title="Abatiá">Abatiá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/andira" title="Andirá">Andirá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/assai" title="Assaí">Assaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/bandeirantes" title="Bandeirantes">Bandeirantes</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cambara" title="Cambará">Cambará</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/congonhinhas" title="Congonhinhas">Congonhinhas</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/itambaraca" title="Itambaracá">Itambaracá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/leopolis" title="Leópolis">Leópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-america-da-colina" title="Nova América da Colina">Nova América da Colina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-fatima" title="Nova Fátima">Nova Fátima</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-santa-barbara" title="Nova Santa Bárbara">Nova Santa Bárbara</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/rancho-alegre" title="Rancho Alegre">Rancho Alegre</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-amelia" title="Santa Amélia">Santa Amélia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-cecilia-do-pavao" title="Santa Cecília do Pavão">Santa Cecília do Pavão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-mariana" title="Santa Mariana">Santa Mariana</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santo-antonio-do-paraiso" title="Santo Antônio do Paraíso ">Santo Antônio do Paraíso </a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-jeronimo-da-serra" title="São Jerônimo da Serra">São Jerônimo da Serra</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-sebastiao-da-amoreira" title="São Sebastião da Amoreira">São Sebastião da Amoreira</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sertaneja" title="Sertaneja">Sertaneja</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/urai" title="Uraí">Uraí</a></li>
+    </ul>
+    <ul data-menu="submenu-8-3" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Santo Antônio da Platina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santo-antonio-da-platina" title="Santo Antônio da Platina">Santo Antônio da Platina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/barra-do-jacare" title="Barra do Jacaré">Barra do Jacaré</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/carlopolis" title="Carlópolis">Carlópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/conselheiro-mairinck" title="Conselheiro Mairinck">Conselheiro Mairinck</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/figueira" title="Figueira">Figueira</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/guapirama" title="Guapirama">Guapirama</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ibaiti" title="Ibaiti">Ibaiti</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/jaboti" title="Jaboti">Jaboti</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/jacarezinho" title="Jacarezinho">Jacarezinho</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/japira" title="Japira">Japira</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/jundiai-do-sul" title="Jundiaí do Sul">Jundiaí do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/pinhalao" title="Pinhalão">Pinhalão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/quatigua" title="Quatiguá">Quatiguá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ribeirao-claro" title="Ribeirão Claro">Ribeirão Claro</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ribeirao-do-pinhal" title="Ribeirão do Pinhal">Ribeirão do Pinhal</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/salto-do-itarare" title="Salto do Itararé">Salto do Itararé</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santana-do-itarare" title="Santana do Itararé">Santana do Itararé</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-jose-da-boa-vista" title="São José da Boa Vista">São José da Boa Vista</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/siqueira-campos" title="Siqueira Campos">Siqueira Campos</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/tomazina" title="Tomazina">Tomazina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/wenceslau-braz" title="Wenceslau Braz">Wenceslau Braz</a></li>
+    </ul>
+    <!-- Submenu 9 -->
+    <ul data-menu="submenu-9" class="menu__level level-1">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Selecione uma região</a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-9-1" href="#">Maringá<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-9-2" href="#">Cianorte<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-9-3" href="#">Campo Mourão<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-9-4" href="#">Paranavaí<i class="fa fa-angle-right fa-lg"></i></a></li>
+    </ul>
+    <ul data-menu="submenu-9-1" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Maringá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/maringa" title="Maringá">Maringá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/angulo" title="Ângulo">Ângulo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/apucarana" title="Apucarana">Apucarana</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/atalaia" title="Atalaia">Atalaia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/bom-sucesso" title="Bom Sucesso">Bom Sucesso</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cafeara" title="Cafeara">Cafeara</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cambira" title="Cambira">Cambira</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cruzmaltina" title="Cruzmaltina">Cruzmaltina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/doutor-camargo" title="Doutor Camargo">Doutor Camargo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/floresta" title="Floresta">Floresta</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/florida" title="Flórida">Flórida</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/iguaracu" title="Iguaraçu">Iguaraçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/itambe" title="Itambé">Itambé</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ivatuba" title="Ivatuba">Ivatuba</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/jardim-alegre" title="Jardim Alegre">Jardim Alegre</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/jussara" title="Jussara">Jussara</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/kalore" title="Kaloré">Kaloré</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/lobato" title="Lobato">Lobato</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/mandaguacu" title="Mandaguaçu">Mandaguaçu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/mandaguari" title="Mandaguari">Mandaguari</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/marialva" title="Marialva">Marialva</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/marilandia-do-sul" title="Marilândia do Sul">Marilândia do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/marumbi" title="Marumbi">Marumbi</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/munhoz-de-mello" title="Munhoz de Melo">Munhoz de Melo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nossa-senhora-das-gracas" title="Nossa Senhora das Graças">Nossa Senhora das Graças</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/novo-itacolomi" title="Novo Itacolomi">Novo Itacolomi</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ourizona" title="Ourizona">Ourizona</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/paicandu" title="Paiçandu">Paiçandu</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/presidente-castelo-branco" title="Presidente Castelo Branco">Presidente Castelo Branco</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/rio-bom" title="Rio Bom">Rio Bom</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-fe" title="Santa Fé">Santa Fé</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santo-inacio" title="Santo Inácio">Santo Inácio</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-carlos-do-ivai" title="São Carlos do Ivaí">São Carlos do Ivaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-joao-do-caiua" title="São João do Caiuá">São João do Caiuá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-joao-do-ivai" title="São João do Ivaí">São João do Ivaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-jorge-do-ivai" title="São Jorge do Ivaí">São Jorge do Ivaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-pedro-do-ivai" title="São Pedro do Ivaí">São Pedro do Ivaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sarandi" title="Sarandi">Sarandi</a></li>
+    </ul>
+    <ul data-menu="submenu-9-2" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Cianorte</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cianorte" title="Cianorte">Cianorte</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/alto-paraiso" title="Alto Paraíso">Alto Paraíso</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/altonia" title="Altônia">Altônia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cafezal-do-sul" title="Cafezal do Sul">Cafezal do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cidade-gaucha" title="Cidade Gaúcha">Cidade Gaúcha</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cruzeiro-do-oeste" title="Cruzeiro do Oeste">Cruzeiro do Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/douradina" title="Douradina">Douradina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/esperanca-nova" title="Esperança Nova">Esperança Nova</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/guaporema" title="Guaporema">Guaporema</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/icaraima" title="Icaraíma">Icaraíma</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/indianopolis" title="Indianópolis">Indianópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ipora" title="Iporã">Iporã</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ivate" title="Ivaté">Ivaté</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/japura" title="Japurá">Japurá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/maria-helena" title="Maria Helena">Maria Helena</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/mariluz" title="Mariluz">Mariluz</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/moreira-sales" title="Moreira Sales">Moreira Sales</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-olimpia" title="Nova Olímpia">Nova Olímpia</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/perobal" title="Perobal">Perobal</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/perola" title="Pérola">Pérola</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/rondon" title="Rondon">Rondon</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-jorge-do-patrocinio" title="São Jorge do Patrocínio">São Jorge do Patrocínio</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-manoel-do-parana" title="São Manoel do Paraná">São Manoel do Paraná</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-tome" title="São Tomé">São Tomé</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/tapejara" title="Tapejara">Tapejara</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/tapira" title="Tapira">Tapira</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/terra-boa" title="Terra Boa">Terra Boa</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/tuneiras-do-oeste" title="Tuneiras do Oeste">Tuneiras do Oeste</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/umuarama" title="Umuarama">Umuarama</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/xambre" title="Xambrê">Xambrê</a></li>
+    </ul>
+    <ul data-menu="submenu-9-3" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Campo Mourão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/campo-mourao" title="Campo Mourão">Campo Mourão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/altamira-do-parana" title="Altamira do Paraná">Altamira do Paraná</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/arapua" title="Arapuã">Arapuã</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/araruna" title="Araruna">Araruna</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/ariranha-do-ivai" title="Ariranha do Ivaí">Ariranha do Ivaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/barbosa-ferraz" title="Barbosa Ferraz">Barbosa Ferraz</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/boa-esperanca" title="Boa Esperança">Boa Esperança</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/corumbatai-do-sul" title="Corumbataí do Sul">Corumbataí do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/engenheiro-beltrao" title="Engenheiro Beltrão">Engenheiro Beltrão</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/farol" title="Farol">Farol</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/fenix" title="Fênix">Fênix</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/godoy-moreira" title="Godoy Moreira">Godoy Moreira</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/grandes-rios" title="Grandes Rios">Grandes Rios</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/guairaca" title="Guairaçá">Guairaçá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/iretama" title="Iretama">Iretama</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/janiopolis" title="Janiópolis">Janiópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/laranjal" title="Laranjal">Laranjal</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/lidianopolis" title="Lidianópolis">Lidianópolis</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/luiziana" title="Luiziana">Luiziana</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/lunardelli" title="Lunardelli">Lunardelli</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/manoel-ribas" title="Manoel Ribas">Manoel Ribas</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/mato-rico" title="Mato Rico">Mato Rico</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-tebas" title="Nova Tebas">Nova Tebas</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/peabiru" title="Peabiru">Peabiru</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/quinta-do-sol" title="Quinta do Sol">Quinta do Sol</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/rio-branco-do-ivai" title="Rio Branco do Ivaí">Rio Branco do Ivaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/roncador" title="Roncador">Roncador</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/rosario-do-ivai" title="Rosário do Ivaí">Rosário do Ivaí</a></li>
+    </ul>
+    <ul data-menu="submenu-9-4" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Região de Paranavaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/paranavai" title="Paranavaí">Paranavaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/alto-parana" title="Alto Paraná">Alto Paraná</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/amapora" title="Amaporã">Amaporã</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/colorado" title="Colorado">Colorado</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/cruzeiro-do-sul" title="Cruzeiro do Sul">Cruzeiro do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/diamante-do-norte" title="Diamante do Norte">Diamante do Norte</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/florai" title="Floraí">Floraí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/inaja" title="Inajá">Inajá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/itaguaje" title="Itaguajé">Itaguajé</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/itauna-do-sul" title="Itaúna do Sul">Itaúna do Sul</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/jardim-olinda" title="Jardim Olinda">Jardim Olinda</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/loanda" title="Loanda">Loanda</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/marilena" title="Marilena">Marilena</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/mirador" title="Mirador">Mirador</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-alianca-do-ivai" title="Nova Aliança do Ivaí">Nova Aliança do Ivaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-esperanca" title="Nova Esperança">Nova Esperança</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/nova-londrina" title="Nova Londrina">Nova Londrina</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/paraiso-do-norte" title="Paraíso do Norte">Paraíso do Norte</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/paranacity" title="Paranacity">Paranacity</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/paranapoema" title="Paranapoema">Paranapoema</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/planaltina-do-parana" title="Planaltina do Paraná">Planaltina do Paraná</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/porto-rico" title="Porto Rico">Porto Rico</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/querencia-do-norte" title="Querência do Norte">Querência do Norte</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-cruz-de-monte-castelo" title="Santa Cruz de Monte Castelo">Santa Cruz de Monte Castelo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-ines" title="Santa Inês">Santa Inês</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-isabel-do-ivai" title="Santa Isabel do Ivaí">Santa Isabel do Ivaí</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santa-monica" title="Santa Mônica">Santa Mônica</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/santo-antonio-do-caiua" title="Santo Antônio do Caiuá">Santo Antônio do Caiuá</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/sao-pedro-do-parana" title="São Pedro do Paraná">São Pedro do Paraná</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/tamboara" title="Tamboara">Tamboara</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/terra-rica" title="Terra Rica">Terra Rica</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/tags/uniflor" title="Uniflor">Uniflor</a></li>
+    </ul>
+    <!-- Submenu 10 -->
+    <ul data-menu="submenu-10" class="menu__level level-1">
+      <li class="menu__item"><a class="menu__link see-all see-all-videos" href="@Url.Action("Index", "Video")" title="Vídeos">Vídeos</a></li>
+      <li class="menu__item"><a class="menu__link" data-submenu="submenu-10-1" href="#">Notícias<i class="fa fa-angle-right fa-lg"></i></a></li>
+      <li class="menu__item"><a class="menu__link" href="@Url.Action("Categoria", "Video", new { categoria = "esportes" })">Esportes</a></li>
+      <li class="menu__item"><a class="menu__link" href="@Url.Action("Categoria", "Video", new { categoria = "entretenimento" })">Entretenimento</a></li>
+      <li class="menu__item"><a class="menu__link" href="@Url.Action("Categoria", "Video", new { categoria = "negocios-da-terra" })">Negócios da Terra</a></li>
+      <li class="menu__item"><a class="menu__link" href="@Url.Action("Categoria", "Video", new { categoria = "massa-news-live-on" })">Massa News Live On</a></li>
+      <li class="menu__item"><a class="menu__link" href="@Url.Action("Categoria", "Video", new { categoria = "descobrindo-curitiba" })">Descobrindo Curitiba</a></li>
+    </ul>
+    <ul data-menu="submenu-10-1" class="menu__level level-2">
+      <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Notícias</a></li>
+      <li class="menu__item"><a class="menu__link" href="@Url.Action("Categoria", "Video", new { categoria = "curitiba-regiao" })">Curitiba e região</a></li>
+      <li class="menu__item"><a class="menu__link" href="@Url.Action("Categoria", "Video", new { categoria = "londrina-regiao" })">Londrina e região</a></li>
+      <li class="menu__item"><a class="menu__link" href="@Url.Action("Categoria", "Video", new { categoria = "maringa-regiao" })">Maringá e região</a></li>
+      <li class="menu__item"><a class="menu__link" href="@Url.Action("Categoria", "Video", new { categoria = "ponta-grossa-regiao" })">Ponta Grossa e região</a></li>
+      <li class="menu__item"><a class="menu__link" href="@Url.Action("Categoria", "Video", new { categoria = "foz-do-iguacu-regiao" })">Foz do Iguaçú e região</a></li>
+    </ul>
+    <!-- Submenu 11 -->
+    <ul data-menu="submenu-11" class="menu__level level-1">
+      <li class="menu__item" itemprop="name"><a class="menu__link see-all see-all-negocios-da-terra" itemprop="url" href="@Url.Action("NegociosDaTerra", "Editorial")" title="Negócios da Terra">Negócios da Terra</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/negocios-da-terra?go=comunidades-virtuais">Comunidades Virtuais</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NegociosDaTerraWithCategory", "Categorias", new { categoria = "agenda" })">Agenda</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NegociosDaTerraWithCategory", "Categorias", new { categoria = "agricultura" })">Agricultura</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NegociosDaTerraWithCategory", "Categorias", new { categoria = "cooperativismo" })">Cooperativismo</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NegociosDaTerraWithCategory", "Categorias", new { categoria = "credito" })">Crédito</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NegociosDaTerraWithCategory", "Categorias", new { categoria = "exportacao" })">Exportação</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NegociosDaTerraWithCategory", "Categorias", new { categoria = "feiras-agropecuarias" })">Feiras Agropecuarias</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NegociosDaTerraWithCategory", "Categorias", new { categoria = "industria" })">Indústria</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NegociosDaTerraWithCategory", "Categorias", new { categoria = "pecuaria" })">Pecuária</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("NegociosDaTerraWithCategory", "Categorias", new { categoria = "receitas" })">Receitas</a></li>
+    </ul>
+    <!-- Submenu 3 -->
+    <ul data-menu="submenu-12" class="menu__level level-1">
+      <li class="menu__item" itemprop="name"><a class="menu__link see-all see-all-viajar-e-massa" itemprop="url" href="@Url.Action("ViajarEMassa", "Editorial")" title="Viajar é Massa">Viajar é Massa</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("ViajarEMassaWithCategory", "Categorias", new { categoria = "alimentos-e-bebidas" })">Alimentos e Bebidas</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("ViajarEMassaWithCategory", "Categorias", new { categoria = "curiosidades" })">Curiosidades</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("ViajarEMassaWithCategory", "Categorias", new { categoria = "destinos" })">Destinos</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("ViajarEMassaWithCategory", "Categorias", new { categoria = "hospedagens" })">Hospedagens</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("ViajarEMassaWithCategory", "Categorias", new { categoria = "planejando-sua-viagem" })">Planejando sua viagem</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("ViajarEMassaWithCategory", "Categorias", new { categoria = "pontos-turisticos" })">Pontos Turísticos</a></li>
+    </ul>
+  </div>
+</nav>

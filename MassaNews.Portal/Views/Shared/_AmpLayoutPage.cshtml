@@ -1,0 +1,16 @@
+﻿<!doctype html>
+<html ⚡ lang="pt-br">
+  @Html.Partial("Amp/_Head")
+
+  <body class="@RenderSection("bodyClass", false)">
+
+    @Html.Partial("Amp/_Analytics")
+
+    <div class="g-wrapper">
+      @Html.Partial("Amp/_Header")
+      @RenderBody()
+    </div>
+
+    @Html.Partial("Amp/_Sidebar")
+  </body>
+</html>

@@ -1,0 +1,38 @@
+﻿@using MassaNews.Service.Models
+
+@if (ViewBag.Lastest4News != null){
+  <div class="sidebar__ultimas-noticias t-module">
+    <h3 class="title">
+      <a href="@Url.Action("Lastest", "Categorias")" class="color-brand" title="Últimas notícias">Últimas notícias <i class="fa fa-plus-circle fa-lg u-right"></i></a>
+    </h3>
+
+    <div class="c-headline--minis">
+      @{ var i = 1; }
+      @foreach (Noticia item in ViewBag.Lastest4News){
+        <div class="c-headline">
+          <div class="texts">
+            @if (item.Categoria.Url.Equals("plantao")){
+              if (item.Cidade != null){
+                <a class="hat" href="@($"/tags/{item.Cidade.Url}")" data-position="@i">@item.Cidade.Nome</a>
+              } else {
+                <a class="hat" href="@Url.Action("Parana", "Categorias")" data-position="@i">Paraná</a>
+              }
+              <time class="date" datetime="@Convert.ToDateTime(@item.DataPublicacao).ToString("yyyy-MM-dd HH:mm")">- @Convert.ToDateTime(@item.DataPublicacao).ToString("HH\\hmm")</time>
+            } else {
+                if (item.BlogId.HasValue){
+                  <a class="hat" href="@($"/{item.Categoria.Editorial.Url}/{item.CategoriaUrl}/{item.BlogUrl}/posts")" data-position="@i">@item.Blog.Titulo</a>
+                } else {
+                  <a class="hat" href="@($"/{item.Categoria.Editorial.Url}/{item.CategoriaUrlFull}")" data-position="@i">@item.Categoria.Titulo</a>
+                }
+                <time class="date" datetime="@Convert.ToDateTime(@item.DataPublicacao).ToString("yyyy-MM-dd HH:mm")">- @Convert.ToDateTime(@item.DataPublicacao).ToString("HH\\hmm")</time>
+            }
+            <h2 class="title">
+              <a href="@($"{item.UrlFull}.html")" title="@item.Chamada" data-position="@i">@item.Chamada</a>
+            </h2>
+          </div>
+        </div>
+        i++;
+      }
+    </div>
+  </div>
+}

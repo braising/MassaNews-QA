@@ -1,0 +1,167 @@
+﻿@using MassaNews.Service.Util
+@using Entities.Classes
+
+@model MassaNews.Portal.ViewModels.CategoriaModel
+
+@section bodyClass{@Html.Raw(string.Format("pg-{0} pg-category pg-category--sponsorship", Model.Categoria.Theme.Value))}
+
+@{
+  // Página
+  ViewBag.Pagina = "categoria";
+
+  // Editoria
+  ViewBag.EditoriaUrl = Model.Categoria.Editorial.Url;
+
+  // Categoria
+  if(Model.Categoria.CategoriaPai != null){
+    ViewBag.Categoria = Model.Categoria.CategoriaPai.Url;
+    ViewBag.SubCategoria = Model.Categoria.Url;
+  } else {
+    ViewBag.Categoria = Model.Categoria.Url;
+  }
+
+  var date = DateTime.Now;
+}
+
+<main class="g-main">
+  @* 157 = Obituário *@
+  @if (Model.Categoria.Id == 157){
+    <div id="sponsorship" class="sponsorship--@Model.Categoria.Url">
+      <span class="label">Oferecimento</span>
+      <a href="http://www.unilutus.com.br/?utm_source=massa-news&utm_medium=patrocinio-obituario" class="logo track-sponsorship" target="_blank" title="Unilutus">
+        <img src="@Url.Content("~/content/images/logos/clientes/unilutus.png")" alt="Unilutus">
+      </a>
+    </div>
+  }
+
+  @* Breadcrumb *@
+  @* <div class="g-container">
+    <ul class="c-breadcrumb u-margin-top" xmlns:v="http://rdf.data-vocabulary.org/Breadcrumb">
+      <li typeof="v:Breadcrumb"><a href="/" rel="v:url" property="v:title" title="Massa News" class="fa fa-home"></a></li>
+      <li typeof="v:Breadcrumb"><a href="@string.Format("/{0}", Model.Categoria.Editorial.Url)" rel="v:url" property="v:title" title="#">@Model.Categoria.Editorial.Titulo</a></li>
+      @if(Model.Categoria.CategoriaPai != null){
+        <li typeof="v:Breadcrumb"><a href="@string.Format("/{0}/{1}", Model.Categoria.Editorial.Url, Model.Categoria.CategoriaPai.Url)" rel="v:url" property="v:title" title="#">@Model.Categoria.CategoriaPai.Titulo</a></li>
+      }
+      <li>@Model.Categoria.Titulo</li>
+    </ul>
+  </div> *@
+
+  @if (Model.NoticiasHighlights != null)
+  {
+    @Html.Partial("Template/_Six", Model.NoticiasHighlights)
+  }
+
+  <div class="g-content-inner-sidebar g-container">
+    <section class="g-content">
+      @Html.Partial("_AdCabecalho")
+
+      @if (Model.Noticias.Count > 0)
+      {
+        <section class="c-headline--horz-list t-module">
+          @foreach (var item in Model.Noticias)
+          {
+            <div class="c-headline @($"t-{item.Categoria.Theme.Value}") @if(string.IsNullOrEmpty(item.ImgSm) /*&& item.DestaqueId != Destaque.Galeria.Id*/){<text>no-image</text>}">
+              @if (item.DestaqueId == Destaque.Video.Id)
+              {
+                <picture class="image modal-video">
+                  <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                  <a href="@Url.Action("Interna", "Video", new {url = item.Url})" title="@item.Chamada">
+                    <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgSm}")" alt="@item.Chamada">
+                  </a>
+                </picture>
+              }
+              else if (!string.IsNullOrEmpty(item.ImgSm))
+              {
+                <picture class="image">
+                  <a href="@Url.Action("Index", "Noticias", new { editorial = item.Categoria.Editorial.Url, categoria = item.Categoria.Url, url = item.Url })" title="@item.Chamada">
+                    @if (item.DestaqueId == Destaque.Galeria.Id && item.Galerias.Any(ga => ga.Imagens.Any()))
+                    {
+                      @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", item.Galerias.FirstOrDefault().Imagens.Count() } })
+                    }
+                    <img class="lazy" data-original="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", item.ImgSm)" alt="@item.Chamada">
+                  </a>
+                </picture>
+              }
+              <div class="texts">
+                @if (item.Categoria.Url.Equals("plantao"))
+                {
+                  <h3 class="hat">
+                    @if (item.Blog != null)
+                    {
+                      <a href="@Url.Action("BlogPosts", "Blogs", new {categoria = item.Blog.Categoria.Url, blog = item.Blog.Url})" class="author">@item.Blog.Titulo</a>
+                    }
+                    else if (item.Cidade != null)
+                    {
+                      <a href="@string.Format("/tags/{0}", item.Cidade.Url)"> @item.Cidade.Nome </a>
+                    }
+                    else
+                    {
+                      <a href="@Url.Action("Parana", "Categorias")"> Paraná </a>
+                    }
+                    <time class="date" datetime="@Convert.ToDateTime(@item.DataPublicacao).ToString("yyyy-MM-dd HH:mm")">
+                      <text>-</text>
+                      @if (Convert.ToDateTime(item.DataPublicacao).ToShortDateString() == date.ToShortDateString())
+                      {<text>@Convert.ToDateTime(@item.DataPublicacao).ToString("HH\\hmm")</text>}
+                    else
+                    {<text>@Convert.ToDateTime(@item.DataPublicacao).ToString("dd/MM/yyyy")</text>}
+                    </time>
+                  </h3>
+                }
+                else
+                {
+                  <h3 class="hat">
+                    @if (item.Blog != null)
+                    {
+                      <a href="@Url.Action("BlogPosts", "Blogs", new {categoria = item.Blog.Categoria.Url, blog = item.Blog.Url})" class="author">@item.Blog.Titulo</a>
+                    }
+                    else if (item.Categoria.CategoriaPaiId.HasValue)
+                    {
+                      <a href="@string.Format("/{0}/{1}/{2}", item.Categoria.Editorial.Url, item.Categoria.CategoriaPai.Url, item.Categoria.Url)">@item.Categoria.Titulo</a>
+                    }
+                    else
+                    {
+                      <a href="@string.Format("/{0}/{1}", item.Categoria.Editorial.Url, item.Categoria.Url)">@item.Categoria.Titulo</a>
+                    }
+
+                    <time class="date" datetime="@Convert.ToDateTime(@item.DataPublicacao).ToString("yyyy-MM-dd HH:mm")">
+                      <text>-</text>
+                      @if (Convert.ToDateTime(item.DataPublicacao).ToShortDateString() == date.ToShortDateString())
+                      {<text>@Convert.ToDateTime(@item.DataPublicacao).ToString("HH\\hmm")</text>}
+                    else
+                    {<text>@Convert.ToDateTime(@item.DataPublicacao).ToString("dd/MM/yyyy")</text>}
+                    </time>
+                  </h3>
+                }
+                <h2 class="title">
+                  <a href="@Url.Action("Index", "Noticias", new { editorial = item.Categoria.Editorial.Url, categoria = item.Categoria.Url, url = item.Url })" title="@item.Chamada">
+                    @item.Chamada
+                  </a>
+                </h2>
+              </div>
+            </div>
+          }
+        </section>
+      }
+      @if (ViewBag.Paginacao != null)
+      {
+        <nav class="c-pagination">
+          <ul class="pagination">
+            @foreach (var pagina in ViewBag.Paginacao)
+            {
+              <li @if (ViewBag.PaginaAtual == pagina.Value) { <text> class="active" </text> }>
+                <a @{ if (pagina.Key == "<") { <text> rel="prev" </text> } else if (pagina.Key == ">") { <text> rel="next" </text> } }
+                   href="@if(Model.Categoria.CategoriaPai == null){<text>@string.Format("/{0}/{1}/?p={2}", ViewBag.Editorial.Url, Model.Categoria.Url, pagina.Value)</text>}else{<text>@string.Format("/{0}/{1}/{2}/?p={3}", ViewBag.Editorial.Url, Model.Categoria.CategoriaPai.Url,Model.Categoria.Url, pagina.Value)</text>}"
+                   title="@pagina.Key">
+                  @pagina.Key
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
+      }
+    </section>
+
+    @Html.Partial("_Sidebar")
+
+  </div>
+</main>

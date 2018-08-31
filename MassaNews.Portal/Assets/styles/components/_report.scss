@@ -1,0 +1,28 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-report {
+
+}
+
+.c-report__button {
+  position:relative;
+  display:inline-block;
+  @include font-size(12px);
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration:underline;
+  }
+}
+
+
+/* =============CUSTOM============= */
+
+
+/* =============MEDIA QUERY============= */

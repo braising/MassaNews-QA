@@ -1,0 +1,194 @@
+﻿@section bodyClass{@Html.Raw("pg-negocios-da-terra pg-cotacoes")}
+
+@model MassaNews.Portal.ViewModels.CotacoesCidadeViewModel
+
+<main class="g-main">
+  <div class="g-content-inner-sidebar g-container t-content">
+    <section class="g-content">
+      <ul class="c-breadcrumb t-module" xmlns:v="http://rdf.data-vocabulary.org/Breadcrumb">
+        <li typeof="v:Breadcrumb"><a href="/" rel="v:url" property="v:title" title="Rede Massa" class="fa fa-home"></a></li>
+        <li typeof="v:Breadcrumb"><a href="/negocios-da-terra" rel="v:url" property="v:title" title="Negócios da Terra">Negócios da Terra</a></li>
+        <li typeof="v:Breadcrumb"><a href="/cotacoes/@Model.Tipo.Slug" rel="v:url" property="v:title" title="Cotações">Cotações</a></li>
+        <li>@Model.Cidade.Cidade</li>
+      </ul>
+
+      <h1 class="t-page-color">Cotações em @Model.Cidade.Cidade</h1>
+
+      @if (Model.Cotacoes.Count > 0){
+        <ul class="c-forms--labels">
+          <li class="input-third">
+            <label for="estado">Estado</label>
+            <div class="mask-select">
+              <select name="estado" id="estado">
+                 @if (Model.Tipo.Slug == "parana")
+                 {
+                    <option value="parana" selected data-cidade="apucarana" >Paraná</option>
+                    <option value="santa-catarina" data-cidade="canoinhas" >Santa Catarina</option>
+                 }
+                 else
+                 {
+                    <option value="parana" data-cidade="apucarana" >Paraná</option>
+                    <option value="santa-catarina" selected data-cidade="canoinhas">Santa Catarina</option>
+                 }
+              </select>
+            </div>
+          </li>
+
+          <li class="input-third">
+            <label for="cidade">Cidade</label>
+            <div class="mask-select">
+              @*@Html.DropDownList("CotacaoCidadeId", null, "Selecione", htmlAttributes: new { @name = "CotacaoCidadeId" })*@
+              <select name="cidade" id="cidade">
+              @foreach (var item in Model.Cidades)
+              {
+                  if (item.Id == Model.Cidade.Id)
+                  {
+                    <option value="@item.Slug" selected>@item.Cidade</option>
+                  }
+                  else
+                  {
+                    <option value="@item.Slug">@item.Cidade</option>
+                  }
+              }
+                @*<option value="">Curitiba</option>
+                <option value="">Londrina</option>*@
+              </select>
+            </div>
+          </li>
+
+          <li class="input-third">
+            <label for="data">Data</label>
+            <input type="date" id="data" name="data" placeholder="dd/mm/aaaa" value="@Model.DataCotacao.ToString("yyy-MM-dd")">
+          </li>
+        </ul>
+
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th>Produto</th>
+              <th>Data</th>
+              <th>Preço</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @foreach (var cotacao in Model.Cotacoes)
+            {
+            <tr>
+                <td><a href="/cotacoes/@Model.Tipo.Slug/produto/@cotacao.ProdutoSlug" class="t-page-color">@cotacao.ProdutoNome</a></td>
+                <td>@cotacao.DataCotacao.ToString("dd/MM/yyyy")</td>
+                <td>R$ @cotacao.Valor.ToString("N2") &nbsp;
+                @if (cotacao.ValorAnterior == 0)
+                {
+
+                }
+                else if (cotacao.Valor > cotacao.ValorAnterior)
+                {
+                <i class="fa fa-arrow-up color-success"></i>
+                }
+                else if (cotacao.Valor < cotacao.ValorAnterior)
+                {
+                <i class="fa fa-arrow-down color-danger"></i>
+                }
+                </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      } else {
+        <div class="">
+          <h3 class="t-page-color u-margin-top">Ainda não temos informações cadastradas.</h3>
+          <p>Estamos trabalhando nisso!</p>
+        </div>
+      }
+    </section>
+
+    <aside class="g-aside">
+      <h3 class="t-page-color">Outras cidades</h3>
+      <ul class="list-itens t-module">
+        @foreach (var cidade in Model.Cidades)
+        {
+          <li><a href="/cotacoes/@Model.Tipo.Slug/@cidade.Slug" class="u-cut">@cidade.Cidade</a></li>
+        }
+      </ul>
+
+      @Html.Partial("_AdRetanguloMedio")
+    </aside>
+  </div>
+</main>
+
+@section scripts{
+  <script type="text/javascript" src="~/Assets/scripts/components/chart.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+      $(document).ready(function () {
+
+          $('#estado').change(function () {
+              var select = $(this);
+              document.location.href = "/cotacoes/" + select.val() + "/" + select.find(':selected').data('cidade');
+          })
+
+          $('#cidade').change(function () {
+              var estado = $('#estado').val();
+              var cidade = $(this).val();
+              document.location.href = "/cotacoes/" + estado + "/" + cidade;
+          })
+
+          $('#data').change(function () {
+              var estado = $('#estado').val();
+              var cidade = $('#cidade').val();
+              var data = $(this).val();
+              document.location.href = "/cotacoes/" + estado + "/" + cidade + "/" + data.replace(/-/g,'/');
+          })
+          
+      var ctx = document.getElementById("myChart").getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["01", "02", "03", "04", "05", "06"],
+          datasets: [{
+            label: 'Média estadual',
+            data: [250, 120, 150, 230, 20, 100],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero:true
+              }
+            }]
+          }
+        }
+      });
+    });
+  </script>
+}
+
+
+@* data: {
+  labels: ["01", "02", "03", "04", "05", "06"],
+  datasets: [{
+    label: '# of Votes',
+    data: [250, 120, 150, 230, 20, 100],
+    borderWidth: 1
+  }]
+}, *@
+
+@* data: {
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
+  datasets: [{
+    label: "My First dataset",
+    backgroundColor: "#ff6384",
+    borderColor: "#ff6384",
+    data: [10, 30, 39, 20, 25, 34, 0],
+    fill: false,
+  }, {
+    label: "My Second dataset",
+    fill: false,
+    backgroundColor: "#36a2eb",
+    borderColor: "#36a2eb",
+    data: [18, 33, 22, 19, 11, 39, 30],
+  }]
+}, *@

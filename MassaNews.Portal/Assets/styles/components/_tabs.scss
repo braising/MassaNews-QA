@@ -1,0 +1,89 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-tabs {
+  &.c-tabs--separator {
+    border-top:1px solid $gray-lighter;
+  }
+}
+
+.c-tabs__nav {
+  @include clearfix();
+
+  > li {
+    width:50%;
+    float:left;
+  }
+}
+
+.c-tabs__tab {
+  display:block;
+  width:100%;
+  padding:.6em 10px;
+  background:$gray-lightest;
+  color: $gray-dark;
+  font-weight: bold;
+  text-align:center;
+  text-transform:uppercase;
+  transition:background .2s;
+
+  &:hover {
+    background:darken($gray-lightest, 10%);
+  }
+
+  &.is-active {
+    color:#000;
+    background:#fff;
+    border-bottom:1px solid $gray-lightest;
+  }
+}
+
+.c-tabs__tabpanel {
+  display:none;
+
+  .c-tabs &:first-child {
+    display:block;
+  }
+}
+
+
+/* =============CUSTOM============= */
+
+// ROTEIROS
+.c-tabs-roteiros{
+  .c-tabs__nav{
+    position: relative;
+  }
+
+  .c-tabs__tab{
+    width: calc(100% / 3);
+    border: 1px solid #fff;
+    margin-bottom: 1px;
+    float: left;
+  }
+
+  .more-tabs{
+    width: calc(100% / 3);
+    top: 43px;
+    right: 0;
+    position: absolute;
+    
+    &.is-hidden{
+      display: none;
+    }
+
+    &.is-open{
+      display: block;
+    }
+
+    .c-tabs__tab{
+      width: 100%;
+    }
+  }
+}
+
+/* =============MEDIA QUERY============= */

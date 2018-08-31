@@ -1,0 +1,51 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-banner {
+  // margin:0 -1000em $margin-medium;
+  // padding:0 1000em;
+
+  margin-bottom: $margin-small;
+  background:$gray-lightest;
+  text-align:center;
+
+  > .title {
+    margin-bottom:$margin-small;
+    text-transform:uppercase;
+  }
+}
+
+.c-banner--padding {
+  padding-top:$margin-medium;
+  padding-bottom:$margin-medium;
+}
+
+.c-banner--image {
+  img{
+    width: 100%;
+  }
+}
+
+
+/* =============CUSTOM============= */
+// .c-banner--image {
+//   @media all and (max-width: bp(6)) {
+//     margin: 0 -15em 2.45em;
+//     padding:0;
+//     overflow:hidden;
+//     max-height:250px;
+
+//     img {
+//       width:auto;
+//       max-width:none;
+//       height:100%;
+//     }
+//   }
+// }
+
+
+/* =============MEDIA QUERY============= */

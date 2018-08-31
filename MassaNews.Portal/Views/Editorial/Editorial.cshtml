@@ -1,0 +1,194 @@
+﻿@using MassaNews.Service.Util
+@using Entities.Classes
+@model MassaNews.Portal.ViewModels.CategoriaModel
+@section bodyClass{@Html.Raw(string.Format("pg-{0}", Model.Editorial.Theme.Value))}
+@{
+  // Página
+  ViewBag.Pagina = "editoria";
+
+  // Editoria
+  ViewBag.EditoriaUrl = Model.Editorial.Url;
+  var date = DateTime.Now;
+}
+
+<main class="g-main">
+  @* 7 = Viajar é Massa *@
+  @if (ViewBag.Editorial.Id == 7){
+    <div id="sponsorship" class="sponsorship--@ViewBag.EditoriaUrl">
+      <span class="label">Oferecimento</span>
+      <a href="https://multimoneycorretora.com.br/?utm_source=massa-news&utm_medium=patrocinio-viajar-e-massa" class="logo track-sponsorship" target="_blank" title="MultiMoney - Corretora de Câmbio">
+        <img src="@Url.Content("~/content/images/logos/multimoney.png")" alt="MultiMoney - Corretora de Câmbio">
+        @* <img alt="MultiMoney - Corretora de Câmbio" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIMAAAAiCAMAAABLA5ofAAAC91BMVEVMaXHt7e0hISH29vYYGBj9/f0YGBj+/v5oaGiysrL6+vowMDD5+fmzs7P6+vqYmJhkZGRlZWV8fHxdXV309PS2trb///+JiYmRkZH9/f27u7vl5eX8/Px3d3fHx8ebm5v7+/v///+rq6va2trCwsL////Z2dmenp7////l5eX+/v6mpqbNzc37+/vd3d24uLj7+/vj4+P+/v6pqanCwsL+/v7Pz8/q6ur8/Py6urrm5ubY2Nj////19fW5ubnOzs7+/v7////R0dHCwsLq6ur+/v709PT+/v7U1NT////T09PGxsb////i4uLs7OzY2NjNzc3////09PT+/v7f39/Nzc3a2tr////n5+fS0tLb29vx8fH9/f3Nzc3k5OTX19ft7e38/Pzn5+f////r6+va2trf39/i4uL5+fnh4eHa2tr////l5eX////y8vLe3t7k5OTp6en////s7Oze3t7y8vLj4+P7+/v////w8PD////l5eXo6Oj////p6en////w8PDn5+f////////p6eny8vLp6en+/v7n5+f////s7Ozx8fH////////y8vLt7e3o6Oj////8/Pz09PT////s7Oz////+/v719fXv7+/s7Oz+/v7////t7e3t7e3w8PD////+/v78/Pzw8PDy8vL+/v7////v7+/5+fnx8fH////7+/vz8/P////////w8PD////z8/P29vb9/f3////y8vL////z8/P+/v719fX6+vr////+/v709PT39/f////39/f////////////39/f29vb5+fn8/Pz29vb////8/Pz4+Pj////4+Pj8/Pz////4+Pj7+/v9/f34+Pj////5+fn8/Pz+/v75+fn////5+fn7+/v////////6+vr////6+vr////8/Pz////8/Pz////8/Pz////8/Pz8/Pz9/f3////9/f3////////9/f3////////+/v79/f3////////////////////////+/v7////////ZiLxTAAAA/HRSTlMAAQECAgMEBQUFBggICAkJCQsMDAwNDQ0PEBAQExMUFRYXFxcYGRoaGxscHR4fHyAhIiMjJSYoKCkpKiorLi4vLzEyMzMzNDU1ODg4Ojs7PDw9PT8/QEFBQUFDQ0VFRkhISUlMTE5PUFFSU1NUV1dYWFlaXV1eX2BiYmNjZWVnaGhqam5ubnBzdHV2dnh5ent8fX1+f3+BhISFhYaIiIqLi4uLjo6PkJGRk5OTlJWYmpucnp+goaKkpaamp6qrq6yvr7Gzs7O0tbe3ubm6u7u8vr/BwsLFx8jJzM3O0NLT1Nba2t3d3+Hj4+Xn5+nq7O7u8fLz9ff5+vv8/f6R6fwnAAAIz0lEQVR42sWXaViTVxbHTxKSKKQgssmiYCuKIAWjWJiCUq1F3EBRcasMRVRQBHEXFGNaMYoLIqIFsR2UqrUUBKsIKGjZRBTKjtSCCxgYjZAEiDkf5t6whY790GcenP+HvHnv+nvPPfece6FfDGO+MYBZQl38cPh/yfVuk1ADnNuwyEj1buGqCe9buxCTOODahjlaAIZuosrqyfC+tUeJZzng/hpvmLiJiluUKF0D71sRSjzOBL92fPqwDamUX5NSbTevRUMqr9m8AQYh4tem7ild2KfmYCaA5aXMIdaFcQMMkYhVxW2KXgBZ489f6tHdojNyiKXL6UfQ/g771dF4fYeTHrxnsdwyXvfM391akRTspMfsrbAUikSiSGtg+0aJRFGL1Lp4J8SLLMA9SiS0AMM9UVFebK/QoKCNYwGsg4KCQl0ZfxPBTPRMBaAQ5x9aYaOlVjO/nRbvBuMHtP4CZ6AmDlE8E6KV2LEA7JsQr5rclcvl7VuBIZSRP+eH/T0EflanagmqTnhOXRvvC39iIONrOLygzyQOm81mAIP8wmnitTPZR8ke9mBbpldUHDS4R5ucZ3HTe5pSb+JyB4YiHYloIYtanqt6sLlcVTG/mHb6d2awDQci25WH/5uhzMhPpppgfEJq6gbwS01NsDiF+HxTcp0S5QXxLnGZmVt7GHINLOp6GXjeCdm/iBxIyN0jDDXemJLgRmblksJkP22Yn5px0hTGJmRctCfTGN+h+yDfZ8ZOW4BkfPtnBnkHPp8WreiWE4Z/tJDRqQnEM6IJg6C9Zxev/x3xssFdlDzBxknur2QvlYRB+9QrWtmwGj5rwdabpGnTYtAUtqH0bftpbdcW7FgO3u1YO4WYJkJOhjxks71O7PFOhqeZKN2UjU+qCMMnz8gPRFMGaoeQW0+JF1elLWvoYWg8LJcs2auoTSIMGhvbUXzuRidWTyTzoaxZRtaU6ftameNzRt6xWTMb3x6BSKUykaaGR2TEbVq8OyieSxm6DpKpucZqDGe7FYk1mJNJ7TCIoXmmzkkFSlfoTu61Q/OWpq79/8LMY6SVCTHvz1qkRr7VpQUVSTOzEUtNUrHVE2yb8PawPZ2YY5KFEn8yi8MzlB3SAu3BDLs2svsYmsNbsPaV4tvcdzCAyifBtpfh5cp7eLtccSiGuk4dKmOZhsWk5nNi90BIIH41rQbFxw4cbcMnk+z/wMblDVhrQ2axasD6KUAZWj36GSD0mS+jl0G8rBK7lZLAO3/FsALsexnEc04p5d2SpScpQwMqjwNlSCMM0nXwHWWoQ8UbiUQqbZzBTsGOtNeYqEU/ORnzyVM7GyU9/nCIzh3UWf5RDwMpTiauVe/Ux5AE8YMZ5oJtP4Mfca4Km2jS9KMaxFgwfoSKbynDehXDpAcoPbw+IGC9jzlNj110Kagca4pG9DAsA9JQ5ZPcK9jxVS+DdGWQgiyteR5lIGHisahpgCFKgfIzsx37Gaz/QOUPHMqg8xPZqGaL6DK49DOMOq2Ux+gzh/PJFjSrRKRLoZLr1U8BeFko9QGyaIrjpIh0le/oZ3BsQVmYDmX4WLX3FQq6N1UMoSS6ddb8U7Uv7hGP0szCjmA4ReODWxOpaULFDXPXfgYjfg22FydnvzjCBFa0gjTrC8qmY5jAu4kyYpcoRGIH9zoywSwVwxuCpv+AvPHySI9hER2IkusSfDmDBok5YJYqUeLTdSqGvK7muSCUNTrB0c7OcxyWb3UHKsVpU8D1WZdkHcR3dhWNArcCCaL0yTYNMvYrlAaCmngZKA8AONBRsXKskBhbeVlPlUm2C8JsYLEgUI+9SiDw1OBtvnw5eNo3hwUTvC8kxdoB6C8PF2yz2yAQLB3mssnfHMzWrtAF200B00msnrh2X5jnaCZorwr2nwD2AcHzSKHp8vBwn6k0Kbq1IeFVE/cnVIYAzN7hub+yky7UdHi3mJy+Pxoa8D/oM2GxggSQQQzfi0s9WRar4+pU+av+S05PsaXVkIgHwm4SaJcyB3G5+Hhsv1LzpucQkzOv92tts+4PhQoXwt7W1tJALTUjGM/eGHfvhRxV6qoXmPeZWXvBsiGRDZjNmTmh/zii7xx6pbJNhn16ecKJA+9VljvzyPf3SSbuwqKhOEmyXa3+uvKXAQBsvrwjoI0kN/V6hoOXITkiepuRdXFw4AHb3pleS50duTxHB2dSyl9E3g0d+VzS1lq/55robM0ChoWzAykjdfOdWWB1af9w4NqagaU1i2HlPJY0siAjznemWamy7yhd34XXtcCxDavGqfOHPsxdA+6FpTf54P1bQRTL8sGv6RYQXXp+3Ngf6wrWMP0elmRYQVB54U4m8CsjmdS7EsoLI9jcuJKYMTQnppdcGAP8+8eGg/WjHyfezTbhpRRkO0DcGQ3Di2UPd5KzFTn8yZuLzgVOXfsGc3Voan/+qfpS/bZt1Chm+g8TbsaAX/3tqyOsG9KKpsKV0n0GjInVwSP078TaFG6HiLKCWA2IqCgaTxkyYrdUT+amFm3VIW8HiqaYD4M9ub9+DPyG+t1PKz7k5eVXzYWUNI53xfTN1aSHkNwl5o0mTuj+iiR1MLyLrXPUGKxr1rBYcPOsZnoi+DU+Dger32uvjYQr+duMwLh6HRjmHdTP3gd7a+tDSJ6ubd5MGdIPr6qexk3JCaQMUbkmLNC/V9+8G/gFuY9vlBKGG1VfUQbf0nGrH9uRZZnWe5ewrJHV2gHLKy3RRj2En7x/cTH4PUwtWQobcvbfMrAqDy78HL4viRkPxvf9gbGrPL1kFuy6EHPpA+/Sg9eufUCTbtn9xJGayUXfmJIRnAvTI03dy75Ou2Zge/tIrSD/Q15WfpkPJF/lmKXfKjwxQv2as1jgo0ueOrqDQrD+2jAnJnth+CwtsPQYt8aIt9x8sR04hgSbA3ehDYFcFUZSg+2cSUtG2HpqmK0kQzBcQnxGMxkuW/xH0RE+CfPXtfTgGC8x4i2YusDOQ5f1RchSPfjCkwNWWwNJOvkP7wotIy0Hj/AAAAAASUVORK5CYII="> *@
+      </a>
+    </div>
+
+    @* PUBLICIDADE *@
+    @Html.Partial("_AdOutdoor")
+  }
+
+  @if (Model.NoticiasHighlights != null)
+  {
+    @Html.Partial("Template/_Six", Model.NoticiasHighlights)
+  }
+
+  @* 6 = Negócios da Terra *@
+  @if (ViewBag.Editorial.Id == 6){
+    <div class="t-bg-neutral t-module">
+        <div class="g-container">
+          <div id="section-videos">
+            <div class="c-category-title c-category-title--gray t-negocios-da-terra">
+              <h2 class="title">
+                <a href="https://redemassa.com.br/negocios-da-terra-2/p/?utm_source=nt-massa-news&utm_medium=section-videos&utm_content=title" target="_blank" class="title-section" title="Últimos vídeos">Últimos vídeos</a>
+              </h2>
+
+              <a href="https://redemassa.com.br/negocios-da-terra-2/p/?utm_source=nt-massa-news&utm_medium=section-videos&utm_content=see-all" target="_blank" class="link-see-all fa fa-plus-circle fa-2x" title="Ver todos"></a>
+            </div>
+            <div class="c-slider--videos slick-slider u-margin-bottom-none">
+              @{var index = 1;}
+              @foreach (var item in Model.Pots)
+              {
+              <a href="@item.PostUrl?utm_source=nt-massa-news&utm_medium=section-videos&utm_content=position-@index" data-index="@index" target="_blank" title="@item.Call" class="c-headline slick-slide">
+                <picture class="image modal-video">
+                  <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                  <img src="@item.ImageUrl.ToList()[2]" alt="@item.Call">
+                </picture>
+                <div class="texts">
+                  <h3 class="hat">@item.Hat</h3>
+                  <h2 class="title">@item.Call</h2>
+                </div>
+              </a>
+              index++;
+              }
+            </div>
+          </div>
+        </div>
+    </div>
+
+    @* COMUNIDADES VIRTUAIS *@
+    @Html.Partial("Comunidades/_Topicos", Model.ComunidadeTopicos)
+  }
+
+  <div class="g-content-inner-sidebar g-container">
+    <section class="g-content">
+      @Html.Partial("_AdCabecalho")
+
+      @Html.Partial("_DestaqueEditorialPorCategoria", Model.NoticiaByCategoria)
+
+      <div class="u-text-center t-module">
+        <a href="/ultimas-noticias/@ViewBag.EditoriaUrl" class="c-button t-page-button u-margin-top submit" title="Ver tudo em @ViewBag.ActiveNav">ver tudo em @ViewBag.ActiveNav</a>
+        @* <a href="@Url.Action("Lastest", "Categorias")" class="c-button t-page-button u-margin-top submit" title="Veja mais notícias">Veja mais notícias</a> *@
+      </div>
+
+      @*@if (Model.Noticias.Count > 0)
+      {
+      <section class="c-headline--horz-list t-module">
+        @foreach (var item in Model.Noticias)
+        {
+        <div class="c-headline @string.Format("t-{0}", item.Categoria.Theme.Value) @if (string.IsNullOrEmpty(item.ImgSm) /*&& item.DestaqueId != Destaque.Galeria.Id*/){<text>no-image</text>}">
+          @if (item.DestaqueId == Destaque.Video.Id)
+          {
+          <picture class="image modal-video">
+            <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+            <a href="@Url.Action("Interna", "Video", new { url = item.Url})" title="@item.Chamada">
+              <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgSm}")" alt="@item.Chamada">
+            </a>
+          </picture>
+          }
+          else if (!string.IsNullOrEmpty(item.ImgSm))
+          {
+          <picture class="image">
+            <a href="@Url.Action("Index", "Noticias", new {editorial = item.Categoria.Editorial.Url, categoria = item.Categoria.Url, url = item.Url})" title="@item.Chamada">
+              @if (item.DestaqueId == Destaque.Galeria.Id && item.Galerias.Any(ga => ga.Imagens.Any()))
+              {
+              @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", item.Galerias.FirstOrDefault().Imagens.Count() } })
+              }
+              <img class="lazy" data-original="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", item.ImgSm)" alt="@item.Chamada">
+            </a>
+          </picture>
+          }
+
+          <div class="texts">
+            @if (item.Categoria.Url.Equals("plantao"))
+            {
+            <h3 class="hat">
+              @if (item.Blog != null)
+              {
+              <a href="@Url.Action("BlogPosts", "Blogs", new {categoria = item.Blog.Categoria.Url, blog = item.Blog.Url})" class="author">@item.Blog.Titulo</a>
+              }
+              else if (item.Cidade != null)
+              {
+              <a href="@string.Format("/tags/{0}", item.Cidade.Url)">@item.Cidade.Nome</a>
+              }
+              else
+              {
+              <a href="@Url.Action("Parana", "Categorias")">Paraná</a>
+              }
+              <time class="date" datetime="@Convert.ToDateTime(@item.DataPublicacao).ToString("yyyy-MM-dd HH:mm")">
+                <text>-</text>
+                @if (Convert.ToDateTime(item.DataPublicacao).ToShortDateString() == date.ToShortDateString())
+                {<text>@Convert.ToDateTime(@item.DataPublicacao).ToString("HH\\hmm")</text>}
+                else
+                {<text>@Convert.ToDateTime(@item.DataPublicacao).ToString("dd/MM/yyyy")</text>}
+              </time>
+            </h3>
+            }
+            else
+            {
+            <h3 class="hat">
+              @if (item.Blog != null)
+              {
+              <a href="@Url.Action("BlogPosts", "Blogs", new {categoria = item.Blog.Categoria.Url, blog = item.Blog.Url})" class="author">@item.Blog.Titulo</a>
+              }
+              else if (item.Categoria.CategoriaPaiId.HasValue)
+              {
+              <a href="@string.Format("/{0}/{1}/{2}", item.Categoria.Editorial.Url, item.Categoria.CategoriaPai.Url, item.Categoria.Url)">@item.Categoria.Titulo</a>
+              }
+              else
+              {
+              <a href="@string.Format("/{0}/{1}", item.Categoria.Editorial.Url, item.Categoria.Url)">@item.Categoria.Titulo</a>
+              }
+
+              <time class="date" datetime="@Convert.ToDateTime(@item.DataPublicacao).ToString("yyyy-MM-dd HH:mm")">
+                <text>-</text>
+                @if (Convert.ToDateTime(item.DataPublicacao).ToShortDateString() == date.ToShortDateString())
+                {<text>@Convert.ToDateTime(@item.DataPublicacao).ToString("HH\\hmm")</text>}
+                else
+                {<text>@Convert.ToDateTime(@item.DataPublicacao).ToString("dd/MM/yyyy")</text>}
+              </time>
+            </h3>
+            }
+            <h2 class="title">
+              <a href="@Url.Action("Index", "Noticias", new {editorial = item.Categoria.Editorial.Url, categoria = item.Categoria.Url, url = item.Url})" title="@item.Chamada">@item.Chamada</a>
+            </h2>
+          </div>
+        </div>
+        }
+      </section>
+      }*@
+
+      @*@if (ViewBag.Paginacao != null){
+        <nav class="c-pagination">
+          <ul class="pagination">
+            @foreach (var pagina in ViewBag.Paginacao){
+              <li @if (ViewBag.PaginaAtual == pagina.Value)
+                {<text>class="active"</text>}>
+                <a @{
+                    if (pagina.Key == "<")
+                    {<text>rel="prev"</text>}
+                    else if (pagina.Key == ">")
+                    {<text>rel="next"</text>}
+                  }
+                  href="@string.Format("/{0}/?p={1}", Model.Editorial.Url, pagina.Value)"
+                  title="@pagina.Key">
+                  @pagina.Key
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
+      }*@
+    </section>
+
+    @Html.Partial("_Sidebar")
+  </div>
+</main>

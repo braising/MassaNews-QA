@@ -1,0 +1,21 @@
+﻿@model MassaNews.Models.Portal.View.CategoriaParanaViewModel
+
+@section bodyClass{@Html.Raw(string.Format("pg-{0}", ViewBag.EditoriaUrl))}
+
+<main class="g-main">
+  <div class="g-content-inner-sidebar g-container">
+    <section class="g-content">
+      <div class="c-category-title t-module t-@ViewBag.EditoriaUrl">
+        <h2 class="title">@ViewBag.EditorialTitulo</a></h2>
+      </div>
+
+      @Html.Partial("_AdCabecalho")
+      @Html.Partial("_ListNewsPage", Model.NewsList)
+    </section>
+    <aside class="g-aside">
+      @Html.Partial("_AdRetanguloMini")
+      @Html.Partial("_PopularNews")
+      @Html.Partial("_AdRetanguloMedio")
+    </aside>
+  </div>
+</main>

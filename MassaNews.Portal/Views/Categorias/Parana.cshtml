@@ -1,0 +1,22 @@
+﻿@model MassaNews.Models.Portal.View.CategoriaParanaViewModel
+
+@section bodyClass{@Html.Raw("pg-noticias")}
+
+<main class="g-main">
+
+  @Html.Partial("_ListNewPageHighlight", Model.NewListHighlight)
+
+  <div class="g-content-inner-sidebar g-container">
+    <section class="g-content">
+      @Html.Partial("_AdCabecalho")
+      @Html.Partial("_ListNewsPage", Model.NewsList)
+    </section>
+    <aside class="g-aside">
+      @Html.Partial("_AdRetanguloMini")
+      @Html.Partial("_LastestNews")
+      @Html.Partial("_AdRetanguloMedio")
+      @Html.Partial("_PopularNews")
+      @Html.Partial("_AdArranhaCeuGrande")
+    </aside>
+  </div>
+</main>

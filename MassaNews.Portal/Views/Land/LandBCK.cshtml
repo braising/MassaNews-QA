@@ -1,0 +1,187 @@
+﻿@using Entities.Classes
+@using MassaNews.Service.Util
+
+@model MassaNews.Portal.ViewModels.LandViewModel
+
+@section bodyClass{@Html.Raw("pg-landing pg-bck")}
+
+@{ var date = DateTime.Now; }
+
+<main class="g-main">
+  <div class="c-banner c-banner--image">
+    <img src="@Url.Content("~/content/images/landing/bck/top.png")" alt="@ViewBag.ActiveNav" class="image-desktop">
+    <img src="@Url.Content("~/content/images/landing/bck/top-mobile.png")" alt="@ViewBag.ActiveNav" class="image-mobile">
+  </div>
+
+  @if (Model.Highlights != null)
+  {
+    @Html.Partial("Template/_Six", Model.Highlights)
+  }
+
+  <div class="g-content-inner-sidebar g-container">
+    <div class="g-content">
+
+      @Html.Partial("_AdCabecalho")
+
+      @if (Model.NewsList.Any())
+      {
+        <section class="c-headline--horz-list t-module">
+          @foreach (var item in Model.NewsList)
+          {
+            <div class='c-headline @string.Format("t-{0}", item.EditorialUrl) @string.Format("t-{0}", item.CategoriaUrl) @if (string.IsNullOrEmpty(item.ImgSm)){<text>no-image</text>}'>
+              @if (item.DestaqueId == Destaque.Video.Id)
+              {
+                <picture class="image modal-video">
+                  <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                  <a href="@Url.Action("Interna", "Video", new {url = item.Url})" title="@item.Chamada">
+                    <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgSm}")" alt="@item.Chamada">
+                  </a>
+                </picture>
+              }
+              else if (!string.IsNullOrEmpty(item.ImgSm))
+              {
+                <picture class="image">
+                  <a href="@Url.Action("Index", "Noticias", new {editorial = item.EditorialUrl, categoria = item.CategoriaUrl, url = item.Url})" title="@item.Chamada">
+                    @if (item.DestaqueId == Destaque.Galeria.Id)
+                    {
+                      @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", item.GalleryImgCount } })
+                    }
+                    <img class="lazy" data-original="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", item.ImgSm)" alt="@item.Chamada">
+                  </a>
+                </picture>
+              }
+              <div class="texts">
+                @if (item.CategoriaUrl.Equals("plantao"))
+                {
+                  <h3 class="hat">
+                    @if (!string.IsNullOrEmpty(item.BlogUrl))
+                    {
+                      <a href="@Url.Action("BlogPosts", "Blogs", new {categoria = item.CategoriaUrl, blog = item.BlogUrl})" class="author">@item.BlogTitle</a>
+                    }
+                    else if (!string.IsNullOrEmpty(item.CityUrl))
+                    {
+                      <a href="@string.Format("/tags/{0}", item.CityUrl)">@item.CityName</a>
+                    }
+                    else
+                    {
+                      <a href="@Url.Action("Parana", "Categorias")">Paraná</a>
+                    }
+                    <time class="date" datetime="@Convert.ToDateTime(@item.Published).ToString("yyyy-MM-dd HH:mm")">
+                      <text>-</text>
+                      @if (Convert.ToDateTime(item.Published).ToShortDateString() == date.ToShortDateString())
+                      {
+                        <text>@Convert.ToDateTime(@item.Published).ToString("HH\\hmm")</text>
+                      }
+                      else
+                      {
+                        <text>@Convert.ToDateTime(@item.Published).ToString("dd/MM/yyyy")</text>
+                      }
+                    </time>
+                  </h3>
+                }
+                else
+                {
+                  <h3 class="hat">
+                    @if (!string.IsNullOrEmpty(item.BlogUrl))
+                    {
+                      <a href="@Url.Action("BlogPosts", "Blogs", new {categoria = item.CategoriaUrl, blog = item.BlogUrl})" class="author">@item.BlogTitle</a>
+                    }
+                    else if (!string.IsNullOrEmpty(item.CategoriaPaiUrl))
+                    {
+                      <a href="@string.Format("/{0}/{1}/{2}", item.EditorialUrl, item.CategoriaPaiUrl, item.CategoriaUrl)">@item.CategoriaTitulo</a>
+                    }
+                    else
+                    {
+                      <a href="@string.Format("/{0}/{1}", item.EditorialUrl, item.CategoriaUrl)">@item.CategoriaTitulo</a>
+                    }
+
+                    <time class="date" datetime="@Convert.ToDateTime(@item.Published).ToString("yyyy-MM-dd HH:mm")">
+                      <text>-</text>
+                      @if (Convert.ToDateTime(item.Published).ToShortDateString() == date.ToShortDateString())
+                      {
+                        <text>@Convert.ToDateTime(@item.Published).ToString("HH\\hmm")</text>
+                      }
+                      else
+                      {
+                        <text>@Convert.ToDateTime(@item.Published).ToString("dd/MM/yyyy")</text>
+                      }
+                    </time>
+                  </h3>
+                }
+                <h2 class="title">
+                  <a href="@Url.Action("Index", "Noticias", new {editorial = item.EditorialUrl, categoria = item.CategoriaUrl, url = item.Url})" title="@item.Chamada">
+                    @item.Chamada
+                  </a>
+                </h2>
+              </div>
+            </div>
+          }
+
+          @if (ViewBag.Paginacao != null)
+          {
+            <nav class="c-pagination">
+              <ul class="pagination">
+                @foreach (var pagina in ViewBag.Paginacao)
+                {
+                  <li @if (ViewBag.PaginaAtual == pagina.Value) { <text> class="active" </text>  }>
+                    <a @{ if (pagina.Key == "<") { <text> rel="prev" </text> } else if (pagina.Key == ">") { <text> rel="next" </text> } }
+                       href="@string.Format("/planejamento-de-vida?p={0}", pagina.Value)"
+                       title="@pagina.Key">
+                      @pagina.Key
+                    </a>
+                  </li>
+                }
+              </ul>
+            </nav>
+          }
+        </section>
+      }
+    </div>
+
+    <aside class="g-aside">
+      <div id="optin" class="optin t-module">
+        <div class="text">
+          <h3 class="title t-page-color">Quer saber mais sobre <strong>Seguros?</strong></h3>
+          <p class="t-page-color"><small>Preencha os campos e nós entraremos em contato com você.</small></p>
+        </div>
+        <form action="#" >
+          <ul class="c-forms--labels">
+            <li class="input-full">
+              <input type="text" placeholder="Nome" name="form-bck-nome">
+              <span class="field-validation-error field-validation-error--placeholder" data-valmsg-for="Nome" data-valmsg-replace="true" style="display: none;">* Obrigatório</span>
+            </li>
+            <li class="input-full">
+              <input type="email" placeholder="E-mail" name="form-bkc--email">
+              <span class="field-validation-error field-validation-error--placeholder" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none;">* Obrigatório</span>
+              <span class="field-validation-error field-validation-error--placeholder invalid-email" data-valmsg-for="email" data-valmsg-replace="true" style="display: none;">*E-mail inválido</span>
+            </li>
+            <li class="input-full">
+              <input type="text" placeholder="Celular / Whatsapp" name="form-bkc--telefone" class="trigger-mask-phone">
+              <span class="field-validation-error field-validation-error--placeholder" data-valmsg-for="Phone" data-valmsg-replace="true" style="display: none;">* Obrigatório</span>
+            </li>
+          </ul>
+          <button class="trigger-land-bck c-button small block submit t-page-button">Enviar</button>
+
+          <span class="is-error u-none"><strong>Ops! Algo deu errado.</strong> <br><small>Verifique os campos e tente novamente.</small></span>
+          <span class="is-success u-none">Dados enviados com sucesso! :)</span>
+        </form>
+      </div>
+
+      @Html.Partial("_AdRetanguloMedio")
+    </aside>
+
+    <a href="#optin" class="go-to-sidebar clearfix t-page-color trigger-scroll trigger-scroll-bck">Quer saber mais sobre <strong>Seguros?</strong></a>
+  </div>
+</main>
+
+@section scripts
+{
+  <script>
+    // LANDING BCK - PLANEJAMENTO DE VIDA
+    if($('.trigger-scroll-bck').length) {
+      $("img.lazy").lazyload({
+         event: "lazyload",
+      }).trigger("lazyload");
+    }
+  </script>
+}

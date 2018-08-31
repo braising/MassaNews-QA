@@ -1,0 +1,35 @@
+﻿@model   MassaNews.Portal.ViewModels.NoticiaNavItem
+
+<li id="li-@Model.NewsId" onclick="LoadNewPage(this);" class="li-lastnew @(Model.FirstTitle ? "c-fixed-sidebar__list__iten is-current" : "c-fixed-sidebar__list__iten")">
+  
+  <input type="hidden" class="post-data-publicacao" value="@Model.PublishDate" />
+  
+  <div class="c-headline">
+    @if (Model.HasThumb)
+    {
+      <picture class="image @(Model.IsVideo ? "modal-video" : string.Empty)">
+
+        <a onclick="return false;" href="@Model.NewsUrl" title="@Model.Chamada">
+          
+          @if (Model.IsGaleria)
+          {
+            @Html.Partial("_LabelImage", new ViewDataDictionary {{"qtde", Model.GaleriaImgCount}})
+          }
+          else if (Model.IsVideo)
+          {
+            <i class="fa fa-play-circle fa-2x fa-icon-video"></i>
+          }
+
+          <img src="@Model.ImgThumb" alt="@Model.Chamada">
+        </a>
+      </picture>
+    }
+    <div class="texts">
+      <h2 class="title">
+        <a onclick="return false;" href="@Model.NewsUrl" title="@Model.Chamada">
+          @Model.Chamada
+        </a>
+      </h2>
+    </div>
+  </div>
+</li>

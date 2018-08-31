@@ -1,0 +1,198 @@
+﻿@using Entities.Classes
+@using MassaNews.Service.Util
+
+@model List<MassaNews.Models.Portal.Generic.NewsList>
+
+<section class="g-headlines--full-one g-headlines--full-one-editoria">
+  <div class="g-container">
+    <div class="g-headlines--main">
+      @* DESTAQUE *@
+      <div class="g-headlines--main-featured u-margin-none">
+        @* POSIÇÃO 1 *@
+        @if (Model.Count > 0)
+        {
+          <div class="c-headline c-headline--inner-photo t-noticias t-@Model[0].CategoriaUrl">
+            @if (!string.IsNullOrEmpty(Model[0].ImgLg))
+            {
+              if (Model[0].DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(Model[0].Video))
+              {
+                <picture class="image modal-video">
+                  <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                  <a href="@Url.Action("Interna", "Video", new {url = Model[0].Url})" title="Vídeo: @Model[0].Chamada">
+                    @if (Model[0].IsLive != null && Model[0].IsLive.Value)
+                    {
+                      <span class="c-headline__label-live label-top-left"><i class="icon-play-live"></i> AO VIVO</span>
+                    }
+                    <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model[0].ImgMd}")" alt="@Model[0].Chamada">
+                  </a>
+                </picture>
+              }
+              else
+              {
+                <picture class="image">
+                  <a href="@($"{Model[0].UrlFull}.html")" title="@Model[0].Chamada">
+                    <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model[0].ImgMd}")" alt="@Model[0].Chamada">
+                  </a>
+                </picture>
+              }
+            }
+
+            <div class="texts">
+              @if (Model[0].CategoriaUrl.Equals("plantao"))
+              {
+                if (Model[0].CityName != null)
+                {
+                  <h3 class="hat">
+                    <a href="@($"/tags/{Model[0].CityUrl}")">@Model[0].CityName</a>
+                  </h3>
+                }
+                else
+                {
+                  <h3 class="hat">
+                    <a href="@Url.Action("Parana", "Categorias")">Paraná</a>
+                  </h3>
+                }
+              }
+              else
+              {
+                <h3 class="hat">
+                  @if (Model[0].BlogId != 0)
+                  {
+                    <a href="@($"/{Model[0].EditorialUrl}/{Model[0].CategoriaUrl}/{Model[0].BlogUrl}/posts")">@Model[0].BlogTitle</a>
+                  }
+                  else
+                  {
+                    <a href="@($"/{Model[0].EditorialUrl}/{Model[0].UrlFull}")">@Model[0].CategoriaTitulo</a>
+                  }
+                </h3>
+              }
+
+              <h2 class="title">
+                <a href="@($"{Model[0].UrlFull}.html")" title="@Model[0].Chamada">@Model[0].Chamada</a>
+              </h2>
+
+              @* @if (Model.Count > 9 && Model[0].Id == news.Id){ *@
+              @if (Model.Count > 9)
+              {
+                <ul class="list-related">
+                  <li class="u-cut">
+                    <a href="@($"{Model[9].UrlFull}.html")" title="@Model[9].Chamada">@Model[9].Chamada</a>
+                  </li>
+                  @if (Model.Count > 10)
+                  {
+                    <li class="u-cut">
+                      <a href="@($"{Model[10].UrlFull}.html")" title="@Model[10].Chamada">@Model[10].Chamada</a>
+                    </li>
+                  }
+                </ul>
+              }
+
+              @if (!string.IsNullOrEmpty(Model[0].ImgLg))
+              {
+                if (Model[0].DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(Model[0].Video))
+                {
+                  @* <a href="@Url.Action("Interna", "Video", new {url = Model[0].Url})" title="Vídeo: @Model[0].Chamada">
+                      @if (!ViewBag.IsLive){
+                        <span class="c-headline__label-image label-bottom-left"><i class="fa fa-play-circle"></i> Ver vídeo</span>
+                      }
+                    </a> *@
+                }
+                else
+                {
+                  if (Model[0].DestaqueId == Destaque.Galeria.Id && Model[0].GalleryImgCount.HasValue)
+                  {
+                    <a href="@($"{Model[0].UrlFull}.html")" title="@Model[0].Chamada">
+                      @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", Model[0].GalleryImgCount } })
+                    </a>
+                  }
+                }
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    @* LINHA *@
+    <div class="g-headlines--line">
+      @* POSIÇÕES 2, 3, 4 e 5 *@
+      @for (int i = 1; i <= 4 && i < Model.Count; i++)
+      {
+        decimal positionItem = i + 1;
+
+        <div class="c-headline c-headline-one c-headline-pos-@positionItem t-noticias t-@Model[0].CategoriaUrl">
+          @if (!string.IsNullOrEmpty(Model[i].ImgMd))
+          {
+            if (Model[i].DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(Model[i].Video))
+            {
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                <a href="@Url.Action("Interna", "Video", new {url = Model[i].Url})" title="@Model[i].Chamada">
+                  @if (Model[i].IsLive != null && Model[i].IsLive.Value)
+                  {
+                    <span class="c-headline__label-live label-top-left"><i class="icon-play-live"></i> AO VIVO</span>
+                  }
+                  <img srcset="@string.Format("{0}/{1}/{2} 1000w, {0}/{1}/{3} 1001w", Constants.UrlDominioEstaticoUploads, "noticias", Model[i].ImgMd, Model[i].ImgSm)" src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model[i].ImgSm}")" alt="@Model[i].Chamada">
+                </a>
+              </picture>
+            }
+            else
+            {
+              <picture class="image">
+                <a href="@($"{Model[i].UrlFull}.html")" title="@Model[i].Chamada">
+                  @if (Model[i].DestaqueId == Destaque.Galeria.Id && Model[i].GalleryImgCount.HasValue)
+                  {
+                    @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", Model[i].GalleryImgCount } })
+                  }
+                  <img srcset="@string.Format("{0}/{1}/{2} 1000w, {0}/{1}/{3} 1001w", Constants.UrlDominioEstaticoUploads, "noticias", Model[i].ImgMd, Model[i].ImgSm)" src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model[i].ImgSm}")" alt="@Model[i].Chamada">
+                </a>
+              </picture>
+            }
+          }
+
+          <div class="texts">
+            @if (Model[i].CategoriaUrl.Equals("plantao"))
+            {
+              if (Model[i].CityName != null)
+              {
+                <h3 class="hat">
+                  <a href="@($"/tags/{Model[i].CityUrl}")">@Model[i].CityName</a>
+                </h3>
+              }
+              else
+              {
+                <h3 class="hat">
+                  <a href="@Url.Action("Parana", "Categorias")">Paraná</a>
+                </h3>
+              }
+            }
+            else
+            {
+              <h3 class="hat">
+                @if (Model[i].BlogId > 0)
+                {
+                  <a href="@($"/{Model[i].EditorialUrl}/{Model[i].CategoriaUrl}/{Model[i].BlogUrl}/posts")">@Model[i].BlogTitle</a>
+                }
+                else
+                {
+                  <a href="@($"/{Model[i].EditorialUrl}/{Model[i].UrlFull}")">@Model[i].CategoriaTitulo</a>
+                }
+              </h3>
+            }
+
+            <h2 class="title">
+              <a href="@($"{Model[i].UrlFull}.html")" title="@Model[i].Chamada">@Model[i].Chamada</a>
+            </h2>
+          </div>
+        </div>
+
+        @* Divisão dos itens em linhas *@
+        if (i == 2)
+        {
+          @:</div>
+          @:<div class="g-headlines--line g-headlines--line-minis">
+        }
+      }
+    </div>
+  </div>
+</section>

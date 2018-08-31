@@ -1,0 +1,15 @@
+﻿@section bodyClass{@Html.Raw("pg-placar-impeachment")}
+<main class="g-main">
+  <div class="c-banner c-banner--image">
+    <img src="@Url.Content("~/content/images/banners/capa-placar-impeachment.jpg")" class="c-banner__image" alt="Massa News - A notícia em movimento!">
+  </div>
+  <div class="g-container t-content">
+    <section class="mask-info">
+      <iframe id="info-placar-impeachment" src="//infograficos.estadao.com.br/politica/placar-do-impeachment/" width="100%" scrolling="no" frameborder="0" style="border:none;"></iframe>
+    </section>
+
+    <section class="institucinais__center votacao-camara">
+      <a href="@Url.Action("PlacarImpeachmentSenado", "Institucional")" class="c-button small" title="Votação do impeachment na Câmara dos Deputados">Veja o placar da votação no Senado</a>
+    </section>
+  </div>
+</main>

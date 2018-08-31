@@ -1,0 +1,65 @@
+﻿@* Paranaense 2017 *@
+@* @if (ViewBag.TbParanaense != null)
+{
+  <div class="sidebar__resumo t-esportes t-module tabela-facil-resumo">
+    <h3 class="title t-esportes">Classificação Paranaense 2017</h3>
+
+    @Html.Raw(ViewBag.TbParanaense)
+
+    <div class="group-button">
+      <a href="/esportes/futebol/campeonatos/tabela-paranaense" class="c-button c-button-esportes small t-page-button" title="Ver tabela completa do Paranaense 2017">Ver tabela completa</a>
+    </div>
+  </div>
+} *@
+
+@*
+  <div class="sidebar__envie-noticia t-module">
+    <a href="@Url.Action("Campeonato", "Campeonatos")" title="Tabela do Campeonato Paranaense 2016">
+      <img src="/content/images/banners/tabela-paranaense-2016.jpg" alt="Tabela completa do Campeonato Paranaense 2016">
+    </a>
+  </div>
+*@
+
+@if (ViewBag.TbClassificacaoA != null && ViewBag.TbClassificacaoB != null){
+  <div class="sidebar__resumo t-module t-esportes">
+    <h3 class="title">Classificação do Brasileirão</h3>
+    <section class="c-tabs c-tabs-esportes" role="tablist" data-tabs="tab-resumo-brasileirao">
+      <ul class="c-tabs__nav">
+        <li role="tab">
+          @if (ViewBag.TbActiveClassifA != null && (bool)ViewBag.TbActiveClassifA)
+          {
+            <button class="c-tabs__tab is-active" data-tabs="tab-resumo-brasileirao" data-tabpanel="tab-resumo-serie-a" title="Série A">Série A</button>
+          }
+          else
+          {
+            <button class="c-tabs__tab" data-tabs="tab-resumo-brasileirao" data-tabpanel="tab-resumo-serie-a" title="Série A">Série A</button>
+          }
+        </li>
+        <li role="tab">
+          @if (ViewBag.TbActiveClassifB != null && (bool)ViewBag.TbActiveClassifB)
+          {
+            <button class="c-tabs__tab is-active" data-tabs="tab-resumo-brasileirao" data-tabpanel="tab-resumo-serie-b" title="Série B">Série B</button>
+          }
+          else
+          {
+            <button class="c-tabs__tab" data-tabs="tab-resumo-brasileirao" data-tabpanel="tab-resumo-serie-b" title="Série B">Série B</button>
+          }
+        </li>
+      </ul>
+      <div id="tab-resumo-brasileirao">
+        <div id="tab-resumo-serie-a" class="c-tabs__tabpanel @if (ViewBag.TbActiveClassifB != null && (bool)ViewBag.TbActiveClassifB){<text>u-none</text>}" role="tabpanel">
+          @Html.Raw(ViewBag.TbClassificacaoA)
+          <div class="group-button">
+            <a href="/esportes/futebol/campeonatos/tabela-brasileirao-serie-a" class="c-button t-page-button c-button-esportes small" title="Ver tabela completa">Ver tabela completa</a>
+          </div>
+        </div>
+        <div id="tab-resumo-serie-b" class="c-tabs__tabpanel @if (ViewBag.TbActiveClassifB != null && (bool)ViewBag.TbActiveClassifB){<text>u-block</text>}" role="tabpanel">
+          @Html.Raw(ViewBag.TbClassificacaoB)
+          <div class="group-button">
+            <a href="/esportes/futebol/campeonatos/tabela-brasileirao-serie-b" class="c-button t-page-button c-button-esportes small" title="Ver tabela completa">Ver tabela completa</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+}

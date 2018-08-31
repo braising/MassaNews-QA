@@ -1,0 +1,36 @@
+﻿@section bodyClass{@Html.Raw("where-15-anos pg-where jurados")}
+
+<main class="g-main">
+  @Html.Partial("_HeaderWhere15Anos")
+
+  <section class="g-container t-content">
+    <ul class="bar-links bar-menu">
+      <li><i class="fa fa-image"></i><a href="/promocao/where-15-anos">FOTOS</a></li>
+      <li><i class="fa fa-trophy"></i><a href="/promocao/where-15-anos/premiacao">PREMIAÇÃO</a></li>
+      <li class="active"><i class="fa fa-users"></i><a href="/promocao/where-15-anos/jurados">JURADOS</a></li>
+      <li><i class="fa fa-file-text-o"></i><a href="/promocao/where-15-anos/regulamento">REGULAMENTO</a></li>
+    </ul>
+    
+    <hr />
+
+    <ul class="lista-jurados">
+      <li>
+        <img src="@Url.Content("~/content/images/where/where-15-anos/jurados/daniel-sorrentino.jpg")" class="logo" alt="Daniel Sorrentino">
+        <h2 class="h3 t-page-color">Daniel Sorrentino</h2>
+        <p>Como fotógrafo de arquitetura, moda, teatro e publicidade, Daniel coordenou as equipes de fotografia de grandes eventos, como do Festival de Teatro de Curitiba, Paraná Business Collection, Mia Cara Curitiba, Bienal de Design, dentre outros. Como produtor executivo, faz a direção artística do ID Fashion e a direção estrutural da Semana de Moda de Curitiba. É professor de fotografia, tem trabalhos publicados em diversas revistas e, nas horas vagas, expõe suas fotos em diversos locais da cidade.</p>
+      </li>
+
+      <li>
+        <img src="@Url.Content("~/content/images/where/where-15-anos/jurados/adriano-catenzaro.jpg")" class="logo" alt="Adriano Catenzaro">
+        <h2 class="h3 t-page-color">Adriano Catenzaro</h2>
+        <p>O curitibano Adriano Catenzaro é designer e artista visual que utiliza a técnica da colagem manual para criar narrativas visuais. Já foi selecionado em mostras, salões e exposições, além de ter sua obra "Curitiba" premiada como melhor ilustração no IV Prêmio a la Ilustración Latinoamericana - Diseño en Palermo, em Buenos Aires - Argentina. Também é um dos membros fundadores do Clube da Colagem de Curitiba, que promove oficinas e ações expositivas, a fim de difundir e aprimorar a técnica na região e atualmente participa do projeto Trama Afetiva, uma experiência colaborativa de criação em upcycling.</p>
+      </li>
+
+      @* <li>
+        <img src="@Url.Content("~/content/images/where/where-15-anos/jurados/eloi-zanetti.jpg")" class="logo" alt="Eloi Zanetti">
+        <h2 class="h3 t-page-color">Eloi Zanetti</h2>
+        <p>Consultor e palestrante em marketing, comunicação corporativa, criatividade e vendas.</p>
+      </li> *@
+    </ul>
+  </section>
+</main>

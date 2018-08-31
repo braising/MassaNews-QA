@@ -1,0 +1,655 @@
+.pg-landing,
+.pg-tabela-copa-do-mundo{
+
+  .title-preview{
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    @include font-size(60px);
+  }
+
+  .image-mobile{
+    display: none;
+  }
+
+  .optin{
+    // background: #8fbaf3;
+    padding: 20px 15px;
+
+    .text{
+      text-align: center;
+
+      .title{
+        font-weight: normal;
+        @include font-size(24px);
+        letter-spacing: -1px;
+
+        strong{
+          text-transform: uppercase;
+        }
+      }
+
+      p{
+        line-height: 14px;
+      }
+    }
+
+    .is-error,
+    .is-success{
+      width: 100%;
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+      display: block;
+      border-radius: $border-radius-base;
+    }
+
+    .is-error{
+      margin-top: 10px;
+      background: $color-danger;
+    }
+
+    .is-success{
+      background: $color-success;
+    }
+  }
+
+  .go-to-sidebar{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    // background: #8fbaf3;
+    padding: 0 15px;
+    letter-spacing: -1px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+    text-align: center;
+
+    strong{
+      text-transform: uppercase;
+    }
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+  @media all and (max-width: bp(8)) {
+    .go-to-sidebar{
+      display: block;
+    }
+  }
+
+
+  /*
+  * CUSTOM
+  */
+
+  // BCK SEGUROS - PLANEJAMENTO DE VIDA
+  &.pg-bck{
+    .optin{
+      background: #8fbaf3;
+    }
+
+    .go-to-sidebar{
+      background: #8fbaf3;
+    } 
+  }
+
+  &.pg-desafiando-chefs{
+    .g-headlines--full-one{
+      margin-bottom: 0;
+    }
+
+    .optin{
+      background: $tema-desafiando-chefs;
+
+      .text{
+        .title{
+          color: #fff;
+        }
+      }
+    }
+
+    .go-to-sidebar{
+      background: $tema-desafiando-chefs;
+    } 
+  }
+
+  // MASSA NA RÚSSIA
+  &.pg-massa-na-russia{
+    .c-header,
+    .c-footer__top{
+      display: none;
+    }
+
+    #c-fixed-bar{
+      text-align: center;
+
+      .c-fixed-bar__infos{
+        display: none;
+      }
+
+      .c-fixed-bar__companies{
+        li{
+          display:inline-block;
+          float: none;
+        }
+      }
+    }
+
+    .whatsapp-button{
+      position: fixed;
+      left: 15px;
+      bottom: 15px;
+      z-index: 10000;
+    }
+
+    .g-main{
+      margin-top: 30px;
+    }
+
+    .g-headlines--full-one{
+      margin-bottom: 0;
+      padding: 20px 0;
+      border: 0;
+    }
+    
+    .g-headlines--line{
+      .title{
+        a{
+          color: $tema-massa-na-russia!important;
+        }
+      }
+    }
+
+    .c-headline.c-headline--inner-photo .texts .hat a{
+      border-color: $tema-massa-na-russia!important;
+    }
+
+    .c-publicidade{
+      width: 100%;
+      float: left;
+    }
+
+    .title-massa-na-russia{
+      @include font-size(50px);
+      margin-bottom: 0;
+      letter-spacing: -2px;
+      text-align: center;
+    }
+
+    .t-bg-special{
+      padding: 2em 0;
+      color: #fff;
+      background: $tema-massa-na-russia url(../images/landing/massa-na-russia/bg-black.png);
+      background-size: cover;
+
+      a,
+      .title-massa-na-russia{
+        color: #fff;
+      }
+
+      .title-massa-na-russia{
+        margin-bottom: 20px;
+      }
+    }
+
+    #bolao{
+      width: 100%;
+      float: left;
+
+      .bolao--header{
+        padding: 15px 10px;
+        color: #fff;
+        text-align: center;
+        background: $tema-massa-na-russia url(../images/landing/massa-na-russia/bg-black-small.png);
+        background-size: cover;
+
+        h2{
+          color: #fff;
+          margin: 0;
+
+          small{
+            @include font-size(18px);
+            line-height: 16px;
+            font-weight: normal;
+          }
+        }
+      }
+
+      .group-button-bolao{
+        width: 100%;
+        float: left;
+      }
+
+      .c-category-title{
+        margin-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .bolao--classificacao{
+        float: left;
+      }
+
+      .bolao--palpites{
+        float: right;
+
+        .bolao--palpites--titulo{
+          background: $gray-lightest;
+          //display: none;
+
+          td{
+            height: auto;
+          }
+        }
+
+        .aproveitamento{
+          width: 100%;
+          padding: 0;
+          margin-top: -5px;
+          line-height: 5px;
+          display: inline-block;
+          position: static;
+
+          &:before{
+            position: static;
+          }
+        }
+      }
+
+      .bolao--classificacao,
+      .bolao--palpites{
+        width: 49.5%;
+
+        table{
+          width: 100%;
+          background: #fafafa;
+
+          th{
+            height: 40px;
+          }
+
+          td{
+            height: 81px;
+          }
+
+          th,
+          td{
+            padding: 10px 15px;
+            text-align: center;
+            border-left: 1px solid #e5e5e5;
+            line-height: 14px;
+
+            &:first-child{
+              border-left: none;
+            }
+          }
+
+          tr{
+            border-bottom: 1px solid #e5e5e5;            
+          }
+        }
+
+        .bolao--item-name{
+          font-weight: bold;
+          text-align: left!important;
+
+          img{
+            max-width: 50%;
+            margin-right: 5px;
+            border-radius: 50%;
+          }
+
+          span{
+            max-width: 50%;
+            display: inline-block;
+          }
+        }
+
+        .bolao--item-position{
+          font-weight: bold;
+          color: $tema-massa-na-russia;
+          @include font-size(30px);
+        }
+
+        .bolao--item-pts{
+          font-weight: bold;
+          color: $tema-massa-na-russia;
+        }
+      }
+
+      .slick-slider{
+        .slick-arrow{
+          &:before{
+            color: #fff;
+            @include font-size(60px);
+          }
+        }
+      }
+
+      .aproveitamento{
+        padding-left: 10px;
+        position: relative;
+
+        &:before{
+          width: 6px;
+          height: 6px;
+          border-radius:5px;
+          display: inline-block;
+          content: "";
+          position: absolute;
+          top: 5px;
+          left: 0;
+        }
+
+        &.aproveitamento-ac{
+          &:before{
+            background: #00ba42;
+          }
+        }
+
+        &.aproveitamento-ag{
+          &:before{
+            background: #ead416;
+          }
+        }
+
+        &.aproveitamento-er{
+          &:before{
+            background: #d2232a;
+          }
+        }
+      }
+
+      .bolao--legenda{
+        width: 100%;
+        float: left;
+        @include font-size(12px);
+
+        .aproveitamento{
+          margin-right: 20px;
+
+          &:before{
+            top: 3px;
+          }
+        }
+      }
+    }
+
+    .tbl-results,
+    .tbl-stand{
+      th{
+        background: $tema-massa-na-russia;
+        
+        a{
+          background: $tema-massa-na-russia;
+        }
+      }
+    }
+
+    .table-rounds {
+      .title{
+        @include font-size(24px);
+      }
+    }
+
+    .slick-slider{
+      .slick-arrow{
+        top: 70px;
+
+        &:before{
+          color: $tema-massa-na-russia;
+        }
+      }
+    }
+
+  }
+
+  // MEDIA QUERY
+  @media all and (max-width: bp(12)) {
+    &.pg-massa-na-russia{
+      .bolao--classificacao,
+      .bolao--palpites{
+        th,
+        td{
+          @include font-size(14px);
+        }
+      }
+    }
+  }
+
+  @media all and (max-width: bp(10)) {
+    &.pg-massa-na-russia{
+      #bolao{
+        .bolao--classificacao,
+        .bolao--palpites{
+          width: 100%;
+          margin: 0 0 20px 0;
+        }
+      }
+
+      .c-hader-massa-na-russia{
+        .patrocinio{
+          //width: 100%;
+          float: none;
+          margin: 20px auto;
+          text-align: center;
+
+          .label{
+            display: block;
+          }
+
+          &.apoio{
+            a{
+              margin: 10px 5px 0;
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media all and (min-width: bp(10)) {
+    &.pg-massa-na-russia{
+      #bolao{
+        .bolao--palpites{
+          .bolao--palpites--titulo{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  @media all and (max-width: bp(8)) {
+    .go-to-sidebar{
+      display: block;
+    }
+
+    &.pg-massa-na-russia{
+      .c-category--nav{
+        display:block;
+
+        li{
+          padding: 0 5px;
+          @include font-size(14px);
+        }
+      }
+
+      .title-massa-na-russia{
+        @include font-size(32px);
+      }
+
+      #c-fixed-bar{
+        .c-fixed-bar__companies{
+          display: block;
+
+          .grupo-massa,
+          .massa-play{
+            display:none;
+          }
+        }
+      }
+    }
+  }
+
+  @media all and (max-width: bp(7)) {
+    .c-banner--image{
+      .image-desktop{
+        display: none;
+      }
+
+      .image-mobile{
+        display: block;
+      }
+    }
+  }
+
+  @media all and (max-width: bp(5)) {
+    &.pg-massa-na-russia{
+      #bolao{
+        .bolao--classificacao,
+        .bolao--palpites{
+          .bolao--item-ac,
+          .bolao--item-ag,
+          .bolao--item-er{
+            display:none;
+          }
+        }
+
+        .bolao--palpites{
+          td{
+            strong{
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.pg-home{
+  .c-regua--tags-desafiando-chefs{
+    margin-top: -20px;
+  }
+}
+
+
+// MASSA NA RUSSIA
+.pg-tag{
+  &.pg-massa-news-na-russia,
+  &.pg-especial-russia{
+    .c-header,
+    .c-footer__top,
+    .g-aside{
+      display: none;
+    }
+
+    #c-fixed-bar{
+      text-align: center;
+
+      .c-fixed-bar__infos{
+        display: none;
+      }
+
+      .c-fixed-bar__companies{
+        li{
+          display:inline-block;
+          float: none;
+        }
+      }
+    }
+
+    .g-main{
+      margin-top: 30px;
+    }
+
+    .c-headline--horz-list{
+      .t-esportes .title,
+      .t-esportes .title a{
+        color: $tema-massa-na-russia!important;
+      }
+    }
+  }
+}
+
+.c-hader-massa-na-russia{
+  text-align: center;
+  background: $tema-massa-na-russia url(../images/landing/massa-na-russia/bg-black.png);
+  background-size: cover;
+
+  .oferecimento{
+    margin: 40px 0;
+    float: left;
+  }
+
+  .apoio{
+    margin: 20px 0;
+    float: right;
+  }
+
+  .oferecimento,
+  .apoio{
+    width: 250px;
+
+    .label{
+      //width: 100%;
+      padding: 3px 40px 2px;
+      color: $tema-massa-na-russia;
+      text-transform: uppercase;
+      background: #fff;
+      @include font-size(12px);
+      display: inline-block;
+    }
+
+    & > a{
+      margin: 10px 10px 0;
+      display: block;
+    }
+  }
+}
+
+@media all and (max-width: bp(10)) {
+  .c-hader-massa-na-russia{
+    .patrocinio{
+      //width: 100%;
+      float: none;
+      margin: 20px auto;
+      text-align: center;
+
+      .label{
+        display: block;
+      }
+
+      &.apoio{
+        a{
+          margin: 10px 5px 0;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: bp(8)) {
+  .pg-tag{
+    &.pg-massa-news-na-russia,
+    &.pg-especial-russia{
+      #c-fixed-bar{
+        .c-fixed-bar__companies{
+          display: block;
+
+          .grupo-massa,
+          .massa-play{
+            display:none;
+          }
+        }
+      }
+    }
+  }
+}

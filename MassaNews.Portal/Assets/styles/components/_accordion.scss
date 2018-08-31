@@ -1,0 +1,64 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-accordion {
+
+}
+
+.c-accordion__module {
+  padding-bottom:0.5em;
+}
+
+.c-accordion__tab {
+
+}
+
+.c-accordion__title {
+  display:block;
+  position:relative;
+  padding: .2em 0;
+  font-weight:bold;
+  @include font-size(20px);
+  @include opacity-hover(.75);
+
+  &:hover,
+  &:focus {
+    text-decoration:none !important;
+  }
+
+  &:before {
+    position:absolute;
+    right:0;
+    top:50%;
+    margin-top:-0.5em;
+    @include fa-icon('plus-circle');
+  }
+}
+
+.c-accordion__tabpanel {
+  display:none;
+  margin-top: .5em;
+}
+
+.c-accordion__tabpanel__footer {
+  margin: 1em 0 $margin-small 0;
+  text-align:center;
+}
+
+
+/* =============CUSTOM============= */
+.c-accordion__module.is-collapsed {
+
+  .c-accordion__title {
+    &:before {
+      @include fa-icon('minus-circle');
+    }
+  }
+}
+
+
+/* =============MEDIA QUERY============= */

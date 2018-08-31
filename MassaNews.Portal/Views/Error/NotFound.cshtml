@@ -1,0 +1,35 @@
+﻿@section bodyClass{@Html.Raw("pg-404")}
+<main class="g-main">
+  <div class="g-container">
+    <section class="t-404">
+      <div class="t-404__texts">
+        <h2 class="title">Página não encontrada</h2>
+        <p class="description">A página que você tentou acessar não foi encontrada ou não existe.</p>
+      </div>
+      @using (Html.BeginForm("Index", "Busca", new { o = "relevancia", p = 1 }, FormMethod.Get, new { enctype = "multipart/form-data", @class = "form-search-search" }))
+      {
+        <div class="c-search__input-box">
+          <input type="text" class="c-search__input" name="q">
+          <button type="submit" class="c-search__submit" value="">
+            <span class="fa-stack">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-search fa-stack-1x fa-inverse"></i>
+            </span>
+          </button>
+        </div>
+        if (ViewBag.Keywords != null)
+        {
+          <ul class="c-search__latest">
+            <li class="text">Suas últimas buscas:</li>
+            @foreach (string item in ViewBag.Keywords)
+            {
+              <li class="">
+                <a href="#" class="item lastwords">@item</a>
+              </li>
+            }
+          </ul>
+        }
+      }
+    </section>
+  </div>
+</main>

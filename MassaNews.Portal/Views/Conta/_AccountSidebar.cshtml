@@ -1,0 +1,33 @@
+﻿@model MassaNews.Portal.Models.UsuarioPortal
+<aside class="g-aside account-menu">
+  <div class="input-full profile">
+    @if (!string.IsNullOrEmpty(Model.Foto))
+    {
+      var foto = Model.Foto;      
+      if (foto.Contains("?"))
+      {
+        foto += "&type=large";
+      }
+      else
+      {
+        foto += "?type=large";
+      }
+
+      @*<img src="@string.Concat("https://s3.amazonaws.com/cdn.massadigital.com/", Model.Usuario.Foto)" alt="@Model.Nome" class="u-margin-bottom">*@
+      <img src="@foto" alt="@Model.Nome" class="u-margin-bottom">
+    }
+    @* else {
+      <img src="https://cdn.massanews.com/uploads/autores/leao-lobo-9428a198.jpg" alt="@Model.Nome" class="u-margin-bottom">
+    } *@
+
+    @* <a href="#" class="small u-block" title="Alterar foto"><u>Alterar foto</u></a> *@
+    <h3 class="u-cut">@Model.Nome</h3>
+    @*<a href="/minha-conta" class="c-button btn-edit-profile mini gray u-margin-leftt" title="Editar dados">Editar dados</a>*@
+  </div>
+
+  <ul>
+    <li class="activee account-menu__item_dados"><a href="/minha-conta" title="Meus dados">Meus dados</a></li>
+    <li class="account-menu__comunidades"><a href="/minha-conta/interacoes" title="Comunidades Virtuais">Comunidades Virtuais</a></li>
+    <li class="u-margin-top"><a href="/minha-conta/sair" title="Sair">Sair</a></li>
+  </ul>
+</aside>

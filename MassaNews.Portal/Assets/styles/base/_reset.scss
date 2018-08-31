@@ -1,0 +1,19 @@
+@import '../vendor/normalize';
+
+// Personalizar o normalize
+
+svg:not(:root) {
+  overflow:visible;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+    padding: 0;
+  }
+}

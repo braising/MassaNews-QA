@@ -1,0 +1,129 @@
+// ACCOUNT
+.pg-account{
+
+  // SIDEBAR
+  .g-aside{
+    &.account-menu{
+      padding: 20px;
+      background: $gray-lightest;
+
+      li{
+        line-height: 34px;
+        @include font-size(16px);
+
+        a{
+        }
+
+        &.active{
+          font-weight:bold;
+          //position: relative;
+          // color: $brand-primary;
+
+          // a{
+          //   color: $brand-primary;
+          // }
+        }
+      }
+
+      // AVATAR
+      .profile{
+        padding-bottom: 25px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid $gray-lighter;
+
+        img{
+          width: 100px;
+          border-radius: 50%;
+        }
+      }
+
+      .profile{}
+    }
+  }
+
+  // PG INFOS
+  &.pg-infos{
+    .g-aside{
+      .account-menu{
+        .btn-edit-profile{
+          display: none;
+        }
+
+        .account-menu__item_dados{
+          font-weight:bold;
+        }
+      }
+    }
+  }
+}
+
+
+// PG INTERACTIONS
+.c-tabs-interactions{
+  .c-tabs__nav{
+    &>li{
+      width: calc(100% / 3);
+    }
+  }
+
+  .c-tabs__tab{
+    &.is-active{
+      color: #fff;
+      background: $brand-primary;
+    }
+  }
+}
+
+
+// PGS
+.pg-register,
+.pg-login,
+.pg-reset-password{
+  .c-footer{
+    display: none;
+  }
+}
+
+
+
+/* =============MEDIA QUERY============= */
+@media all and (min-width: bp(8, 1px)) {
+  .pg-account{
+    .g-content {
+      float:right;
+      margin-left:$gutter;
+      margin-right:0;
+
+      border-left: 1px solid $gray-lighter;
+      padding-left: $gutter * 2;
+    }
+
+    .g-aside {
+      float:left;
+      margin-right:$gutter;
+      margin-left:0;
+
+      &.account-menu{
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media all and (max-width: bp(8)) {
+  .pg-account{
+    .g-content {
+      margin-top:$gutter * 3;
+      //padding-top: $gutter * 2;
+      //border-top: 1px solid $gray-lighter;
+    }
+  }
+}
+
+@media all and (max-width: bp(8)) {
+  .c-tabs-interactions{
+    .c-tabs__tab{
+      @include font-size(12px);
+    }
+  }
+}

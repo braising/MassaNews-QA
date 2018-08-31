@@ -1,0 +1,297 @@
+﻿@using Entities.Classes
+@using MassaNews.Service.Util
+
+@{
+  Layout = null;
+}
+
+@model MassaNews.Portal.ViewModels.CategoriasDestaquesModel
+
+<section class="g-3columns--mobile c-category-title--sub t-module">
+  @if (Model.HighlightsPolitica.Count > 0)
+  {
+    <div class="g-column c-headline--minis track-headlines-home track-headlines-categories-home">
+      <div class="c-category-title c-category-title--gray t-noticias">
+        <h2 class="title"><a href="@Url.Action("NoticiasWithCategory", "Categorias", new {categoria = "politica"})" class="title-section" title="Ver tudo sobre Política">Política</a></h2>
+        <a href="@Url.Action("NoticiasWithCategory", "Categorias", new {categoria = "politica"})" class="link-see-all fa fa-plus-circle fa-2x" title="Ver tudo sobre Política"></a>
+      </div>
+      @{var indexPolitica = 1;}
+      @foreach (var item in Model.HighlightsPolitica)
+      {
+        <div class="c-headline" data-position="@indexPolitica">
+          @if (!string.IsNullOrEmpty(item.ImgThumb))
+          {
+            if (item.DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(item.Video))
+            {
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-2x fa-icon-video"></i>
+                <a href="@Url.Action("Interna", "Video", new {url = item.Url})" title="@item.Chamada">
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+            else
+            {
+              <picture class="image">
+                <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                  @if (item.DestaqueId == Destaque.Galeria.Id && item.Galeria.Imagens.Any())
+                  {
+                    @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", item.Galeria.Imagens.Count() } })
+                  }
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+          }
+          <div class="texts">
+            <h2 class="title">
+              <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                @item.Chamada
+              </a>
+            </h2>
+          </div>
+        </div>
+        indexPolitica++;
+      }
+    </div>
+  }
+
+  @if (Model.HighlightsBrasil.Count > 0)
+  {
+    <div class="g-column c-headline--minis track-headlines-home track-headlines-categories-home">
+      <div class="c-category-title c-category-title--gray t-noticias">
+        <h2 class="title"><a href="@Url.Action("NoticiasWithCategory", "Categorias", new {categoria = "brasil"})" class="title-section" title="Ver tudo sobre Brasil">Brasil</a></h2>
+        <a href="@Url.Action("NoticiasWithCategory", "Categorias", new {categoria = "brasil"})" class="link-see-all fa fa-plus-circle fa-2x" title="Ver tudo sobre Brasil"></a>
+      </div>
+      @{var indexBrasil = 1;}
+      @foreach (var item in Model.HighlightsBrasil)
+      {
+        <div class="c-headline" data-position="@indexBrasil">
+          @if (!string.IsNullOrEmpty(item.ImgThumb))
+          {
+            if (item.DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(item.Video))
+            {
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-2x fa-icon-video"></i>
+                <a href="@Url.Action("Interna", "Video", new {url = item.Url})" title="@item.Chamada">
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+            else
+            {
+              <picture class="image">
+                <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                    @if (item.DestaqueId == Destaque.Galeria.Id && item.Galeria.Imagens.Any())
+                    {
+                      @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", item.Galeria.Imagens.Count() } })
+                    }
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+          }
+          <div class="texts">
+            <h2 class="title">
+              <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                @item.Chamada
+              </a>
+            </h2>
+          </div>
+        </div>
+        indexBrasil++;
+      }
+    </div>
+  }
+
+  @if (Model.HighlightsMundo.Count > 0)
+  {
+    <div class="g-column c-headline--minis track-headlines-home track-headlines-categories-home">
+      <div class="c-category-title c-category-title--gray t-noticias">
+        <h2 class="title"><a href="@Url.Action("NoticiasWithCategory", "Categorias", new {categoria = "mundo"})" class="title-section" title="Ver tudo sobre Mundo">Mundo</a></h2>
+        <a href="@Url.Action("NoticiasWithCategory", "Categorias", new {categoria = "mundo"})" class="link-see-all fa fa-plus-circle fa-2x" title="Ver tudo sobre Mundo"></a>
+      </div>
+      @{var indexMundo = 1;}
+      @foreach (var item in Model.HighlightsMundo)
+      {
+        <div class="c-headline" data-position="@indexMundo">
+          @if (!string.IsNullOrEmpty(item.ImgThumb))
+          {
+            if (item.DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(item.Video))
+            {
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-2x fa-icon-video"></i>
+                <a href="@Url.Action("Interna", "Video", new {url = item.Url})" title="@item.Chamada">
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+            else
+            {
+              <picture class="image">
+                <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                    @if (item.DestaqueId == Destaque.Galeria.Id && item.Galeria.Imagens.Any())
+                    {
+                      @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", item.Galeria.Imagens.Count() } })
+                    }
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+          }
+          <div class="texts">
+            <h2 class="title">
+              <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                @item.Chamada
+              </a>
+            </h2>
+          </div>
+        </div>
+        indexMundo++;
+      }
+    </div>
+  }
+
+  @if (Model.HighlightsEducacao.Count > 0)
+  {
+    <div class="g-column c-headline--minis track-headlines-home track-headlines-categories-home">
+      <div class="c-category-title c-category-title--gray t-noticias">
+        <h2 class="title"><a href="@Url.Action("NoticiasWithCategory", "Categorias", new {categoria = "educacao"})" class="title-section" title="Ver tudo sobre Educação">Educação</a></h2>
+        <a href="@Url.Action("NoticiasWithCategory", "Categorias", new {categoria = "educacao"})" class="link-see-all fa fa-plus-circle fa-2x" title="Ver tudo sobre Educação"></a>
+      </div>
+      @{var indexEducacao = 1;}
+      @foreach (var item in Model.HighlightsEducacao)
+      {
+        <div class="c-headline" data-position="@indexEducacao">
+          @if (!string.IsNullOrEmpty(item.ImgThumb))
+          {
+            if (item.DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(item.Video))
+            {
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-2x fa-icon-video"></i>
+                <a href="@Url.Action("Interna", "Video", new {url = item.Url})" title="@item.Chamada">
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+            else
+            {
+              <picture class="image">
+                <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                    @if (item.DestaqueId == Destaque.Galeria.Id && item.Galeria.Imagens.Any())
+                    {
+                      @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", item.Galeria.Imagens.Count() } })
+                    }
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+          }
+          <div class="texts">
+            <h2 class="title">
+              <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                @item.Chamada
+              </a>
+            </h2>
+          </div>
+        </div>
+        indexEducacao++;
+      }
+    </div>
+  }
+
+  @if (Model.HighlightsEconomia.Count > 0)
+  {
+    <div class="g-column c-headline--minis track-headlines-home track-headlines-categories-home">
+      <div class="c-category-title c-category-title--gray t-noticias">
+        <h2 class="title"><a href="@Url.Action("NoticiasWithCategory", "Categorias", new {categoria = "economia"})" class="title-section" title="Ver tudo sobre Economia">Economia</a></h2>
+        <a href="@Url.Action("NoticiasWithCategory", "Categorias", new {categoria = "economia"})" class="link-see-all fa fa-plus-circle fa-2x" title="Ver tudo sobre Economia"></a>
+      </div>
+      @{var indexEconomia = 1;}
+      @foreach (var item in Model.HighlightsEconomia)
+      {
+        <div class="c-headline" data-position="@indexEconomia">
+          @if (!string.IsNullOrEmpty(item.ImgThumb))
+          {
+            if (item.DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(item.Video))
+            {
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-2x fa-icon-video"></i>
+                <a href="@Url.Action("Interna", "Video", new {url = item.Url})" title="@item.Chamada">
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+            else
+            {
+              <picture class="image">
+                <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                    @if (item.DestaqueId == Destaque.Galeria.Id && item.Galeria.Imagens.Any())
+                    {
+                      @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", item.Galeria.Imagens.Count() } })
+                    }
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+          }
+          <div class="texts">
+            <h2 class="title">
+              <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                @item.Chamada
+              </a>
+            </h2>
+          </div>
+        </div>
+        indexEconomia++;
+      }
+    </div>
+  }
+
+  @if (Model.HighlightsMaisNoticias.Count > 0)
+  {
+    <div class="g-column c-headline--minis track-headlines-home track-headlines-categories-home">
+      <div class="c-category-title c-category-title--gray t-noticias">
+        <h2 class="title" class="title-section">+ Notícias</h2>
+      </div>
+      @{var indexMaisNoticias = 1;}
+      @foreach (var item in Model.HighlightsMaisNoticias)
+        {
+        <div class="c-headline" data-position="@indexMaisNoticias">
+          @if (!string.IsNullOrEmpty(item.ImgThumb))
+          {
+            if (item.DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(item.Video))
+            {
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-2x fa-icon-video"></i>
+                <a href="@Url.Action("Interna", "Video", new {url = item.Url})" title="@item.Chamada">
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+            else
+            {
+              <picture class="image">
+                <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                    @if (item.DestaqueId == Destaque.Galeria.Id && item.Galeria.Imagens.Any())
+                    {
+                      @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", item.Galeria.Imagens.Count() } })
+                    }
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+          }
+          <div class="texts">
+            <h2 class="title">
+              <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                @item.Chamada
+              </a>
+            </h2>
+          </div>
+        </div>
+        indexMaisNoticias++;
+      }
+    </div>
+  }
+</section>

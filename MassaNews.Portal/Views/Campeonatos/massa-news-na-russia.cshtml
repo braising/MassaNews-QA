@@ -1,0 +1,107 @@
+﻿@section bodyClass{@Html.Raw("pg-esportes pg-tabela-copa-do-mundo tabela-facil")}
+
+<main class="g-main">
+  <div class="c-banner c-banner--image">
+    <a href="@Url.Action("MassaNewsNaRussia", "Land")">
+      <img src="@Url.Content("~/content/images/landing/massa-news-na-russia/top.jpg")" alt="@ViewBag.ActiveNav" class="image-desktop">
+      <img src="@Url.Content("~/content/images/landing/massa-news-na-russia/top-mobile.jpg")" alt="@ViewBag.ActiveNav" class="image-mobile">
+    </a>
+  </div>
+
+  <div class="t-content g-container">
+    <section class="t-module">
+      <h2 class="t-page-color h2">Jogos</h2>
+      <div class="table-rounds">
+        <div class="c-slider--table c-slider--table-copa-do-mundo-jogos">
+          @{ var i = 1; }
+          @foreach (var rodada in ViewBag.LstRodadas)
+          {
+            <div class="group-table" id="table-results-@i">
+              @* <h4 class="title t-page-color">@(i)ª rodada</h4> *@
+              @if(i == 1){
+                <h4 class="title t-page-color">Fase de grupos</h4>
+              } else if(i == 2){
+                <h4 class="title t-page-color">Oitavas de Final</h4>
+              } else if(i == 3){
+                <h4 class="title t-page-color">Quartas de Final</h4>
+              } else if(i == 4){
+                <h4 class="title t-page-color">Semifinal</h4>
+              } else if(i == 5){
+                <h4 class="title t-page-color">3º lugar e Final</h4>
+              }
+
+              @Html.Raw(rodada)
+            </div>
+            i++;
+          }
+        </div>
+      </div>
+    </section>
+
+    @* PUBLICIDADE *@
+    @Html.Partial("_AdCabecalho")
+
+    <section class="t-module">
+      <h2 class="t-page-color h2">Classificação por Grupos</h2>
+      <div class="table-rounds">
+        <div class="c-slider--table c-slider--table-copa-do-mundo-classificacao">
+          @* @{ var j = 1; }
+          @foreach (var classificacao in ViewBag.LstClassificacao)
+          {
+            <div class="group-table" id="table-results-@j">
+              <h4 class="title t-page-color">Grupo @(j)</h4>
+              @Html.Raw(classificacao)
+            </div>
+            j++;
+          } *@
+
+          @* <div class="group-table" id="table-results-1">
+            <h4 class="title t-page-color">Grupo A</h4>
+            @Html.Raw(ViewBag.LstClassificacao)
+          </div> *@
+
+          @{ var j = 1; }
+          @foreach (var classificacao in ViewBag.LstClassificacao)
+          {
+            <div class="group-table" id="table-results-@j">
+              @* <h4 class="title t-page-color">Grupo @(j)</h4> *@
+
+              @if(j == 1){
+                <h4 class="title t-page-color">Grupo A</h4>
+              } else if(j == 2){
+                <h4 class="title t-page-color">Grupo B</h4>
+              } else if(j == 3){
+                <h4 class="title t-page-color">Grupo C</h4>
+              } else if(j == 4){
+                <h4 class="title t-page-color">Grupo D</h4>
+              } else if(j == 5){
+                <h4 class="title t-page-color">Grupo E</h4>
+              } else if(j == 6){
+                <h4 class="title t-page-color">Grupo F</h4>
+              } else if(j == 7){
+                <h4 class="title t-page-color">Grupo G</h4>
+              } else if(j == 8){
+                <h4 class="title t-page-color">Grupo H</h4>
+              }
+
+
+              @Html.Raw(classificacao)
+            </div>
+            j++;
+          }
+
+        </div>
+      </div>
+
+      @* <div class="credito">
+        <a href="//www.tabelafacil.com" class="logo-tabela-facil" target="_blank" rel="nofollow" title="Por: Tabela Fácil">
+          <img src="@Url.Content("~/content/images/logos/tabela-facil.gif")" alt="Tabela Fácil - Agência de Resultados Esportivos">
+        </a>
+      </div> *@
+    </section>
+
+    <div class="group-button">
+      <a href="@Url.Action("MassaNewsNaRussia", "Land")" class="c-button t-page-button small" title="Todas as notícias">Todas as notícias</a>
+    </div>
+  </div>
+</main>

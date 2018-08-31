@@ -1,0 +1,60 @@
+﻿@using Entities.Classes
+@using MassaNews.Service.Util
+
+@model List<MassaNews.Service.Models.Noticia>
+
+<div class="c-slider--videos slick-slider u-margin-bottom-none">
+  @for (int i = 0; i <= 4 && i < Model.Count; i++){
+    decimal positionItem = i + 1;
+
+    <div title="@Model[i].Chamada" class="c-headline slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 307px;" tabindex="-1" role="option" aria-describedby="slick-slide10">
+      @if (!string.IsNullOrEmpty(Model[i].ImgMd)){
+        if (Model[i].DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(Model[i].Video)){
+          <picture class="image modal-video">
+            <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+            <a href="@Url.Action("Interna", "Video", new {url = Model[i].Url})" title="@Model[i].Chamada">
+              @if (Model[i].IsLive != null && Model[i].IsLive.Value){
+                <span class="c-headline__label-live label-top-left"><i class="icon-play-live"></i> AO VIVO</span>
+              }
+              <img srcset="@string.Format("{0}/{1}/{2} 1000w, {0}/{1}/{3} 1001w", Constants.UrlDominioEstaticoUploads, "noticias", Model[i].ImgMd, Model[i].ImgSm)" src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model[i].ImgSm}")" alt="@Model[i].Chamada">
+            </a>
+          </picture>
+        } else {
+          <picture class="image">
+            <a href="@($"{Model[i].UrlFull}.html")" title="@Model[i].Chamada">
+              @if (Model[i].DestaqueId == Destaque.Galeria.Id && Model[i].Galeria.Imagens.Any()){
+                @Html.Partial("_LabelImage", new ViewDataDictionary {{"qtde", Model[i].Galeria.Imagens.Count()}})
+              }
+              <img srcset="@string.Format("{0}/{1}/{2} 1000w, {0}/{1}/{3} 1001w", Constants.UrlDominioEstaticoUploads, "noticias", Model[i].ImgMd, Model[i].ImgSm)" src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model[i].ImgSm}")" alt="@Model[i].Chamada">
+            </a>
+          </picture>
+        }
+      }
+
+      <div class="texts">
+        @if (Model[i].Categoria.Url.Equals("plantao")){
+          if (Model[i].Cidade != null){
+            <h3 class="hat">
+              <a href="@($"/tags/{Model[i].Cidade.Url}")">@Model[i].Cidade.Nome</a>
+            </h3>
+          } else {
+            <h3 class="hat">
+              <a href="@Url.Action("Parana", "Categorias")">Paraná</a>
+            </h3>
+          }
+        } else {
+          <h3 class="hat">
+            @if (Model[i].BlogId.HasValue){
+              <a href="@($"/{Model[i].Categoria.Editorial.Url}/{Model[i].CategoriaUrl}/{Model[i].BlogUrl}/posts")">@Model[i].Blog.Titulo</a>
+            } else {
+              <a href="@($"/{Model[i].Categoria.Editorial.Url}/{Model[i].CategoriaUrlFull}")">@Model[i].Categoria.Titulo</a>
+            }
+          </h3>
+        }
+        <h2 class="title">
+          <a href="@($"{Model[i].UrlFull}.html")" title="@Model[i].Chamada">@Model[i].Chamada</a>
+        </h2>
+      </div>
+    </div>
+  }
+</div>

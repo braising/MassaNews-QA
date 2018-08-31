@@ -1,0 +1,621 @@
+// // =============================================================================
+// // CORES
+// // =============================================================================
+
+// //cinzas
+// $gray-darker:            #363636 !default;
+// $gray-dark:              #4f4f4f !default;
+// $gray:                   #9c9c9c !default;
+// $gray-light:             #a4a4a4 !default;
+// $gray-lighter:           #c1c1c1 !default;
+// $gray-lightest:          #f2f2f2 !default;
+
+// $black-special:          #191919 !default;
+// $black-special-light:    #272727 !default;
+// $black-special-lighter:  #5b5b5b !default;
+// $black-special-lightest: #bababa !default;
+
+// //cores principais
+// $brand-primary:          #d2232a !default;
+// $brand-complement:       #131838 !default;
+// $brand-contrast:         #ffcb32 !default;
+
+// //cores temas
+// $tema-noticias:          #a10000;
+// //$tema-esportes:        #faa61a;
+// $tema-esportes:          #00ba42;
+// $tema-entretenimento:    #e52ad6;
+// $tema-blogs:             #0153a7;
+// //$tema-fotos:           #00ba42;
+// $tema-fotos:             $brand-primary;
+// $tema-videos:            #01d7df;
+// $tema-guia:              #9f005c;
+// $tema-where:             #ff7f05;
+// $tema-roteiros:          #ff7f05;
+
+// //especiais / comerciais
+// $tema-quiz-unifil:       #1fbf90;
+
+// //cores auxiliares
+// $color-success:          #39aa17 !default;
+// $color-info:             #5bc0de !default;
+// $color-warning:          #f0ad4e !default;
+// $color-danger:           #ff0000 !default;
+
+// //cores redes sociais
+// $color-twitter:          #00acec !default;
+// $color-facebook:         #39589c !default;
+// $color-youtube:          #e3312f !default;
+// $color-instagram:        #315c85 !default;
+// $color-googleplus:       #dc4e41 !default;
+// $color-snapchat:         #e5d801 !default;
+// $color-whatsapp:         #0eb700 !default;
+// $color-linkedin:         #0077B5 !default;
+
+.color-twitter           {color: $color-twitter;}
+.color-facebook          {color: $color-facebook;}
+.color-youtube           {color: $color-youtube;}
+.color-instagram         {color: $color-instagram;}
+.color-google-plus       {color: $color-googleplus;}
+.color-snapchat          {color: $color-snapchat;}
+.color-whatsapp          {color: $color-whatsapp;}
+.color-linkedin          {color: $color-linkedin;}
+
+$color-border:           #d8d8d8;
+$color-border-light:     #ececec;
+$color-border-dark:      #bfbfbf;
+
+.color-brand             {color:$brand-primary !important;}
+.color-contrast          {color:$brand-contrast !important;}
+
+.color-success           {color: $color-success;}
+.color-info              {color: $color-info;}
+.color-warning           {color: $color-warning;}
+.color-danger            {color: $color-danger;}
+
+
+// //== Components
+
+// $padding-base-vertical:     2em !default;
+// $padding-base-horizontal:   2em !default;
+
+// $padding-large-vertical:    3em !default;
+// $padding-large-horizontal:  3em !default;
+
+// $padding-small-vertical:    1em !default;
+// $padding-small-horizontal:  10px !default;
+
+// $line-height-large:         1.3333333 !default; // extra decimals for Win 8.1 Chrome
+// $line-height-small:         1.5 !default;
+
+// $border-radius-base:        4px !default;
+// $border-radius-large:       25px !default;
+// $border-radius-small:       3px !default;
+
+// $margin-base:               1em !default;
+
+// $margin-large:              3.5em !default;
+// $margin-medium:             2.5em !default;
+// $margin-small:              1.5em !default;
+// $margin-xsmall:             1em !default;
+
+
+// //== Texts / links
+
+// //** Global text color on `<body>`.
+// $text-color: $gray-dark !default;
+// //** Global textual link color.
+// $link-color: $gray-dark !default;
+// //** Link hover color set via `darken()` function.
+// $link-hover-color: darken($link-color, 5%) !default;
+// //** Link hover decoration.
+// $link-hover-decoration: underline !default;
+// //** Headlings color
+// $headings-color: $brand-primary;
+// //** Horizontal line color.
+// $hr-border: $gray-lighter !default;
+
+
+
+
+// =============================================================================
+// CORES TEMA
+// =============================================================================
+
+// Lista com as cores de cada tema
+// Para funcionar, o body devera conter a data-theme= home / inst / etc...
+// ESTRUTURA: nome da pagina (4 letras), cor base, cor complementar
+
+$categories: noticias                  $tema-noticias,
+             esportes                  $tema-esportes,
+             entretenimento            $tema-entretenimento,
+             negocios-da-terra         $tema-negocios-da-terra,
+             blogs                     $tema-blogs,
+             fotos                     $tema-fotos,
+             videos                    $tema-videos,
+             guia                      $tema-guia,
+             where                     $tema-where,
+             where-curitiba            $tema-where,
+             roteiros                  $tema-roteiros,
+             quiz-unifil               $tema-quiz-unifil,
+             viajar-e-massa            $tema-viajar-e-massa,
+             bck                       $tema-bck,
+             desafiando-chefs          $tema-desafiando-chefs,
+             farol-do-saber-e-inovacao $tema-farol-do-saber-e-inovacao,
+             natal-de-luz              $tema-natal-de-luz,
+             viaje-pelos-campos-gerais $tema-viaje-pelos-campos-gerais,
+             educacao-financeira       $tema-educacao-financeira,
+             transmita-calor           $tema-transmita-calor,
+             curitiba-criativa         $tema-curitiba-criativa,
+             massa-na-russia           $tema-massa-na-russia,
+             comunidades               $tema-comunidades;
+
+// foreach que executa o conjunto de seletores/atributos para cada tema cadastrado
+@each $category in $categories {
+
+  // Variaveis
+  $theme: nth($category, 1);
+  $color-base: nth($category, 2);
+
+  // ====================================
+  // TEMAS DAS PÁGINAS
+  // ====================================
+
+  // TEMA PADRÃO
+  .t-page-color {
+    color:$brand-primary!important;
+  }
+
+  //  body[data-theme=#{$theme}] {
+  .pg-#{$theme} {
+
+    .t-page-color {
+      color:$color-base !important;
+    }
+
+    .t-page-border {
+      border-color:$color-base !important;
+    }
+
+    .t-page-button {
+      color:$color-base !important;
+      border-color:$color-base !important;
+
+      &:hover {
+        background:$color-base !important;
+        color:#fff !important;
+      }
+
+      &.submit{
+        background:$color-base !important;
+        color:#fff !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background:lighten($color-base,5%)!important;
+        }
+      }
+    }
+
+    ::selection {
+      background: lighten($color-base, 5%);
+      color: #fff;
+    }
+
+    //header {
+    .c-header__city,
+    .c-nav__toggle .stick {
+      background:$color-base !important;
+    }
+
+    .c-header__search .button-search,
+    .c-nav__toggle,
+    .c-nav-dropdown__col-title,
+    .c-share__commentary .c-share__icon {
+      color:$color-base !important;
+    }
+
+    .c-footer__top .show-all {
+      color:$color-base !important;
+    }
+
+    #sponsorship{
+      .label{
+        background: $color-base;
+      }
+    }
+
+
+    //posts
+    .figure {
+      a {
+        color:$color-base !important;
+      }
+    }
+
+    .c-post__content {
+      blockquote,
+      a {
+        color:$color-base !important;
+      }
+
+      .c-gallery__thumb,
+      .c-gallery__thumb a {
+        color:$color-base !important;
+      }
+
+      iframe[width] {
+        width:100%;
+      }
+    }
+
+    //pagination
+    .c-pagination .pagination {
+      > .active > a,
+      > .active > span {
+        &,
+        &:hover,
+        &:focus {
+          background-color: $color-base !important;
+          border-color: $color-base !important;
+        }
+      }
+    }
+
+    //tabs
+    .c-tabs__tab.is-active {
+      //color:$color-base !important;
+      background-color:$color-base;
+      color: #fff;
+    }
+
+    .c-fixed-sidebar__list__iten.is-current {
+      &:before {
+        background:$color-base !important;
+      }
+
+      &:after {
+        border-left-color:$color-base !important;
+      }
+    }
+
+    // destaque com fundo colorido
+    .c-headlines--bg-color{
+      background-color: $color-base;
+    }
+
+  } //fim body
+
+
+  // ====================================
+  // TEMAS LOCAIS
+  // ====================================
+
+  .t-#{$theme} {
+
+    //titulo de categoria
+    &.c-category-title .link-see-all,
+    //links das manchetes
+    //&.c-headline .title a,
+    //marcador de lista não ordenada da machete destaque (home)
+    .list-related li{
+      color:$color-base !important;
+    }
+
+    // Border acima do Chapéu (Destaque principal com texto dentro da foto)
+    &.c-headline{
+      &.c-headline--inner-photo{
+        .texts {
+          .hat{
+            a{
+              border-color:$color-base;
+            }
+          }
+        }
+      }
+
+      // LABEL LIVE
+      .c-headline__label-live{
+        background-color:$color-base;
+      }
+    }
+
+    //links da lista não ordenada da machete destaque (home)
+    .title a,
+    .title {
+      color:$color-base!important;
+    }
+
+    // borda
+    &[class^="sidebar__"],
+    &[class*=" sidebar__"]{
+      & > .title{
+        border-color:$color-base !important;
+      }
+    }
+
+    //border inferior do titulo de categoria
+    &.c-category-title {
+      border-color:$color-base !important;
+
+      .c-category--nav{
+        .active{
+            a{
+              cursor: default;
+              color: $color-base;
+
+              &:hover{
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+
+    // Tabs
+    .c-tabs__tab.is-active {
+      background-color:$color-base !important;
+      color: #fff;
+    }
+  }
+
+  // BOTÕES
+  .c-button-#{$theme}{
+    color:$color-base !important;
+    border-color:$color-base !important;
+
+    &:hover,
+    &:focus {
+      color:#fff !important;
+      background:$color-base !important;
+
+      .fa{
+        color:#fff !important;
+      }
+    }
+
+    &.submit {
+      color:#fff !important;
+      background:$color-base !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background:lighten($color-base,5%) !important;
+      }
+    }
+  }
+
+} //fim each
+
+
+
+
+
+// =============================================================================
+// MARGINS (verticais)
+// =============================================================================
+
+// @mixin margin($side: null) {
+// //  margin:$margin-medium 0;
+
+//   //margin superior
+//   @if $side == 'top' {margin-top:$margin-medium !important;}
+
+//   //margin inferior
+//   @if $side == 'bottom' {margin-bottom:$margin-medium !important;}
+// }
+
+.t-margin         {@include margin();}
+.t-margin--top    {@include margin(top);}
+.t-margin--bottom {@include margin(bottom);}
+
+
+
+// =============================================================================
+// PADDINGS
+// =============================================================================
+
+// //all sides
+// @mixin padding($size: null) {
+//   padding:$padding-base-vertical 0;
+
+//   //padding maior
+//   @if $size == 'large' {padding:$padding-large-vertical;}
+
+//   //padding menor
+//   @if $size == 'small' {padding:$padding-small-vertical;}
+// }
+
+.t-padding        {@include padding();}
+.t-padding--large {@include padding(large);}
+.t-padding--small {@include padding(small);}
+
+
+//vertical
+// @mixin vertical-padding($size: null) {
+//   padding:$padding-base-vertical 0;
+
+//   //padding maior
+//   @if $size == 'large' {padding:$padding-large-vertical 0;}
+
+//   //padding menor
+//   @if $size == 'small' {padding:$padding-small-vertical 0;}
+// }
+
+.t-vertical-padding        {@include vertical-padding();}
+.t-vertical-padding--large {@include vertical-padding(large);}
+.t-vertical-padding--small {@include vertical-padding(small);}
+
+
+// //horizontal
+// @mixin horizontal-padding($size: null) {
+//   padding:$padding-base-horizontal 0;
+
+//   //padding maior
+//   @if $size == 'large' {padding:$padding-large-horizontal 0;}
+
+//   //padding menor
+//   @if $size == 'small' {padding:$padding-small-horizontal 0;}
+// }
+
+.t-horizontal-padding        {@include horizontal-padding();}
+.t-horizontal-padding--large {@include horizontal-padding(large);}
+.t-horizontal-padding--small {@include horizontal-padding(small);}
+
+
+
+
+// =============================================================================
+// BACKGROUNDS
+// =============================================================================
+
+//** Background color for `<body>`.
+$body-bg: #fff !default;
+
+
+.t-bg-neutral {
+  padding:2em 0;
+  border:solid darken($gray-lightest,5%);
+  border-width:1px 0;
+  background:$gray-lightest;
+}
+
+// vídeos
+.pg-videos{
+  background-color: $black-special;
+}
+
+
+// =============================================================================
+// BORDERS
+// =============================================================================
+
+.t-border {
+  border:1px solid $color-border;
+  padding:$padding-small-vertical;
+}
+
+
+
+// =============================================================================
+// SECTIONS
+// =============================================================================
+[class^="t-section"],
+[class*=" t-section"] {
+  padding-bottom:1em;
+
+  //apenas padding superior
+  &[class*="top"] {
+    padding-bottom:0;
+  }
+
+  //apenas padding inferior
+  &[class*="bottom"] {
+    padding-top:0;
+  }
+
+  //textos centralizados
+  &[class*="center"] {
+    text-align:center;
+  }
+}
+
+.t-content {
+  padding-top:$margin-medium !important;
+  padding-bottom:$margin-medium !important;
+}
+
+
+.t-module {
+  @include margin(bottom);
+}
+
+.t-module-xlarge {
+  @include margin(bottom-xlarge);
+}
+
+
+// =============================================================================
+// THEME COMPONENTS
+// =============================================================================
+.t-list-ordered {
+  margin-top:.7em;
+
+  li {
+    position:relative;
+    margin-bottom:1.3em;
+    padding: 2px 0 0 28px;
+    line-height:1.2;
+    counter-increment: step-counter;
+
+    &:last-of-type {
+      margin-bottom:0;
+    }
+  }
+
+  li::before {
+    position:absolute;
+    left:0px;
+    top:0px;
+    content: counter(step-counter)'.';
+    margin-right: 5px;
+    font-weight: bold;
+    @include font-size(28px);
+    color: #9c9c9c;
+    padding:0 5px 0 0;
+  }
+}
+
+
+//fundo escuro sobre tudo
+#overlay,
+#overlay--disable {
+  display:none;
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  z-index:9000;
+  background:rgba(0,0,0,.9);
+}
+
+
+//pagina 404
+.t-404 {
+  margin:0 auto;
+  max-width:800px;
+  padding:$margin-large 0;
+  text-align:center;
+}
+
+.t-404__texts {
+  margin:$margin-large 0;
+
+  .title {
+    @include font-size(36px);
+  }
+
+  .description {
+
+  }
+}
+
+
+
+
+// // =============================================================================
+// // ANIMATIONS
+// // =============================================================================
+// @mixin opacity-hover($opacity: .85) {
+//   -webkit-transition:opacity .4s ease-in-out;
+//   -moz-transition:opacity .4s ease-in-out;
+//   -o-transition:opacity .4s ease-in-out;
+//   transition:opacity .4s ease-in-out;
+
+//   &:hover {
+//     opacity:$opacity;
+//   }
+// }

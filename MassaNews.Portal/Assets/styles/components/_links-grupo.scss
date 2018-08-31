@@ -1,0 +1,189 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+// .c-links-grupo {
+//   .title {
+//     margin-bottom: 1em;
+//     display:inline-block;
+//     vertical-align:top;
+//     color:$gray-dark;
+
+//     span {
+//       display:block;
+//       @include font-size(20px);
+//       text-transform:uppercase;
+//     }
+//   }
+// }
+
+.c-links-grupo__list {
+  //margin:0 0 0 1.6em;
+  margin:0;
+  display:inline-block;
+  vertical-align:top;
+
+  li {
+    display:inline-block;
+  }
+
+  a {
+    display:block;
+    //height: 22px;
+    @include opacity-hover();
+
+    img{
+      width: 100%;
+    }
+
+    .mobile{
+      display: none;
+    }
+  }
+
+  .logo-grupo-massa{
+    width: 150px;
+    padding-right: 35px;
+    border-right:1px solid $gray-lighter;
+  }
+
+  .logo-massa-news {
+    width:135px;
+  }
+
+  .logo-rede-massa {
+    width:220px;
+  }
+
+  .logo-massa-fm {
+    width:127px;
+  }
+
+  .logo-massa-play {
+    width:142px;
+  }
+
+  .logo-massa-multidigital {
+    width: 180px;
+  }
+}
+
+
+/* =============MEDIA QUERY============= */
+@media all and (max-width: bp(11)) {
+  .c-links-grupo {
+    display:block;
+    text-align:center;
+
+    // .title{
+    //   width: 100%;
+    // }
+
+    // .title,
+    // .title span {
+    //   display:inline-block;
+    // }
+  }
+
+  .c-links-grupo__list {
+    margin:0;
+
+    li {
+      margin:0 8px 0 0;
+
+      &:last-of-type {
+        margin-bottom:0;
+      }
+
+      &:first-of-type {
+        width: 100%;
+        margin:0 0 30px 0;
+        text-align: center;
+        float: none;
+      }
+    }
+
+    .logo-grupo-massa{
+      width: 120px;
+      padding: 0;
+      border: none;
+      display:inline-block;
+    }
+
+    .logo-massa-news {
+      width:75px;
+    }
+
+    .logo-rede-massa {
+      width: 130px;
+    }
+
+    .logo-massa-fm {
+      width: 70px;
+    }
+
+    .logo-massa-play {
+      width: 80px;
+    }
+
+    .logo-massa-multidigital {
+      width: 98px;
+    }
+  }
+}
+
+@media all and (max-width: bp(5)) {
+  .c-links-grupo__list {
+
+    a{
+      .mobile{
+        display: block;
+      }
+
+      .desktop{
+        display: none;
+      }
+    }
+
+    .logo-massa-news {
+      img{
+        margin-top: -20px;
+      }
+    }
+
+    .logo-rede-massa {
+      width: 70px;
+    }
+
+    .logo-massa-fm {
+      width: 35px;
+    }
+
+    .logo-massa-play {
+      width: 40px;
+    }
+
+    .logo-massa-multidigital {
+      width: 60px;
+
+      img{
+        margin-bottom: -5px;
+      }
+    }
+  }
+}
+
+@media all and (min-width: bp(9, 1px)) {
+  .c-links-grupo__list {
+    li {
+      margin:0 35px 0 0;
+
+      &:last-of-type {
+        margin-right:0;
+      }
+    }  
+  }
+}

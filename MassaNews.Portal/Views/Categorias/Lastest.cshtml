@@ -1,0 +1,15 @@
+﻿@model MassaNews.Models.Portal.View.CategoriaParanaViewModel
+
+<main class="g-main">
+  <div class="g-content-inner-sidebar g-container">
+    <section class="g-content">
+      @Html.Partial("_AdCabecalho")
+      @Html.Partial("_ListNewsPage", Model.NewsList)
+    </section>
+    <aside class="g-aside">
+      @Html.Partial("_AdRetanguloMini")
+      @Html.Partial("_PopularNews")
+      @Html.Partial("_AdRetanguloMedio")
+    </aside>
+  </div>
+</main>

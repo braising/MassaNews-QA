@@ -1,0 +1,19 @@
+﻿@model List<MassaNews.Portal.Models.MenuItemModel> 
+
+@foreach (var menu in Model){
+  <li id="li-@menu.Id" class="li-lastnew c-fixed-sidebar__list__iten @(menu.Selected ? "is-current" : string.Empty)" data-published="@menu.DataPublicacao" data-video="@menu.VideoUrl" data-twitter="@menu.TwitterUrl" data-facebook="@menu.FacebookUrl" data-whatsapp="@menu.WattsUrl" data-gplus="@menu.GPlusUrl" data-noticia="@menu.NoticiaUrl" data-chamada="@menu.Chamada">
+    <div class="c-headline">
+      <picture class="image ">
+        <a href="@menu.InternaUrl" title="@menu.Chamada">
+          <img src="@menu.ImagemUrl" alt="@menu.Chamada">
+        </a>
+      </picture>
+      <div class="texts">
+        <h3 class="hat">@menu.Chapeu</h3>
+        <h2 class="title">
+          <a href="@menu.InternaUrl" title="@menu.Chamada">@menu.Chamada</a>
+        </h2>
+      </div>
+    </div>
+  </li>
+}

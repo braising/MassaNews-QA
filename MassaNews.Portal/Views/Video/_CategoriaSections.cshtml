@@ -1,0 +1,35 @@
+﻿@model List<MassaNews.Portal.ViewModels.VideoCategoria.VideoSection>
+
+@foreach (var videoSection in @Model)
+{
+  <div class="t-module" data-date="@videoSection.StartDate">
+    <div class="c-category-title c-category-title--videos t-videos">
+      <h2 class="title">@videoSection.Title</h2>
+    </div>
+
+    @foreach (var group in videoSection.Videos)
+    {
+      <div class="g-4columns">
+        @foreach (var video in group)
+        {
+          <div class="g-column">
+            <a href="@video.InternaUrl" title="@video.Chamada" class="c-headline c-headline--videos">
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                @if(ViewBag.noImageLazy != null){
+                  <img src="@video.ImgSm" alt="@video.Chamada">                
+                } else {
+                  <img class="lazy" data-original="@video.ImgSm" alt="@video.Chamada">
+                }
+              </picture>
+              <div class="texts">
+                <h3 class="hat">@($"{video.Chapeu} - {video.Date.ToString("dd/MM/yyyy")}")</h3>
+                <h2 class="title">@video.Chamada</h2>
+              </div>
+            </a>
+          </div>
+        }
+      </div>
+    }
+  </div>
+}

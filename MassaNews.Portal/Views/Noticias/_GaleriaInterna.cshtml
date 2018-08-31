@@ -1,0 +1,37 @@
+﻿@model MassaNews.Service.Models.Noticia
+
+<section class="c-post-gallery">
+  <a href="#" class="arrow-next trigger-open-next-lightgallery"><i class="fa fa-10x fa-angle-right"></i></a>
+  
+  <a href="#" class="trigger-open-lightgallery u-block">
+    <img class="c-post-gallery__image" srcset="@($"{MassaNews.Service.Util.Constants.UrlDominioEstaticoUploads}/noticias/{Model.Galeria.ImgDtSm} 347w, {MassaNews.Service.Util.Constants.UrlDominioEstaticoUploads}/noticias/{Model.Galeria.ImgDtMd} 674w, {MassaNews.Service.Util.Constants.UrlDominioEstaticoUploads}/noticias/{Model.Galeria.ImgDt} 675w")" src="@Model.ImgLg" alt="@Model.Chamada">
+    @* <meta itemprop="url" content="@($"{MassaNews.Service.Util.Constants.UrlGallery}/{Model.ImgLg}")">
+    <meta itemprop="width" content="961">
+    <meta itemprop="height" content="531"> *@
+  </a>
+
+  <div class="trigger-lightgallery lightgallery clearfix">
+    @{
+      var index = 1;
+      const int thumbsToShow = 7;
+      var itensGallery = Model.Galeria.Imagens.Count();
+      var more = itensGallery - thumbsToShow;
+    }
+
+    @foreach (var item in Model.Galeria.Imagens.OrderBy(i => i.Ordem))
+    {
+      <a href="@($"{MassaNews.Service.Util.Constants.UrlGallery}/{item.Img}")" data-sub-html="@item.Descricao" data-loop-index="@index" class="lg-iten lg-iten-@index clearfix @if(@index > @thumbsToShow){<text>other</text>}">
+        @if (@index == @thumbsToShow && @itensGallery > @thumbsToShow)
+        {
+          <div class="more">
+            <div class="mask">
+              <span class="txt">+@more</span>
+            </div>
+          </div>
+        }
+        <img src="@($"{MassaNews.Service.Util.Constants.UrlGallery}/{item.ImgTb}")" alt="@item.Descricao">
+      </a>
+      index++;
+    }
+  </div>
+</section>

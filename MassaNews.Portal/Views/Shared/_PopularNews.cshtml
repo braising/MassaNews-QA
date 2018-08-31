@@ -1,0 +1,16 @@
+﻿@{
+  var lstNews = ViewBag.Popular5News as List<MassaNews.Models.Portal.Generic.PopularNewsList>;
+}
+
+@if (lstNews != null && lstNews.Any()){
+  <div class="sidebar__mais-acessadas t-module">
+    <h3 class="title t-page-color">Mais lidas</h3>
+    <ol class="t-list-ordered">
+      @{ var i = 1; }
+      @foreach (var news in lstNews){
+        <li><a href="@($"{news.UrlFull}.html")" title="@news.Chamada" data-position="@i">@news.Chamada</a></li>
+        i++;
+      }
+    </ol>
+  </div>
+}

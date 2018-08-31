@@ -1,0 +1,136 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+[class^="c-button"],
+[class*=" c-button"],
+[class^="c-button"]:visited,
+[class*=" c-button"]:visited {
+  display:inline-block;
+  margin:0 auto;
+
+  padding:.5em 1.5em .3em;
+  border:2px solid $brand-primary;
+  border-radius:$border-radius-large;
+  background:none;
+
+  font-weight:bold;
+  @include font-size(20px);
+  color:$brand-primary;
+  text-transform:uppercase;
+  text-align:center;
+
+  cursor:pointer;
+  transition:all 0.3s;
+
+  &:hover {
+    text-decoration:none;
+    background-color:$brand-primary;
+    color:#fff;
+  }
+
+  /* =============CUSTOM============= */
+  //temas
+  &[class*="default"] {
+    text-transform:none;
+    background:$gray-lighter;
+    color:#131838;
+  }
+
+  &[class*="white"] {
+    border-color:#fff;
+    background:none;
+    color:#fff;
+
+    &:hover {
+      background:#fff !important;
+      color:$brand-primary !important;
+    }
+  }
+
+  &[class*="gray"] {
+    border-color:$gray-dark;
+    background:none;
+    color:$gray-dark;
+
+    &:hover {
+      background:$gray-dark !important;
+      color:#fff;
+    }
+  }
+
+
+  &.submit {
+    margin-right:30px;
+    background:$brand-primary;
+    color:#fff;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background:lighten($brand-primary,5%);
+    }
+  }
+
+  &.facebook {
+    border-color:#4267b2;
+    background:none;
+    color:#4267b2;
+
+    &:hover {
+      background:#4267b2 !important;
+      color:#fff;
+    }
+
+    &.submit{
+      margin-right:0;
+      background:#4267b2;
+      color:#fff;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background:lighten(#4267b2,5%)!important;
+      }
+    }
+  }
+
+  &.block {
+    width: 100%;
+    display: block;
+  }
+
+  &.is-sending {
+    border-color:#ccc;
+    background:#ccc;
+    cursor:default;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background:#ccc;
+    }
+  }
+
+
+  //tamanhos
+  &[class*="mini"] {
+    @include font-size(12px);
+  }
+
+  &[class*="small"] {
+    @include font-size(16px);
+  }
+
+  &[class*="large"] {
+    @include font-size(24px);
+  }
+
+  /* =============MEDIA QUERY============= */
+
+
+
+} //.c-button

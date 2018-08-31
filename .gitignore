@@ -1,0 +1,23 @@
+#Nuget Packages
+/packages
+
+#Compiled files
+*/bin
+*/obj
+
+# Visual Studo 2015 Cache / Options Directory
+.vs/
+
+# User-specific files
+*.user
+
+# Publish Web Output
+*.pubxml
+
+node_modules
+bower_components
+
+*.DS_Store*
+
+/Web/Properties
+/Web/*.user

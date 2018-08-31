@@ -1,0 +1,162 @@
+﻿@section bodyClass{@Html.Raw("natal-de-luz pg-natal-de-luz")}
+@using MassaNews.Service.Models
+
+@model MassaNews.Portal.ViewModels.PromocaoNatalDeLuzCasaIndex
+
+<main class="g-main">
+  <input type="hidden" id="hdFinished" value="@if(Model.Status){<text>aberto</text>}else{<text>encerrado</text>}" />
+
+  @Html.Partial("_HeaderNatalDeLuz")
+
+  <section class="g-container t-content">
+    <ul class="bar-links bar-menu">
+      <li class="active"><i class="fa fa-image"></i><a href="/natal-de-luz">FOTOS DE CASAS</a></li>
+      <li><i class="fa fa-image"></i><a href="/natal-de-luz/rua">FOTOS DE RUAS</a></li>
+      <li><i class="fa fa-trophy"></i><a href="/natal-de-luz/premiacao">PREMIAÇÃO</a></li>
+      <li><i class="fa fa-file-text-o"></i><a href="/natal-de-luz/regulamento">REGULAMENTO</a></li>
+    </ul>
+
+    @if (Model.Inscricoes.Count() > 0){
+      <ul class="bar-links bar-filters">
+        <li class="@if(Model.Destaque == DestaqueInscricaoStatus.MaisRecentes.Id){<text>active</text>}" data-ordem="data"><a href="#">Mais recentes</a></li>
+        <li class="@if(Model.Destaque == DestaqueInscricaoStatus.MaisVotados.Id){<text>active</text>}" data-ordem="votos"><a href="#">Mais votadas</a></li>
+        @if (Model.ExibirFinalistas){
+          <li class="@if(Model.Destaque == DestaqueInscricaoStatus.Finalistas.Id){<text>active</text>}" data-ordem="posicao"><a href="#">Finalistas</a></li>
+        }
+      </ul>
+
+      <div class="agrupa-galeria">
+        @* <a href="#" class="arrow-prev"><i class="fa fa-4x fa-angle-left t-page-color"></i></a>
+        <a href="#" class="arrow-next"><i class="fa fa-4x fa-angle-right t-page-color"></i></a> *@
+        @*TODO: FAZER FORMA DE VER COM TIPO CASA E RUA*@
+
+        <div id="g-0" class="galeria-page">
+          @foreach (var inscricao in Model.Inscricoes)
+          {
+            <a href="@inscricao.ImagemCasaOrFull" data-ngthumb="@inscricao.ImagemCasaTbFull" data-ngdesc="@inscricao.Titulo" data-ngID="@inscricao.Id">@inscricao.Nome (@inscricao.QtdeVotos votos)</a>
+          }
+        </div>
+      </div>
+
+      <div class="load-more clearfix">
+        @* <a id="loadMore" class="c-button-natal-de-luz c-button--small text-center">Carregar mais</a> *@
+        <a href="#" class="arrow-prev c-button-natal-de-luz c-button--small u-left"><i class="fa fa-lg fa-angle-left t-page-color"></i><span class="label">&nbsp;&nbsp; Anterior</span></a>
+        <a href="#" class="arrow-next c-button-natal-de-luz c-button--small u-right"><span class="label">Próxima&nbsp;&nbsp; </span><i class="fa fa-lg fa-angle-right t-page-color"></i></a>
+      </div>
+    } else {
+      <hr>
+      <div class="text-center u-margin-top">
+        <h3 class="h1">Fotos em análise</h3>
+        <a href="/natal-de-luz/enviar" class="t-page-button c-button--small" title="Envie sua foto"><i class="fa fa-image"></i>&nbsp;&nbsp; Envie sua foto</a>
+      </div>
+    }
+  </section>
+</main>
+
+@section scripts{
+    <script type="text/javascript" src="~/Assets/scripts/natal-de-luz/jquery.nanogallery.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    $(document).ready(function ()
+    {
+
+      var galeria = 0;
+      var page = 0;
+      var pageMax = @Model.pages;
+      var currentImage;
+      var ordem = $('.bar-filters .active').data('ordem');//'data';
+
+      function setNanoGallery(div) {
+        $(div).nanoGallery({
+          thumbnailWidth: 'auto',
+          thumbnailHeight: 300,
+          thumbnailHoverEffect: [{ name: 'labelAppear75', duration: 150 }],
+          thumbnailLabel: { display: true, position: 'overImageOnMiddle', align: 'center',   displayDescription: true },
+          viewerToolbar: { style: 'stuckImage', standard: 'label, vote', minimized: 'label' }
+        });
+      }
+      function loadGallery(page)
+      {
+        galeria = galeria + 1;
+
+        $.get('/natal-de-luz/GeLatestImagesCasa', { page: page, orderBy: ordem }, function (result){
+          $('.galeria-page').nanoGallery('destroy');
+          $('.galeria-page').remove();
+
+          var gallery = $('<div id="g-' + galeria + '" class="galeria-page"></div>');
+
+          $(result.data).each(function()
+          {
+            var img = $('<a id="' + $(this)[0].id + '" href="' + $(this)[0].imageCasaOr + '" data-ngthumb="' + $(this)[0].imageCasaTb + '" data-ngdesc="' + $(this)[0].titulo + '" data-ngID="' + $(this)[0].id + '">' + $(this)[0].nome + '</a>');
+            $(gallery).append($(img))
+          });
+
+          pageMax = result.pages;
+
+          if((page + 1) == pageMax)
+            $('.arrow-next').hide();
+          else
+            $('.arrow-next').show();
+
+          $(".agrupa-galeria").append($(gallery));
+
+          setNanoGallery($(gallery));
+        });
+
+        if (page <= 0)
+          $('.arrow-prev').hide();
+        else
+          $('.arrow-prev').show();
+
+        if((page + 1) == pageMax)
+          $('.arrow-next').hide();
+        else
+          $('.arrow-next').show();
+
+        // if(pageMax == 1)
+        //   $('.agrupa-galeria').addClass('agrupa-galeria-1');
+      }
+
+      $(".arrow-prev").on("click", function () {
+        page = page - 1;
+
+        loadGallery(page);
+      });
+      $(".arrow-next").on("click", function () {
+        page = page + 1;
+        loadGallery(page);
+      });
+
+      $(".bar-filters li").on('click', function(event){
+        $(".bar-filters .active").removeClass('active');
+        $(this).addClass('active');
+
+        page = 0;
+        ordem = $(this).data('ordem');
+        loadGallery(page);
+
+        event.preventDefault();
+      });
+
+      $('.arrow-prev').hide();
+
+      if((page + 1) == pageMax)
+        $('.arrow-next').hide();
+
+      //Redirect to correct url
+      if(window.location.hash)
+      {
+        var imageId = window.location.hash.split('/')[3];
+
+        var url = 'https://' + window.location.host + '/natal-de-luz/' + imageId + '#nanogallery/g-0/0/' + imageId;
+
+        if(window.location.href != url && imageId != null)
+          window.location= url;
+        else
+          setNanoGallery($("#g-0"));
+      } else{
+        setNanoGallery($("#g-0"));
+      }
+
+    });
+  </script>
+}

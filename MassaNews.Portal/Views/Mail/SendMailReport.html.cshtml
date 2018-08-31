@@ -1,0 +1,15 @@
+﻿@model MassaNews.Portal.Models.ReportModel
+@using MassaNews.Service.Util
+@{
+  Layout = null;
+}
+
+<h3>Massa News | Reportar erro</h3>
+<strong>Nome:</strong> @Model.Nome<br />
+<strong>E-mail:</strong> @Model.Email<br />
+<strong>Data do contato:</strong> @Convert.ToDateTime(Model.Data).ToString("dd/MM/yyyy HH:mm")<br />
+<strong>URL:</strong> @Model.Url<br />
+<strong>Mensagem:</strong> <br /> @if (!string.IsNullOrEmpty(Model.Mensagem))
+{ @Model.Mensagem }
+else
+{ <text>Não informado</text> }

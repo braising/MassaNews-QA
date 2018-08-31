@@ -1,0 +1,57 @@
+﻿@using MassaNews.Portal.Models;
+<div id="c-fixed-bar">
+  @* <div class="g-container"> *@
+  <ul class="c-fixed-bar__companies">
+    <li class="grupo-massa"><a href="http://grupomassa.com.br/?utm_source=MassaNews&utm_medium=fixed-bar" target="_blank" title="Grupo Massa">Grupo Massa</a></li>
+    <li class="rede-massa"><a href="https://redemassa.com.br?utm_source=MassaNews&utm_medium=fixed-bar" target="_blank" title="Rede Massa">Rede Massa</a></li>
+    <li class="massa-news"><a href="/" target="_blank" title="Massa News">Massa News</a></li>
+    <li class="massa-fm"><a href="http://massafm.com.br" target="_blank" title="Massa FM">Massa FM</a></li>
+    <li class="massa-play"><a href="http://www.massaplay.com.br?utm_source=MassaNews&utm_medium=fixed-bar" target="_blank" title="Massa Play">Massa Play</a></li>
+  </ul>
+  @*<div class="c-header__city">
+      <div class="weather">
+        <a href="@string.Format("/previsao-do-tempo/{0}", ViewBag.CurrentCity.Url)" title="Previsão do Tempo em @ViewBag.City">
+          <span class='sky'>
+            <span class='wi @if (!string.IsNullOrEmpty(ViewBag.Icon)) { @ViewBag.Icon}' data-description='@ViewBag.Description'></span>
+          </span>
+          <span class='temperature'>
+            <span class="item max"><span class="temp">@if(!string.IsNullOrEmpty(ViewBag.TempMax)){<text>@ViewBag.TempMax&deg;</text>}</span><br> <span class="label">Máx</span></span>
+            <span class="item min"><span class="temp">@if(!string.IsNullOrEmpty(ViewBag.TempMin)){<text>@ViewBag.TempMin&deg;</text>}</span><br> <span class="label">Min</span></span>
+          </span>
+        </a>
+      </div>
+
+      <!-- <div class="selected-city">
+        <button class="link" rel="modal" data-modal="modal-geo" title="Alterar cidade">
+          <span class="city trigger-get-city-location">@if (string.IsNullOrEmpty(ViewBag.City)) { <text> @ViewBag.CurrentCity.Nome </text> } else { <text> @ViewBag.City </text>}</span>
+          <i class="fa fa-angle-down fa-lg arrow"></i>
+        </button>
+      </div-->
+    </div>*@
+  <div class="c-fixed-bar__infos">
+    <div class="profile minha-conta-topo">
+      <a href="/minha-conta/entrar"><i class="fa fa-user t-page-color hide-mobile"></i>Minha conta<i class="fa fa-angle-down"></i></a>
+    </div>
+    @* logado *@
+    @*@if (CurrentUser.Valido)
+    {*@
+    @* <div class="profile"><i class="fa fa-user t-page-color hide-mobile"></i>&nbsp; <a href="/minha-conta"><span class="hide-mobile">Olá, </span>@CurrentUser.Data.PrimeiroNome <i class="fa fa-angle-down"></i></a><a href="/minha-conta/sair">Sair</a></div> *@
+    @*<div class="profile"><a href="/minha-conta"><i class="fa fa-user t-page-color hide-mobile"></i><span class="hide-mobile">Olá, </span>@CurrentUser.Data.PrimeiroNome</a><a href="/minha-conta/sair">Sair</a></div>
+    }
+    else
+    {*@
+    @* <div class="profile"><a href="/minha-conta/entrar"><i class="fa fa-user t-page-color hide-mobile"></i>Minha conta <i class="fa fa-angle-down"></i></a></div> *@
+    @*<div class="profile"><a href="/minha-conta/entrar"><i class="fa fa-user t-page-color hide-mobile"></i>Minha conta</a></div>
+    }*@
+    @* não logado *@
+    @*<div class="profile"><a href="#" rel="modal" data-modal="modal-login" data-modal-ref="#" title="Minha conta"><i class="fa fa-user t-page-color hide-mobile"></i>Minha conta<i class="fa fa-angle-down"></i></a></div>*@
+    
+    <div class="location">
+      <a href="#" rel="modal" data-modal="modal-geo">
+        <i class="fa fa-map-marker t-page-color hide-mobile"></i><span class="hide-mobile">Você está em </span>
+        <u class="city trigger-get-city-location">@if (string.IsNullOrEmpty(ViewBag.City)){<text>@ViewBag.CurrentCity.Nome</text>}else{<text>@ViewBag.City</text>}</u><i class="fa fa-angle-down"></i>
+      </a>
+    </div>
+  </div>
+  @* </div> *@
+</div>

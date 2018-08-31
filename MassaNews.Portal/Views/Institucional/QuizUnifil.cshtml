@@ -1,0 +1,307 @@
+﻿@section bodyClass{@Html.Raw("pg-quiz-unifil")}
+
+<main class="g-main">
+  <div class="g-container t-content top clearfix">
+    <section class="g-content">
+      <h2 class="secondary-color">Qual profissão combina com você?</h2>
+      <p>Responda o quiz e em poucos minutos você descobrirá.
+      <br>É rápido, fácil e grátis!</p>
+
+      <a href="#quiz-unifil" class="c-button t-page-button submitt trigger-scroll track-iniciar-quiz-unifil" title="Iniciar o Quiz">Iniciar o Quiz</a>
+    </section>
+  </div>
+
+  <div id="quiz-unifil" class="header-test">
+    <section class="g-container t-content">
+      <h2 class="h1">Descubra as profissões que combinam com você</h2>
+      <p class="u-margin-none">Esse quiz online tem 17 questões, para cada questão, escolha apenas a alternativa com a qual você mais se identifica.</p>
+    </section>
+  </div>
+
+  <div class="g-content-inner-sidebar g-container t-content">
+    <section class="g-content test">
+      @* QUESTÕES *@
+      <form action="#" class="form-questions">
+        <div class="form-question" data-question="1">
+          <h3 class="h2 secondary-color">1 - Quando penso numa profissão, o mais importante para mim é:</h3>
+          <label data-answers="a" for="#">Obter um bom retorno financeiro e ser bem sucedido</label>
+          <label data-answers="b" for="#">Trabalhar em algo que esteja em evidência no mercado</label>
+          <label data-answers="c" for="#">Fazer algo que gosto, independente do retorno financeiro</label>
+          <label data-answers="d" for="#">Ser muito bem sucedido financeiramente</label>
+          <label data-answers="e" for="#">Poder atuar em minha comunidade</label>
+        </div>
+        <div class="form-question" data-question="2" hidden>
+          <h3 class="h2 secondary-color">2 - Das viagens abaixo, qual seria considerada por você como a viagem perfeita?</h3>
+          <label data-answers="a" for="#">Conhecer os castelos antigos da Europa e visitar os museus</label>
+          <label data-answers="b" for="#">Surf e aventuras radicais na Austrália</label>
+          <label data-answers="c" for="#">Compras e conforto, viajando pelos Estados Unidos</label>
+          <label data-answers="d" for="#">Conhecer as particularidades da cultura asiática no Japão</label>
+          <label data-answers="e" for="#">Descansar com a família em uma ilha paradisíaca</label>
+        </div>
+        <div class="form-question" data-question="3" hidden>
+          <h3 class="h2 secondary-color">3 - A pessoa da sua família que você mais admira:</h3>
+          <label data-answers="a" for="#">Estudou bastante e possui uma posição de destaque no mercado de trabalho</label>
+          <label data-answers="b" for="#">É aventureira e viaja bastante</label>
+          <label data-answers="c" for="#">Curte a vida e está sempre descobrindo coisas novas</label>
+          <label data-answers="d" for="#">É bastante criativa e está sempre com novidades</label>
+          <label data-answers="e" for="#">Se dedica a algum trabalho de ajuda ao próximo</label>
+        </div>
+        <div class="form-question" data-question="4" hidden>
+          <h3 class="h2 secondary-color">4 - Se eu tivesse que montar uma empresa hoje, esta empresa seria:</h3>
+          <label data-answers="a" for="#">Uma empresa baseada em algo de meu interesse pessoal como um passatempo ou atividade que pratico</label>
+          <label data-answers="b" for="#">Uma empresa direcionada as tendências atuais do mercado independentemente da área de atividade</label>
+          <label data-answers="c" for="#">Uma empresa familiar onde eu pudesse trabalhar perto de meus amigos e familiares</label>
+          <label data-answers="d" for="#">Uma empresa tradicional, com produtos ou serviços conservadores e de fácil comercialização</label>
+          <label data-answers="e" for="#">Uma empresa criativa onde eu pudesse arriscar e desenvolver novas ideias</label>
+        </div>
+        <div class="form-question" data-question="5" hidden>
+          <h3 class="h2 secondary-color">5 - Qual país abaixo você desejaria conhecer?</h3>
+          <label data-answers="a" for="#">Egito</label>
+          <label data-answers="b" for="#">Israel</label>
+          <label data-answers="c" for="#">Nova Zelândia</label>
+          <label data-answers="d" for="#">Tailândia</label>
+          <label data-answers="e" for="#">África do Sul</label>
+        </div>
+        <div class="form-question" data-question="6" hidden>
+          <h3 class="h2 secondary-color">6 - Qual dos esportes abaixo você mais se identifica?</h3>
+          <label data-answers="a" for="#">Futebol</label>
+          <label data-answers="b" for="#">Lutas</label>
+          <label data-answers="c" for="#">Natação</label>
+          <label data-answers="d" for="#">Tênis</label>
+          <label data-answers="e" for="#">Não gosto de esportes</label>
+        </div>
+        <div class="form-question" data-question="7" hidden>
+          <h3 class="h2 secondary-color">7 - Em um ambiente onde você não conhece ninguém, você costuma:</h3>
+          <label data-answers="a" for="#">Ficar em um lugar isolado</label>
+          <label data-answers="b" for="#">Conversar com alguém que possa lhe introduzir a um grupo</label>
+          <label data-answers="c" for="#">Curtir sozinho</label>
+          <label data-answers="d" for="#">Se socializar e conquistar amigos</label>
+          <label data-answers="e" for="#">Se sentir incomodado por estar sozinho e vai embora</label>
+        </div>
+        <div class="form-question" data-question="8" hidden>
+          <h3 class="h2 secondary-color">8 - Em quais destes ambientes você se sente mais a vontade?</h3>
+          <label data-answers="a" for="#">Em um hospital</label>
+          <label data-answers="b" for="#">Em centros esportivos</label>
+          <label data-answers="c" for="#">Em uma floresta</label>
+          <label data-answers="d" for="#">Em shoppings</label>
+          <label data-answers="e" for="#">Em lugares isolados</label>
+        </div>
+        <div class="form-question" data-question="9" hidden>
+          <h3 class="h2 secondary-color">9 - Dentre estas personalidades, a que mais admiro é:</h3>
+          <label data-answers="a" for="#">Bill Gates</label>
+          <label data-answers="b" for="#">Steve Jobs</label>
+          <label data-answers="c" for="#">Ronaldo</label>
+          <label data-answers="d" for="#">Angelina Jolie</label>
+          <label data-answers="e" for="#">Madre Tereza</label>
+        </div>
+        <div class="form-question" data-question="10" hidden>
+          <h3 class="h2 secondary-color">10 - Estou fazendo este quiz pois:</h3>
+          <label data-answers="a" for="#">Não tenho ideia de qual profissão escolher</label>
+          <label data-answers="b" for="#">Estou na dúvida entre duas profissões</label>
+          <label data-answers="c" for="#">Estou na dúvida entre 3 profissões ou mais</label>
+          <label data-answers="d" for="#">Sei qual profissão me interessa, mas não tenho certeza</label>
+          <label data-answers="e" for="#">Estou certo de qual profissão eu quero, apenas pretendo conferir</label>
+        </div>
+        <div class="form-question" data-question="11" hidden>
+          <h3 class="h2 secondary-color">11 - Procuro fazer amigos que:</h3>
+          <label data-answers="a" for="#">Possuem status e são influentes</label>
+          <label data-answers="b" for="#">Possuem os mesmos interesses que eu</label>
+          <label data-answers="c" for="#">Compartilham das mesmas ideias</label>
+          <label data-answers="d" for="#">São bastante diferentes de mim</label>
+          <label data-answers="e" for="#">Não me preocupo com características quando procuro uma amizade</label>
+        </div>
+        <div class="form-question" data-question="12" hidden>
+          <h3 class="h2 secondary-color">12 - Na escola eu geralmente me destacava por:</h3>
+          <label data-answers="a" for="#">Ser um aluno dedicado e tirar notas boas</label>
+          <label data-answers="b" for="#">Ser atencioso e ajudar meus colegas</label>
+          <label data-answers="c" for="#">Ser bastante dedicado aos esportes</label>
+          <label data-answers="d" for="#">Não prestar atenção nas aulas e ser repreendido</label>
+          <label data-answers="e" for="#">Ser engraçado e contar piadas</label>
+        </div>
+        <div class="form-question" data-question="13" hidden>
+          <h3 class="h2 secondary-color">13 - Se eu ganhasse na loteria eu:</h3>
+          <label data-answers="a" for="#">Guardaria parte do dinheiro e investiria em um negócio</label>
+          <label data-answers="b" for="#">Dividiria meu dinheiro entre diversas opções de investimento</label>
+          <label data-answers="c" for="#">Guardaria o dinheiro e me dedicaria a atividades que me interessam</label>
+          <label data-answers="d" for="#">Usaria o dinheiro para uma causa nobre</label>
+          <label data-answers="e" for="#">Aposentaria e viveria viajando</label>
+        </div>
+        <div class="form-question" data-question="14" hidden>
+          <h3 class="h2 secondary-color">14 - Se eu tivesse que escolher uma atividade para exercer por 6 meses seria:</h3>
+          <label data-answers="a" for="#">Reformar uma casa</label>
+          <label data-answers="b" for="#">Me colocar em contato com pessoas bem-sucedidas</label>
+          <label data-answers="c" for="#">Algo que pudesse ser realizado em equipe</label>
+          <label data-answers="d" for="#">Uma atividade com boa remuneração</label>
+          <label data-answers="e" for="#">Uma atividade voluntária e com a qual eu pudesse ajudar o maior número de pessoas</label>
+        </div>
+        <div class="form-question" data-question="15" hidden>
+          <h3 class="h2 secondary-color">15 - Eu certamente gastaria uma boa parte do meu primeiro salário com:</h3>
+          <label data-answers="a" for="#">Um jantar para a(o) namorada(o) ou familiares</label>
+          <label data-answers="b" for="#">Investiria em meu desenvolvimento profissional</label>
+          <label data-answers="c" for="#">Uma viagem</label>
+          <label data-answers="d" for="#">Gastaria o mínimo possível</label>
+          <label data-answers="e" for="#">Compraria algum produto caro de meu interesse</label>
+        </div>
+        <div class="form-question" data-question="16" hidden>
+          <h3 class="h2 secondary-color">16 - Se eu tivesse que abrir um destes negócios seria:</h3>
+          <label data-answers="a" for="#">Uma empresa de internet</label>
+          <label data-answers="b" for="#">Uma fábrica de computadores</label>
+          <label data-answers="c" for="#">Um restaurante</label>
+          <label data-answers="d" for="#">Uma academia</label>
+          <label data-answers="e" for="#">Uma clínica médica</label>
+        </div>
+        <div class="form-question" data-question="17" hidden>
+          <h3 class="h2 secondary-color">17 - Minha maior frustração seria:</h3>
+          <label data-answers="a" for="#">Não ser bem sucedido profissionalmente</label>
+          <label data-answers="b" for="#">Não me destacar em minha área de atuação</label>
+          <label data-answers="c" for="#">Não construir uma família</label>
+          <label data-answers="d" for="#">Não ter muito tempo para curtir a vida</label>
+          <label data-answers="e" for="#">Escolher a carreira errada e ter que mudar depois</label>
+        </div>
+        <div class="progress-bar">
+          <span class="completed" style="width: 0%;"><strong class="percent">20%</strong></span>
+        </div>
+        <small class="u-inline-block">(<span class="complete-questions">4</span> de <span class="total-questions">15</span>)</small>
+         <a class="u-right trigger-form-questions-go-back go-back small" hidden>« voltar</a>
+      </form>
+
+      @* OPTIN *@
+       <form action="#" class="form-optin" hidden>
+        <h3 class="h2 secondary-color">Preencha os campos e saiba o resultado do seu quiz!</h3>
+
+        <ul class="c-forms--labels">
+          <li class="input-large">
+            <label for="form-nome">Nome*</label>
+            <input type="text" name="form-nome" maxlength="120" placeholder="Digite seu nome">
+            <span class="field-validation-error" data-valmsg-for="form-nome" data-valmsg-replace="true" style="display: none">*Obrigatório</span>
+          </li>
+
+          <li class="input-large">
+            <label for="form-email">E-mail*</label>
+            <input type="email" name="form-email" maxlength="120" placeholder="Digite seu e-mail">
+            <span class="field-validation-error" data-valmsg-for="form-email" data-valmsg-replace="true" style="display: none">*Obrigatório</span>
+            <span class="field-validation-error" data-valmsg-for="form-email" data-valmsg-replace="true" style="display: none">*E-mail inválido</span>
+          </li>
+          <li class="input-large">
+            <label for="form-cpf">CPF</label>
+            <input class="cpf trigger-mask-cpf" type="text" name="form-cpf" maxlength="120" placeholder="Digite seu cpf">
+            <span class="field-validation-error" data-valmsg-for="form-cpf" data-valmsg-replace="true" style="display: none">*CPF inválido</span>
+          </li>
+          <li class="input-large">
+            <label for="form-news"><input type="checkbox" name="form-news" checked> Aceito receber novidades do Massa News</label>
+          </li>
+
+          <li class="input-large label-none">
+            <button type="button" class="c-button t-page-button small">Ver resultado</button>
+          </li>
+        </ul>
+      </form>
+
+      @* RESULT *@
+       <div class="result" hidden>
+         <input type="hidden" name="form-result" />
+         <div id="result-a" hidden>
+           <div>
+             <h3 class="h2 secondary-color">Você valoriza o sucesso profissional</h3>
+             <p>Realizar um bom trabalho, ter relevância e ser reconhecido em uma organização de referência. Essas são algumas características das pessoas que, como você, prezam por uma excelente carreira!</p>
+           </div>
+           <div>
+             <h3 class="h2 secondary-color">Cursos Unifil indicados para você</h3>
+             <ul>
+               <li><a href="http://curso.unifilead.com.br/administracao?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=administracao&utm_content=links_cursos" target="_blank">Administração</a></li>
+               <li><a href="http://curso.unifilead.com.br/gestao-publica?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=gestao-publica&utm_content=links_cursos" target="_blank">Gestão Pública</a></li>
+               <li><a href="http://curso.unifilead.com.br/logistica?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=logistica&utm_content=links_cursos" target="_blank">Logística</a></li>
+               <li><a href="http://curso.unifilead.com.br/processos-gerenciais?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=processos-gerenciais&utm_content=links_cursos" target="_blank">Processos Gerenciais</a></li>
+               <li><a href="http://curso.unifilead.com.br/servicos-juridicos?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=servicos-juridicos&utm_content=links_cursos" target="_blank">Serviços Jurídicos</a></li>
+             </ul>
+           </div>
+         </div>
+         <div id="result-b" hidden>
+           <div>
+             <h3 class="h2 secondary-color">Você valoriza a ascensão social</h3>
+             <p>Você procura o melhor! Crescer, aumentar seu poder aquisitivo e bens definitivamente estão nos seus objetivos. Você está no caminho certo, confira os cursos indicados para você.</p>
+           </div>
+           <div>
+             <h3 class="h2 secondary-color">Cursos Unifil indicados para você</h3>
+             <ul>
+               <li><a href="http://curso.unifilead.com.br/administracao?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=administracao&utm_content=links_cursos" target="_blank">Administração</a></li>
+               <li><a href="http://curso.unifilead.com.br/engenharia-civil?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=engenharia-civil&utm_content=links_cursos" target="_blank">Engenharia Civil</a></li>
+               <li><a href="http://curso.unifilead.com.br/engenharia-producao?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=engenharia-producao&utm_content=links_cursos" target="_blank">Engenharia de Produção</a></li>
+               <li><a href="http://curso.unifilead.com.br/engenharia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=engenharia&utm_content=links_cursos" target="_blank">Tecnologia em Engenharia</a></li>
+               <li><a href="http://curso.unifilead.com.br/engenharia-eletrica?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=engenharia-eletrica&utm_content=links_cursos" target="_blank">Engenharia Elétrica</a></li>
+               <li><a href="http://curso.unifilead.com.br/processos-gerenciais?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=processos-gerenciais&utm_content=links_cursos" target="_blank">Processos Gerenciais</a></li>
+             </ul>
+           </div>
+         </div>
+         <div id="result-c" hidden>
+           <div>
+             <h3 class="h2 secondary-color">Você valoriza a segurança</h3>
+             <p>Estabilidade, segurança e rotina agradável são alguns dos fatores que atraem você para a sua próxima formação. Você procura uma carreira sólida e gratificante, confira os cursos indicados para você.</p>
+           </div>
+           <div>
+             <h3 class="h2 secondary-color">Cursos Unifil indicados para você</h3>
+             <ul>
+               <li><a href="http://curso.unifilead.com.br/engenharia-civil?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=engenharia-civil&utm_content=links_cursos" target="_blank">Engenharia Civil</a></li>
+               <li><a href="http://curso.unifilead.com.br/engenharia-producao?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=engenharia-producao&utm_content=links_cursos" target="_blank">Engenharia de Produção</a></li>
+               <li><a href="http://curso.unifilead.com.br/gestao-publica?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=gestao-publica&utm_content=links_cursos" target="_blank">Gestão Pública</a></li>
+               <li><a href="http://curso.unifilead.com.br/radiologia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=radiologia&utm_content=links_cursos" target="_blank">Radiologia</a></li>
+               <li><a href="http://curso.unifilead.com.br/servico-social?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=servico-social&utm_content=links_cursos" target="_blank">Serviço Social</a></li>
+               <li><a href="http://curso.unifilead.com.br/educacao-fisica?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=educacao-fisica&utm_content=links_cursos" target="_blank">Educação Física</a></li>
+               <li><a href="http://curso.unifilead.com.br/engenharia-eletrica?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=engenharia-eletrica&utm_content=links_cursos" target="_blank">Engenharia Elétrica</a></li>
+               <li><a href="http://curso.unifilead.com.br/engenharia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=engenharia&utm_content=links_cursos" target="_blank">Tecnologia em Engenharia</a></li>
+               <li><a href="http://curso.unifilead.com.br/logistica?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=logistica&utm_content=links_cursos" target="_blank">Logística</a></li>
+               <li><a href="http://curso.unifilead.com.br/pedagogia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=pedagogia&utm_content=links_cursos" target="_blank">Pedagogia</a></li>
+               <li><a href="http://curso.unifilead.com.br/teologia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=teologia&utm_content=links_cursos" target="_blank">Teologia</a></li>
+             </ul>
+           </div>
+         </div>
+         <div id="result-d" hidden>
+           <div>
+             <h3 class="h2 secondary-color">Você valoriza a qualidade de vida</h3>
+             <p>O bem-estar é obrigatório para sua carreira, o conforto e satisfação em realizar um bom trabalho são fatores fundamentais para sua escolha. Confira alguns cursos indicados para você.</p>
+           </div>
+           <div>
+             <h3 class="h2 secondary-color">Cursos Unifil indicados para você</h3>
+             <ul>
+               <li><a href="http://curso.unifilead.com.br/administracao?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=administracao&utm_content=links_cursos" target="_blank">Administração</a></li>
+               <li><a href="http://curso.unifilead.com.br/podologia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=podologia&utm_content=links_cursos" target="_blank">Podologia</a></li>
+               <li><a href="http://curso.unifilead.com.br/servico-social?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=servico-social&utm_content=links_cursos" target="_blank">Serviço Social</a></li>
+               <li><a href="http://curso.unifilead.com.br/educacao-fisica?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=educacao-fisica&utm_content=links_cursos" target="_blank">Educação Física</a></li>
+               <li><a href="http://curso.unifilead.com.br/pedagogia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=pedagogia&utm_content=links_cursos" target="_blank">Pedagogia</a></li>
+               <li><a href="http://curso.unifilead.com.br/teologia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=teologia&utm_content=links_cursos" target="_blank">Teologia</a></li>
+             </ul>
+           </div>
+         </div>
+         <div id="result-e" hidden>
+           <div>
+             <h3 class="h2 secondary-color">Você valoriza a solidariedade</h3>
+             <p>Da prestação de serviço ao bom atendimento, você definitivamente se sente gratificado em servir ao próximo e ver o resultado do seu bom trabalho na satisfação das pessoas a sua volta. Confira alguns cursos indicados para você.</p>
+           </div>
+           <div>
+             <h3 class="h2 secondary-color">Cursos Unifil indicados para você</h3>
+             <ul>
+               <li><a href="http://curso.unifilead.com.br/administracao?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=administracao&utm_content=links_cursos" target="_blank">Administração</a></li>
+               <li><a href="http://curso.unifilead.com.br/gestao-publica?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=gestao-publica&utm_content=links_cursos" target="_blank">Gestão Pública</a></li>
+               <li><a href="http://curso.unifilead.com.br/podologia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=podologia&utm_content=links_cursos" target="_blank">Podologia</a></li>
+               <li><a href="http://curso.unifilead.com.br/radiologia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=radiologia&utm_content=links_cursos" target="_blank">Radiologia</a></li>
+               <li><a href="http://curso.unifilead.com.br/servico-social?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=servico-social&utm_content=links_cursos" target="_blank">Serviço Social</a></li>
+               <li><a href="http://curso.unifilead.com.br/educacao-fisica?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=educacao-fisica&utm_content=links_cursos" target="_blank">Educação Física</a></li>
+               <li><a href="http://curso.unifilead.com.br/pedagogia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=pedagogia&utm_content=links_cursos" target="_blank">Pedagogia</a></li>
+               <li><a href="http://curso.unifilead.com.br/servicos-juridicos?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=servicos-juridicos&utm_content=links_cursos" target="_blank">Serviços Jurídicos</a></li>
+               <li><a href="http://curso.unifilead.com.br/teologia?utm_source=massanews&utm_medium=portal_quiz&utm_campaign=quiz&utm_term=teologia&utm_content=links_cursos" target="_blank">Teologia</a></li>
+             </ul>
+           </div>
+         </div>
+      </div> 
+    </section>
+
+    <aside class="g-aside">
+      @Html.Partial("_AdRetanguloMedio")
+      @Html.Partial("_AdArranhaCeuGrande")
+    </aside>
+  </div>
+</main>
+
+@section scripts{
+  @Scripts.Render("~/bundles/quiz-unifil")
+}

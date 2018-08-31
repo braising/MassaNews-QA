@@ -1,0 +1,165 @@
+// Base Variables
+$wi-path:        "../fonts" !default;
+$wi-version:     "2.0" !default;
+$wi-css-prefix:  wi !default;
+$wi-font-family: weathericons !default;
+
+@font-face {
+    font-family: '#{$wi-font-family}';
+    src: url('#{$wi-path}/#{$wi-font-family}-regular-webfont.eot');
+    src: url('#{$wi-path}/#{$wi-font-family}-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$wi-path}/#{$wi-font-family}-regular-webfont.woff2') format('woff2'),
+         url('#{$wi-path}/#{$wi-font-family}-regular-webfont.woff') format('woff'),
+         url('#{$wi-path}/#{$wi-font-family}-regular-webfont.ttf') format('truetype'),
+         url('#{$wi-path}/#{$wi-font-family}-regular-webfont.svg#weather_iconsregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.#{$wi-css-prefix} {
+  display: inline-block;
+  font-family: '#{$wi-font-family}';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.#{$wi-css-prefix}-fw {
+  width: 1.4em;
+  text-align: center;
+}
+
+// @mixin wi-icon-rotate($degrees, $rotation) {
+//   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+//   -webkit-transform: rotate($degrees);
+//       -ms-transform: rotate($degrees);
+//           transform: rotate($degrees);
+// }
+
+// @mixin wi-icon-flip($horiz, $vert, $rotation) {
+//   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+//   -webkit-transform: scale($horiz, $vert);
+//       -ms-transform: scale($horiz, $vert);
+//           transform: scale($horiz, $vert);
+// }
+
+.#{$wi-css-prefix}-rotate-90  { @include wi-icon-rotate(90deg, 1);  }
+.#{$wi-css-prefix}-rotate-180 { @include wi-icon-rotate(180deg, 2); }
+.#{$wi-css-prefix}-rotate-270 { @include wi-icon-rotate(270deg, 3); }
+
+.#{$wi-css-prefix}-flip-horizontal { @include wi-icon-flip(-1, 1, 0); }
+.#{$wi-css-prefix}-flip-vertical   { @include wi-icon-flip(1, -1, 2); }
+
+
+//CONDIÇÕES CLIMÁTICAS
+.wi-day-sunny:before {content: "\f00d";}
+.wi-day-cloudy:before {content: "\f002";}
+.wi-day-fog:before {content: "\f003";}
+.wi-day-rain:before {content: "\f008";}
+.wi-day-snow:before {content: "\f00a";}
+.wi-day-cloudy-high:before {content: "\f07d";}
+.wi-night-clear:before {content: "\f02e";}
+.wi-night-alt-cloudy:before {content: "\f086";}
+.wi-night-alt-rain:before {content: "\f028";}
+.wi-night-alt-snow:before {content: "\f02a";}
+.wi-night-fog:before {content: "\f04a";}
+.wi-thunderstorm:before {content: "\f01e";}
+.wi-night-alt-cloudy-high:before {content: "\f07e";}
+.wi-cloudy:before {content: "\f013";}
+.wi-rain:before {content: "\f019";}
+
+// Yahoo Class
+.wi-tornado:before {content: "\f056";}
+.wi-day-storm-showers:before {content: "\f00e";}
+.wi-hurricane:before {content: "\f073";}
+.wi-thunderstorm:before {content: "\f01e";}
+.wi-thunderstorm:before {content: "\f01e";}
+.wi-rain-mix:before {content: "\f017";}
+.wi-rain-mix:before {content: "\f017";}
+.wi-rain-mix:before {content: "\f017";}
+.wi-hail:before {content: "\f015";}
+.wi-showers:before {content: "\f01a";}
+.wi-hail:before {content: "\f015";}
+.wi-showers:before {content: "\f01a";}
+.wi-showers:before {content: "\f01a";}
+.wi-snow:before {content: "\f01b";}
+.wi-day-snow:before {content: "\f00a";}
+.wi-snow-wind:before {content: "\f064";}
+.wi-snow:before {content: "\f01b";}
+.wi-hail:before {content: "\f015";}
+.wi-rain-mix:before {content: "\f017";}
+.wi-dust:before {content: "\f063";}
+.wi-fog:before {content: "\f014";}
+.wi-windy:before {content: "\f021";}
+.wi-smoke:before {content: "\f062";}
+.wi-strong-wind:before {content: "\f050";}
+.wi-strong-wind:before {content: "\f050";}
+.wi-snowflake-cold:before {content: "\f076";}
+.wi-cloudy:before {content: "\f013";}
+.wi-night-cloudy:before {content: "\f031";}
+.wi-day-cloudy:before {content: "\f002";}
+.wi-night-cloudy:before {content: "\f031";}
+.wi-day-cloudy:before {content: "\f002";}
+.wi-night-clear:before {content: "\f02e";}
+.wi-day-sunny:before {content: "\f00d";}
+.wi-night-partly-cloudy:before {content: "\f083";}
+.wi-day-sunny-overcast:before {content: "\f00c";}
+.wi-rain-mix:before {content: "\f017";}
+.wi-hot:before {content: "\f072";}
+.wi-day-storm-showers:before {content: "\f00e";}
+.wi-day-storm-showers:before {content: "\f00e";}
+.wi-day-storm-showers:before {content: "\f00e";}
+.wi-showers:before {content: "\f01a";}
+.wi-snow-wind:before {content: "\f064";}
+.wi-snow:before {content: "\f01b";}
+.wi-snow-wind:before {content: "\f064";}
+.wi-day-sunny-overcast:before {content: "\f00c";}
+.wi-day-storm-showers:before {content: "\f00e";}
+.wi-snow:before {content: "\f01b";}
+.wi-day-storm-showers:before {content: "\f00e";}
+.wi-stars:before {content: "\f077";}
+.wi-thermometer:before {content: "\f055";}
+.wi-humidity:before {content: "\f07a";}
+.wi-sunrise:before {content: "\f051";}
+.wi-sunset:before {content: "\f052";}
+.wi-horizon-alt:before {content: "\f046";}
+
+$towards: 0   180,
+          23  203,
+          45  225,
+          68  248,
+          90  270,
+          113 293,
+          135 315,
+          158 338,
+          180 0,
+          203 23,
+          225 45,
+          248 68,
+          270 90,
+          293 113,
+          313 133,
+          336 156;
+
+// foreach para a direção do vento
+@each $toward in $towards {
+  // Variaveis
+  $class: nth($toward, 1);
+  $rotate: nth($toward, 2);
+
+  .wi-wind{
+    &:before{
+      content: "\f0b1";
+    }
+
+    &.from-#{$class}-deg {
+      -webkit-transform: rotate(#{$rotate}deg);
+      -moz-transform: rotate(#{$rotate}deg);
+      -ms-transform: rotate(#{$rotate}deg);
+      -o-transform: rotate(#{$rotate}deg);
+      transform: rotate(#{$rotate}deg);
+    }
+  }
+}

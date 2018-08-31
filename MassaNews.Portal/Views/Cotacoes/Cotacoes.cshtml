@@ -1,0 +1,165 @@
+﻿@section bodyClass{@Html.Raw("pg-negocios-da-terra pg-cotacoes")}
+
+@model MassaNews.Portal.ViewModels.CotacoesViewModel
+
+<main class="g-main">
+  <div class="g-content-inner-sidebar g-container t-content">
+    <ul class="c-breadcrumb t-module" xmlns:v="http://rdf.data-vocabulary.org/Breadcrumb">
+      <li typeof="v:Breadcrumb"><a href="/" rel="v:url" property="v:title" title="Rede Massa" class="fa fa-home"></a></li>
+      <li typeof="v:Breadcrumb"><a href="/negocios-da-terra" rel="v:url" property="v:title" title="Negócios da Terra">Negócios da Terra</a></li>
+      <li>Cotações</li>
+    </ul>
+
+    <h1 class="t-page-color">Cotações</h1>
+
+    <div class="c-tabs c-tabs-cotacoes t-module">
+      <ul class="c-tabs__nav">
+        <li role="tab">
+            @if (Model.Tipo.Slug == "parana")
+            {
+                <a href="/cotacoes/parana" class="c-tabs__item is-active">Paraná</a>
+            }
+            else
+            {
+                <a href="/cotacoes/parana" class="c-tabs__item">Paraná</a>
+            }
+        </li>
+        <li role="tab">
+            @if (Model.Tipo.Slug == "santa-catarina")
+            {
+                <a href="/cotacoes/santa-catarina" class="c-tabs__item is-active">Santa Catarina</a>
+            }
+            else
+            {
+                <a href="/cotacoes/santa-catarina" class="c-tabs__item">Santa Catarina</a>
+            }
+        </li>
+        <li role="tab">
+            @if (Model.Tipo.Slug == "cepea-usp")
+            {
+                <a href="/cotacoes/cepea-usp" class="c-tabs__item is-active">CEPEA USP</a>
+            }
+            else
+            {
+                <a href="/cotacoes/cepea-usp" class="c-tabs__item">CEPEA USP</a>
+            }
+        </li>
+        <li role="tab">
+            @if (Model.Tipo.Slug == "cia-ufpr")
+            {
+                <a href="/cotacoes/cia-ufpr" class="c-tabs__item is-active">CIA UFPR</a>
+            }
+            else
+            {
+                <a href="/cotacoes/cia-ufpr" class="c-tabs__item">CIA UFPR</a>
+            }
+        </li>
+        <li role="tab">
+            @if (Model.Tipo.Slug == "lapsui")
+            {
+                <a href="/cotacoes/lapsui" class="c-tabs__item is-active">LAPSUI</a>
+            }
+            else
+            {
+                <a href="/cotacoes/lapsui" class="c-tabs__item">LAPSUI</a>
+            }
+        </li>
+      </ul>
+    </div>
+
+    @if (Model.Tipo.Slug == "parana" || Model.Tipo.Slug == "santa-catarina")
+    {
+    <section class="g-content">
+        @if (Model.CotacoesPorEstados.Count > 0){
+          <table class="table table-bordered t-module">
+            <thead class="thead-light">
+              <tr>
+                <th>Produto</th>
+                <th>Data</th>
+                <th>Média estadual</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var cotacao in Model.CotacoesPorEstados)
+                {
+                    <tr>
+                        @if (Model.Tipo.Slug == "parana")
+                        {
+                            <td><a href="/cotacoes/@cotacao.EstadoSlug/produto/@cotacao.ProdutoSlug" class="t-page-color"><strong>@cotacao.ProdutoNome</strong></a></td>
+                        }
+                        else
+                        {
+                            <td><a href="/cotacoes/@cotacao.EstadoSlug/produto/@cotacao.ProdutoSlug" class="t-page-color"><strong>@cotacao.ProdutoNome</strong></a></td>
+                        }
+                        
+                        <td>@cotacao.DataCotacao.ToString("dd/MM/yyyy")</td>
+                        <td>R$ @cotacao.Media.ToString("N2") 
+                            @if (cotacao.MediaAnterior == 0)
+                            {
+
+                            }
+                            else if(cotacao.Media > cotacao.MediaAnterior)
+                            {
+                                <i class="fa fa-arrow-up color-success"></i>
+                            }
+                            else if (cotacao.Media < cotacao.MediaAnterior)
+                            {
+                                <i class="fa fa-arrow-down color-danger"></i>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+          </table>
+        } else {
+            <div class="">
+              <h3 class="t-page-color u-margin-top">Ainda não temos informações cadastradas.</h3>
+              <p>Estamos trabalhando nisso!</p>
+            </div>
+        }
+    </section>
+
+    <aside class="g-aside">
+        <h3 class="t-page-color">Cidades</h3>
+        <ul class="list-itens t-module">
+            @foreach (var cidade in Model.Cidades)
+        {
+            <li><a href="/cotacoes/@cidade.CotacaoEstado.Slug/@cidade.Slug">@cidade.Cidade</a></li>
+            }
+        </ul>
+        @Html.Partial("_AdRetanguloMedio")
+    </aside>
+    }
+    else if (Model.Tipo.Slug == "cepea-usp")
+    {
+        <section class="g-content">
+            @foreach (var cotacao in Model.Cotacoes)
+            {
+                <div class="t-module">
+                    <h2 class="h3 t-page-color">@cotacao.CotacaoProduto.Nome</h2>
+                    <script type="text/javascript" src="@cotacao.Script"></script>
+                </div>
+            }
+            <div class="small">Fonte: &nbsp;<a href="https://www.cepea.esalq.usp.br/br" target="_blank" class="small"><img src="https://www.cepea.esalq.usp.br/view/imagens/cepea-widget-titulo.png" alt=""></a></div>
+        </section>
+
+        <aside class="g-aside">
+            @Html.Partial("_AdRetanguloMedio")
+        </aside>
+    }
+    else
+    {
+        <section class="g-content">
+            @foreach (var cotacao in Model.Cotacoes)
+            {
+                <img src="https://cdn.massanews.com/uploads/cotacao/@cotacao.Img" alt="@cotacao.DescricaoImg" class="t-module">
+            }
+        </section>
+
+        <aside class="g-aside">
+            @Html.Partial("_AdRetanguloMedio")
+        </aside>
+    }
+  </div>
+</main>

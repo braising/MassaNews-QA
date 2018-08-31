@@ -1,0 +1,43 @@
+﻿@section bodyClass{@Html.Raw("pg-account pg-reset-password")}
+
+@{
+  // Página
+  ViewBag.Pagina = "reset-password";
+}
+
+<main class="g-main">
+  <div class="g-container">
+
+    <section class="institucinais__center institucinais__center--xsmall">
+      <p class="send is-error">Ops! Houve um erro ao recuperar sua senha. Por favor, tente novamente.</p>
+
+      @* <small class="u-inline-block u-margin-bottom">Cadastre-se com seu e-mail</small> *@
+      <form action="#" method="post" id="form-login" class="form-login">
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            <label for="form-login--password">Nova senha</label>
+            <input type="password" name="form-login--password" id="form-login--password" maxlength="120" placeholder="">
+            <span class="field-validation-error" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            <label for="form-login--password">Repita a nova senha</label>
+            <input type="password" name="form-login--password" id="form-login--password" maxlength="120" placeholder="">
+            <span class="field-validation-error" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full label-no-margin">
+            <button type="button" class="form-login--login submit c-button btn-login block" title="Alterar senha">Alterar senha</button>
+          </li>
+        </ul>
+      </form>
+
+      <hr>
+
+      <span class="small u-margin-bottom u-inline-block">Lembrou sua senha? <a href="/minha-conta/entrar" title="Entre"><u><strong>Entre</strong></u></a>.</span>
+    </section>
+
+  </div>
+</main>

@@ -1,0 +1,18 @@
+﻿@using MassaNews.Portal.ViewModels
+
+<aside class="c-fixed-sidebar g-aside">
+  <div class="nano">
+    <div class="nano-content">
+      <div class="c-fixed-sidebar__title">
+        <h3 class="title u-cut">Últimas de @ViewBag.ActiveNav</h3>
+        <a href='@string.Format("/{0}", ViewBag.EditoriaUrl)' class="small" style="color: #fff;">« tudo sobre @ViewBag.EditoriaTitulo</a>
+      </div>
+      <ul class="trigger-sidebar-ultimas c-fixed-sidebar__list c-headline--minis">
+        @foreach (NoticiaNavItem navItem in ViewBag.NavItems)
+        {
+          @Html.Partial("_NavItem", navItem)
+        }
+      </ul>
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,53 @@
+﻿@section bodyClass{@Html.Raw("pg-account pg-login")}
+
+@{
+  // Página
+  ViewBag.Pagina = "login";
+}
+
+<main class="g-main">
+  <div class="g-container">
+
+    <section class="institucinais__center institucinais__center--xsmall">
+      <p class="send is-error">Houve um erro ao entrar. Por favor, tente novamente.</p>
+
+      <small class="u-inline-block u-margin-bottom">Entre com sua conta do Facebook</small>
+      <a href="#" class="c-button facebook submit" title="Cadastre-se com Facebook">
+        <i class="fa fa-lg fa-facebook"></i>&nbsp;&nbsp;&nbsp; Facebook
+      </a>
+
+      <hr>
+
+      @* <small class="u-inline-block u-margin-bottom">Cadastre-se com seu e-mail</small> *@
+      <form action="#" method="post" id="form-login" class="form-login">
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            @* <label for="form-login--email">E-mail</label> *@
+            <input type="email" name="form-login--email" id="form-login--email" maxlength="120" placeholder="E-mail">
+            <span class="field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+            <span class="field-validation-error invalid-email" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none;">*E-mail inválido</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            @* <label for="form-login--password">Senha</label> *@
+            <input type="password" name="form-login--password" id="form-login--password" maxlength="120" placeholder="Senha">
+            <span class="field-validation-error" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+
+            <a href="/minha-conta/recuperar-senha" class="small u-inline-block u-margin-top" title="Esqueci minha senha"><u>Esqueci minha senha</u></a>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full label-no-margin">
+            <button type="button" class="form-login--login submit c-button btn-login block" title="Entrar">Entrar</button>
+          </li>
+        </ul>
+      </form>
+
+      <hr>
+
+      <span class="small u-margin-bottom u-inline-block">Não tem conta? <a href="/minha-conta/cadastro" title="Cadastre-se"><u><strong>Cadastre-se</strong></u></a>.</span>
+    </section>
+
+  </div>
+</main>

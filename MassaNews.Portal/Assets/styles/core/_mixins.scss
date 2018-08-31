@@ -1,0 +1,328 @@
+// =============================================================================
+// CLEARFIX
+// =============================================================================
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+
+// =============================================================================
+// 
+// =============================================================================
+//gerar font-size em PX e em REM
+@mixin font-size($sizeValue) {
+  font-size: $sizeValue;
+  font-size: #{$sizeValue / $font-size-base}rem;
+}
+
+
+//box-sizing
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
+//mask video headline (degrade)
+@mixin mask-video-headline() {
+  &:after{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    background-image: linear-gradient(0deg, rgba(25,25,25,1) 0, rgba(25,25,25,.8) 30%, transparent);
+  }
+}
+
+@mixin mask-first-headline() {
+  &:after{
+    width: 100%;
+    height: 40%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    background-image: linear-gradient(0deg, rgba(25,25,25,.8) 0, rgba(25,25,25,.4) 60%, transparent);
+  }
+}
+
+@mixin mask-headline-inner-photo() {
+  &:after{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    content: '';
+    background-image: linear-gradient(0deg, rgba(25,25,25,.9) 0, rgba(25,25,25,.4) 70%, transparent);
+  }
+}
+
+
+// =============================================================================
+// LINKS
+// =============================================================================
+@mixin link-active() {
+  & {outline:none;}
+
+  &:active {
+    position:relative;
+    top:1px;
+  }
+}
+
+
+// =============================================================================
+// BREAKPOINT
+// =============================================================================
+@mixin breakpoint($point) {
+  @media #{$point} {
+    @content;
+  }
+}
+
+
+// =============================================================================
+// FONT ICON
+// =============================================================================
+@mixin font-icon($icon: null) {
+  font-family:'icomoon';
+  speak:none;
+  font-style: normal;
+  font-weight:normal;
+  text-decoration:none;
+  font-variant:normal;
+  text-transform:none;
+  line-height:1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration:none;
+  }
+
+  @if $icon {
+    @extend .icon-#{$icon};
+  }
+}
+
+
+// =============================================================================
+// GRID
+// =============================================================================
+//Mixin para criar pilhas de colunas com espaçamentos fixos
+@mixin columns($cols: 2) {
+  $gutter: $gutter * 2;
+
+  float:left;
+  width:100% / $cols - 2%;
+  width:calc((100% - (#{$gutter} * (#{$cols} - 1))) / #{$cols});
+  margin-right:$gutter;
+  //margin-bottom:$gutter;
+
+  //Retira a margem direita do ultimo item de cada linha
+  &:nth-child(#{$cols}n+#{$cols}) {
+    margin-right:0;
+  }
+
+  //Adiciona um clear no primeiro item de cada linha, menos o da primeira linha
+  &:nth-child(#{$cols}n+#{$cols + 1}) {
+    clear:left;
+  }
+
+  //Retira a margem inferior dos ultimos itens do conjunto
+  @for $i from 1 through $cols {
+    &:nth-last-child(#{$i}) {
+      margin-bottom:0;
+    }
+  }
+}
+
+
+// =============================================================================
+// THEME
+// =============================================================================
+// MARGINS (verticais)
+@mixin margin($side: null) {
+//  margin:$margin-medium 0;
+
+  //margin superior
+  @if $side == 'top' {margin-top:$margin-medium !important;}
+
+  //margin inferior
+  @if $side == 'bottom' {margin-bottom:$margin-medium !important;}
+  @if $side == 'bottom-xlarge' {margin-bottom:$margin-xlarge !important;}
+}
+
+//all sides
+@mixin padding($size: null) {
+  padding:$padding-base-vertical 0;
+
+  //padding maior
+  @if $size == 'large' {padding:$padding-large-vertical;}
+
+  //padding menor
+  @if $size == 'small' {padding:$padding-small-vertical;}
+}
+
+//vertical
+@mixin vertical-padding($size: null) {
+  padding:$padding-base-vertical 0;
+
+  //padding maior
+  @if $size == 'large' {padding:$padding-large-vertical 0;}
+
+  //padding menor
+  @if $size == 'small' {padding:$padding-small-vertical 0;}
+}
+
+//horizontal
+@mixin horizontal-padding($size: null) {
+  padding:$padding-base-horizontal 0;
+
+  //padding maior
+  @if $size == 'large' {padding:$padding-large-horizontal 0;}
+
+  //padding menor
+  @if $size == 'small' {padding:$padding-small-horizontal 0;}
+}
+
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+@mixin opacity-hover($opacity: .85) {
+  -webkit-transition:opacity .4s ease-in-out;
+  -moz-transition:opacity .4s ease-in-out;
+  -o-transition:opacity .4s ease-in-out;
+  transition:opacity .4s ease-in-out;
+
+  &:hover {
+    opacity:$opacity;
+  }
+}
+
+
+// =============================================================================
+// TYPOGRAPHY
+// =============================================================================
+//gerar font-size em PX e em REM
+@mixin font-size($sizeValue) {
+  font-size: $sizeValue;
+  font-size: #{$sizeValue / $font-size-base}rem;
+}
+
+//melhorar a qualidade das fontes
+@mixin font-smooth(){
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+  -webkit-font-smoothing: antialiased;
+}
+
+@mixin em-height($height){
+  height: #{$height / $font-size-base}rem;
+}
+
+
+// =============================================================================
+// WEATHER ICONS
+// =============================================================================
+@mixin wi-icon-rotate($degrees, $rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  -webkit-transform: rotate($degrees);
+      -ms-transform: rotate($degrees);
+          transform: rotate($degrees);
+}
+
+@mixin wi-icon-flip($horiz, $vert, $rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  -webkit-transform: scale($horiz, $vert);
+      -ms-transform: scale($horiz, $vert);
+          transform: scale($horiz, $vert);
+}
+
+
+// =============================================================================
+// FONT AWESOME
+// =============================================================================
+@mixin fa-icon($icon) {
+  display: inline-block;
+  font: normal normal normal #{$fa-font-size-base}/#{$fa-line-height-base} FontAwesome; // shortening font declaration
+  font-size: inherit; // can't have font-size inherit on line above, so need to override
+  text-rendering: auto; // optimizelegibility throws things off #1094
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @if $icon {
+    @extend .fa-#{$icon}!optional;
+  }
+}
+
+
+@mixin fa-icon-rotate($degrees, $rotation) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation})";
+  -webkit-transform: rotate($degrees);
+      -ms-transform: rotate($degrees);
+          transform: rotate($degrees);
+}
+
+@mixin fa-icon-flip($horiz, $vert, $rotation) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation}, mirror=1)";
+  -webkit-transform: scale($horiz, $vert);
+      -ms-transform: scale($horiz, $vert);
+          transform: scale($horiz, $vert);
+}
+
+// Only display content to screen readers. A la Bootstrap 4.
+//
+// See: http://a11yproject.com/posts/how-to-hide-content/
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+// Use in conjunction with .sr-only to only display content when it's focused.
+//
+// Useful for "Skip to main content" links; see http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
+//
+// Credit: HTML5 Boilerplate
+@mixin sr-only-focusable {
+  &:active,
+  &:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+  }
+}
+
+
+// =============================================================================
+// SOCIAL LINKS
+// =============================================================================
+@mixin social-links-hover($color){
+  &:hover {
+    color:darken($color,7%);
+  }
+}

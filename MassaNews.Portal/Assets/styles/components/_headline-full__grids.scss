@@ -1,0 +1,467 @@
+/* =============VARIABLES============= */
+$margin-elements-4:  $gutter * 4;
+$margin-elements-3:  $gutter * 3;
+$margin-elements-2:  $gutter * 2;
+
+/* =============MIXINS============= */
+
+
+// =============================================================================
+// DESTAQUES INICIAS DA HOME - FULL
+// =============================================================================
+
+.g-headlines--full-one,
+.g-headlines--full-two,
+.g-headlines--full-three,
+.g-headlines--full-four {
+  padding: $margin-elements-2 0 $margin-elements-4 0;
+  margin: 0 0 $margin-elements-2 0;
+  border-bottom: 1px solid darken($gray-lightest,5%);
+  @include clearfix();
+
+  .g-headlines--main {
+    @include clearfix();
+
+    .g-headlines--main-featured{
+      margin-bottom: $margin-elements-4;
+
+      // Fix para não quebrar o layout enquanto a página não foi carregada
+      .image {
+        a {
+          min-height:200px;
+        }
+      }
+    }
+  }
+
+  .g-headlines--line,
+  .g-headlines--main-minis {
+    margin-bottom: $margin-elements-4;
+    @include clearfix();
+
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+
+  .g-headlines--line-minis{
+    margin-bottom: 0!important;
+
+    .image{
+      display: none;
+    }
+
+    .title a {
+      line-height:1.1;
+      @include font-size(18px);
+    }
+  }
+
+  &.g-headlines--full-one-editoria{
+    .g-headlines--line{
+      margin-bottom: 25px;
+    }
+  }
+}
+
+// Altura da foto principal - Template 1
+.g-headlines--full-one{
+  .g-headlines--main-featured{
+    .image {
+      a {
+        max-height:350px;
+      }
+    }
+  }
+}
+
+// Altura da foto principal - Template 2
+.g-headlines--full-two{
+  .g-headlines--main-featured{
+    .image {
+      a {
+        max-height:400px;
+      }
+    }
+  }
+}
+
+@mixin headlines--main-large() {
+  // Não mostra foto nas miniaturas 8 e 9
+  .c-headline{
+    &.c-headline-pos-8,
+    &.c-headline-pos-9{
+      .image{
+        display: none;
+      }
+
+      .texts{
+        width: 100%;
+      }
+    }
+  }
+
+  .g-headlines--full-one,
+  .g-headlines--full-three {
+    .g-headlines--main,
+    .g-headlines--line {
+      float:left;
+      width:50%;
+      width:calc(50% - #{$gutter});
+    }
+
+    .g-headlines--main {
+      margin-right:$gutter;
+    }
+
+    .g-headlines--line {
+      margin-left: $gutter;
+
+      .c-headline{
+        float:left;
+        margin-right: $margin-elements-2;
+        width: 50%;
+        width:calc(50% - #{$gutter});
+
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+    }
+
+    .g-headlines--main-minis {
+      .c-headline{
+        float:left;
+        margin-right: $margin-elements-2;
+        width: 50%;
+        width:calc(50% - #{$gutter});
+
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  // TWO
+  .g-headlines--full-two{
+    .g-headlines--main{
+      float:left;
+      width:100%;
+      margin: 0 0 $margin-elements-4 0;
+
+      .g-headlines--main-featured{
+        float:left;
+        width: calc(100% - #{grid-px(3, $gutter * 2)});
+        margin-bottom: 0;
+      }
+    }
+
+    .g-headlines--main-minis{
+      float: right;
+      width: 307px;
+      margin-left: 10px;
+      margin-bottom: 35px;
+
+      .c-headline{
+        margin-bottom: 34px;
+      }
+    }
+
+    .g-headlines--line{
+      float:left;
+      width:50%;
+      width:calc(50% - #{$gutter});
+      margin-bottom: 0;
+
+      .c-headline{
+        float:left;
+        margin-right: $margin-elements-2;
+        width: 50%;
+        width:calc(50% - #{$gutter});
+
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+
+      &:last-child{
+        margin-left: $margin-elements-2;
+      }
+    }
+  }
+
+  // FOUR
+  .g-headlines--full-four{
+    .g-headlines--minis-group,
+    .g-headlines--line{
+      float:left;
+      margin-right: $margin-elements-2;
+      width: 50%;
+      width:calc(50% - #{$gutter});
+
+      .c-headline{
+        float:left;
+        margin-right: $margin-elements-2;
+        width: 50%;
+        width:calc(50% - #{$gutter});
+
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+    }
+
+    .g-headlines--line{
+      margin-bottom: 0;
+    }
+
+    .g-headlines--minis-group{
+      margin-right: 0;
+    }
+
+    .g-headlines--main-minis {
+      margin-bottom: 22px;
+    }
+  }
+}
+
+@mixin headlines--main-medium() {
+  .g-headlines--full-one,
+  .g-headlines--full-two,
+  .g-headlines--full-three {
+    .g-headlines--main,
+    .g-headlines--line {
+      float:left;
+      width:100%;
+    }
+
+    .g-headlines--main {
+      margin-right:0;
+      margin-bottom: $margin-elements-4;
+    }
+
+    .g-headlines--line {
+      .c-headline{
+        float:left;
+        margin-right: $margin-elements-2;
+        width: 50%;
+        width:calc(50% - #{$gutter});
+
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+    }
+
+    .g-headlines--main-minis {
+      .c-headline{
+        float:left;
+        margin-right: $margin-elements-2;
+        width: 50%;
+        width:calc(50% - #{$gutter});
+
+        &:last-child{
+          margin-right: 0;
+        }
+
+        .image{
+          img{
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // FOUR
+  .g-headlines--full-four{
+    .g-headlines--minis-group,
+    .g-headlines--line{
+      float:left;
+      width: 100%;
+
+      .c-headline{
+        float:left;
+        margin-right: $margin-elements-2;
+        width: 50%;
+        width:calc(50% - #{$gutter});
+
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+    }
+
+    .g-headlines--minis-group{
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin headlines--main-small() {
+  .g-headlines--full-one,
+  .g-headlines--full-two,
+  .g-headlines--full-three,
+  .g-headlines--full-four {
+    .g-headlines--main{
+      margin-bottom: $margin-elements-4;
+    }
+
+    .g-headlines--main-minis,
+    .g-headlines--line{
+      margin-bottom: 1.625em;
+    }
+  }
+
+  .g-headlines--full-one,
+  .g-headlines--full-two {
+    padding-top: 0;
+
+    .g-container{
+      width: 100%;
+    }
+
+    .g-headlines--main-minis,
+    .g-headlines--line{
+      padding: 0 $gutter;
+    }
+  }
+
+  .g-headlines--full-four {
+    .g-headlines--main{
+      margin-bottom: 0;
+    }
+
+    .g-headlines--line{
+      margin-bottom: $margin-elements-4;
+    }
+  }
+}
+
+@media all and (min-width: bp(4)) {
+  .g-headlines--line,
+  .g-headlines--main-minis {
+    .c-headline {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media all and (min-width: bp(4)) and (max-width: bp(9)) {
+  @include headlines--main-medium();
+}
+
+@media all and (min-width: bp(9, 1px)) {
+  @include headlines--main-large();
+}
+
+@media all and (max-width: bp(4)) {
+  @include headlines--main-small();
+}
+
+
+
+// =============================================================================
+// BLOGS
+// =============================================================================
+.g-headlines--blogs{
+  padding: ($gutter + 5px) 0;
+  background:$gray-lightest;
+  border-bottom:1px solid darken($gray-lightest,5%);
+  @include clearfix();
+
+  .g-column{
+    padding: $margin-elements-2;
+    background-color: #fff;
+    border:1px solid darken($gray-lightest,5%);
+    @include clearfix();
+  }
+
+  .profile {
+    width:89px;
+    margin-right:$gutter * 2;
+    float:left;
+    text-align: center;
+
+    img {
+      border-radius:50%;
+    }
+  }
+
+  .texts {
+    float:left;
+    width:55%;
+    width:calc(100% - 89px - #{$gutter * 2});
+    line-height:1.2;
+
+    & > a{
+      width: 100%;
+      margin-bottom: 10px;
+      display: block;
+      color: $gray;
+      @include font-size(15px);
+
+      &:first-child{
+        @include font-size(16px);
+        font-weight: bold;
+        color: $gray-dark;
+      }
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .author {
+    display:block;
+    font-weight:bold;
+    @include font-size(16px);
+    line-height: 16px;
+    color:$tema-blogs;
+  }
+
+  .hat{
+    margin-bottom: 3px;
+    @include font-size(12px);
+    line-height: 16px;
+    text-transform: uppercase;
+    color: $gray;
+    font-weight: normal;
+    display: inline-block;
+
+    a{
+      color: $gray !important;
+      font-weight: normal;
+      display: inline;
+    }
+  }
+}
+
+@media all and (max-width: bp(8)) {
+  .g-headlines--blogs{
+    padding-bottom: 0;
+
+    .g-column {
+      margin-bottom:15px !important;
+      @include columns(1);
+    }
+
+    .texts {
+      & > a{
+        @include font-size(14px);
+
+        &:first-child{
+          @include font-size(15px);
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: bp(4)) {
+  .g-headlines--blogs{
+    margin-bottom: 15px;
+  }
+}

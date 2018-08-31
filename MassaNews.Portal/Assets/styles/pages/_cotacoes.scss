@@ -1,0 +1,119 @@
+.pg-cotacoes{
+
+  h1{
+    & > .small{
+      @include font-size(12px);
+      line-height: 14px;
+      font-weight: normal;
+    }
+  }
+
+  .filter{
+    ul{
+      list-style:none;
+      float: left;
+
+      li {
+        display: inline;
+
+        &.active{
+          a{
+            background: #e5e5e5;
+          }
+        }
+
+        a{
+          padding: 5px 10px;
+          margin: 0 5px;
+          border: 1px solid #e5e5e5;
+        }
+      }
+    }
+  }
+
+  .list-itens{
+    li{
+      a{
+        padding: 6px 0;
+        border-bottom: 1px solid #e5e5e5;
+        display: block;
+      }
+
+      // &:last-child{
+      //   border-bottom: 0;
+      // }
+    }
+  }
+
+  .c-tabs-cotacoes{
+    .c-tabs__nav{
+      & > li{
+        width: calc(100% / 5);
+        border-left: 2px solid #fff;
+      }
+    }
+
+    .c-tabs__item {
+      display:block;
+      width:100%;
+      padding:.6em 10px;
+      background:$gray-lightest;
+      color: $gray-dark;
+      font-weight: bold;
+      text-align:center;
+      text-transform:uppercase;
+      transition:background .2s;
+
+      &:hover {
+        background:darken($gray-lightest, 10%);
+        text-decoration: none;
+      }
+
+      &.is-active {
+        color:#fff;
+        background: $tema-negocios-da-terra;
+        border-bottom:1px solid $gray-lightest;
+      }
+    }
+  }
+
+  .imagenet-widget-tabela{
+    width: 100%;
+    font-family: #{$fonts-base} !important;
+  }
+
+  .imagenet-widget-tabela thead,
+  .imagenet-widget-tabela tfoot td{
+    display: none;
+  }
+
+  .imagenet-widget-tabela tbody tr:nth-child(2n) {
+    background: none;
+  }
+
+  .imagenet-widget-tabela tbody tr:nth-of-type(odd) {
+    background: #f2f2f2;
+  }
+
+  .imagenet-widget-tabela tbody {
+    border-top: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
+  }
+
+  .imagenet-widget-tabela thead td {
+    background: #d9d8d8;
+  }
+}
+
+// EDITORIAL
+.pg-negocios-da-terra{
+  .g-headlines--full-one{
+    margin-bottom: 0;
+  }
+
+  .sidebar__cotacoes{
+    .title-state{
+      color:$gray-dark;      
+    }
+  }
+}

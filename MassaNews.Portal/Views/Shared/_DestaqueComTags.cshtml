@@ -1,0 +1,286 @@
+﻿@using Entities.Classes
+@using MassaNews.Service.Util
+
+@model  MassaNews.Portal.Models.DestaqueComTags
+
+<section id="section-@Model.Key" class="track-headlines-home track-headlines-sections-home sections-home">
+  @* Loader *@
+  @if (Model.Key == "plantao")
+  {
+    <div class="loader-section u-none"></div>
+  }
+
+  <div class="c-category-title c-category-title--gray @Model.Theme">
+    @if (!string.IsNullOrEmpty(Model.LinkImgTitulo))
+    {
+      <h2 class="title title-logo">
+        <a href="@Model.LinkTitulo" class="title-section" title="@Model.Titulo"><img src="@Url.Content($"~/content/images/logos/{Model.LinkImgTitulo}")" alt="@Model.Titulo" class="logo"><span class="u-none">@Model.Titulo</span></a>
+      </h2>
+    } else
+    {
+      <h2 class="title">
+        <a href="@Model.LinkTitulo" class="title-section" title="@Model.Titulo">@Model.Titulo</a>
+      </h2>
+    }
+
+    <a href="@Model.LinkTitulo" class="link-see-all fa fa-plus-circle fa-2x" title="Ler todas"></a>
+
+    @if (Model.Tags != null){
+      <ul class="sub-categories">
+        @{var indexTags = 1;}
+        @foreach (var tag in Model.Tags)
+        {
+          <li><a href="@Url.Action("Tag", "Categorias", new {tag = tag.Url})" class="sublink" title="@tag.Titulo" data-position="@indexTags">@tag.Titulo</a></li>
+          indexTags++;
+        }
+      </ul>
+    }
+  </div>
+
+  <div class="g-3columns g-headlines--category t-module">
+    @if (Model.Highlights[0] != null)
+    {
+      <div class="g-column">
+        <div class="c-headline @Model.Theme" data-position="1">
+          @if (!string.IsNullOrEmpty(Model.Highlights[0].ImgSm))
+          {
+            if (Model.Highlights[0].DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(Model.Highlights[0].Video))
+            {
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                <a href="@Url.Action("Interna", "Video", new {url = Model.Highlights[0].Url})" title="@Model.Highlights[0].Chamada">
+                  @if (Model.isLazy)
+                  {
+                    <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model.Highlights[0].ImgSm}")" alt="@Model.Highlights[0].Chamada">
+                  }
+                  else
+                  {
+                    <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model.Highlights[0].ImgSm}")" alt="@Model.Highlights[0].Chamada">
+                  }
+                </a>
+              </picture>
+            }
+            else
+            {
+              <picture class="image">
+                <a href="@($"{@Model.Highlights[0].UrlFull}.html")" title="@Model.Highlights[0].Chamada">
+                  @if (Model.Highlights[0].DestaqueId == Destaque.Galeria.Id && Model.Highlights[0].Galeria.Imagens.Any())
+                  {
+                    @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", Model.Highlights[0].Galeria.Imagens.Count() } })
+                  }
+                  @if (Model.isLazy)
+                  {
+                    <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model.Highlights[0].ImgSm}")" alt="@Model.Highlights[0].Chamada">
+                  }
+                  else
+                  {
+                    <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model.Highlights[0].ImgSm}")" alt="@Model.Highlights[0].Chamada">
+                  }
+                </a>
+              </picture>
+            }
+          }
+          <div class="texts">
+            @if (Model.Highlights[0].Categoria.Url.Equals("plantao"))
+            {
+              if (Model.Highlights[0].Cidade != null)
+              {
+                <h3 class="hat">
+                  <a href="@($"/tags/{Model.Highlights[0].Cidade.Url}")">@Model.Highlights[0].Cidade.Nome</a>
+                </h3>
+              }
+              else
+              {
+                <h3 class="hat">
+                  <a href="@Url.Action("Parana", "Categorias")">Paraná</a>
+                </h3>
+              }
+            }
+            else
+            {
+              <h3 class="hat">
+                @if (Model.Highlights[0].BlogId.HasValue)
+                {
+                  <a href="@($"/{Model.Highlights[0].Categoria.Editorial.Url}/{Model.Highlights[0].CategoriaUrl}/{Model.Highlights[0].BlogUrl}/posts")">@Model.Highlights[0].Blog.Titulo</a>
+                }
+                else
+                {
+                  <a href="@($"/{Model.Highlights[0].Categoria.Editorial.Url}/{Model.Highlights[0].CategoriaUrlFull}")">@Model.Highlights[0].Categoria.Titulo</a>
+                }
+              </h3>
+            }
+            <h2 class="title">
+              <a href="@($"{@Model.Highlights[0].UrlFull}.html")" title="@Model.Highlights[0].Chamada">
+                @Model.Highlights[0].Chamada
+              </a>
+            </h2>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (Model.Highlights.Count > 1 && Model.Highlights[1] != null)
+    {
+      <div class="g-column">
+        <div class="c-headline @Model.Theme" data-position="2">
+          @if (!string.IsNullOrEmpty(Model.Highlights[1].ImgSm))
+          {
+            if (Model.Highlights[1].DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(Model.Highlights[1].Video))
+            {
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                <a href="@Url.Action("Interna", "Video", new {url = Model.Highlights[1].Url})" title="@Model.Highlights[1].Chamada">
+                  @if (Model.isLazy)
+                  {
+                    <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model.Highlights[1].ImgSm}")" alt="@Model.Highlights[1].Chamada">
+                  }
+                  else
+                  {
+                    <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model.Highlights[1].ImgSm}")" alt="@Model.Highlights[1].Chamada">
+                  }
+                </a>
+              </picture>
+            }
+            else
+            {
+              <picture class="image">
+                <a href="@($"{@Model.Highlights[1].UrlFull}.html")" title="@Model.Highlights[1].Chamada">
+                  @if (Model.Highlights[1].DestaqueId == Destaque.Galeria.Id && Model.Highlights[1].Galeria.Imagens.Any())
+                  {
+                    @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", Model.Highlights[1].Galeria.Imagens.Count() } })
+                  }
+                  @if (Model.isLazy)
+                  {
+                    <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model.Highlights[1].ImgSm}")" alt="@Model.Highlights[1].Chamada">
+                  }
+                  else
+                  {
+                    <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{Model.Highlights[1].ImgSm}")" alt="@Model.Highlights[1].Chamada">
+                  }
+                </a>
+              </picture>
+            }
+          }
+          <div class="texts">
+            @if (Model.Highlights[1].Categoria.Url.Equals("plantao"))
+            {
+              if (Model.Highlights[1].Cidade != null)
+              {
+                <h3 class="hat">
+                  <a href="@($"/tags/{Model.Highlights[1].Cidade.Url}")">@Model.Highlights[1].Cidade.Nome</a>
+                </h3>
+              }
+              else
+              {
+                <h3 class="hat">
+                  <a href="@Url.Action("Parana", "Categorias")">Paraná</a>
+                </h3>
+              }
+            }
+            else
+            {
+              <h3 class="hat">
+                @if (Model.Highlights[1].BlogId.HasValue)
+                {
+                  <a href="@($"/{Model.Highlights[1].Categoria.Editorial.Url}/{Model.Highlights[1].CategoriaUrl}/{Model.Highlights[1].BlogUrl}/posts")">@Model.Highlights[1].Blog.Titulo</a>
+                }
+                else
+                {
+                  <a href="@($"/{Model.Highlights[1].Categoria.Editorial.Url}/{Model.Highlights[1].CategoriaUrlFull}")">@Model.Highlights[1].Categoria.Titulo</a>
+                }
+              </h3>
+            }
+            <h2 class="title">
+              <a href="@($"{@Model.Highlights[1].UrlFull}.html")" title="@Model.Highlights[1].Chamada">
+                @Model.Highlights[1].Chamada
+              </a>
+            </h2>
+          </div>
+        </div>
+      </div>
+    }
+
+    <div class="g-column c-headline--minis">
+      @{var indexMinis = 3;}
+      @foreach (var item in Model.Highlights.Skip(2))
+      {
+        <div class="c-headline" data-position="@indexMinis">
+          @if (!string.IsNullOrEmpty(item.ImgThumb))
+          {
+            if (item.DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(item.Video))
+            {
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-2x fa-icon-video"></i>
+                <a href="@Url.Action("Interna", "Video", new {url = item.Url})" title="@item.Chamada">
+                  @if (Model.isLazy)
+                  {
+                    <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                  }
+                  else
+                  {
+                    <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                  }
+                </a>
+              </picture>
+            }
+            else
+            {
+              <picture class="image">
+                <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                  @if (item.DestaqueId == Destaque.Galeria.Id && item.Galeria.Imagens.Any())
+                  {
+                    @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", item.Galeria.Imagens.Count() } })
+                  }
+                  @if (Model.isLazy)
+                  {
+                    <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                  }
+                  else
+                  {
+                    <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgThumb}")" alt="@item.Chamada">
+                  }
+                </a>
+              </picture>
+            }
+          }
+          <div class="texts">
+            @if (item.Categoria.Url.Equals("plantao"))
+            {
+              if (item.Cidade != null)
+              {
+                <h3 class="hat">
+                  <a href="@($"/tags/{item.Cidade.Url}")">@item.Cidade.Nome</a>
+                </h3>
+              }
+              else
+              {
+                <h3 class="hat">
+                  <a href="@Url.Action("Parana", "Categorias")">Paraná</a>
+                </h3>
+              }
+            }
+            else
+            {
+              <h3 class="hat">
+                @if (item.BlogId.HasValue)
+                {
+                  <a href="@($"/{item.Categoria.Editorial.Url}/{item.CategoriaUrl}/{item.BlogUrl}/posts")">@item.Blog.Titulo</a>
+                }
+                else
+                {
+                  <a href="@($"/{item.Categoria.Editorial.Url}/{item.CategoriaUrlFull}")">@item.Categoria.Titulo</a>
+                }
+              </h3>
+            }
+            <h2 class="title">
+              <a href="@($"{item.UrlFull}.html")" title="@item.Chamada">
+                @item.Chamada
+              </a>
+            </h2>
+          </div>
+        </div>
+        indexMinis++;
+      }
+    </div>
+  </div>
+</section>

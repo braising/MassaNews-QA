@@ -1,0 +1,78 @@
+﻿@using MassaNews.Service.Util
+@using Entities.Classes
+
+@model MassaNews.Portal.ViewModels.BlogPostViewModel
+
+@section bodyClass{@Html.Raw("pg-blogs")}
+
+<main class="g-main">
+  @if (Model.NoticiasHighlights != null)
+  {
+    @Html.Partial("Template/_Six", Model.NoticiasHighlights)
+  }
+  <div class="g-content-inner-sidebar g-container">
+    <section class="g-content">
+      @Html.Partial("_AdCabecalho")
+
+      <section class="c-headline--horz-list t-module">
+        @foreach (var item in Model.Blog.Noticias)
+        {
+          <div class="c-headline t-blogs @if(string.IsNullOrEmpty(item.ImgSm)){<text>no-image</text>}">
+            @if (item.DestaqueId == Destaque.Video.Id)
+            {
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                <a href="@Url.Action("Post", "Noticias", new { categoria = item.Blog.Categoria.Url, blog = item.Blog.Url, url = item.Url })" title="@item.Chamada">
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgSm}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+            else if (item.ImgSm != null)
+            {
+              <picture class="image">
+                <a href="@Url.Action("Post", "Noticias", new { categoria = item.Blog.Categoria.Url, blog = item.Blog.Url, url = item.Url })" title="@item.Chamada">
+                  @if (item.DestaqueId == Destaque.Galeria.Id && item.Galerias.Any(ga => ga.Imagens.Any()))
+                  {
+                    @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", item.Galerias.FirstOrDefault().Imagens.Count() } })
+                  }
+                  <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgSm}")" alt="@item.Chamada">
+                </a>
+              </picture>
+            }
+            <div class="texts">
+              <time class="date" datetime="@Convert.ToDateTime(@item.DataPublicacao).ToString("yyyy-MM-dd HH:mm")">@Convert.ToDateTime(@item.DataPublicacao).ToString("dd/MM/yyyy - HH\\hmm")</time>
+              <h2 class="title">
+                <a href="@Url.Action("Post", "Noticias", new { categoria = item.Blog.Categoria.Url, blog = item.Blog.Url, url = item.Url })" title="@item.Chamada">
+                  @item.Chamada
+                </a>
+              </h2>
+            </div>
+          </div>
+        }
+        @if (ViewBag.Paginacao != null)
+        {
+          <nav class="c-pagination">
+            <ul class="pagination">
+              @foreach (var pagina in ViewBag.Paginacao)
+              {
+                <li @if (ViewBag.PaginaAtual == pagina.Value) { <text> class="active" </text> }>
+                  <a @{ if (pagina.Key == "<") { <text> rel="prev" </text> } else if (pagina.Key == ">") { <text> rel="next" </text> } }
+                     href="@string.Format("/blogs/{0}/{1}/posts/?p={2}", Model.Blog.Categoria.Url, Model.Blog.Url, pagina.Value)"
+                     title="@pagina.Key">
+                    @pagina.Key
+                  </a>
+                </li>
+              }
+            </ul>
+          </nav>
+        }
+      </section>
+    </section>
+    <aside class="g-aside">
+      @foreach (var autor in Model.Autors)
+      {
+        @Html.Partial("_Autor", autor)
+      }
+    </aside>
+  </div>
+</main>

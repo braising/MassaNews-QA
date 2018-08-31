@@ -1,0 +1,43 @@
+﻿@model MassaNews.Portal.ViewModels.DestaqueVideoViewModel
+<div id="section-videos">
+  @if (Model.Sections.Count > 1){
+    <div class="c-category-title c-category-title--center c-category-title--videos c-category-title--dropdown t-videos">
+      <h2 class="title trigger-category-dropdown">@Model.Titulo <i class="fa fa-angle-down icon-dropdown"></i></h2>
+      <ul class="c-category--nav">
+        @foreach (var videoSection in Model.Sections){
+          <li @(videoSection.Selected ? "class=active" : string.Empty) role="tab">
+            <a href="#" class="trigger-tabs-tab" data-tabs="tab-@Model.Url" data-tabpanel="tab-@videoSection.Url" title="@videoSection.Title">@videoSection.Title</a>
+          </li>
+        }
+      </ul>
+    </div>
+  } else {
+    <div class="c-category-title c-category-title--center c-category-title--videos t-videos">
+      <h2 class="title">@Model.Titulo</h2>
+    </div>
+  }
+
+  <div id="tab-@Model.Url">
+    @foreach (var videoSection in Model.Sections){
+      <div id="tab-@videoSection.Url" class="c-tabs__tabpanel @(videoSection.Selected ? "u-block" : "u-none")">
+        <div class="c-slider--videos slick-slider">
+          @foreach (var video in videoSection.Videos){
+            <a href="@video.InternaUrl" title="@video.Chamada" class="c-headline">
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                <img src="@video.ImgSm" alt="@video.Chamada">
+              </picture>
+              <div class="texts">
+                <h3 class="hat">@($"{video.Chapeu} - {video.Date.ToString("dd/MM/yyyy")}")</h3>
+                <h2 class="title">@video.Chamada</h2>
+              </div>
+            </a>
+          }
+        </div>
+        <div class="u-full-float t-videos text-center">
+          <a href="@videoSection.ButtonUrl" class="c-button c-button-videos small" title="@videoSection.ButtonText">@videoSection.ButtonText</a>
+        </div>
+      </div>
+    }
+  </div>
+</div>

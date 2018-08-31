@@ -1,0 +1,137 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+// COTAÇÕES DÓLAR
+.box-cotacoes-moedas{
+  .title{
+    color: $brand-primary;
+  }
+
+  .dolar,
+  .list{
+    margin-top: 10px;
+
+    .name{
+      text-transform: uppercase;
+      //@include font-size(10px);
+    }
+
+    .value{
+      font-weight: bold;
+    }
+  }
+
+  .dolar{
+    width: calc(40% - 5px);
+    float: left;
+
+    span{
+      display: block;
+    }
+
+    .value{
+      letter-spacing: -1px;
+      @include font-size(22px);
+    }
+
+    .variation{
+      @include font-size(14px);
+    }
+  }
+
+  .list{
+    //width: calc(60% - 5px);
+    width: 100%;
+    float: left;
+
+    span{
+      @include font-size(12px);
+    }
+
+    li{
+      padding-bottom: 5px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #f1f1f1;
+      line-height: 10px;
+
+      &:last-child{
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border: none;
+      }
+
+      .name{
+        width: calc(45% - 5px);
+        float: left;
+      }
+
+      .value{
+        width: calc(30%);
+      }
+
+      .variation{
+        width: calc(25% - 5px);
+      }
+
+      .value,
+      .variation{
+        float: right;
+        text-align: right;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .obs{
+    width: 100%;
+    margin: 10px 0;
+    float: left;
+    color: #033768;
+    font-weight: bold;
+    @include font-size(11px);
+  }
+
+  .by{
+    width: 100%;
+    float: left;
+    text-align: center;
+    padding: 10px 5px;
+    margin-top: 20px;
+    background: #033768;
+    //background: #f5f5f5;
+    display: block;
+
+    img{
+      max-width: 130px;
+    }
+  }
+
+  &.box-cotacoes-moedas__mobile{
+    display: none;
+
+    .obs{
+      margin-top: 0;
+    }
+  }
+}
+
+
+/* =============CUSTOM============= */
+
+
+/* =============MEDIA QUERY============= */
+@media all and (max-width: bp(8)) {
+  .box-cotacoes-moedas{
+    &.box-cotacoes-moedas__desktop{
+      display: none;
+    }
+
+    &.box-cotacoes-moedas__mobile{
+      display: block;
+    }
+  }
+}

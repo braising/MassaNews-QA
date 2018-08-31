@@ -1,0 +1,46 @@
+﻿<div class="c-modal" id="modal-share-email" role="modal">
+  <div class="c-modal__box">
+    <button class="c-modal__close" data-modal="modal-reportar" title="Fechar"><i class="fa fa-close fa-lg"></i></button>
+    <div class="c-modal__inner">
+      <h3 class="title">Enviar por e-mail</h3>
+      <form action="#" method="post" id="form-share-email" class="form-share-email">
+        <input type="hidden" name="form-share-email--post" id="form-reportar--post" value="">
+        <ul class="c-forms--labels">
+          <li class="input-half">
+            <label for="form-share-email--nome">Seu nome</label>
+            <input type="text" name="form-share-email--nome" id="form-share-email--nome" maxlength="120" placeholder="Seu nome">
+            <span class="field-validation-error" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+          <li class="input-half">
+            <label for="form-share-email--email">Seu e-mail</label>
+            <input type="email" name="form-share-email--email" id="form-share-email--email" maxlength="120" placeholder="Seu e-mail">
+            <span class="field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+            <span class="field-validation-error invalid-email" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none;">*E-mail inválido</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-half">
+            <label for="form-share-email-destinatario">Enviar para</label>
+            <input type="text" name="form-share-email-destinatario" id="form-share-email-destinatario" maxlength="120" placeholder="E-mail do destinatário">
+            <span class="field-validation-error" data-valmsg-for="form-share-email-destinatario" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+            <span class="field-validation-error invalid-email" data-valmsg-for="form-share-email-destinatario" data-valmsg-replace="true" style="display: none;">*E-mail inválido</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            <label for="form-share-email--mensagem">Mensagem</label>
+            <textarea name="form-share-email--mensagem" id="form-share-email--mensagem">Acho que você vai gostar desta notícia. Confira no Massa News!</textarea>
+            <span class="field-validation-error" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full label-no-margin">
+            <button type="button" class="form-share-email-- c-button c-button--small submit btn-share-email" title="Enviar">Enviar</button>
+          </li>
+        </ul>
+      </form>
+      <p class="send is-success">Sua mensagem foi enviada!</p>
+      <p class="send is-error">Houve um erro ao enviar. Por favor tente novamente.</p>
+    </div>
+  </div>
+</div>

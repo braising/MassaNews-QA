@@ -1,0 +1,53 @@
+/* =============VARIABLES============= */
+
+/* =============MIXINS============= */
+
+/* =============SELECTORS============= */
+.c-comments-box{
+  width: 630px;
+  height: 100%;
+  padding: 17px 20px;
+  //overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  background: #fff;
+  z-index: $zindex-modal;
+  transition: 0.4s;
+
+  // -webkit-transform: translate3d(110%, 0, 0);
+  // transform: translate3d(110%, 0, 0);
+  // -webkit-transition: -webkit-transform 0.3s;
+  // transition: transform 0.3s;
+
+  &.c-comments-box--open {
+    right: 0;
+
+    // -webkit-transform: translate3d(0, 0, 0);
+    // transform: translate3d(0, 0, 0);
+  }
+
+  .comment-wrapper{
+    display: block;
+  }
+}
+
+/* =============CUSTOM============= */
+
+/* =============MEDIA QUERY============= */
+@media all and (min-width: bp(6)) {
+  .c-comments-box{
+    .c-modal__close{
+      left: -37px;
+      top: 9px;
+    }
+  }
+}
+
+@media all and (max-width: bp(6)) {
+  .c-comments-box{
+    width: 100%;
+    padding: 20px 15px;
+    overflow-x: scroll;
+  }
+}

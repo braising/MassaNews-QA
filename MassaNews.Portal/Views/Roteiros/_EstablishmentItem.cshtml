@@ -1,0 +1,101 @@
+﻿@using Entities.Classes
+@using MassaNews.Service.Util
+@using MassaNews.Portal.ViewModels
+
+@model  MassaNews.Service.Models.Estabelecimento
+
+<article class="c-post" itemscope itemtype="http://schema.org/NewsArticle">
+  <input type="hidden" class="url-post" value="@($"{Model.UrlFull}.html")"/>
+  <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://google.com/article"/>
+  <header class="c-post__header">
+    <h1 class="title" itemprop="headline">@Model.Titulo</h1>
+    <div class="c-share">
+      @Html.Partial("_Social", Model)
+    </div>
+  </header>
+  <div class="g-clearfix">
+    @if (Model.DestaqueId != Destaque.Nenhum.Id)
+    {
+      <div class="c-post__highlight g-clearfix">
+        @if (Model.DestaqueId == Destaque.Video.Id)
+        {
+           @* Vídeos relacionados *@
+          <div class="u-video-wrapper">
+            <div class="c-post__videos-related u-text-center">
+              <a href="#" class="fa fa-close fa-2x t-page-color close trigger-close-mask-video c-post__videos-close" title="Fechar"></a>
+
+              @*<div class="c-post__videos-list">
+                <h3 class="title-related-videos">Assista também</h3>
+                @{var index = 1;}
+                @foreach (var item in Model.NewsVideosRelacionados)
+                {
+                  <div class="videos--item">
+                    <a href="@Url.Action("Index", "Noticias", new {editorial = item.EditorialUrl, categoria = item.CategoriaUrl, url = item.Url})" title="@item.Chamada" class="c-headline c-headline--videos c-post__videos-link" data-index="@index">
+                      <picture class="image modal-video">
+                        <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                        <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgSm}")" alt="@item.Chamada" style="display: inline;">
+                      </picture>
+                      <div class="texts">
+                        <h3 class="hat">@item.CategoriaUrl - @item.DataPublicacao.Value.ToString("d")</h3>
+                        <h2 class="title">@item.Chamada</h2>
+                      </div>
+                    </a>
+                  </div>
+                  index++;
+                }
+              </div>*@
+
+              <div class="subscribe">
+                <h3 class="title-related-videos">Inscreva-se no nosso canal</h3>
+                <div class="g-ytsubscribe" data-channelid="UCFoLEYJs_FlU87YbdWun8XA" data-layout="full" data-theme="dark" data-count="default"></div>
+                <script src="https://apis.google.com/js/platform.js"></script>
+              </div>
+            </div>
+            <div id="@($"div{Model.Id}")">
+              <iframe id="@($"player{Model.Id}")" src="@($"{Model.Video}{"&enablejsapi=1"}&origin={Constants.UrlWeb}")" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        }
+        else if (Model.DestaqueId == Destaque.Imagem.Id)
+        {
+          <figure class="figure">
+            <div class="figure__mask" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+              <img srcset="@string.Format("{0}/{1}/{2} 347w, {0}/{1}/{3} 674w, {0}/{1}/{4} 675w", Constants.UrlDominioEstaticoUploads, "noticias", Model.ImgSm, Model.ImgMd, Model.ImgLg)" src="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", Model.ImgLg)" alt="@Model.Legenda - @Model.Titulo">
+              <meta itemprop="url" content="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", Model.ImgLg)">
+              <meta itemprop="width" content="961">
+              <meta itemprop="height" content="531">
+            </div>
+            @if (!string.IsNullOrEmpty(Model.Legenda))
+            {
+              <figcaption>@Model.Legenda</figcaption>
+            }
+          </figure>
+        }
+        else if (Model.DestaqueId == Destaque.Galeria.Id)
+        {
+            @Html.Partial("_GaleriaInterna", new GaleriaViewModel {Chamada = Model.Titulo, Galeria = Model.Galeria})
+        }
+      </div>
+    }
+    <div class="c-post__main">
+      <section class="c-post__content" itemprop="articleBody">
+        @Html.Raw(Model.Descricao)
+        @Html.Partial("_RoteirosPost")
+      </section>
+    </div>
+
+    <aside class="c-post__sidebar">
+      @Html.Partial("_SendNews")
+      @Html.Partial("_AdRetanguloMedio")
+    </aside>
+
+  </div>
+  <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+    <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+      <meta itemprop="url" content="https://massanews.com/content/images/logos/massa-news.png">
+      <meta itemprop="width" content="307">
+      <meta itemprop="height" content="75">
+    </div>
+    <meta itemprop="name" content="Massa News">
+  </div>
+</article>

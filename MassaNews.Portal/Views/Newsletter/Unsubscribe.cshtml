@@ -1,0 +1,39 @@
+﻿@model MassaNews.Portal.ViewModels.NewsletterUnsubscribeViewModel
+
+<main class="g-main">
+  <div class="g-container">
+    <section class="g-content-inner-sidebar g-container">
+      <div class="unsubscribe">
+        <h2 class="send is-error">Houve um erro ao enviar. Por favor tente novamente.</h2>
+
+        <p><strong>@Model.UserNewsletter.Nome</strong>, tem certeza que quer se descadastrar?
+        <br>Estamos tristes, mas esperamos que volte algum dia...</p>
+
+        <form action="#" method="post" id="form-newsletter-unsubscribe" class="form-newsletter-unsubscribe">
+
+          <input type="hidden" id="form-newsletter-update--hash" name="form-newsletter-update--hash" value="@Model.UserHash" />
+
+          <ul class="c-forms--labels">
+            <li class="input-half">
+              <label><strong>Por favor conte o motivo de estar nos deixando:</strong></label>
+              <label for="interesse"><input type="radio" id="interesse" name="unsubscribe" value="1"> Não tenho mais interesse em receber as notícias do Massa News</label>
+              <label for="quantidade"><input type="radio" id="quantidade" name="unsubscribe" value="2"> A quantidade de emails enviados é alta demais</label>
+              <label for="nao-concordei"><input type="radio" id="nao-concordei" name="unsubscribe" value="3"> Nunca concordei em receber e-mails do Massa News</label>
+              <label for="email-nao-existe"><input type="radio" id="email-nao-existe" name="unsubscribe" value="4"> Este meu endereço de e-mail não existe mais</label>
+              <label for="nao-informar"><input type="radio" id="nao-informar" name="unsubscribe" value="5"> Não quero informar o motivo</label>
+              <span class="field-validation-error" data-valmsg-for="unsubscribe" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+            </li>
+          </ul>
+
+          <button type="button" data-urlunsubscribe="@Url.Action("Unsubscribe", "Newsletter")" class="c-button submit trigger-newsletter-unsubscribe" title="Enviar">Enviar</button>
+
+        </form>
+      </div>
+
+      <div class="no-unsubscribe u-none text-center">
+        <h2 class="send is-success">E-mail descadastrado com sucesso!</h2>
+        <p>Caso queira voltar a receber os e-mails do Massa News, <a href="/newsletter/atualizar/@Model.UserHash"><u>clique aqui</u></a>.</p>
+      </div>
+    </section>
+  </div>
+</main>

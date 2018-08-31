@@ -1,0 +1,76 @@
+﻿@section bodyClass{@Html.Raw("pg-roteiros pg-roteiros-map")}
+
+<main class="g-main">
+  <div class="g-column-with-sidebar">
+    <div class="group-map">
+      <div class="t-module u-text-center buttons-view">
+        <a href="/dev/roteiros" class="c-button c-button--small c-button--gray">Lista</a>&nbsp;
+        <a href="/dev/roteiros-mapa" class="c-button c-button--small t-page-button">Mapa</a>
+        <span class="mask"></span>
+      </div>
+
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14412.91848049458!2d-49.2920362!3d-25.4305857!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf5a495ea4b7bf781!2sMitre+Cafeteria!5e0!3m2!1spt-BR!2sbr!4v1466619712476" width="100%" height="700" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+
+    <aside class="c-fixed-sidebar g-aside">
+      <div class="nano">
+        <div class="nano-content">
+          <div class="c-fixed-sidebar__title">
+            <h3 class="title">Categorias</h3>
+          </div>
+          <ul class="c-fixed-sidebar__list c-headline--minis">
+            <li class="c-fixed-sidebar__list__iten is-current">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="/dev/roteiros" title="Destaques"><i class="fa fa-star"></i>Destaques</a>
+                </div>
+              </div>
+            </li>
+            <li class="c-fixed-sidebar__list__iten">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="/dev/roteiros-categoria" title="Cultura"><i class="fa fa-book"></i>Cultura</a>
+                </div>
+              </div>
+            </li>
+            <li class="c-fixed-sidebar__list__iten">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="/dev/roteiros-categoria" title="Compras e serviços"><i class="fa fa-shopping-basket"></i>Compras e serviços</a>
+                </div>
+              </div>
+            </li>
+            <li class="c-fixed-sidebar__list__iten">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="/dev/roteiros-categoria" title="Hospedagem"><i class="fa fa-bed"></i>Hospedagem</a>
+                </div>
+              </div>
+            </li>
+            <li class="c-fixed-sidebar__list__iten">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="/dev/roteiros-categoria" title="Gastronomia"><i class="fa fa-cutlery"></i>Gastronomia</a>
+                </div>
+              </div>
+            </li>
+            <li class="c-fixed-sidebar__list__iten">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="/dev/roteiros-categoria" title="Bares e baladas"><i class="fa fa-music"></i>Bares e baladas</a>
+                </div>
+              </div>
+            </li>
+            <li class="c-fixed-sidebar__list__iten">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="/dev/roteiros-categoria" title="Delivery"><i class="fa fa-motorcycle"></i>Delivery</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>

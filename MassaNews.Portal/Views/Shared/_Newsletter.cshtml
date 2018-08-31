@@ -1,0 +1,29 @@
+﻿<section class="c-newsletter">
+  <div class="c-newsletter__texts">
+    <h3 class="title">Receba grátis sua mnews!</h3>
+    <p class="subtitle">Apenas 1 e-mail por dia com as melhores notícias da sua região</p>
+  </div>
+  <form action="#" method="post" id="form-nl" class="c-forms c-forms--nl">
+    <ul class="c-forms--labels">
+      <li class="input-medium">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" maxlength="120" placeholder="Digite seu nome">
+        <span class="field-validation-error" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none">*Obrigatório</span>
+      </li>
+      <li class="input-medium">
+        <label for="form-nl-email">E-mail</label>
+        <input type="email" name="form-nl-email" maxlength="120" placeholder="Digite seu e-mail">
+        <span class="field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none">*Obrigatório</span>
+        <span class="field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none">*E-mail inválido</span>
+      </li>
+      <li class="input-xsmall label-none">
+        <button type="button" data-urlsubscribe="@Url.Action("Subscribe", "Newsletter")" class="c-button--white submit btn-newsletter">Enviar</button>
+      </li>
+    </ul>
+  </form>
+  <div class="c-newsletter__feedback is-hide">
+    <p><strong>Seu email foi registrado com sucesso!</strong></p>
+    <p>Estamos ainda formatando a melhor maneira de entregar as notícias da sua região para você, portanto não fique ansioso :)</p>
+    <p>Em breve, você receberá em primeira mão as novidades!</p>
+  </div>
+</section>

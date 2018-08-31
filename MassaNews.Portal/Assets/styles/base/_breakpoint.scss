@@ -1,0 +1,84 @@
+// =============================================================================
+// RESPONSIVE MEDIA
+// =============================================================================
+
+//converte valores de PX para EM
+@function size-convert($sizeValue) {
+  @return #{$sizeValue / 16px}em;
+}
+
+
+// Media Queries
+$screen: "only screen" !default;
+$landscape: "#{$screen} and (orientation: landscape)" !default;
+$portrait: "#{$screen} and (orientation: portrait)" !default;
+
+
+// =============================================================================
+// MOBILE DEVICES
+// =============================================================================
+
+// Smartphones -----------
+$smartphone: "only screen and (min-device-width: 20em) and (max-device-width: 30em)" !default; // 320px e 480px
+$smartphone-landscape: "only screen and (min-width: 20.063em)" !default; // 321px
+$smartphone-portrait: "only screen and (max-width: 20em)" !default; // 320px
+
+// iPads -----------
+$ipad: "only screen and (min-device-width: 48em) and (max-device-width: 64em)" !default; // 768px e 1024px
+$ipad-landscape: "only screen and (min-device-width: 48em) and (max-device-width: 64em) and (orientation: landscape)" !default; // 768px e 1024px
+$ipad-portrait: "only screen and (min-device-width: 48em) and (max-device-width: 64em) and (orientation: portrait)" !default; // 768px e 1024px
+
+// iPad 3 -----------
+$ipad3: "only screen and (min-device-width: 48em) and (max-device-width: 64em) and (-webkit-min-device-pixel-ratio : 2)" !default; // 768px e 1024px
+$ipad3-landscape: "only screen and (min-device-width: 48em) and (max-device-width: 64em) and (orientation: landscape) and (-webkit-min-device-pixel-ratio : 2)" !default; // 768px e 1024px
+$ipad3-portrait: "only screen and (min-device-width: 48em) and (max-device-width: 64em) and (orientation: portrait) and (-webkit-min-device-pixel-ratio : 2)" !default; // 768px e 1024px
+
+// Large screens -----------
+$large-screen: "only screen  and (min-width: 114em)" !default; // 1824px
+
+// iPhone 4 -----------
+$iphone4: "only screen and (min-device-width: 20em) and (max-device-width: 30em) and (-webkit-min-device-pixel-ratio : 2)" !default; // 320px e 480px
+$iphone4-landscape: "only screen and (min-device-width: 20em) and (max-device-width: 30em) and (orientation: landscape) and (-webkit-min-device-pixel-ratio : 2)" !default; // 320px e 480px
+$iphone4-portrait: "only screen and (min-device-width: 20em) and (max-device-width: 30em) and (orientation: portrait) and (-webkit-min-device-pixel-ratio : 2)" !default; // 320px e 480px
+
+// iPhone 5 -----------
+$iphone5: "only screen and (min-device-width: 20em) and (max-device-height: 35.5em) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 568px
+$iphone5-landscape: "only screen and (min-device-width: 20em) and (max-device-height: 35.5em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 568px
+$iphone5-portrait: "only screen and (min-device-width: 20em) and (max-device-height: 35.5em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 568px
+
+// iPhone 6 -----------
+$iphone6: "only screen and (min-device-width: 23.4375em) and (max-device-height: 41.6875em) and (-webkit-device-pixel-ratio: 2)" !default; // 375px e 667px
+$iphone6-landscape: "only screen and (min-device-width: 23.4375em) and (max-device-height: 41.6875em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" !default; // 375px e 667px
+$iphone6-portrait: "only screen and (min-device-width: 23.4375em) and (max-device-height: 41.6875em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" !default; // 375px e 667px
+
+// iPhone 6+ -----------
+$iphone6plus: "only screen and (min-device-width: 25.875em) and (max-device-height: 46em) and (-webkit-device-pixel-ratio: 2)" !default; // 414px e 736px
+$iphone6plus-landscape: "only screen and (min-device-width: 25.875em) and (max-device-height: 46em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" !default; // 414px e 736px
+$iphone6plus-portrait: "only screen and (min-device-width: 25.875em) and (max-device-height: 46em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" !default; // 414px e 736px
+
+// Samsung Galaxy S3 -----------
+$galaxys3: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 640px
+$galaxys3-landscape: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 640px
+$galaxys3-portrait: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 640px
+
+// Samsung Galaxy S4 -----------
+$galaxys4: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (-webkit-device-pixel-ratio: 3)" !default; // 320px e 640px
+$galaxys4-landscape: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)" !default; // 320px e 640px
+$galaxys4-portrait: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)" !default; // 320px e 640px
+
+// Samsung Galaxy S5 -----------
+$galaxys5: "only screen and (min-device-width: 22.5em) and (max-device-height: 40em) and (-webkit-device-pixel-ratio: 3)" !default; // 360px e 640px
+$galaxys5-landscape: "only screen and (min-device-width: 22.5em) and (max-device-height: 40em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)" !default; // 360px e 640px
+$galaxys5-portrait: "only screen and (min-device-width: 22.5em) and (max-device-height: 40em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)" !default; // 360px e 640px
+
+
+
+// =============================================================================
+// MIXINS
+// =============================================================================
+
+// @mixin breakpoint($point) {
+//   @media #{$point} {
+//     @content;
+//   }
+// }

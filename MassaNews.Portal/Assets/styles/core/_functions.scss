@@ -1,0 +1,26 @@
+// =============================================================================
+// GRIDS
+// =============================================================================
+
+//Retorna um valor em pixel da quantidade de colunas definida (calculando os espaçamentos entre colunas)
+//O 2º paramentro serve para personalizar o valor final, para considerar um padding interno ou para incrementar ou descrecer uma unidade para criar breakpoints
+@function grid-px($cols: 2, $edit: 0) {
+  @return ($column-width * $cols) + (($gutter * 2) * ($cols - 1)) + $edit;
+}
+
+
+//Valor para a media query considerando os gutters do g-container
+//O 1º parametro é a quantidade de colunas baseadas no layout
+//O 2º paremetro é um valor para personalizar o resultado final
+@function bp($cols: 2, $edit: 0) {
+  @return ($column-width * $cols) + (($gutter * 2) * ($cols - 1)) + $edit + $container-gutters;
+}
+
+
+// =============================================================================
+// BREAKPOINT
+// =============================================================================
+//converte valores de PX para EM
+@function size-convert($sizeValue) {
+  @return #{$sizeValue / 16px}em;
+}

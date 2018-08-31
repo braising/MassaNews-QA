@@ -1,0 +1,233 @@
+//ATENCAO:
+//editar esses estilos tambem no arquivo styles/post-content.css
+
+
+.c-post__content {
+  h1, h2, h3, h4, h5, h6 {
+    color: $gray-dark;
+    margin: 0 0 10px 0;
+  }
+
+  h1 {
+    @include font-size(30px);
+  }
+
+  h2 {
+    @include font-size(22px);
+  }
+
+  h3 {
+    @include font-size(18px);
+  }
+
+  h4 {
+    @include font-size(16px);
+  }
+
+  a{
+    color: $brand-primary;
+  }
+
+  ol,
+  ul {
+    padding: 5px 20px;
+    margin: 0.5em 0 $margin-small;
+    background-color: $gray-lightest;
+    list-style: initial;
+    list-style-position: inside;
+
+    li {
+      margin: 15px 0;
+      @include font-size(16px);
+    }
+  }
+
+  ol {
+    list-style:decimal inside;
+  }
+
+  blockquote {
+    display:block;
+    margin:0 auto $margin-small;
+    max-width:350px;
+    padding:1em 0.5em;
+    border:solid $gray-lighter;
+    border-width:1px 0;
+    font-weight:bold;
+    font-size: 18px;
+    text-align:center;
+
+    p{
+      margin-bottom: 0;
+    }
+  }
+
+  table{
+    width: 100%;
+    margin-bottom: 2em;
+    font-size: 12px;
+    border-top: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+
+    tr{
+      border-bottom: 1px solid #e6e6e6;
+
+      th{
+        font-weight: bold;
+      }
+
+      td,
+      th{
+        padding: 5px;
+        border-left: 1px solid #e6e6e6;
+      }
+    }
+  }
+
+  > p img {
+    display:block;
+    margin:0 auto;
+    width:100%;
+    max-width:grid-px(6);
+  }
+
+  .figcaption {
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:grid-px(6);
+    padding:.5em 1em;
+    background:$gray-lightest;
+    @include font-size(14px);
+    line-height:1.45;
+    color:#3c3c3c;
+  }
+
+  > p.figcaption {
+    margin-top:-1.9em;
+  }
+
+  .cpost__collaboration{
+    margin-bottom: 0;
+    font-style: italic;
+    @include font-size(16px);
+    color: $gray;
+  }
+
+  .c-post__service{
+    padding: 10px 15px;
+    margin-bottom: 1.5em;
+    background-color: lighten($gray-lightest, 3%);
+    border: 1px dotted $gray-lighter;
+    @include font-size(14px);
+
+    p{
+      margin-bottom: 0;
+      @include font-size(14px);
+    }
+  }
+
+  .c-post-gallery{
+    margin-bottom: 30px;
+
+    .arrow-next{
+      color: #fff!important;
+    }
+  }
+
+
+  // ROTEIROS
+  .c-post__dica-roteiros{
+    margin-top: 1.5em;
+  }
+
+  .c-post__roteiros{
+    padding: 15px;
+    margin-bottom: 1.5em;
+    background-color: lighten($gray-lightest, 3%);
+    float: left;
+
+    & > hr{
+      margin: 10px 0;
+      float: left
+    }
+
+    .row{
+      width: 100%;
+      float: left;
+
+      .column-title{
+        width: 32%;
+        float: left;
+        
+        h3{
+          margin: 0;
+          @include font-size(16px);
+        }
+      }
+
+      .column-detail{
+        width: 62%;
+        float: right;
+
+        p{
+          @include font-size(16px);
+        }
+
+        & > p{
+          margin-bottom: 0;
+        }
+
+        & > ul{
+          padding: 0;
+          margin: 0;
+          background: none;
+
+          li{
+            width: 45%;
+            margin: 0 5% 0 0;
+            float: left;
+          }
+        }
+      }
+
+      & > .map{
+        width: 100%;
+        margin-top: 1.5em;
+        float: left;
+      }
+    }
+  }
+
+
+  /* =============MEDIA QUERY============= */
+  @media all and (max-width: bp(5)) {
+    p{
+      @include font-size(16px);
+    }
+
+    h2 {
+      @include font-size(20px);
+    }
+
+    h3 {
+      @include font-size(18px);
+    }
+
+    h4 {
+      @include font-size(16px);
+    }
+
+    .c-post__roteiros{
+      .row{
+        .column-title{
+          width: 100%;
+        }
+
+        .column-detail{
+          width: 100%;
+        }
+      }
+    }
+  }
+}

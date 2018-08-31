@@ -1,0 +1,38 @@
+﻿@using MassaNews.Service.Util
+
+<script>
+  dataLayer = [{
+    'current-city-id'      : '@ViewBag.CurrentCity.Id',
+    'current-city'         : '@ViewBag.CurrentCity.Url',
+    'current-microregiao'  : '@ViewBag.CurrentCity.Microregion.Url',
+    'current-macroregiao'  : '@ViewBag.CurrentCity.Microregion.Macroregiao.Url',
+    'current-pagina'       : '@ViewBag.Pagina',
+    'current-editoria'     : '@ViewBag.EditoriaUrl',
+    'current-categoria'    : '@ViewBag.Categoria',
+    'current-subcategoria' : '@ViewBag.SubCategoria',
+    'current-tags'         : '@ViewBag.Tags',
+    'current-blog'         : '@ViewBag.Blog',
+    'current-id'           : '@ViewBag.Id',
+  }];
+</script>
+
+@* V1 - OK *@
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5FF4RM');</script>
+
+@* V2 *@
+@* <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N2RH6MP');</script> *@
+
+@* V3 *@
+@* <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W7TN5HV');</script> *@

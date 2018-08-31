@@ -1,0 +1,128 @@
+﻿@model List<MassaNews.Portal.ViewModels.CotacaoEconomiaViewModel>
+
+<div class="sidebar__cotacoes sidebar__cotacoes box-cotacoes-moedas box-cotacoes-moedas__mobile t-module t-border clearfix">
+  <div class="c-category-title c-category-title--small">
+    <h3 class="title">Cotações</h3>
+  </div>
+
+  @* <div class="dolar">
+    <span class="name">Dólar Americano</span>
+    <span class="value">R$ @Model[0].TaxaVenda.ToString("N3")</span>
+    @if (Model[0].Varicao > 0)
+    {
+      <span class="variation color-danger">+@Model[0].Varicao.ToString("N2")%</span>
+    }
+    else
+    {
+      <span class="variation color-success">@Model[0].Varicao.ToString("N2")%</span>
+    }
+  </div> *@
+
+  @*<div class="dolar">
+      <span class="name">Dólar Americano</span>
+      <span class="value">R$ 3,220</span>
+      <span class="variation color-danger">-0,27%</span>
+    </div>*@
+
+  <p class="obs clearfix">Taxa de câmbio turismo para compra na MultiMoney.</p>
+
+  <ul class="list">
+    <li class="clearfix">
+      <span class="name">Dólar Americano</span>
+      @if (Model[0].Varicao > 0)
+      {
+        <span class="variation color-danger">+@Model[0].Varicao.ToString("N2")%</span>
+      }
+      else
+      {
+        <span class="variation color-success">@Model[0].Varicao.ToString("N2")%</span>
+      }
+      <span class="value">R$ @Model[0].TaxaVenda.ToString("N3")</span>
+    </li>
+    <li class="clearfix">
+      <span class="name">Euro</span>
+      @if (Model[1].Varicao > 0)
+      {
+        <span class="variation color-danger">+@Model[1].Varicao.ToString("N2")%</span>
+      }
+      else
+      {
+        <span class="variation color-success">@Model[1].Varicao.ToString("N2")%</span>
+      }
+      <span class="value">R$ @Model[1].TaxaVenda.ToString("N3")</span>
+    </li>
+    <li class="clearfix">
+      <span class="name">Libra</span>
+      @if (Model[2].Varicao > 0)
+      {
+        <span class="variation color-danger">+@Model[2].Varicao.ToString("N2")%</span>
+      }
+      else
+      {
+        <span class="variation color-success">@Model[2].Varicao.ToString("N2")%</span>
+      }
+      <span class="value">R$ @Model[2].TaxaVenda.ToString("N3")</span>
+    </li>
+    <li class="clearfix">
+      <span class="name">Peso argentino</span>
+      @if (Model[3].Varicao > 0)
+      {
+        <span class="variation color-danger">+@Model[3].Varicao.ToString("N2")%</span>
+      }
+      else
+      {
+        <span class="variation color-success">@Model[3].Varicao.ToString("N2")%</span>
+      }
+      <span class="value">R$ @Model[3].TaxaVenda.ToString("N3")</span>
+    </li>
+    <li class="clearfix">
+      <span class="name">Dólar canadense</span>
+      @if (Model[4].Varicao > 0)
+      {
+        <span class="variation color-danger">+@Model[4].Varicao.ToString("N2")%</span>
+      }
+      else
+      {
+        <span class="variation color-success">@Model[4].Varicao.ToString("N2")%</span>
+      }
+      <span class="value">R$ @Model[4].TaxaVenda.ToString("N3")</span>
+    </li>
+    <li class="clearfix">
+      <span class="name">Rublo</span>
+      @if (Model[5].Varicao > 0)
+      {
+        <span class="variation color-danger">+@Model[5].Varicao.ToString("N2")%</span>
+      }
+      else
+      {
+        <span class="variation color-success">@Model[5].Varicao.ToString("N2")%</span>
+      }
+      <span class="value">R$ @Model[5].TaxaVenda.ToString("N3")</span>
+    </li>
+
+    @*<li class="clearfix">
+        <span class="name">Euro</span>
+        <span class="variation color-success">+0,15%</span>
+        <span class="value">R$ 3,948</span>
+      </li>
+      <li class="clearfix">
+        <span class="name">Libra</span>
+        <span class="variation color-success">+0,15% @</span>
+        <span class="value">R$ 3,948</span>
+      </li>
+      <li class="clearfix">
+        <span class="name">Peso Arg.</span>
+        <span class="variation color-danger">-0,15%</span>
+        <span class="value">R$ 3,948</span>
+      </li>
+      <li class="clearfix">
+        <span class="name">Dólar Can.</span>
+        <span class="variation color-danger">-0,15%</span>
+        <span class="value">R$ 3,948</span>
+      </li>*@
+  </ul>
+
+  <a href="https://multimoneycorretora.com.br/?utm_source=massa-news&utm_medium=box-cotacoes" class="by clearfix" target="_blank" title="MultiMoney - Corretora de Câmbio">
+    <img src="@Url.Content("~/content/images/logos/multimoney.png")" class="logo" alt="MultiMoney - Corretora de Câmbio">
+  </a>
+</div>

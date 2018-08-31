@@ -1,0 +1,44 @@
+﻿@*<div class="c-modal" id="modal-busca" role="modal">
+  <div class="c-modal__box">
+    <button class="c-modal__close" data-modal="modal-busca" title="Fechar"><i class="fa fa-close fa-2x"></i></button>
+    <div class="c-modal__inner">
+      <h3 class="title">Digite sua busca</h3>
+      @using (Html.BeginForm("Index", "Busca", new { o = "relevancia", p = 1 }, FormMethod.Get, new { enctype = "multipart/form-data", @class = "form-search-search" }))
+      {
+        <div class="c-search__input-box">
+          <input type="text" class="c-search__input" name="q">
+          <button type="submit" class="c-search__submit" value=""></button>
+        </div>
+        if (ViewBag.Keywords != null)
+        {
+          <ul class="c-search__latest">
+            <li class="text">Suas últimas buscas:</li>
+            @foreach (string item in ViewBag.Keywords)
+            {
+              <li class="">
+                <a href="#" class="item lastwords">@item</a>
+              </li>
+            }
+          </ul>
+        }
+      }
+    </div>
+  </div>
+</div>*@
+
+<div class="c-modal" id="modal-busca" role="modal">
+  <button class="c-modal__close" data-modal="modal-busca" title="Fechar"><i class="fa fa-close fa-2x"></i></button>
+
+  <div class="c-modal__box">
+    <div class="c-modal__inner" itemscope itemtype="http://schema.org/WebSite">
+      <meta itemprop="url" content="https://massanews.com"/>
+      @using (Html.BeginForm("Index", "Busca", new { o = "relevancia", p = 1 }, FormMethod.Get, new { enctype = "multipart/form-data", @class = "form-search-search", itemprop = "potentialAction", itemscope = "itemscope", itemtype = "http://schema.org/SearchAction" }))
+      {
+        <meta itemprop="target" content="https://massanews.com/busca?q={q}"/>
+        <input type="text" class="c-modal-search__input" name="q" placeholder="Digite sua busca..." autocomplete="off" itemprop="query-input">
+        <button type="submit" class="c-modal-search__submit" value=""></button>
+      }
+      <div class="loader loader-3x"></div>
+    </div>
+  </div>
+</div>

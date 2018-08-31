@@ -1,0 +1,57 @@
+﻿@model MassaNews.Portal.ViewModels.VideoIndex
+
+@section bodyClass{@Html.Raw("pg-videos")}
+
+<main class="g-main">
+  <div class="g-content-inner-sidebar g-container">
+    <section class="g-headlines--main-2columns-videos t-module-xlarge">
+      @foreach (var video in Model.Highlights){
+        <a href="@video.InternaUrl" title="@video.Chamada" class="c-headline c-headline--videos">
+          <picture class="image modal-video">
+            <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+            <img srcset="@video.ImgSm 347w, @video.ImgMd 674w, @video.ImgLg 675w" src="@video.ImgLg" alt="@video.Chamada">
+          </picture>
+          <div class="texts">
+            <h3 class="hat">@video.Chapeu</h3>
+            <h2 class="title">@video.Chamada</h2>
+          </div>
+        </a>
+      }
+    </section>
+
+    @* PUBLICIDADE *@
+    <div class="u-full-float">
+      @Html.Partial("_AdCabecalho-2")
+    </div>
+
+    <div class="t-module-xlarge u-full-float">
+      @Html.Partial("_DestaqueVideos", @Model.RegionHighlights)
+    </div>
+
+    <div class="t-module-xlarge u-full-float">
+      @Html.Partial("_DestaqueVideos", @Model.SportsHighlights)
+    </div>
+
+    <div class="t-module-xlarge u-full-float">
+      @Html.Partial("_DestaqueVideos", @Model.EntertainmentHighlights)
+    </div>
+
+    <div class="t-module-xlarge u-full-float">
+      @Html.Partial("_DestaqueVideos", @Model.NegociosDaTerraHighlights)
+    </div>
+
+    <div class="t-module-xlarge u-full-float">
+      @Html.Partial("_DestaqueVideos", @Model.BlogsHighlights)
+    </div>
+
+    @* MASSA NEWS LIVE ON *@
+    <div class="t-module-xlarge u-full-float">
+      @Html.Partial("_DestaqueVideos", @Model.LiveOnHighlights)
+    </div>
+
+    @* DESCOBRINDO CURITIBA *@
+    <div class="t-module-xlarge u-full-float">
+      @Html.Partial("_DestaqueVideos", @Model.DescobrindoCuritibaHighlights)
+    </div>
+  </div>
+</main>

@@ -1,0 +1,171 @@
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline !important;
+  }
+
+  /*a[href]:after {
+  content: " (" attr(href) ")";
+  }*/
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  // Don't show links that are fragment identifiers,
+  // or use the `javascript:` pseudo protocol
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group; // h5bp.com/t
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid !important;
+  }
+
+  img {
+    display:block !important;
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+
+  //CUSTOM ELEMENTS
+  .c-nav,
+  .c-header__city,
+  .c-header__search,
+  .c-newsletter--module,
+  .c-footer,
+  .c-post__published .button-historic,
+  .c-post__social > .title,
+  .c-post__seetoo,
+  .c-report__button,
+  .c-share,
+  .c-publicidade,
+  .c-post__sidebar,
+  .g-aside,
+  .c-category-title .link-see-all,
+  .c-headline .modal-video:before,
+  .c-headline .modal-gallery:before,
+  .c-gallery__view .slick-arrow,
+  .g-event-mosaic,
+  .c-comments-box,
+  .brand-logo{
+    display:none !important;
+  }
+
+  .c-header,
+  .c-header__bar,
+  .c-header__brand,
+  .c-header__center {
+    position:relative !important;
+    display: block !important;
+  }
+
+  .c-header__center__logo{
+    width: 180px;
+    margin: 20px auto 0;
+    display: block;
+  }
+
+  .g-main {
+    margin-top:0 !important;
+  }
+
+  .g-content {
+    //margin-right:0 !important;
+    width:100% !important;
+    left: 0!important;
+    position: static!important;
+  }
+
+  .c-post {
+    a[href]:after {
+      content: " (" attr(href) ")";
+    }
+  }
+
+  .c-event {
+    * {
+      position:static !important;
+    }
+  }
+
+  .g-column-with-sidebar{
+    border: none;
+  }
+
+  // POST
+  .c-post,
+  .c-header__title,
+  .c-post__footer{
+    display: none;
+
+    &.c-post--active{
+      display: block;
+    }
+  }
+
+  .c-post{
+    .u-video-wrapper,
+    .fr-video,
+    iframe{
+      display: none;
+    }
+
+    .c-post__published{
+      a[href]:after {
+        content: ""!important;
+      }
+    }
+
+    .c-post__main{
+      &:after {
+        border-right: none;
+      }
+    }
+
+    .c-post-gallery{
+      .arrow-next{
+        display: none!important;        
+      }
+
+      a[href]:after {
+        content: ""!important;
+      }
+    }
+  }
+}

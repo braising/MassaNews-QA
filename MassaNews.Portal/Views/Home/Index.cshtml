@@ -1,0 +1,262 @@
+﻿@using MassaNews.Service.Util
+@using Entities.Classes
+
+@model MassaNews.Portal.ViewModels.HomeIndex
+
+@section bodyClass{@Html.Raw("pg-home")}
+
+@{
+  // Página
+  ViewBag.Pagina = "home";
+}
+
+<main class="g-main">
+  <section class="c-nav-topicos track-nav-topicos">
+    <ul class="inner">
+      <li>
+        <a href="@Url.Action("NoticiasWithCategory", "Categorias", new {categoria = "plantao"})" data-position="1">Sua região</a>
+      </li>
+      <li>
+        <a href="@Url.Action("Parana", "Categorias")" data-position="2">Paraná</a>
+      </li>
+      <li>
+        <a href="@Url.Action("Esportes", "Editorial")" data-position="3">Esportes</a>
+      </li>
+      <li>
+        <a href="@Url.Action("Entretenimento", "Editorial")" data-position="4">Entretenimento</a>
+      </li>
+      <li>
+        <a href="@Url.Action("NegociosDaTerra", "Editorial")" data-position="5">Negócios da Terra</a>
+      </li>
+      <li>
+        <a href="@Url.Action("ViajarEMassa", "Editorial")" data-position="6">Viajar é Massa</a>
+      </li>
+      <li>
+        <a href="@Url.Action("Index", "Blogs")" data-position="7">Blogs</a>
+      </li>
+      <li>
+        <a href="@Url.Action("Index", "Video")" data-position="8">Vídeos</a>
+      </li>
+      @*<li>
+        <a href="@Url.Action("Index", "GuiaMassa")" class="guia-massa">
+          <img src="@Url.Content("~/content/images/icons/guia-massa.svg")" alt="Guia Massa" class="svg logo-guia-massa">
+        </a>
+      </li>*@
+    </ul>
+  </section>
+
+  @* RÉGUA TAGS *@
+  @* @Html.Action("Regua","Home", new {tagUrl = "copa-do-mundo" }) *@
+
+  @* PUBLICIDADE *@
+  @Html.Partial("_AdOutdoor")
+
+  @if (Model.Highlights.Any())
+  {
+    <div class="group-headlines">
+      @Html.Partial("_AdFullPage")
+      @Html.Partial("_AdRetanguloMedioFloat")
+
+      @if (Model.TemplateId == Template.Template1.Id){
+        @Html.Partial("Template/_OneFull", Model.Highlights)
+      } else if (Model.TemplateId == Template.Template2.Id) {
+        @Html.Partial("Template/_TwoFull", Model.Highlights)
+      } else if (Model.TemplateId == Template.Template3.Id) {
+        @Html.Partial("Template/_ThreeFull", Model.Highlights)
+      } else if (Model.TemplateId == Template.Template4.Id) {
+        @Html.Partial("Template/_FourFull", Model.Highlights)
+      }
+    </div>
+  }
+
+  @* RÉGUA TAGS *@
+  @* @Html.Action("Regua","Home", new {tagUrl = "massa-news-na-russia" }) *@
+
+  <div class="g-content-inner-sidebar g-container">
+    <div class="g-content">
+      @Html.Partial("_CotacoesDolarMobile", Model.CotacoesEconomia)
+
+      @* SUA REGIÃO *@
+      @Html.Partial("_DestaqueComTags", Model.DestaqueComTagsSuaRegiao)
+
+      @* PUBLICIDADE *@
+      @Html.Partial("_AdCabecalho")
+
+      @* ESPORTES *@
+      @Html.Partial("_DestaqueComTags", Model.DestaqueComTagsEsportes)
+
+      @* ENTRETEDIMENTO *@
+      @Html.Partial("_DestaqueComTags", Model.DestaqueComTagsEntretedimento)
+
+      @* PARANÁ *@
+      @Html.Partial("_DestaqueComTags", Model.DestaqueComTagsParana)
+
+      @* DESTAQUE DE SEÇÕES *@
+      @Html.Partial("_CategoriasDestaques", Model.CategoriasDestaquesModel)
+
+      @* FOTOS *@
+      @if (Model.HighlightsFotos.Count > 0){
+        <section class="c-gallery t-fotos t-module">
+          <div class="c-category-title c-category-title--gray t-fotos">
+            <h2 class="title">
+              <a href="@Url.Action("Foto", "Editorial")" title="Ver todas as Galeria de fotos">Galeria de fotos</a>
+            </h2>
+            <a href="@Url.Action("Foto", "Editorial")" class="link-see-all fa fa-plus-circle fa-2x" title="Ver todas as Galeria de fotos"></a>
+          </div>
+
+          <div class="c-gallery__view">
+            @foreach (var item in Model.HighlightsFotos){
+              <div class="iten">
+                <a href="@Url.Action("Index", "Noticias", new {editorial = item.Categoria.Editorial.Url, categoria = item.Categoria.Url, url = item.Url})" title="@item.Chamada">
+                  <img srcset="@string.Format("{0}/{1}/{2} 347w, {0}/{1}/{3} 674w, {0}/{1}/{4} 675w", Constants.UrlDominioEstaticoUploads, "noticias", item.Galeria.ImgDtSm, item.Galeria.ImgDtMd, item.Galeria.ImgDt)" src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.Galeria.ImgDt}")" alt="@item.Chamada">
+                </a>
+                <div class="c-gallery__thumb">
+                  <a href="@Url.Action("Index", "Noticias", new {editorial = item.Categoria.Editorial.Url, categoria = item.Categoria.Url, url = item.Url})" title="@item.Chamada">
+                    <span class="description">@item.Chamada</span>
+                    <span class="gallery">
+                      <span class="fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-camera fa-stack-1x fa-inverse"></i>
+                      </span>
+                      <span class="counter">@item.Galeria.Imagens.Count</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            }
+          </div>
+        </section>
+      }
+
+      @* NEGÓCIOS DA TERRA *@
+      @if (Model.DestaqueComTagsNegociosDaTerra != null){
+        @Html.Partial("_DestaqueComTags", @Model.DestaqueComTagsNegociosDaTerra)
+      }
+
+      @* VIAJAR É MASSA *@
+      @Html.Partial("_DestaqueComTags", Model.DestaqueComTagsViajarEMassa)
+    </div>
+    <aside class="g-aside">
+      @Html.Partial("_CotacoesDolar", Model.CotacoesEconomia)
+
+      @Html.Partial("_AdRetanguloMini")
+
+      @if (Model.SidebarHighlight != null)
+      {
+        if (Model.SidebarHighlight.Status && Model.SidebarHighlight.Highlighted)
+        {
+          <div class="sidebar__ao-vivo t-module">
+            <div class="inner">
+              <h3 class="title">@Model.SidebarHighlight.Titulo</h3>
+              <div class="c-headline">
+                @if (!string.IsNullOrEmpty(Model.SidebarHighlight.Video))
+                {
+                  <picture class="image modal-video" rel="modal" data-modal="modal-video" data-modal-ref="@Model.SidebarHighlight.Video.Replace("?rel=0", "")" data-modal-title="@Model.SidebarHighlight.ChamadaLink" data-modal-href="@Model.SidebarHighlight.Link">
+                    <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                    <a href="#">
+                      <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"sidebarhighlights"}/{Model.SidebarHighlight.Img}")" alt="@Model.SidebarHighlight.Titulo">
+                    </a>
+                  </picture>
+                }
+                else
+                {
+                  <picture class="image">
+                    <a href="@Model.SidebarHighlight.Link">
+                      <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"sidebarhighlights"}/{Model.SidebarHighlight.Img}")" alt="@Model.SidebarHighlight.Titulo">
+                    </a>
+                  </picture>
+                }
+                @if (Model.SidebarHighlight.Link != null && Model.SidebarHighlight.ChamadaLink != null)
+                {
+                  <div class="texts">
+                    <h2 class="title">
+                      <a href="@Model.SidebarHighlight.Link" title="@Model.SidebarHighlight.ChamadaLink">@Model.SidebarHighlight.ChamadaLink</a>
+                    </h2>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      }
+
+      @* BLOGS *@
+      @Html.Partial("_Blogs", Model.Blogs)
+
+      @Html.Partial("_AdRetanguloMedio")
+
+      @Html.Partial("_LastestNews")
+
+      @* @if (Model.ShowEnquete){
+        <div class="sidebar__enquete t-module">
+          <h3 class="title"><a href="/tags/enquetes" class="color-brand" title="Enquete">Enquete <i class="fa fa-plus-circle fa-lg u-right"></i></a>
+          </h3>
+          <div id="container_@Model.EnqueteId"></div>
+          <script>
+            (function() {
+              var opst = document.createElement('script');
+              opst.type = 'text/javascript';
+              opst.async = true;
+              opst.src = "@("https://www.opinionstage.com/containers/" + Model.EnqueteId + "/embed.js")";
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(opst);
+            }());
+          </script>
+        </div>
+      } *@
+
+      @if (Model.SidebarHighlight != null)
+      {
+        if (Model.SidebarHighlight.Status && !Model.SidebarHighlight.Highlighted)
+        {
+          <div class="sidebar__ao-vivo t-module">
+            <div class="inner">
+              <h3 class="title">@Model.SidebarHighlight.Titulo</h3>
+              <div class="c-headline">
+                @if (!string.IsNullOrEmpty(Model.SidebarHighlight.Video))
+                {
+                  <picture class="image modal-video" rel="modal" data-modal="modal-video" data-modal-ref="@Model.SidebarHighlight.Video.Replace("?rel=0", "")" data-modal-title="@Model.SidebarHighlight.ChamadaLink" data-modal-href="@Model.SidebarHighlight.Link">
+                    <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                    <a href="#">
+                      <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"sidebarhighlights"}/{Model.SidebarHighlight.Img}")" alt="@Model.SidebarHighlight.Titulo">
+                    </a>
+                  </picture>
+                }
+                else
+                {
+                  <picture class="image">
+                    <a href="@Model.SidebarHighlight.Link">
+                      <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"sidebarhighlights"}/{Model.SidebarHighlight.Img}")" alt="@Model.SidebarHighlight.Titulo">
+                    </a>
+                  </picture>
+                }
+                @if (Model.SidebarHighlight.Link != null && Model.SidebarHighlight.ChamadaLink != null)
+                {
+                  <div class="texts">
+                    <h2 class="title">
+                      <a href="@Model.SidebarHighlight.Link" title="@Model.SidebarHighlight.ChamadaLink">@Model.SidebarHighlight.ChamadaLink</a>
+                    </h2>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      }
+
+      @Html.Partial("_PopularNews")
+
+      @*@Html.Partial("_AdRetanguloMedio")*@
+      @Html.Partial("_AdArranhaCeuGrande")
+    </aside>
+  </div>
+
+  <div class="t-bg-neutral">
+    <div class="g-container">
+      @Html.Partial("_DestaqueVideos", @Model.DestaqueVideo)
+    </div>
+  </div>
+
+  <div class="c-newsletter--module">
+    @Html.Partial("_Newsletter")
+  </div>
+</main>

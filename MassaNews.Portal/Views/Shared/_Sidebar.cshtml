@@ -1,0 +1,180 @@
+﻿@using MassaNews.Service.Enum
+@using MassaNews.Portal.ViewModels
+
+<aside class="g-aside">
+  @if (ViewBag.Editorial.Id == 4)
+  {
+    @Html.Partial("_WhereRevista")
+  }
+  else
+  {
+    @Html.Partial("_AdRetanguloMini")
+  }
+
+  @* 6 = Negócios da Terra *@
+  @if (ViewBag.Editorial.Id == 6){
+    if (ViewBag.NTCotacoesPorParana != null && ViewBag.NTCotacoesPorSantaCatarina != null){
+      <div class="sidebar__cotacoes t-module t-border t-page-border">
+        <h3 class="title t-page-color">
+          <a href="/cotacoes" class="t-page-color" title="Cotações">Cotações <i class="fa fa-plus-circle fa-lg u-right"></i></a>
+        </h3>
+
+        @if (ViewBag.NTCotacoesPorParana.Count > 0)
+        {
+          <h4 class="title-state">Paraná</h4>
+          <table class="table table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th>Produto</th>
+                <th>Média</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach (CotacoesPorEstado item in ViewBag.NTCotacoesPorParana)
+              {
+                <tr>
+                  <td><a href="/cotacoes/parana/produto/@item.ProdutoSlug" class="t-page-color">@item.ProdutoNome</a></td>
+                  <td>
+                    R$ @item.Media.ToString("N2") &nbsp;
+                    @if (item.MediaAnterior == 0)
+                    {
+
+                    }
+                    else if (item.Media > item.MediaAnterior)
+                    {
+                      <i class="fa fa-arrow-up color-success u-margin-lefte"></i>
+                    }
+                    else if (item.Media < item.MediaAnterior)
+                    {
+                      <i class="fa fa-arrow-down color-danger u-margin-lefte"></i>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+
+        @if (ViewBag.NTCotacoesPorSantaCatarina.Count > 0)
+        {
+          <h4 class="title-state">Santa Catarina</h4>
+          <table class="table table-bordered u-margin-bottom">
+            <thead class="thead-light">
+              <tr>
+                <th>Produto</th>
+                <th>Média</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach (CotacoesPorEstado item in ViewBag.NTCotacoesPorSantaCatarina)
+              {
+                <tr>
+                  <td><a href="/cotacoes/santa-catarina/produto/@item.ProdutoSlug" class="t-page-color">@item.ProdutoNome</a></td>
+                  <td>
+                    R$ @item.Media.ToString("N2") &nbsp;
+
+                    @if (item.MediaAnterior == 0)
+                    {
+
+                    }
+                    else if (item.Media > item.MediaAnterior)
+                    {
+                      <i class="fa fa-arrow-up color-success u-margin-lefte"></i>
+                    }
+                    else if (item.Media < item.MediaAnterior)
+                    {
+                      <i class="fa fa-arrow-down color-danger u-margin-lefte"></i>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+        <div class="group-button">
+          <a href="/cotacoes" class="c-button mini t-page-button block" title="Ver todas as cotações">Ver todas as cotações</a>
+        </div>
+      </div>
+    }
+
+    <div class="sidebar__blogs t-module">
+      <h3 class="title t-page-color">
+        <a href="/blogs" class="t-page-color" title="Blog e Opinião">Blog e Opinião <i class="fa fa-plus-circle fa-lg u-right"></i></a>
+      </h3>
+      <ul class="c-autores track-blogs-home track-blogs-home-sidebar">
+          <li class="item c-autores__iten">
+            <picture class="image">
+              <a href="/blogs/agronegocio/eugenio-stefanelo/posts" class="img">
+                <img src="https://cdn.massanews.com/uploads/autores/eugenio-stefanelo-49baca3d.jpg" width="89" height="89" alt="Eugenio Stefanelo">
+              </a>
+            </picture>
+            <div class="texts">
+              <a href="/blogs/agronegocio" class="hat" title="Agronegócio">Agronegócio</a>
+              <a href="/blogs/agronegocio/eugenio-stefanelo/posts" class="author" title="Eugenio Stefanelo">Eugenio Stefanelo</a>
+            </div>
+          </li>
+      </ul>
+    </div>
+
+    <div class="t-module t-border">
+      <h3 class="title t-page-color">Siga o Negócios da Terra</h3>
+      <ul class="c-social-links">
+        <li>
+          <a href="https://www.facebook.com/NegociosdaTerra/" target="_blank" class="icon u-margin-bottom-none" title="Facebook">
+            <span class="fa-stack fa-lg color-facebook">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/channel/UCCYxMTERB2LuzQPhsizT1cA?sub_confirmation=1" target="_blank" class="icon u-margin-bottom-none" title="Twitter">
+            <span class="fa-stack fa-lg color-youtube">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  }
+
+  @if (ViewBag.ShowResumo != null)
+  {
+    @Html.Partial("_ResumoTabela")
+  }
+
+  @*@if (ViewBag.ShowResumo != null){
+      @Html.Partial("_ResumoTabela")
+    } else if (ViewBag.Editorial.Id != EditorialEnum.WhereCuritiba.GetHashCode()) {
+      @Html.Partial("_LastestNews")
+    }*@
+
+  @* Times *@
+  @* @if (ViewBag.Editorial.Id == 2) {
+      <div class="sidebar__mais-times t-module">
+        <h3 class="title t-page-color">Times</h3>
+        @Html.Partial("_Times", "2")
+      </div>
+    } *@
+
+  @if (ViewBag.Editorial.Id != EditorialEnum.WhereCuritiba.GetHashCode())
+  {
+    @Html.Partial("_LastestNews")
+  }
+
+  @* @if (ViewBag.Editorial.Id == 2){
+      @Html.Partial("_AdRetanguloMini-2")
+    } *@
+
+  @Html.Partial("_AdRetanguloMedio")
+
+  @Html.Partial("_PopularNews")
+
+  @* @if (ViewBag.Editorial.Id == 4)
+  {
+    @Html.Partial("_WhereSocial")
+  } *@
+
+  @Html.Partial("_AdArranhaCeuGrande")
+</aside>

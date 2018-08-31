@@ -1,0 +1,161 @@
+﻿@* <script type="text/javascript">
+  // Load GPT 
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+  (function(){
+    var gads = document.createElement('script');
+    gads.async = true;
+    var useSsl = 'https:' == document.location.protocol;
+    gads.src = (useSsl ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
+  })();
+</script> *@
+
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script type="text/javascript">
+  //Load the cookie value
+  function GetCookie(cname){
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++){
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  // DFP
+  var gptAdSlots = [];
+  var host = location.host;
+
+  googletag.cmd.push(function (){
+    // Critérios personalizados
+    googletag.pubads().setTargeting("Cidade", "@ViewBag.CurrentCity.Url");
+    googletag.pubads().setTargeting("Microrregião", "@ViewBag.CurrentCity.Microregion.Url");
+    googletag.pubads().setTargeting("Macrorregião", "@ViewBag.CurrentCity.Microregion.Macroregiao.Url");
+    googletag.pubads().setTargeting("pagina", "@ViewBag.Pagina");
+    googletag.pubads().setTargeting("editoria", "@ViewBag.EditoriaUrl");
+    googletag.pubads().setTargeting("categoria", "@ViewBag.Categoria");
+    googletag.pubads().setTargeting("subcategoria", "@ViewBag.SubCategoria");
+    googletag.pubads().setTargeting("tags", "@ViewBag.Tags");
+    googletag.pubads().setTargeting("blog", "@ViewBag.Blog");
+    googletag.pubads().setTargeting("id", "@ViewBag.Id");
+
+    // Disable initial load, we will use refresh() to fetch ads.
+    // Calling this function means that display() calls just
+    // register the slot as ready, but do not fetch ads for it.
+    //googletag.pubads().disableInitialLoad();
+
+    // Map Retângulo Médio
+    var mapRetanguloMedio = googletag.sizeMapping().
+      addSize([320, 200], [300, 250]). // Desktop ~ Table ~ Mobile
+      addSize([0, 0], []). // < 320
+      build();
+
+    // Map Retângulo Médio
+    var mapRetanguloMini = googletag.sizeMapping().
+      addSize([320, 200], [300, 90]). // Desktop ~ Table ~ Mobile
+      addSize([0, 0], []). // < 320
+      build();
+
+    // Map Arranha-céu grande
+    var mapArranhaCeuGrande = googletag.sizeMapping().
+      addSize([875, 200], [300, 600]). // Desktop
+      addSize([0, 0], []). // < 875
+      build();
+
+    // Map Cabecalho
+    var mapCabecalho = googletag.sizeMapping().
+      addSize([1100, 200], [728, 90]). // Desktop
+      addSize([340, 200], [320, 100]). // Table ~ Mobile
+      addSize([0, 0], []). // < 340
+      build();
+
+    // Map Cabecalho Grande
+    // var mapCabecalhoGrande = googletag.sizeMapping().
+    //   addSize([1010, 200], [970, 90]). // Desktop
+    //   addSize([770, 200], [728, 90]). // Table
+    //   addSize([340, 200], [320, 100]). // Mobile
+    //   addSize([0, 0], []). // < 340
+    //   build();
+
+    // Map Outdoor
+    var mapOutdoor = googletag.sizeMapping().
+      addSize([1010, 200], [970, 150]). // Desktop
+      addSize([340, 200], [320, 100]). // Mobile
+      addSize([0, 0], []). // < 340
+      build();
+
+    // Map Full page
+    var mapFullPage = googletag.sizeMapping().
+      addSize([1280, 200], [1280, 460]). // Desktop
+      addSize([770, 200], []). // Table
+      addSize([340, 200], [320, 100]). // Mobile
+      addSize([0, 0], []). // < 340
+      build();
+
+    //googletag.defineSlot('/52387530/retangulo-medio-pos-1', [300, 250], 'div-gpt-ad-1456940131236-0').addService(googletag.pubads());
+    gptAdSlots[0] = googletag.defineSlot('/52387530/retangulo-medio-pos-1', [300, 250], 'div-gpt-ad-1456940131236-0').defineSizeMapping(mapRetanguloMedio).addService(googletag.pubads());
+    gptAdSlots[1] = googletag.defineSlot('/52387530/arranha-ceu-grande-pos-1', [300, 600], 'div-gpt-ad-1457022429423-0').defineSizeMapping(mapArranhaCeuGrande).addService(googletag.pubads());
+    gptAdSlots[2] = googletag.defineSlot('/52387530/cabecalho-pos-1', [[320, 100], [728, 90]], 'div-gpt-ad-1456949202275-0').defineSizeMapping(mapCabecalho).addService(googletag.pubads());
+    gptAdSlots[3] = googletag.defineSlot('/52387530/cabecalho-pos-2', [[320, 100], [728, 90]], 'div-gpt-ad-1490973153997-0').defineSizeMapping(mapCabecalho).addService(googletag.pubads());
+    gptAdSlots[4] = googletag.defineSlot('/52387530/retangulo-mini-pos-1', [300, 90], 'div-gpt-ad-1461003416300-0').defineSizeMapping(mapRetanguloMini).addService(googletag.pubads());
+    gptAdSlots[5] = googletag.defineSlot('/52387530/retangulo-mini-pos-2', [300, 90], 'div-gpt-ad-1461003774353-0').defineSizeMapping(mapRetanguloMini).addService(googletag.pubads());
+    gptAdSlots[6] = googletag.defineSlot('/52387530/retangulo-medio-float-1', [300, 250], 'div-gpt-ad-1490021740123-0').defineSizeMapping(mapRetanguloMedio).addService(googletag.pubads());
+    gptAdSlots[7] = googletag.defineSlot('/52387530/outdoor-pos-1', [[320, 100], [970, 150]], 'div-gpt-ad-1492610674186-0').defineSizeMapping(mapOutdoor).addService(googletag.pubads());
+    gptAdSlots[8] = googletag.defineSlot('/52387530/full-page', [[1280, 460], [320, 100]], 'div-gpt-ad-1496155051692-0').defineSizeMapping(mapFullPage).addService(googletag.pubads());
+    //gptAdSlots[9] = googletag.defineSlot('/52387530/retangulo-medio-pos-2', [300, 250], 'div-gpt-ad-1457304329652-0').defineSizeMapping(mapRetanguloMedio).addService(googletag.pubads());
+    //gptAdSlots[10] = googletag.defineSlot('/52387530/cabecalho-grande-pos-1', [[320, 100], [728, 90], [970, 90]], 'div-gpt-ad-1492540380399-0').defineSizeMapping(mapCabecalhoGrande).addService(googletag.pubads());
+
+    // Infinite scroll requires SRA
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs(true,true);
+    googletag.enableServices();
+
+    // Banner com botão Fechar
+    var adCookie = GetCookie("close-ad-div-gpt-ad-1490021740123-0");
+    if(adCookie != ""){
+      $('#div-gpt-ad-1490021740123-0').parent('.c-publicidade').hide();
+      googletag.destroySlots([gptAdSlots[6]]);
+    }
+  });
+
+  // Function to generate unique names for slots
+  var nextSlotId = 1;
+  function generateNextSlotName(){
+    var id = nextSlotId++;
+    return 'adslot' + id;
+  }
+
+  // Function to add content to page, mimics real infinite scroll
+  // but keeps it much simpler from a code perspective.
+  function LoadNewAds(objPost){
+    // Generate next slot name
+    var slotName = generateNextSlotName();
+
+    // Create a div for the slot
+    var slotDiv = document.createElement('div');
+    slotDiv.id = slotName; // Id must be the same as slotName
+    slotDiv.className = "inventory t-module";
+
+    $(objPost).find('.c-publicidade').html(slotDiv);
+
+    // Define the slot itself, call display() to register the div and refresh() to fetch ad.
+    googletag.cmd.push(function (){
+      var slot = googletag.defineSlot('/52387530/retangulo-medio-pos-1', [300, 250], slotName).addService(googletag.pubads());
+      // Display has to be called before refresh and after the slot div is in the page.
+      googletag.display(slotName);
+    });
+  }
+</script>

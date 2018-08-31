@@ -1,0 +1,131 @@
+﻿@using Entities.Classes
+@using MassaNews.Service.Util
+
+@model MassaNews.Models.Portal.View.AmpIndexViewModel
+
+<div class="g-content">
+  <article class="c-post">
+    <header class="c-post__header">
+      <h2 class="category h4"><a href="@Model.HeadUrl" class="t-page-color" title="@Model.HeadTitle">@Model.HeadTitle</a></h2>
+      <h1 class="title">@Model.Titulo</h1>
+
+      <div class="c-post__published">
+        <span class="author" itemprop="name">@Model.Autores</span>
+
+        @if (!string.IsNullOrEmpty(Model.CityUrl))
+        {
+          <span class="separator">|</span>
+          <a href="@($"/tags/{Model.CityUrl}")" class="city">@Model.CityName</a>
+          @* <span class="separator">|</span> *@
+        }
+
+        <span class="update">Publicado em <time class="date" datetime="@Convert.ToDateTime(Model.DataPublicacao).ToString("yyyy-MM-dd HH:mm")">@Convert.ToDateTime(Model.DataPublicacao).ToString("dd \\de MMMM \\de yyyy \\| HH\\hmm")</time></span>
+      </div>
+
+      @* @Html.Partial("Amp/_Social") *@
+    </header>
+
+    @if (Model.DestaqueId != Destaque.Nenhum.Id)
+    {
+      <div class="c-post__highlight">
+        @if (Model.DestaqueId == Destaque.Imagem.Id)
+        {
+          <figure class="figure">
+            <amp-img src="@Model.ImgMd" alt="@Model.Legenda - @Model.Chamada" height="531" width="961" layout="responsive"></amp-img>
+            @if (!string.IsNullOrEmpty(Model.Legenda))
+            {
+              <figcaption>@Model.Legenda</figcaption>
+            }
+          </figure>
+        }
+        else if (Model.DestaqueId == Destaque.Galeria.Id)
+        {
+          <amp-carousel width=961 height=531 layout=responsive type=slides>
+            @foreach (var image in Model.GalleryImages)
+            {
+              <amp-img src="@($"{Constants.UrlDominioEstaticoUploads}/galerias/{image}")" width=961 height=531 alt="legenda" layout=fill></amp-img>
+            }
+          </amp-carousel>
+        }
+        else if (Model.DestaqueId == Destaque.Video.Id)
+        {
+          <amp-youtube data-videoid="@Model.Video" layout="responsive" width="961" height="531"></amp-youtube>
+        }
+      </div>
+    }
+
+    <div class="c-post__main">
+      <section class="c-post__content" itemprop="articleBody">
+        @Html.Raw(Model.Conteudo)
+      </section>
+
+      <footer class="c-post__footer">
+        <div class="c-post__social c-post__footer__social c-post__footer__modulee">
+          @* <h4 class="title t-page-color">Compartilhe:</h4> *@
+          @Html.Partial("Amp/_Social")
+        </div>
+
+        @if (Model.IsBlog)
+        {
+          <div class="c-post__footer__module c-author-profile c-author-profile__post clearfix">
+            <div class="c-author-profile__inner">
+              <span class="c-author-profile__avatar">
+              <amp-img src="@Model.BlogAutorAvatar" width=69 height=69 alt="@Model.BlogAutorName"></amp-img>
+            </span>
+              <h3 class="c-author-profile__name"><a href="@Model.HeadUrl" class="t-page-color">@Model.BlogAutorName</a></h3>
+            </div>
+            <div class="c-author-profile__description">
+              <p class="resume">@Model.BlogAutorDescription <a href="@Model.HeadUrl" class="t-page-color" title="Veja mais de @Model.BlogAutorName">Veja mais »</a>
+              </p>
+            </div>
+          </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Link1) && !string.IsNullOrEmpty(Model.ChamadaLink1) || !string.IsNullOrEmpty(Model.Link2) && !string.IsNullOrEmpty(Model.ChamadaLink2))
+        {
+          <div class="c-post__seetoo c-post__footer__module clearfix">
+            <h4 class="title t-page-color">Veja também</h4>
+            <ul class="c-headline-list">
+              @if (!string.IsNullOrEmpty(Model.Link1) && !string.IsNullOrEmpty(Model.ChamadaLink1))
+              {
+                <li class="iten">
+                  <a href="@Model.Link1" title="@Model.ChamadaLink1">@Model.ChamadaLink1</a>
+                </li>
+              }
+              @if (!string.IsNullOrEmpty(Model.Link2) && !string.IsNullOrEmpty(Model.ChamadaLink2))
+              {
+                <li class="iten">
+                  <a href="@Model.Link2" title="@Model.ChamadaLink2">@Model.ChamadaLink2</a>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+
+        <div class="c-post__footer__seetoo c-post__footer__module clearfix">
+          <h4 class="title t-page-color">Veja mais em @Model.HeadTitle</h4>
+          <ul class="c-headline-list-image">
+            @{
+              var index = 1;
+            }
+            @foreach (var noticia in Model.ListNoticiasVejaMais)
+            {
+              <li class="iten">
+                <a href="@noticia.Url" title="@noticia.Title">
+                  <amp-img src="@noticia.Img" width="134" height="74" alt="@noticia.Title" layout="responsive"></amp-img>
+                  <h5 class="h6 title-list">@noticia.Title</h5>
+                </a>
+              </li>
+              if (index == 2){
+              <li class="div"></li>
+              }
+              index++;
+            }
+          </ul>
+        </div>
+      </footer>
+    </div>
+  </article>
+
+  @Html.Partial("Amp/_Ad")
+</div>

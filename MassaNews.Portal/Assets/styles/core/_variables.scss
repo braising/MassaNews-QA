@@ -1,0 +1,300 @@
+// =============================================================================
+// RESPONSIVE MEDIA
+// =============================================================================
+
+// Media Queries
+$screen: "only screen" !default;
+$landscape: "#{$screen} and (orientation: landscape)" !default;
+$portrait: "#{$screen} and (orientation: portrait)" !default;
+
+
+// =============================================================================
+// MOBILE DEVICES
+// =============================================================================
+
+// Smartphones -----------
+$smartphone: "only screen and (min-device-width: 20em) and (max-device-width: 30em)" !default; // 320px e 480px
+$smartphone-landscape: "only screen and (min-width: 20.063em)" !default; // 321px
+$smartphone-portrait: "only screen and (max-width: 20em)" !default; // 320px
+
+// iPads -----------
+$ipad: "only screen and (min-device-width: 48em) and (max-device-width: 64em)" !default; // 768px e 1024px
+$ipad-landscape: "only screen and (min-device-width: 48em) and (max-device-width: 64em) and (orientation: landscape)" !default; // 768px e 1024px
+$ipad-portrait: "only screen and (min-device-width: 48em) and (max-device-width: 64em) and (orientation: portrait)" !default; // 768px e 1024px
+
+// iPad 3 -----------
+$ipad3: "only screen and (min-device-width: 48em) and (max-device-width: 64em) and (-webkit-min-device-pixel-ratio : 2)" !default; // 768px e 1024px
+$ipad3-landscape: "only screen and (min-device-width: 48em) and (max-device-width: 64em) and (orientation: landscape) and (-webkit-min-device-pixel-ratio : 2)" !default; // 768px e 1024px
+$ipad3-portrait: "only screen and (min-device-width: 48em) and (max-device-width: 64em) and (orientation: portrait) and (-webkit-min-device-pixel-ratio : 2)" !default; // 768px e 1024px
+
+// Large screens -----------
+$large-screen: "only screen  and (min-width: 114em)" !default; // 1824px
+
+// iPhone 4 -----------
+$iphone4: "only screen and (min-device-width: 20em) and (max-device-width: 30em) and (-webkit-min-device-pixel-ratio : 2)" !default; // 320px e 480px
+$iphone4-landscape: "only screen and (min-device-width: 20em) and (max-device-width: 30em) and (orientation: landscape) and (-webkit-min-device-pixel-ratio : 2)" !default; // 320px e 480px
+$iphone4-portrait: "only screen and (min-device-width: 20em) and (max-device-width: 30em) and (orientation: portrait) and (-webkit-min-device-pixel-ratio : 2)" !default; // 320px e 480px
+
+// iPhone 5 -----------
+$iphone5: "only screen and (min-device-width: 20em) and (max-device-height: 35.5em) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 568px
+$iphone5-landscape: "only screen and (min-device-width: 20em) and (max-device-height: 35.5em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 568px
+$iphone5-portrait: "only screen and (min-device-width: 20em) and (max-device-height: 35.5em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 568px
+
+// iPhone 6 -----------
+$iphone6: "only screen and (min-device-width: 23.4375em) and (max-device-height: 41.6875em) and (-webkit-device-pixel-ratio: 2)" !default; // 375px e 667px
+$iphone6-landscape: "only screen and (min-device-width: 23.4375em) and (max-device-height: 41.6875em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" !default; // 375px e 667px
+$iphone6-portrait: "only screen and (min-device-width: 23.4375em) and (max-device-height: 41.6875em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" !default; // 375px e 667px
+
+// iPhone 6+ -----------
+$iphone6plus: "only screen and (min-device-width: 25.875em) and (max-device-height: 46em) and (-webkit-device-pixel-ratio: 2)" !default; // 414px e 736px
+$iphone6plus-landscape: "only screen and (min-device-width: 25.875em) and (max-device-height: 46em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" !default; // 414px e 736px
+$iphone6plus-portrait: "only screen and (min-device-width: 25.875em) and (max-device-height: 46em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" !default; // 414px e 736px
+
+// Samsung Galaxy S3 -----------
+$galaxys3: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 640px
+$galaxys3-landscape: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 640px
+$galaxys3-portrait: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" !default; // 320px e 640px
+
+// Samsung Galaxy S4 -----------
+$galaxys4: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (-webkit-device-pixel-ratio: 3)" !default; // 320px e 640px
+$galaxys4-landscape: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)" !default; // 320px e 640px
+$galaxys4-portrait: "only screen and (min-device-width: 20em) and (max-device-height: 40em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)" !default; // 320px e 640px
+
+// Samsung Galaxy S5 -----------
+$galaxys5: "only screen and (min-device-width: 22.5em) and (max-device-height: 40em) and (-webkit-device-pixel-ratio: 3)" !default; // 360px e 640px
+$galaxys5-landscape: "only screen and (min-device-width: 22.5em) and (max-device-height: 40em) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)" !default; // 360px e 640px
+$galaxys5-portrait: "only screen and (min-device-width: 22.5em) and (max-device-height: 40em) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)" !default; // 360px e 640px
+
+
+// =============================================================================
+// MIXINS
+// =============================================================================
+
+// @mixin breakpoint($point) {
+//   @media #{$point} {
+//     @content;
+//   }
+// }
+
+
+
+
+// =============================================================================
+// CORES
+// =============================================================================
+
+//cinzas
+$gray-darker:            #363636 !default;
+$gray-dark:              #4f4f4f !default;
+$gray:                   #9c9c9c !default;
+$gray-light:             #a4a4a4 !default;
+$gray-lighter:           #c1c1c1 !default;
+$gray-lightest:          #f2f2f2 !default;
+
+$black-special:          #191919 !default;
+$black-special-light:    #272727 !default;
+$black-special-lighter:  #5b5b5b !default;
+$black-special-lightest: #bababa !default;
+
+//cores principais
+$brand-primary:          #d2232a !default;
+$brand-complement:       #131838 !default;
+$brand-contrast:         #ffcb32 !default;
+
+//cores temas
+$tema-noticias:          #a10000;
+//$tema-esportes:        #faa61a;
+$tema-esportes:          #00ba42;
+$tema-entretenimento:    #e52ad6;
+$tema-negocios-da-terra: #26972a;
+$tema-blogs:             #0153a7;
+//$tema-fotos:           #00ba42;
+$tema-fotos:             $brand-primary;
+$tema-videos:            #01d7df;
+$tema-guia:              #9f005c;
+$tema-where:             #ff7f05;
+$tema-roteiros:          #ff7f05;
+$tema-viajar-e-massa:    #8594E4;
+$tema-especiais:         #ff9800;
+$tema-comunidades:       $tema-negocios-da-terra;
+//$tema-comunidades:       #7bc600;
+
+//especiais / comerciais
+$tema-quiz-unifil:               #1fbf90;
+$tema-bck:                       #0245a3;
+$tema-desafiando-chefs:          #ed5a24;
+$tema-farol-do-saber-e-inovacao: #10528c;
+$tema-natal-de-luz:              #c23433;
+$tema-viaje-pelos-campos-gerais: #ff8c05;
+$tema-educacao-financeira:       #63c932;
+$tema-transmita-calor:           #FFA911;
+$tema-massa-na-russia:           #e42737;
+$tema-curitiba-criativa:         #028e81;
+
+//cores auxiliares
+$color-success:          #39aa17 !default;
+$color-info:             #5bc0de !default;
+$color-warning:          #f0ad4e !default;
+$color-danger:           #ff0000 !default;
+
+//cores redes sociais
+$color-twitter:          #00acec !default;
+$color-facebook:         #39589c !default;
+$color-youtube:          #e3312f !default;
+$color-instagram:        #315c85 !default;
+$color-googleplus:       #dc4e41 !default;
+$color-snapchat:         #e5d801 !default;
+$color-whatsapp:         #0eb700 !default;
+$color-linkedin:         #0077B5 !default;
+
+
+
+// =============================================================================
+// TYPOGRAPHY
+// =============================================================================
+
+//FONT-FAMILY
+// Familia principal
+$fonts-base: proxima-nova, Arial, Helvetica, sans-serif;
+
+// Familia para titulos
+$fonts-heading: $fonts-base;
+
+// Familia secundária
+//$fonts-secondary: 'Adobe Garamond Pro', Arial, sans-serif;
+
+// Familia serifadas
+//$fonts-serif:'Adobe Garamond Pro', 'Times New Roman', Times, serif;
+
+
+//FONT-SIZE
+//font base do html
+$font-size-base: 16px !default;
+$font-size-large: ceil(($font-size-base * 1.25)) !default;
+$font-size-small: ceil(($font-size-base * 0.85)) !default;
+$paragraph-size: 18px !default;
+
+
+//LINE-HEIGHT
+$line-height-base:        1.4 !default;
+
+$line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px
+
+
+// =============================================================================
+// GRID
+// =============================================================================
+
+//Espaçamentos horizontais e verticais entre colunas
+$gutter: 10px;
+
+$container-gutters: $gutter * 4;
+$columns-amount: 12;
+$column-width: 89px;
+
+
+//largura maxima dos containers do site
+$max-container: grid-px(12);
+
+//alturas do header fixo
+$top-height:80px;
+$top-height-mobile:50px;
+$top-videos-height:130px;
+
+$top-bar-height:110px;
+$top-bar-height-mobile:80px;
+$top-home-height:137px;
+
+//larguras comuns do site
+$large-width: grid-px(9);
+$medium-width: grid-px(6);
+$small-width: grid-px(3);
+
+//sidebar fixo das págians internas
+$fixed-sidebar-width:grid-px(3, 20px);
+
+
+// =============================================================================
+// Z-INDEX
+// =============================================================================
+
+//-- Z-index master list
+$zindex-header:         960 !default;
+$zindex-nav:            1000 !default;
+$zindex-nav-dropdown:   930 !default;
+//$zindex-fixed-sidebar:  940 !default;
+$zindex-fixed-sidebar:  951 !default;
+$zindex-footer:         950 !default;
+$zindex-modal:          9100 !default;
+
+
+
+
+// =============================================================================
+// COMPONENTS
+// =============================================================================
+
+$padding-base-vertical:     2em !default;
+$padding-base-horizontal:   2em !default;
+
+$padding-large-vertical:    3em !default;
+$padding-large-horizontal:  3em !default;
+
+$padding-small-vertical:    1em !default;
+$padding-small-horizontal:  10px !default;
+
+$line-height-large:         1.3333333 !default; // extra decimals for Win 8.1 Chrome
+$line-height-small:         1.5 !default;
+
+$border-radius-medium:      15px !default;
+$border-radius-base:        4px !default;
+$border-radius-large:       25px !default;
+$border-radius-small:       3px !default;
+
+$margin-base:               1em !default;
+
+$margin-xlarge:             4.5em !default;
+$margin-large:              3.5em !default;
+$margin-medium:             2.5em !default;
+$margin-small:              1.5em !default;
+$margin-xsmall:             1em !default;
+
+
+
+// =============================================================================
+// TEXTS / LINKS
+// =============================================================================
+
+//** Global text color on `<body>`.
+$text-color: $gray-dark !default;
+//** Global textual link color.
+$link-color: $gray-dark !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color: darken($link-color, 5%) !default;
+//** Link hover decoration.
+$link-hover-decoration: underline !default;
+//** Headlings color
+$headings-color: $brand-primary;
+//** Horizontal line color.
+$hr-border: $gray-lighter !default;
+
+
+
+// =============================================================================
+// FONT AWESOME
+// =============================================================================
+$fa-font-path:        "../fonts/font-awesome" !default;
+$fa-font-size-base:   14px !default;
+$fa-line-height-base: 1 !default;
+//$fa-font-path:        "//netdna.bootstrapcdn.com/font-awesome/4.6.1/fonts" !default; // for referencing Bootstrap CDN font files directly
+$fa-css-prefix:       fa !default;
+$fa-version:          "4.6.1" !default;
+$fa-border-color:     #eee !default;
+$fa-inverse:          #fff !default;
+$fa-li-width:         (30em / 14) !default;
+
+
+
+
+
+

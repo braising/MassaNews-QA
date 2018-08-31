@@ -1,0 +1,50 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-servicos {
+  margin:1em 0 0 0;
+
+  li {
+    display: table;
+    margin:0 0 .5em 0;
+  }
+
+  a {
+    display: table-cell;
+    vertical-align: middle;
+    height:40px;
+    overflow:hidden;
+    padding:0 0 0 58px;
+    background:url(../images/icons/sprite-servicos.png) no-repeat 0 0;
+
+    &:hover {
+
+    }
+  }
+
+  .c-servicos__transporte {
+    background-position:0px 0px;
+  }
+
+  .c-servicos__imovel {
+    background-position:0px -40px;
+  }
+
+  .c-servicos__moedas {
+    background-position:0px -80px;
+  }
+
+  .c-servicos__combustiveis {
+    background-position:0px -120px;
+  }
+}
+
+
+/* =============CUSTOM============= */
+
+
+/* =============MEDIA QUERY============= */

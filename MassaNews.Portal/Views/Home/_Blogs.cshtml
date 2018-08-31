@@ -1,0 +1,29 @@
+﻿@model List<MassaNews.Service.Models.Blog>
+
+@if (Model.Any())
+{
+  <div class="sidebar__blogs t-module">
+    <h3 class="title">
+      <a href="@Url.Action("Index", "Blogs")" class="color-brand" title="Blogs e Opinião">Blogs e Opinião <i class="fa fa-plus-circle fa-lg u-right"></i></a>
+    </h3>
+    <ul class="c-autores track-blogs-home track-blogs-home-sidebar">
+      @{var indexBlogs = 1;}
+      @foreach (var objBlog in Model)
+      {
+        <li class="item c-autores__iten">
+          <picture class="image">
+            <a href="@Url.Action("BlogPosts", "Blogs", new { categoria = objBlog.Categoria.Url, blog = objBlog.Url })" class="img">
+              <img src="@objBlog.Img" width="89" height="89" alt="@objBlog.Titulo">
+            </a>
+          </picture>
+          <div class="texts">
+            <a href="@Url.Action("Categoria", "Blogs", new { categoria = objBlog.Categoria.Url })" class="hat" title="@objBlog.Categoria.Titulo">@objBlog.Categoria.Titulo</a>
+            <a href="@Url.Action("BlogPosts", "Blogs", new { categoria = objBlog.Categoria.Url, blog = objBlog.Url })" class="author" title="@objBlog.Titulo">@objBlog.Titulo</a>
+            <a href="@($"/blogs/{objBlog.NoticiaCategoria}/{objBlog.Url}/{objBlog.NoticiaUrl}")" class="post" data-position="@indexBlogs" title="@objBlog.NoticiaChamada">@objBlog.NoticiaChamada</a>
+          </div>
+        </li>
+        indexBlogs++;
+      }
+    </ul>
+  </div>
+}

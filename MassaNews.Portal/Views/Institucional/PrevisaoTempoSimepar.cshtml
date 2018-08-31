@@ -1,0 +1,168 @@
+﻿@section bodyClass{@Html.Raw("pg-previsao-do-tempo pg-previsao-do-tempo-simepar")}
+@using MassaNews.Portal.ViewModels
+@model PrevisaoSimeparViewModel
+
+<main class="g-main">
+  <div class="g-content-inner-sidebar g-container t-content">
+    @if (Model.WeatherPrincipal != null && Model.WeatherPrincipal.Cidade != null)
+    {
+      <h1 class="title">@Model.WeatherPrincipal.Cidade</h1>
+    }
+
+    <div class="g-content">
+      <section class="current-city clearfix">
+        @if (Model.WeatherPrincipal != null && Model.WeatherPrincipal.simeparPrevisoes.Any())
+        {
+          <div class="primary-info">
+            <span class="wi @Model.WeatherPrincipal.simeparPrevisoes.FirstOrDefault().simeparPeriodos.FirstOrDefault().icon icon color-page" title="@Model.WeatherPrincipal.simeparPrevisoes.FirstOrDefault().simeparPeriodos.FirstOrDefault().description"></span>
+            <div class="temp">
+              <span class="min-max-temp">
+                <strong class="max">
+                  <i class="fa fa-long-arrow-up"></i>
+                  <span class="valeu">@Model.WeatherPrincipal.simeparPrevisoes.FirstOrDefault().tempMax&deg;</span>
+                </strong>
+                <strong class="min">
+                  <i class="fa fa-long-arrow-down"></i>
+                  <span class="valeu">@Model.WeatherPrincipal.simeparPrevisoes.FirstOrDefault().tempMin&deg;</span>
+                </strong>
+              </span>
+              <strong class="description">@Model.WeatherPrincipal.simeparPrevisoes.FirstOrDefault().simeparPeriodos.FirstOrDefault().description</strong>
+            </div>
+          </div>
+
+          <div class="secondary-info">
+            @* CLASSE PARA LISTA FULL - SIMEPAR *@
+            <ul class="list-full">
+              <li>
+                <span class="wi wi-wind from-@Model.WeatherPrincipal.simeparPrevisoes.FirstOrDefault().codDirecaoVento-deg icon color-page"></span>
+                <div class="infos">
+                  <span class="label u-cut">Direção do vento</span>
+                  <strong class="valeu">@Model.WeatherPrincipal.simeparPrevisoes.FirstOrDefault().direcaoVento</strong>
+                </div>
+              </li>
+              <li>
+                <span class="wi wi-strong-wind icon color-page"></span>
+                <div class="infos">
+                  <span class="label u-cut">Veloc. do vento</span>
+                  <strong class="valeu">@Model.WeatherPrincipal.simeparPrevisoes.FirstOrDefault().intensidade</strong>
+                </div>
+              </li>
+              <li>
+                <span class="wi wi-horizon-alt icon color-page"></span>
+                <div class="infos">
+                  <span class="label u-cut">Visibilidade</span>
+                  <strong class="valeu">@Model.WeatherPrincipal.simeparPrevisoes.FirstOrDefault().visibilidade</strong>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tertiary-info">
+            <p>@Model.WeatherPrincipal.condicoesDia1</p>
+          </div>
+        }
+        else
+        {
+          if (ViewBag.ErrorWeather != null)
+          {
+            @Html.Raw(ViewBag.ErrorWeather)
+          }
+        }
+      </section>
+
+      <section class="days clearfix">
+        @if (Model.WeatherPrincipal != null)
+        {
+          <ul>
+            @foreach (var item in Model.WeatherPrincipal.simeparPrevisoes)
+            {
+              if (item != Model.WeatherPrincipal.simeparPrevisoes.First())
+              {
+                <li>
+                  <span class="wi @item.simeparPeriodos.FirstOrDefault().icon icon color-page" title="@item.simeparPeriodos.FirstOrDefault().description"></span>
+                  <div class="temp">
+                    <span class="value">@item.data</span>
+                    <span class="min-max-temp">
+                      <strong class="max">
+                        <span class="valeu">@item.tempMax&deg;</span>
+                      </strong>
+                      <strong class="min">
+                        <span class="valeu">@item.tempMin&deg;</span>
+                      </strong>
+                    </span>
+                  </div>
+                </li>
+              }
+            }
+          </ul>
+        }
+      </section>
+
+      <section class="cities clearfix">
+        @if (Model.WeatherPrincipal != null)
+        {
+          <h2 class="title">Outras cidades do Paraná</h2>
+
+          <ul class="first">
+            @foreach (var primeiraLista in Model.WeatherCities1)
+            {
+              <li class="u-cut">
+                <span class="wi @primeiraLista.Icon icon color-page" title="@primeiraLista.Description"></span>
+                <span class="min-max-temp">
+                  <strong class="max">
+                    <span class="valeu">
+                      @if (primeiraLista.TempMax.HasValue)
+                      {<text>@primeiraLista.TempMax&deg;</text>}
+                    </span>
+                  </strong>
+                  <strong class="min">
+                    <span class="valeu">
+                      @if (primeiraLista.TempMin.HasValue)
+                      {<text>@primeiraLista.TempMin&deg;</text>}
+                    </span>
+                  </strong>
+                </span>
+                <a href="/previsao-do-tempo/@primeiraLista.CidadeUrl">@primeiraLista.CidadeNome</a>
+              </li>
+            }
+          </ul>
+
+          <ul class="last">
+            @foreach (var segundaLista in Model.WeatherCities2)
+            {
+              <li class="u-cut">
+                <span class="wi @segundaLista.Icon icon color-page" title="@segundaLista.Description"></span>
+                <span class="min-max-temp">
+                  <strong class="max">
+                    <span class="valeu">
+                      @if (segundaLista.TempMax.HasValue)
+                      {<text>@segundaLista.TempMax&deg;</text>}
+                    </span>
+                  </strong>
+                  <strong class="min">
+                    <span class="valeu">
+                      @if (segundaLista.TempMin.HasValue)
+                      {<text>@segundaLista.TempMin&deg;</text>}
+                    </span>
+                  </strong>
+                </span>
+                <a href="/previsao-do-tempo/@segundaLista.CidadeUrl">@segundaLista.CidadeNome</a>
+              </li>
+            }
+          </ul>
+        }
+      </section>
+
+      <footer>
+        @if (Model.WeatherPrincipal != null && Model.WeatherPrincipal.UltimaAtualizacao != null){
+          <span>Última atualização: @Model.WeatherPrincipal.UltimaAtualizacao</span> @*09h00 - 21/11*@
+        <small class="u-block">Fonte: <a href="http://www.simepar.br/" target="_blank" rel="nofollow" title="Simepar"><u>Simepar</u></a></small>
+        }
+      </footer>
+    </div>
+
+    <div class="g-aside">
+      @Html.Partial("_AdArranhaCeuGrande")
+    </div>
+  </div>
+</main>

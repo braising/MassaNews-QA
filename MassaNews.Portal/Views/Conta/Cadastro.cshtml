@@ -1,0 +1,74 @@
+﻿@section bodyClass{@Html.Raw("pg-account pg-register")}
+
+@{
+  // Página
+  ViewBag.Pagina = "register";
+}
+
+<main class="g-main">
+  <div class="g-container">
+
+    <section class="institucinais__center institucinais__center--xsmall">
+      <p class="send is-error">Houve um erro ao cadastrar. Por favor, tente novamente.</p>
+
+      <small class="u-inline-block u-margin-bottom">Cadastre-se com sua conta do Facebook</small>
+      <a href="#" class="c-button facebook submit" title="Cadastre-se com Facebook">
+        <i class="fa fa-lg fa-facebook"></i>&nbsp;&nbsp;&nbsp; Facebook
+      </a>
+
+      <hr>
+
+      @* <small class="u-inline-block u-margin-bottom">Cadastre-se com seu e-mail</small> *@
+      <form action="#" method="post" id="form-register" class="form-register">
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            @* <label for="form-register--name">Nome</label> *@
+            <input type="text" name="form-register--name" id="form-register--name" maxlength="120" placeholder="Nome">
+            <span class="field-validation-error" data-valmsg-for="name" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            @* <label for="form-register--email">E-mail</label> *@
+            <input type="email" name="form-register--email" id="form-register--email" maxlength="120" placeholder="E-mail">
+            <span class="field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+            <span class="field-validation-error invalid-email" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none;">*E-mail inválido</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            @* <label for="form-register--password">Senha</label> *@
+            <input type="password" name="form-register--password" id="form-register--password" maxlength="120" placeholder="Senha">
+            <span class="field-validation-error" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            @* <div class="g-recaptcha" data-sitekey="6LeQ9FAUAAAAADkcKirh72Gk_b8AeOJ6FRbY0WPR"></div> *@
+          </li>
+        </ul>
+
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            <label for="form-inscricao--news" class="small"><input type="checkbox" name="" value="" id="form-inscricao--news">&nbsp; Li e concordo com os <a href="#"><u>Termos de Uso</u></a> e <a href="#"><u>Política de Privacidade</u></a>.</label>
+          </li>
+        </ul>
+
+        <ul class="c-forms--labels">
+          <li class="input-full label-no-margin">
+            <button type="button" class="form-register--submit submit c-button btn-register block" title="Cadastrar">Cadastrar</button>
+          </li>
+        </ul>
+      </form>
+
+      <hr>
+
+      @* Versão Modal *@
+      @* <span class="small u-margin-bottom u-inline-block">Já tem uma conta? <a href="#" rel="modal" data-modal="modal-login" data-modal-ref="#" title="Entre"><u><strong>Entre</strong></u></a>.</span> *@
+
+      @* Versão Página *@
+      <span class="small u-margin-bottom u-inline-block">Já tem uma conta? <a href="/minha-conta/entrar" title="Entre"><u><strong>Entre</strong></u></a>.</span>
+    </section>
+
+  </div>
+</main>

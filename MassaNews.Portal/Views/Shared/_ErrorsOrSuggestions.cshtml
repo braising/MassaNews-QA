@@ -1,0 +1,38 @@
+﻿<div class="c-modal" id="modal-reportar" role="modal">
+  <div class="c-modal__box">
+    <button class="c-modal__close" data-modal="modal-reportar" title="Fechar"><i class="fa fa-close fa-lg"></i></button>
+    <div class="c-modal__inner">
+      <h3 class="title">Reportar erros no texto</h3>
+      <form action="#" method="post" id="form-reportar" class="form-reportar">
+        <input type="hidden" name="form-reportar--post" id="form-reportar--post" value="">
+        <ul class="c-forms--labels">
+          <li class="input-half">
+            <label for="form-reportar--nome">Nome</label>
+            <input type="text" name="form-reportar--nome" id="form-reportar--nome" maxlength="120" placeholder="Seu nome">
+            <span class="field-validation-error" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+          <li class="input-half">
+            <label for="form-reportar--email">E-mail</label>
+            <input type="email" name="form-reportar--email" id="form-reportar--email" maxlength="120" placeholder="Seu e-mail">
+            <span class="field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+            <span class="field-validation-error invalid-email" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none;">*E-mail inválido</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            <label for="form-reportar--mensagem">Mensagem</label>
+            <textarea name="form-reportar--mensagem" id="form-reportar--mensagem" placeholder="O que gostaria de reportar?"></textarea>
+            <span class="field-validation-error" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full label-no-margin">
+            <button type="button" class="form-reportar-- c-button submit btn-reportar" title="Enviar" data-urlreport="@Url.Action("Reportar", "Institucional")">Enviar</button>
+          </li>
+        </ul>
+      </form>
+      <p class="send is-success">Sua mensagem foi enviada. Agradecemos pela ajuda.</p>
+      <p class="send is-error">Houve um erro ao enviar. Por favor tente novamente.</p>
+    </div>
+  </div>
+</div>

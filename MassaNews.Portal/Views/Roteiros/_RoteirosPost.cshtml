@@ -1,0 +1,315 @@
+﻿@model  MassaNews.Service.Models.Estabelecimento
+
+@if (!string.IsNullOrEmpty(Model.DicaImperdivel))
+{
+  <h2 class="c-post__dica-roteiros t-page-color"><i class="fa fa-star"></i> Dica imperdível
+  </h2>
+  <p>@Model.DicaImperdivel</p>
+}
+else
+{
+  <br />
+  <br />
+}
+
+<div class="c-tabs c-tabs-roteiros" role="tablist" data-tabs="tab-resumo-brasileirao">
+  @*<div class="c-tabs__nav">
+    <div role="tab">
+      <button class="c-tabs__tab u-cut is-active" data-tabs="tab-resumo-brasileirao" data-tabpanel="tab-resumo-serie-a" title="Cabral">Cabral</button>
+    </div>
+    <div role="tab">
+      <button class="c-tabs__tab u-cut" data-tabs="tab-resumo-brasileirao" data-tabpanel="tab-resumo-serie-b" title="Jardim Botânico">Jardim Botânico</button>
+    </div>
+    <div role="tab" class="get-more-tabs">
+      <button class="c-tabs__tab trigger-more-tabs u-cut is-hidden" title="Mais 3">Mais 3 <i class="fa fa-caret-down"></i></button>
+
+      <div class="more-tabs is-hidden">
+        <button class="c-tabs__tab u-cut" data-tabs="tab-resumo-brasileirao" data-tabpanel="tab-resumo-serie-b" title="Batel">Batel</button>
+        <button class="c-tabs__tab u-cut" data-tabs="tab-resumo-brasileirao" data-tabpanel="tab-resumo-serie-b" title="Cabral">Cabral</button>
+        <button class="c-tabs__tab u-cut" data-tabs="tab-resumo-brasileirao" data-tabpanel="tab-resumo-serie-b" title="Água Verde">Água Verde</button>
+      </div>
+    </div>
+  </div>*@
+  <div >
+    <div class="c-tabs__tabpanel">
+      <div class="c-post__roteiros clearfix">
+
+        @if (!string.IsNullOrEmpty(Model.Atendimento))
+        {
+          <div class="row">
+            <div class="column-title">
+              <h3>Atendimento</h3>
+            </div>
+            <div class="column-detail">
+              <p>@Model.Atendimento</p>
+            </div>
+          </div>
+          <hr>
+        }
+        @if (!string.IsNullOrEmpty(Model.Telefone))
+        {
+          <div class="row">
+            <div class="column-title">
+              <h3>Telefone</h3>
+            </div>
+            @foreach (var item in Model.Telefone.Split(',').ToList())
+            {
+              <div class="column-detail">
+                <p>@item</p>
+              </div>
+            }
+          </div>
+          <hr>
+        }
+        @if (!string.IsNullOrEmpty(@Model.Site))
+        {
+          <div class="row">
+            <div class="column-title">
+              <h3>Site</h3>
+            </div>
+            <div class="column-detail">
+              <p><a href="//@Model.Site">@Model.Site</a>
+              </p>
+            </div>
+          </div>
+          <hr>
+        }
+        @if (!string.IsNullOrEmpty(@Model.Email))
+        {
+          <div class="row">
+            <div class="column-title">
+              <h3>E-mail</h3>
+            </div>
+            <div class="column-detail">
+              <p><a href="mailto:@Model.Email">@Model.Email</a>
+              </p>
+            </div>
+          </div>
+          <hr>
+        }
+        @if (!string.IsNullOrEmpty(Model.Facebook) || !string.IsNullOrEmpty(Model.Twitter) || !string.IsNullOrEmpty(Model.Instagran))
+        {
+          <div class="row">
+            <div class="column-title">
+              <h3>Redes Sociais</h3>
+            </div>
+            <div class="column-detail">
+              @if (!string.IsNullOrEmpty(Model.Facebook))
+              {
+                <a href="@Model.Facebook" class="c-share__link" target="_blank" title="Facebook">
+                  <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+                </a>
+              }
+              @if (!string.IsNullOrEmpty(Model.Twitter))
+              {
+                <a href="@Model.Twitter" class="c-share__link" target="_blank" title="Twitter">
+                  <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+                </a>
+              }
+              @if (!string.IsNullOrEmpty(Model.Instagran))
+              {
+                <a href="@Model.Instagran" class="c-share__link" target="_blank" title="Instagran">
+                  <span class="fa-stack">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                          </span>
+                </a>
+              }
+            </div>
+          </div>
+          <hr>
+        }
+        @if (!string.IsNullOrEmpty(@Model.FormasDePagamento))
+        {
+          <div class="row">
+            <div class="column-title">
+              <h3>Formas de pagamento</h3>
+            </div>
+            <div class="column-detail">
+              <p>@Model.FormasDePagamento</p>
+            </div>
+          </div>
+          <hr>
+        }
+        @if (Model.Conveniencias.Any())
+        {
+          <div class="row">
+            <div class="column-title">
+              <h3>Conveniências</h3>
+            </div>
+            <div class="column-detail">
+              <ul>
+                @foreach (var item in Model.Conveniencias)
+                {
+                  <li>@item.Nome</li>
+                }
+              </ul>
+            </div>
+          </div>
+          <hr>
+        }
+        @if (!string.IsNullOrEmpty(@Model.Estacionamento))
+        {
+
+          <div class="row">
+            <div class="column-title">
+              <h3>Estacionamento</h3>
+            </div>
+            <div class="column-detail">
+              <p>@Model.Estacionamento</p>
+            </div>
+          </div>
+          <hr>
+        }
+        @if (!string.IsNullOrEmpty(@Model.Endereco))
+        {
+          <div class="row">
+            <div class="column-title">
+              <h3>Endereço</h3>
+            </div>
+            <div class="column-detail">
+              <p>@Model.Endereco</p>
+            </div>
+
+            <div class="map">
+              <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtSbkmc7h_UEuKrXt7plmjF3wHLiQnDUY&q=@(HttpUtility.UrlEncode($"{Model.Titulo},{Model.Endereco}"))" width="100%" height="300" frameborder="0" style="border: 0" allowfullscreen></iframe>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    @*<div id="tab-resumo-serie-b" class="c-tabs__tabpanel" role="tabpanel">
+      <div class="c-post__roteiros clearfix">
+        <div class="row">
+          <div class="column-title">
+            <h3>Atendimento</h3>
+          </div>
+          <div class="column-detail">
+            <p>Domingo a quinta, das 11h às 2h. Sextas e sábados, das 11h às 6h.</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="column-title">
+            <h3>Telefone</h3>
+          </div>
+          <div class="column-detail">
+            <p>(41) 3352-8661</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="column-title">
+            <h3>Site</h3>
+          </div>
+          <div class="column-detail">
+            <p><a href="//www.kharina.com.br">www.kharina.com.br</a></p>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="column-title">
+            <h3>E-mail</h3>
+          </div>
+          <div class="column-detail">
+            <p><a href="mailto:contato@kharina.com.br">contato@kharina.com.br</a></p>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="column-title">
+            <h3>Redes Sociais</h3>
+          </div>
+          <div class="column-detail">
+            <a href="#" class="c-share__link" target="_blank" title="Facebook">
+              <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+            <a href="#" class="c-share__link" target="_blank" title="Twitter">
+              <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+            <a href="#" class="c-share__link" target="_blank" title="Google Plus">
+              <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="column-title">
+            <h3>Formas de pagamento</h3>
+          </div>
+          <div class="column-detail">
+            <p>Aceita todos os cartões</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="column-title">
+            <h3>Formas de pagamento</h3>
+          </div>
+          <div class="column-detail">
+            <ul>
+              <li>Espaço Kids</li>
+              <li>Wi-fi</li>
+              <li>Bicicletário</li>
+              <li>Pet friendly</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="column-title">
+            <h3>Estacionamento</h3>
+          </div>
+          <div class="column-detail">
+            <p>Amplo estacionamento gratuito</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="column-title">
+            <h3>Endereço</h3>
+          </div>
+          <div class="column-detail">
+            <p>Rua Deputado Joaquim José Pedrosa, 13 - Cabral</p>
+          </div>
+
+          <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14412.91848049458!2d-49.2920362!3d-25.4305857!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf5a495ea4b7bf781!2sMitre+Cafeteria!5e0!3m2!1spt-BR!2sbr!4v1466619712476" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>*@
+  </div>
+</div>

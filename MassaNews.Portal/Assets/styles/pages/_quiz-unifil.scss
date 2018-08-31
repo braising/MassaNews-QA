@@ -1,0 +1,145 @@
+$secondary-color: #f6921c!default;
+
+.secondary-color{color: $secondary-color;}
+
+.pg-quiz-unifil{
+  .top{
+    height: 400px;
+    // background: url('../images/quiz-unifil/bg-quiz-unifil.jpg') bottom right no-repeat;
+    // background-size: contain;
+
+    & > section{
+      padding-top: 50px;
+    }
+
+    h2{
+      @include font-size(50px);
+      text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+    }
+
+    p{
+      color: $gray;
+      text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+      @include font-size(24px);
+    }
+  }
+
+  .header-test{
+    background-color: $tema-quiz-unifil;
+    color: #fff;
+
+    h2{
+      color: #fff;
+    }
+  }
+
+  .form-questions{
+    label{
+      width: 100%;
+      padding: 10px;
+      margin: 0 0 10px 0;
+      border: 1px solid $gray-lighter;
+      cursor: pointer;
+      -webkit-transition: .1s ease-in-out;
+      -moz-transition: .1s ease-in-out;
+      -o-transition: .1s ease-in-out;
+      transition: .1s ease-in-out;
+
+      &:hover,
+      &.selected{
+        color: #fff;
+      }
+
+      &:hover{
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+      }
+
+      &.selected{
+        background-color: $tema-quiz-unifil;
+        border-color: $tema-quiz-unifil;
+
+        &:hover{
+          background-color: $secondary-color!important;
+          border-color: $secondary-color!important;
+        }
+      }
+    }
+
+    .go-back{
+      cursor: pointer;
+      @include font-size(18px);
+
+      small{
+        font-weight: normal;
+      }
+    }
+  }
+
+  .progress-bar{
+    width: 100%;
+    margin: 40px 0 5px 0;
+    line-height: 34px;
+    background-color: $gray-lightest;
+
+    .completed{
+      color: #fff;
+      background-color: $tema-quiz-unifil;
+      display: inline-block;
+      text-align: center;
+      transition:all .85s ease-in-out;
+
+      .percent{
+        padding: 0 10px;
+        @include font-size(20px);
+      }
+    }
+  }
+}
+
+
+/* =============MEDIA QUERY============= */
+@media all and (max-width: bp(9)) {
+  .pg-quiz-unifil{
+    .top{
+      max-height: 620px;
+      height: auto;
+
+      & > section{
+        padding-top: 20px;
+      }
+    }
+  }
+}
+
+@media all and (max-width: bp(9)) {
+  .pg-quiz-unifil{
+    .top{
+      background: none;
+    }
+  }
+}
+
+@media all and (max-width: bp(6)) {
+  .pg-quiz-unifil{
+    .top{
+      h2{
+        @include font-size(30px);
+      }
+
+      p{
+        @include font-size(18px);
+      }
+    }
+  }
+}
+
+@media all and (max-width: bp(5)) {
+  .pg-quiz-unifil{
+    .top{
+      & > section{
+        padding-top: 0px;
+      }
+    }
+  }
+}

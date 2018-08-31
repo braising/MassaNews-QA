@@ -1,0 +1,84 @@
+﻿@using Entities.Classes
+@using MassaNews.Service.Util
+
+@model List<MassaNews.Service.Models.Noticia>
+
+<section class="g-headlines--main-2columns t-module">
+  @foreach (var news in Model.Take(3))
+  {
+    <div class="c-headline @($"t-{news.Categoria.Theme.Value}")">
+      @if (!string.IsNullOrEmpty(news.ImgMd))
+      {
+        if (news.DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(news.Video))
+        {
+          <picture class="image modal-video">
+            <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+            <a href="@Url.Action("Interna", "Video", new {url = news.Url})" title="@news.Chamada">
+              <img srcset="@string.Format("{0}/{1}/{2} 347w, {0}/{1}/{3} 674w", Constants.UrlDominioEstaticoUploads, "noticias", news.ImgSm, news.ImgMd)" src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{news.ImgMd}")" alt="@news.Chamada">
+            </a>
+          </picture>
+        }
+        else
+        {
+          <picture class="image">
+            <a href="@($"{news.UrlFull}.html")" title="@news.Chamada">
+              @if (news.DestaqueId == Destaque.Galeria.Id && news.Galeria.Imagens.Any())
+              {
+                @Html.Partial("_LabelImage", new ViewDataDictionary {{"qtde", news.Galeria.Imagens.Count()}})
+              }
+              <img srcset="@string.Format("{0}/{1}/{2} 347w, {0}/{1}/{3} 674w", Constants.UrlDominioEstaticoUploads, "noticias", news.ImgSm, news.ImgMd)" src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{news.ImgMd}")" alt="@news.Chamada">
+            </a>
+          </picture>
+        }
+      }
+      <div class="texts">
+        @if (news.Categoria.Url.Equals("plantao"))
+        {
+          if (news.Cidade != null)
+          {
+            <h3 class="hat">
+              <a href="@($"/tags/{news.Cidade.Url}")">@news.Cidade.Nome</a>
+            </h3>
+          }
+          else
+          {
+            <h3 class="hat">
+              <a href="@Url.Action("Parana", "Categorias")">Paraná</a>
+            </h3>
+          }
+        }
+        else
+        {
+          <h3 class="hat">
+            @if (news.BlogId.HasValue)
+            {
+              <a href="@($"/{news.Categoria.Editorial.Url}/{news.CategoriaUrl}/{news.BlogUrl}/posts")">@news.Blog.Titulo</a>
+            }
+            else
+            {
+              <a href="@($"/{news.Categoria.Editorial.Url}/{news.CategoriaUrlFull}")">@news.Categoria.Titulo</a>
+            }
+          </h3>
+        }
+        <h2 class="title">
+          <a href="@($"{news.UrlFull}.html")" title="@news.Chamada">@news.Chamada</a>
+        </h2>
+
+        @if (Model.Count > 3 && Model[0].Id == news.Id)
+        {
+          <ul class="list-related">
+            <li>
+              <a href="@($"{Model[3].UrlFull}.html")" title="@Model[3].Chamada">@Model[3].Chamada</a>
+            </li>
+            @if (Model.Count > 4)
+            {
+              <li>
+                <a href="@($"{Model[4].UrlFull}.html")" title="@Model[4].Chamada">@Model[4].Chamada</a>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+  }
+</section>

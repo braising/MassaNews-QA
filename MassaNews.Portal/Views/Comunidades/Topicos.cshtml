@@ -1,0 +1,132 @@
+﻿@model MassaNews.Portal.ViewModels.ComunidadeTopicoViewModel
+
+@section bodyClass{@Html.Raw("pg-negocios-da-terra pg-comunidades pg-topicos")}
+
+@{
+  // Página
+  ViewBag.Pagina = "topicos";
+}
+
+<main class="g-main">
+  <header class="c-topics t-module">
+    <div class="c-communities--header c-communities-page--header">
+      <div class="g-container">
+        <h2 class="title">@Model.Nome</h2>
+        <p>@Model.Descricao</p>
+        @if (MassaNews.Portal.Models.CurrentUser.Valido)
+        {
+          <a href="/comunidades-virtuais/@Model.SlugTopico/pergunta" class="c-button small" title="Fazer uma pergunta">Fazer uma pergunta</a>
+        }
+        else
+        {
+          <a href="/minha-conta/entrar?acao=perguntar" class="c-button small" title="Fazer uma pergunta">Fazer uma pergunta</a>
+        }
+      </div>
+    </div>
+  </header>
+
+  <div class="g-content-inner-sidebar g-container">
+    <section class="g-content">
+      @Html.Partial("_AdCabecalho")
+
+      <a href="/negocios-da-terra?go=comunidades-virtuais" class="c-communities--go-back">« Voltar</a>
+
+      @if (Model.ComunidadePerguntas.Any()){
+        <div class="c-questions">
+          <ul class="c-questions--items">
+            @foreach (var pergunta in Model.ComunidadePerguntas)
+            {
+              <li class="c-questions--item clearfix" id="per-@pergunta.Id">
+                <a href="@($"/comunidades-virtuais/{Model.SlugTopico}/{pergunta.Slug}.html")" title="@pergunta.Pergunta" class="clearfix">
+                  <div class="question">
+                    <h3 class="title t-page-color">@pergunta.Pergunta</h3>
+                    <p>@pergunta.Descricao</p>
+                  </div>
+
+                  <div class="infos">
+                    <p>
+                      Por: <strong>@pergunta.Usuario</strong>
+                      <br>Em: <strong>@pergunta.Data.ToString("dd/MM/yyyy")</strong>
+                    </p>
+                    @if(@pergunta.QtdResposta == 0 || @pergunta.QtdResposta > 1){
+                      <span class="answers t-page-color u-block"><strong>@pergunta.QtdResposta respostas</strong></span>
+                    } else {
+                      <span class="answers t-page-color u-block"><strong>@pergunta.QtdResposta resposta</strong></span>
+                    }
+                  </div>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      } else {
+        <h3 class="t-page-color">Ainda não temos nenhuma pergunta sobre @Model.Nome.</h3>
+        <p>Seja o primeiro a enviar uma pergunta.</p>
+      }
+    </section>
+
+    <aside class="g-aside">
+      @if (Model.ComunidadeEspecialistas != null)
+      {
+        <div class="sidebar__especialista">
+          @if (Model.ComunidadeEspecialistas.Count() > 0)
+          {
+            <h3 class="title t-page-color">Especialista</h3>
+          }
+
+          @foreach (var especialista in Model.ComunidadeEspecialistas)
+          {
+            <section class="c-author-profile">
+              <div class="c-author-profile__inner">
+                @if (!String.IsNullOrEmpty(especialista.Img)){
+                  <span class="c-author-profile__avatar">
+                    <img src="https://cdn.massanews.com/uploads/comunidades-virtuais/especialistas/@especialista.Img" alt="@especialista.Nome">
+                  </span>
+                }
+                <h3 class="c-author-profile__name t-page-color">@especialista.Nome</h3>
+              </div>
+              @if (!String.IsNullOrEmpty(especialista.Descricao)){
+                <div class="c-author-profile__description">
+                  <p class="resume">@especialista.Descricao</p>
+                </div>
+              }
+            </section>
+          }
+        </div>
+      }
+
+      @Html.Partial("_AdRetanguloMedio")
+
+      @if (Model.ComunidadeVideos != null)
+      {
+        <div class="sidebar__videos">
+          @if (Model.ComunidadeVideos.Count() > 0)
+          {
+            <h3 class="title t-page-color">Vídeos</h3>
+          }
+
+          @foreach (var video in Model.ComunidadeVideos)
+          {
+            <div class="c-headline t-comunidades" data-position="2">
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                <a href="@video.Link" target="_blank" title="@video.Titulo">
+                  <img src="//cdn.massanews.com/uploads/comunidades-virtuais/videos/@video.Img" alt="@video.Titulo">
+                </a>
+              </picture>
+              <div class="texts">
+                <h2 class="title">
+                  <a href="@video.Link" target="_blank" title="@video.Titulo">
+                    @video.Titulo
+                  </a>
+                </h2>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </aside>
+
+    @* @Html.Partial("_Sidebar") *@
+  </div>
+</main>

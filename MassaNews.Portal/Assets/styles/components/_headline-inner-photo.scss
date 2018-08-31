@@ -1,0 +1,243 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-headline {
+  &.c-headline--inner-photo{
+    position: relative;
+
+    .c-headline__label-image{
+      margin-top: 10px;
+      position: static;
+      display: inline-block;
+    }
+
+    .texts{
+      position: absolute;
+      padding: 10px 20px 20px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      color: #fff;
+
+      @include mask-headline-inner-photo();
+
+      a,
+      li{
+        color: #fff!important;
+      }
+
+      .hat{
+        // clear: both;
+        // display: inline-block;
+        top: -25px;
+        left: 20px;
+        position: absolute;
+
+        a{
+          border-top: 4px solid;
+          padding: 10px 0 5px 0;
+          display: inline-block;
+          text-shadow: 0px 0px 5px rgba(0,0,0,.5);
+        }
+      }
+
+      .title {
+        // clear: both;
+        // display: inline-block;
+        @include font-size(36px);
+
+        @media all and (max-width:800px) {
+          @include font-size(28px);
+        }
+      }
+    }
+
+    .image{
+      margin-bottom: 0;
+    }
+  }
+
+  &.c-headline--no-photo,
+  &.c-headline--no-photo-full{
+    .texts{
+      .title {
+        @include font-size(50px);
+
+        @media all and (max-width: bp(10)) {
+          @include font-size(40px);
+        }
+
+        @media all and (max-width: bp(7)) {
+          @include font-size(30px);
+        }
+      }
+    }
+  }
+}
+
+
+/* =============CUSTOM============= */
+// LINHA
+.c-headline-one{
+  .title {
+    @include font-size(24px);
+    line-height: 1.05em;
+
+    @media all and (max-width:800px) {
+      @include font-size(20px);
+    }
+  }
+}
+
+// MINIATURAS
+.c-headline--minis-one {
+  .c-headline {
+    @include clearfix();
+
+    .image {
+      float:left;
+      margin:0 $gutter 0 0;
+      width:32%;
+      width:calc(32% - #{$gutter});
+      clear: both;
+
+      a{
+        height: 74px;
+      }
+
+      img {
+        max-width:none;
+        margin-left:-22px;
+
+        &.lazy{
+          margin-left: 0;
+        }
+
+        &.loaded{
+          margin-left:-22px;
+        }
+      }
+    }
+
+    .texts {
+      float:left;
+      margin-left:0;
+      width:68%;
+      width:calc(68% - #{$gutter});
+
+      &.no-image{
+        width: 100%;
+      }
+    }
+
+    // LABEL DE GALERIA
+    .c-headline__label-image{
+      padding: 4px 8px;
+      @include font-size(12px);
+
+      .text{
+        display: none;
+      }
+    }
+
+    .title a {
+      line-height:1.1;
+      @include font-size(18px);
+    }
+
+    //script hover
+    &.is-hover {
+      .image a:before {
+        box-shadow:inset 0 0 1.5em #111;
+      }
+    }
+
+    @media all and (min-width: bp(4)) and (max-width: bp(6)) {
+      .image {
+        display:none;
+      }
+
+      .texts {
+        width:100%;
+      }
+    }
+
+    @media all and (min-width: bp(9)) and (max-width: bp(11)) {
+      .image {
+        display:none;
+      }
+
+      .texts {
+        width:100%;
+      }
+    }
+  }
+}
+
+
+
+/* =============MEDIA QUERY============= */
+@media all and (max-width: bp(4)) {
+  .c-headline {
+    &.c-headline--inner-photo{
+      .image{
+        img{
+          max-width: 150%;
+          width: 150%;
+          margin-left: -25%;
+        }
+      }
+
+      .texts{
+        padding: 10px;
+
+        .hat{
+          left: 10px;
+        }
+      }
+
+      .list-related {
+        @include font-size(14px);
+      }
+    }
+  }
+}
+
+
+// Centraliza a imagem na vertical - Template 2
+@media all and (min-width: bp(12)) {
+  .g-headlines--full-two{
+    .c-headline--inner-photo{
+      .image{
+        img{
+          margin-top: -65px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-width: bp(9)) {
+  .c-headline {
+    &.c-headline--no-photo{
+      height: 350px;
+      max-height: 350px;
+      display: table;
+
+      .texts{
+        display: table-cell;
+        vertical-align: middle;
+
+        .inner-texts{
+          padding: 20px 0 20px 25px;
+          border-left: 5px solid $gray-lightest;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+﻿@using MassaNews.Service.Util
+
+@model List<MassaNews.Models.Portal.Generic.NewsList>
+
+<section class="g-headlines--main-2columns-videos t-module">
+  @foreach (var news in Model.Take(3))
+  {
+    <div class="c-headline @($"t-{news.ThemeId}")">
+      <picture class="image">
+        <a href="@news.UrlFull" title="@news.Titulo">
+          @if (Model[0].Id == news.Id){
+            <img srcset="@string.Format("{0}/{1}/{2} 347w, {0}/{1}/{3} 674w, {0}/{1}/{4} 675w", Constants.UrlDominioEstaticoUploads, "noticias", news.ImgSm, news.ImgMd, news.ImgLg)" src="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", news.ImgLg)" alt="@news.Chamada">
+          } else {
+            <img src="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", news.ImgSm)" alt="@news.Chamada">          
+          }
+        </a>
+      </picture>
+      <div class="texts">
+        @if (@news.CategoriaUrl.Equals("plantao"))
+        {
+          if (!string.IsNullOrEmpty(news.CityUrl))
+          {
+            <h3 class="hat">
+              <a href="@($"/tags/{news.CityUrl}")">@news.CityName</a>
+            </h3>
+          }
+          else
+          {
+            <h3 class="hat">
+              <a href="@Url.Action("Parana", "Categorias")">Paraná</a>
+            </h3>
+          }
+        }
+        else
+        {
+          <h3 class="hat">
+            @if (!string.IsNullOrEmpty(news.BlogUrl))
+            {
+              <a href="@($"/{news.EditorialUrl}/{news.CategoriaUrl}/{news.BlogUrl}/posts")">@news.BlogTitle</a>
+            }
+            else if (!string.IsNullOrEmpty(news.CategoriaPaiUrl))
+            {
+              <a href="@($"/{news.EditorialUrl}/{news.CategoriaPaiUrl}/{news.CategoriaUrl}")">@news.CategoriaTitulo</a>
+            }
+            else
+            {
+              <a href="@($"/{news.EditorialUrl}/{news.CategoriaUrl}")">@news.CategoriaTitulo</a>
+            }
+          </h3>
+        }
+        <h2 class="title">
+          <a href="@($"{@news.UrlFull}.html")" title="@news.Chamada">@news.Chamada</a>
+        </h2>
+      </div>
+    </div>
+  }
+</section>

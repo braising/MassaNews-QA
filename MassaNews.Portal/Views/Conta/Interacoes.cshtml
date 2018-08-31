@@ -1,0 +1,197 @@
+﻿@model MassaNews.Portal.ViewModels.ContaInteracoesViewModel
+@using Entities.Classes
+
+@section bodyClass{@Html.Raw("pg-account pg-interactions")}
+
+@{
+  // Página
+  ViewBag.Pagina = "interactions";
+}
+
+<main class="g-main">
+  <div class="g-content-inner-sidebar g-container">
+    @Html.Partial("_AccountSidebar", Model.Usuario)
+
+    <section class="g-content">
+      <h2>Comunidades Virtuais</h2>
+      <div class="c-tabs c-tabs-interactions" role="tablist" data-tabs="tab-menu-interactions">
+        <ul class="c-tabs__nav t-module">
+          <li role="tab">
+            <button class="c-tabs__tab is-active" data-tabs="tab-menu-interactions" data-tabpanel="tab-menu-interactions-questions" title="Perguntas">Perguntas</button>
+          </li>
+          <li role="tab">
+            <button class="c-tabs__tab" data-tabs="tab-menu-interactions" data-tabpanel="tab-menu-interactions-answers" title="Respostas">Respostas</button>
+          </li>
+          <li role="tab">
+            <button class="c-tabs__tab" data-tabs="tab-menu-interactions" data-tabpanel="tab-menu-interactions-comments" title="Comentários">Comentários</button>
+          </li>
+        </ul>
+
+        <div id="tab-menu-interactions">
+          <div id="tab-menu-interactions-questions" class="c-tabs__tabpanel" role="tabpanel">
+
+            <div class="c-answers">
+              <ul class="c-answers--items">
+                @foreach (var pergunta in Model.Perguntas.OrderByDescending(p => p.Data))
+                {
+                  <li class="c-answers--item clearfix">
+                    @if (pergunta.StatusPublicacaoId == StatusComunidade.Pendente.Id)
+                    {
+                      <span class="c-communities-label c-communities-label--gray u-margin-bottom">Em análise</span>
+
+                    }
+                    <span class="c-answers--item-date u-block">@pergunta.Data.ToString("dd/MM/yyyy")</span>
+                    <h4 class="c-answers--item-autor u-block"><a href="@($"/comunidades-virtuais/{pergunta.ComunidadeTopico.Slug}?go=per-{pergunta.Id}")" class="u-cut">@pergunta.Pergunta</a></h4>
+                    <div class="c-answers--item-text">
+                      <p>@pergunta.Descricao</p>
+                    </div>
+                    @*<div class="c-answers--item--interaction">
+                      <a href="/comunidades-virtuais/@pergunta.ComunidadeTopico.Slug" class="link small"><i class="fa fa-edit"></i> Editar pergunta</a>
+                    </div>*@
+                  </li>
+                }
+                @*<li class="c-answers--item clearfix">
+                    <span class="c-communities-label c-communities-label--gray u-margin-bottom">Em análise</span>
+                    <span class="c-answers--item-date u-block">25/02/2018</span>
+                    <h4 class="c-answers--item-autor u-block"><a href="#" class="u-cut">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h4>
+                     <div class="c-answers--item-text"></div>
+                    <div class="c-answers--item--interaction">
+                      <a href="/comunidades-virtuais/adubacao-biologica" class="link small"><i class="fa fa-edit"></i> Editar pergunta</a>
+                    </div>
+                  </li>
+
+                  <li class="c-answers--item clearfix">
+                    <span class="c-answers--item-date u-block">25/02/2018</span>
+                    <h4 class="c-answers--item-autor u-block"><a href="#" class="u-cut">Officia incidunt, aliquid nemo architecto vel, fuga, velit nulla expedita reprehenderit illo suscipit fugit, asperiores cumque voluptatibus temporibus qui. Eveniet, aperiam, debitis.</a></h4>
+                     <div class="c-answers--item-text"></div>
+                    <div class="c-answers--item--interaction">
+                      <a href="/comunidades-virtuais/adubacao-biologica" class="link small"><i class="fa fa-edit"></i> Editar pergunta</a>
+                    </div>
+                  </li>*@
+
+                @*<li class="c-answers--item clearfix">
+                  <span class="c-answers--item-date u-block">25/02/2018</span>
+                  <textarea name="" id="" cols="30" rows="10" class="u-full-float u-margin-bottom">Officia incidunt, aliquid nemo architecto vel, fuga, velit nulla expedita reprehenderit illo suscipit fugit, asperiores cumque voluptatibus temporibus qui. Eveniet, aperiam, debitis.</textarea>
+                  <div class="c-answers--item-text"></div>
+                  <div class="c-answers--item--interaction">
+                    <a href="#" class="c-button mini">Salvar</a>
+                    <a href="/comunidades-virtuais/adubacao-biologica" class="small">Cancelar</a>
+                  </div>
+                </li>*@
+              </ul>
+            </div>
+          </div>
+
+          <div id="tab-menu-interactions-answers" class="c-tabs__tabpanel" role="tabpanel">
+            <div class="c-answers">
+              <ul class="c-answers--items">
+                @foreach (var resposta in Model.Respostas.OrderByDescending(r => r.Data))
+                {
+                  <li class="c-answers--item c-answers--item--specialist clearfix">
+                    <span class="c-answers--item-date u-block">@resposta.Data.ToString("dd/MM/yyyy")</span>
+                    <h4 class="c-answers--item-autor u-block"><a href="@($"/comunidades-virtuais/{resposta.ComunidadePergunta.ComunidadeTopico.Slug}/{resposta.ComunidadePergunta.Slug}.html?go=res-{resposta.Id}")" class="u-cut">PERGUNTA: @resposta.ComunidadePergunta.Pergunta</a></h4>
+                    <div class="c-answers--item-text">
+                      <p>@resposta.Resposta</p>
+                    </div>
+                    @*<div class="c-answers--item--interaction">
+                      <a href="/comunidades-virtuais/@resposta.ComunidadePergunta.ComunidadeTopico.Slug" class="link small"><i class="fa fa-edit"></i> Editar resposta</a>
+                    </div>*@
+                  </li>
+                }
+
+                @*<li class="c-answers--item c-answers--item--specialist clearfix">
+                    <span class="c-answers--item-date u-block">25/02/2018</span>
+                    <h4 class="c-answers--item-autor u-block"><a href="#" class="u-cut">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia incidunt, aliquid nemo architecto vel.</a></h4>
+                    <div class="c-answers--item-text">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa dolorem, ut iusto consectetur maxime quidem dignissimos tempore necessitatibus, obcaecati, sapiente sit! Tempore ipsam a excepturi, nesciunt illo aliquam omnis voluptatem.</p>
+                    </div>
+                    <div class="c-answers--item--interaction">
+                      <a href="/comunidades-virtuais/adubacao-biologica" class="link small"><i class="fa fa-edit"></i> Editar resposta</a>
+                    </div>
+                  </li>
+
+                  <li class="c-answers--item c-answers--item--specialist clearfix">
+                    <span class="c-answers--item-date u-block">25/02/2018</span>
+                    <h4 class="c-answers--item-autor u-block"><a href="#" class="u-cut">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia incidunt, aliquid nemo architecto vel, fuga, velit nulla expedita reprehenderit illo suscipit fugit, asperiores cumque voluptatibus temporibus qui. Eveniet, aperiam, debitis.</a></h4>
+                    <div class="c-answers--item-text">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa dolorem, ut iusto consectetur maxime quidem dignissimos tempore necessitatibus, obcaecati, sapiente sit! Tempore ipsam a excepturi, nesciunt illo aliquam omnis voluptatem.</p>
+                    </div>
+                    <div class="c-answers--item--interaction">
+                      <a href="/comunidades-virtuais/adubacao-biologica" class="link small"><i class="fa fa-edit"></i> Editar resposta</a>
+                    </div>
+                  </li>*@
+
+                @*<li class="c-answers--item c-answers--item--specialist clearfix">
+                  <span class="c-answers--item-date u-block">25/02/2018</span>
+                  <h4 class="c-answers--item-autor u-block"><a href="#" class="u-cut">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia incidunt, aliquid nemo architecto vel, fuga, velit nulla expedita reprehenderit illo suscipit fugit, asperiores cumque voluptatibus temporibus qui. Eveniet, aperiam, debitis.</a></h4>
+                  <div class="c-answers--item-text">
+                    <textarea name="" id="" cols="30" rows="10" class="u-full-float u-margin-bottom">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa dolorem, ut iusto consectetur maxime quidem dignissimos tempore necessitatibus, obcaecati, sapiente sit! Tempore ipsam a excepturi, nesciunt illo aliquam omnis voluptatem.</textarea>
+                  </div>
+                  <div class="c-answers--item--interaction">
+                    <a href="#" class="c-button mini">Salvar</a>
+                    <a href="/comunidades-virtuais/adubacao-biologica" class="small">Cancelar</a>
+                  </div>
+                </li>*@
+              </ul>
+            </div>
+          </div>
+
+          <div id="tab-menu-interactions-comments" class="c-tabs__tabpanel" role="tabpanel">
+            <div class="c-answers">
+              <ul class="c-answers--items">
+                @foreach (var comentario in Model.Comentarios.OrderByDescending(c => c.Data))
+                {
+                  <li class="c-answers--item c-answers--item--specialist clearfix">
+                    <span class="c-answers--item-date u-block">@comentario.Data.ToString("dd/MM/yyyy")</span>
+                    <h4 class="c-answers--item-autor u-block"><a href="@($"/comunidades-virtuais/{comentario.ComunidadeResposta.ComunidadePergunta.ComunidadeTopico.Slug}/{comentario.ComunidadeResposta.ComunidadePergunta.Slug}.html?go=res-{comentario.ComunidadeRespostaId}")" class="u-cut">PERGUNTA: @comentario.ComunidadeResposta.ComunidadePergunta.Pergunta</a></h4>
+                    <h4 class="c-answers--item-autor u-block"><a href="@($"/comunidades-virtuais/{comentario.ComunidadeResposta.ComunidadePergunta.ComunidadeTopico.Slug}/{comentario.ComunidadeResposta.ComunidadePergunta.Slug}.html?go=res-{comentario.ComunidadeRespostaId}")" class="u-cut">RESPOSTA: @comentario.ComunidadeResposta.Resposta</a></h4>
+                    <div class="c-answers--item-text">
+                      <p>@comentario.Comentario</p>
+                    </div>
+                    @*<div class="c-answers--item--interaction">
+                      <a href="/comunidades-virtuais/adubacao-biologica" class="link small"><i class="fa fa-edit"></i> Editar comentário</a>
+                    </div>*@
+                  </li>
+                }
+                @*<li class="c-answers--item c-answers--item--specialist clearfix">
+                    <span class="c-answers--item-date u-block">25/02/2018</span>
+                    <h4 class="c-answers--item-autor u-block"><a href="#" class="u-cut">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia incidunt, aliquid nemo architecto vel, fuga, velit nulla expedita reprehenderit illo suscipit fugit, asperiores cumque voluptatibus temporibus qui. Eveniet, aperiam, debitis.</a></h4>
+                    <div class="c-answers--item-text">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa dolorem, ut iusto consectetur maxime quidem dignissimos tempore necessitatibus, obcaecati, sapiente sit! Tempore ipsam a excepturi, nesciunt illo aliquam omnis voluptatem.</p>
+                    </div>
+                    <div class="c-answers--item--interaction">
+                      <a href="/comunidades-virtuais/adubacao-biologica" class="link small"><i class="fa fa-edit"></i> Editar comentário</a>
+                    </div>
+                  </li>
+
+                  <li class="c-answers--item c-answers--item--specialist clearfix">
+                    <span class="c-answers--item-date u-block">25/02/2018</span>
+                    <h4 class="c-answers--item-autor u-block"><a href="#" class="u-cut">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia incidunt, aliquid nemo architecto vel, fuga, velit nulla expedita reprehenderit illo suscipit fugit, asperiores cumque voluptatibus temporibus qui. Eveniet, aperiam, debitis.</a></h4>
+                    <div class="c-answers--item-text">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa dolorem, ut iusto consectetur maxime quidem dignissimos tempore necessitatibus, obcaecati, sapiente sit! Tempore ipsam a excepturi, nesciunt illo aliquam omnis voluptatem.</p>
+                    </div>
+                    <div class="c-answers--item--interaction">
+                      <a href="/comunidades-virtuais/adubacao-biologica" class="link small"><i class="fa fa-edit"></i> Editar comentário</a>
+                    </div>
+                  </li>*@
+
+                @*<li class="c-answers--item c-answers--item--specialist clearfix">
+                  <span class="c-answers--item-date u-block">25/02/2018</span>
+                  <h4 class="c-answers--item-autor u-block"><a href="#" class="u-cut">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia incidunt, aliquid nemo architecto vel, fuga, velit nulla expedita reprehenderit illo suscipit fugit, asperiores cumque voluptatibus temporibus qui. Eveniet, aperiam, debitis.</a></h4>
+                  <div class="c-answers--item-text">
+                    <textarea name="" id="" cols="30" rows="10" class="u-full-float u-margin-bottom">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa dolorem, ut iusto consectetur maxime quidem dignissimos tempore necessitatibus, obcaecati, sapiente sit! Tempore ipsam a excepturi, nesciunt illo aliquam omnis voluptatem.</textarea>
+                  </div>
+                  <div class="c-answers--item--interaction">
+                    <a href="#" class="c-button mini">Salvar</a>
+                    <a href="/comunidades-virtuais/adubacao-biologica" class="small">Cancelar</a>
+                  </div>
+                </li>*@
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>

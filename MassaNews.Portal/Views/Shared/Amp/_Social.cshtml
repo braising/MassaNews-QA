@@ -1,0 +1,43 @@
+﻿@model MassaNews.Models.Portal.View.AmpIndexViewModel
+
+@* <div class="c-share">
+  <div class="c-share__iten c-share__facebook">
+    <a href="@Model.FacebookUrl" class="c-share__link color-facebook" target="_blank" title="Facebook">
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </div>
+  <div class="c-share__iten c-share__twitter">
+    <a href="@Model.TwitterUrl" class="c-share__link color-twitter" target="_blank" title="Twitter">
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </div>
+  <div class="c-share__iten c-share__googleplus">
+    <a href="@Model.GoogleUrl" class="c-share__link color-googleplus" target="_blank" title="Google Plus">
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </div>
+  <div class="c-share__iten c-share__whats">
+    <a href="@Model.WhatsUrl" data-action="share/whatsapp/share" class="c-share__link color-whatsapp" target="_blank" title="WhatsApp">
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </div>
+</div> *@
+
+<div class="c-share">
+  <amp-social-share class="c-share__iten" width="28" height="28" type="whatsapp"></amp-social-share>
+  <amp-social-share class="c-share__iten" width="28" height="28" type="facebook" data-param-app_id="154958548449276"></amp-social-share>
+  <amp-social-share class="c-share__iten" width="28" height="28" type="twitter"></amp-social-share>
+  <amp-social-share class="c-share__iten" width="28" height="28" type="gplus"></amp-social-share>
+</div>

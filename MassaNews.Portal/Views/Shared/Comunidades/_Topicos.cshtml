@@ -1,0 +1,26 @@
+﻿@model List<MassaNews.Service.Models.ComunidadeTopico>
+
+<section id="comunidades-virtuais" class="c-topics t-module">
+  <header class="c-communities--header">
+    <div class="g-container">
+      <h2 class="logo-comunidades-virtuais">Comunidades Virtuais</h2>
+      <p>O Negócios da Terra é o seu programa de informações sobre o mundo do agronegócio. Pensando na troca de experiências entre produtores rurais de todo o Brasil e do mundo, foram criadas as Comunidades Virtuais: um espaço de interação, que tem como objetivo facilitar a difusão do conhecimento agropecuário e do agronegócio. Entre, participe das salas virtuais e tire suas dúvidas sobre diversos assuntos. Cada comunidade tem um especialista, pronto para trocar ideias, responder às dúvidas e interagir com todos os participantes. Você pode ainda, enviar sugestões para implementarmos melhorias. Sua participação fará a diferença.</p>
+    </div>
+  </header>
+
+  <div class="g-container c-topics--items">
+    <ul>
+      @{var count = 0;}
+      @foreach (var item in Model)
+      {
+        <li class="c-topics--item"><a href="/comunidades-virtuais/@item.Slug" title="@item.Titulo">@item.Titulo</a></li>
+        count++;
+
+        if (count == 5 || count == 10 || count == 15 || count == 20)
+        {
+          <li class="c-topics--item-full"></li>
+        }
+      }
+    </ul>
+  </div>
+</section>

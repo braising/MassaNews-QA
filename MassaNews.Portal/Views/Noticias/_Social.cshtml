@@ -1,0 +1,53 @@
+﻿@using MassaNews.Service.Util
+@model MassaNews.Service.Models.Noticia
+
+<div class="c-share__iten c-share__whats">
+  <a href="@string.Format("whatsapp://send?text={0}%20{1}", HttpUtility.UrlEncode(Model.Chamada), HttpUtility.UrlEncode(string.Format("{0}{1}.html?utm_source=whatsapp&utm_medium=share&utm_content={2}__{3}&utm_campaign={4}", Constants.UrlShare, Model.UrlFull, Model.EditorialUrl, Model.Categoria.Url, Model.Url)))" data-action="share/whatsapp/share" class="c-share__link" target="_blank" title="WhatsApp">
+    <span class="fa-stack color-whatsapp">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</div>
+<div class="c-share__iten c-share__facebook">
+  @if (Model.ImgMd == null){
+    <a href="@string.Format("https://www.facebook.com/dialog/share?app_id={0}&display=popup&picture={2}{1}&href={2}{3}&redirect_uri={2}{3}&caption=massanews.com", Constants.FacebookAppId, Url.Content("~/content/images/banners/avatar-massanews.jpg"), Constants.UrlShare, $"{Model.UrlFull}.html")" class="c-share__link" title="Facebook">
+      <span class="fa-stack color-facebook">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  } else {
+    <a href="@string.Format("https://www.facebook.com/dialog/share?app_id={0}&display=popup&picture={1}/{2}/{3}&href={4}{5}&redirect_uri={4}{5}&caption=massanews.com", Constants.FacebookAppId, Constants.UrlDominioEstaticoUploads, "noticias", Model.ImgLg, Constants.UrlShare, $"{Model.UrlFull}.html")" class="c-share__link" target="_blank" title="Facebook">
+      <span class="fa-stack color-facebook">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  }
+</div>
+<div class="c-share__iten c-share__twitter">
+  <a href="@($"https://twitter.com/intent/tweet?text={HttpUtility.UrlEncode(Model.Chamada)} {$"{Constants.UrlShare}{$"{Model.UrlFull}.html"}"}")" class="c-share__link" target="_blank" title="Twitter">
+    <span class="fa-stack color-twitter">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</div>
+<div class="c-share__iten c-share__googleplus">
+  <a href="@($"https://plus.google.com/share?url={$"{Constants.UrlShare}{$"{Model.UrlFull}.html"}"}")" class="c-share__link" target="_blank" title="Google Plus">
+    <span class="fa-stack color-google-plus">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</div>
+
+@*<div class="c-share__iten c-share__email">
+  <button class="btn-open-modal-share c-share__link" rel="modal" data-modal="modal-share-email" title="Enviar por E-mail">
+    <span class="fa-stack color-brand">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+    </span>
+  </button>
+</div>*@

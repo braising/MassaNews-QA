@@ -1,0 +1,50 @@
+.pg-roteiros-map{
+  .group-map{
+    width: 100%;
+    margin-left: 0;
+    height: calc(100% - 80px);
+    position: fixed;
+    top: 80px;
+    right: 0;
+
+    iframe{
+      height: 100%;
+    }
+  }
+
+  .buttons-view{
+    width: 100%;
+    padding: 2em 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .c-button{
+      position: relative;
+      z-index: 3;
+    }
+
+    .mask{
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: '';
+      z-index: 2;
+      background-image: linear-gradient(rgba(255,255,255,1) 0, rgba(255,255,255,.8) 30%, transparent);
+    }
+  }
+
+  .c-footer{
+    display: none;
+  }
+}
+
+@media all and (min-width:bp(12, 1px)) {
+  .pg-roteiros-map{
+    .group-map{
+      width: calc(100% - 327px);
+    }
+  }
+}

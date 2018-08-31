@@ -1,0 +1,131 @@
+﻿@{ Layout = null; }
+@model MassaNews.Portal.ViewModels.VideoInterna
+<!DOCTYPE html>
+<html lang="pt-br">
+
+@Html.Partial("_Head")
+
+<body class="pg-videos pg-videos-player">
+  @Html.Partial("_GtmNoScript")
+
+  <header class="c-header">
+    <div class="c-header__bar">
+      <div class="c-header__brand">
+        <div class="c-header__center">
+          <div class="c-header__title t-page-color">
+            <a href="@Model.CloseLink" class="back-video trigger-go-back track-voltar-video fa fa-chevron-left" title="Voltar"></a>
+
+            <a href="@Url.Action("Index", "Home")" class="brand-logo" title="Massa News">
+              <img src="//cdn.massanews.com/static/images/logos/massa-news-gray-header.svg" alt="Massa News">
+            </a>
+            <a href="@Model.SectionLink" class="c-header__title__link t-page-color" title="@Model.SectionTitle">@Model.SectionTitle</a>
+          </div>
+          <a href="@Model.CloseLink" class="mobile-element close trigger-go-back">
+            <i class="fa fa-close fa-3x t-page-color"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <input id="SectionUrl" type="hidden" value="@Model.SectionUrl">
+    <input id="VideoUrl" type="hidden" value="@Model.Video.VideoUrl">
+
+    <div class="g-column-with-sidebar">
+      <div class="player-video">
+        <div class="header-video">
+          <div class="header-video--buttons">
+            <a href="@($"{Model.Video.NoticiaUrl}.html")" class="c-button c-button-videos mini lnk-noticia track-ler-noticia" title="Ler a notícia completa">Ler a notícia</a>
+            <a class="lnk-facebook c-share__link" href="@Model.Video.FacebookUrl" target="_blank" title="Facebook">
+              <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+            <a class="lnk-twitter c-share__link" href="@Model.Video.TwitterUrl" target="_blank" title="Twitter">
+              <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+            <a class="lnk-gplus c-share__link" href="@Model.Video.GPlusUrl" target="_blank" title="Google Plus">
+              <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+
+            @*<a href="#" class="btn-open-modal-share c-share__link" rel="modal" data-modal="modal-share-email" title="Enviar por E-mail">
+              <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>*@
+            <a href="@Model.CloseLink" class="close-video trigger-go-back track-fechar-video fa fa-close fa-3x t-page-color" title="Fechar vídeo"></a>
+          </div>
+          <div class="mask"></div>
+        </div>
+        <div class="video-wrapper">
+          <div id="player" class="video-full"></div>
+        </div>
+      </div>
+
+      <aside class="c-fixed-sidebar g-aside">
+        <div class="nano">
+          <div class="nano-content">
+            <div class="c-fixed-sidebar--view-mobile">
+              <h1 class="h3 title-video-mobile trigger-get-title-video">@Model.Video.Chamada</h1>
+
+              <a href="@($"{Model.Video.NoticiaUrl}.html")" class="c-button c-button-videos mini lnk-noticia track-ler-noticia" title="Ler a notícia completa">Ler a notícia</a>
+              <a class="lnk-whatsapp c-share__link" href="@Model.Video.WattsUrl" target="_blank" title="WhatsApp">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+              <a class="lnk-facebook c-share__link" href="@Model.Video.FacebookUrl" target="_blank" title="Facebook">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+              <a class="lnk-twitter c-share__link" href="@Model.Video.TwitterUrl" target="_blank" title="Twitter">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+              <a class="lnk-gplusr c-share__link" href="@Model.Video.GPlusUrl" target="_blank" title="Google Plus">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+              @*<a href="#" class="btn-open-modal-share c-share__link" rel="modal" data-modal="modal-share-email" title="Enviar por E-mail">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>*@
+            </div>
+            @*<h2 class="h3 c-fixed-sidebar__title-section u-cut text-uppercase">
+              <a href="@Model.SectionLink">@Model.SectionTitle</a>
+            </h2>*@
+            @*<div class="c-fixed-sidebar__title">
+              <h3 class="title">26 mai 2016</h3>
+            </div>*@
+            <ul class="trigger-sidebar-ultimas c-fixed-sidebar__list c-headline--minis">
+              @Html.Partial("_LastNewsItem", Model.MenuItems)
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  @*@Html.Partial("_ShareEmail")*@
+  @Scripts.Render("~/bundles/videos")
+  <script src="//www.youtube.com/player_api"></script>
+</body>
+</html>

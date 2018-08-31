@@ -1,0 +1,44 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-breadcrumb {
+  width: 100%;
+  display: block;
+  @include font-size(12px);
+  @include clearfix();
+
+  li{
+    display: inline;
+
+    &:before{
+      content: "»";
+      padding: 0 7px;
+      color: $gray-lighter;
+    }
+
+    &:first-child{
+      &:before{
+        padding: 0;
+        content: "";
+      }
+    }
+
+    &:last-child{
+      font-weight: bold;
+    }
+
+    .fa{
+      padding-left: 5px;
+    }
+  }
+}
+
+
+/* =============CUSTOM============= */
+
+
+/* =============MEDIA QUERY============= */

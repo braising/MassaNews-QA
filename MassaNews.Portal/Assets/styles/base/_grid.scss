@@ -1,0 +1,300 @@
+// /* =============VARIABLES============= */
+
+// //Espaçamentos horizontais e verticais entre colunas
+// $gutter: 10px;
+
+// $container-gutters: $gutter * 4;
+// $columns-amount: 12;
+// $column-width: 89px;
+
+
+
+/* =============MIXINS============= */
+
+// //Retorna um valor em pixel da quantidade de colunas definida (calculando os espaçamentos entre colunas)
+// //O 2º paramentro serve para personalizar o valor final, para considerar um padding interno ou para incrementar ou descrecer uma unidade para criar breakpoints
+// @function grid-px($cols: 2, $edit: 0) {
+//   @return ($column-width * $cols) + (($gutter * 2) * ($cols - 1)) + $edit;
+// }
+
+
+// //Valor para a media query considerando os gutters do g-container
+// //O 1º parametro é a quantidade de colunas baseadas no layout
+// //O 2º paremetro é um valor para personalizar o resultado final
+// @function bp($cols: 2, $edit: 0) {
+//   @return ($column-width * $cols) + (($gutter * 2) * ($cols - 1)) + $edit + $container-gutters;
+// }
+
+
+// //Mixin para criar pilhas de colunas com espaçamentos fixos
+// @mixin columns($cols: 2) {
+//   $gutter: $gutter * 2;
+
+//   float:left;
+//   width:100% / $cols - 2%;
+//   width:calc((100% - (#{$gutter} * (#{$cols} - 1))) / #{$cols});
+//   margin-right:$gutter;
+//   //margin-bottom:$gutter;
+
+//   //Retira a margem direita do ultimo item de cada linha
+//   &:nth-child(#{$cols}n+#{$cols}) {
+//     margin-right:0;
+//   }
+
+//   //Adiciona um clear no primeiro item de cada linha, menos o da primeira linha
+//   &:nth-child(#{$cols}n+#{$cols + 1}) {
+//     clear:left;
+//   }
+
+//   //Retira a margem inferior dos ultimos itens do conjunto
+//   @for $i from 1 through $cols {
+//     &:nth-last-child(#{$i}) {
+//       margin-bottom:0;
+//     }
+//   }
+// }
+
+
+// =============================================================================
+// GRIDS
+// =============================================================================
+
+//largura maxima dos containers do site
+// $max-container: grid-px(12);
+
+// //alturas do header fixo
+// $top-height:80px;
+// $top-height-mobile:50px;
+// $top-home-height:107px;
+// $top-videos-height:130px;
+
+// //larguras comuns do site
+// $large-width: grid-px(9);
+// $medium-width: grid-px(6);
+// $small-width: grid-px(3);
+
+// //sidebar fixo das págians internas
+// $fixed-sidebar-width:grid-px(3, 20px);
+
+
+
+// =============================================================================
+// GRIDS
+// =============================================================================
+
+.g-clearfix {
+  @include clearfix();
+}
+
+//envolucro principal do site
+.g-wrapper {
+  margin-top:0 !important;
+  max-width:100%;
+  min-height:100%;
+  overflow:hidden;
+}
+
+//limitador da largura maxima do site
+.g-container {
+  @include clearfix();
+  position:relative;
+  margin:0 auto;
+  max-width:$max-container;
+  width:94%;
+  width:calc(100% - #{$container-gutters});
+
+  // Diminui as margens laterais para 10px
+  @media all and (max-width: bp(4)) {
+    width:calc(100% - #{$container-gutters - 20});
+  }
+}
+
+//limitador sem as margins laterais no responsivo
+.g-container--full {
+  @extend .g-container;
+  width:100%;
+}
+
+
+.g-main {
+  margin-top:$top-bar-height;
+
+  .pg-home & {
+    //margin-top:0;
+    //TEMP
+    margin-top:$top-home-height;
+
+    @media all and (max-width: bp(9)) {
+      margin-top:$top-bar-height-mobile;
+    }
+  }
+
+  &.is-transposed {
+    margin-top:$top-home-height;
+  }
+
+  @media all and (max-width: bp(9)) {
+    &.is-transposed {
+      margin-top:$top-height-mobile;
+    }
+  }
+}
+
+
+
+//GRIDS PRINCIPAIS DE CONTEUDO COM SIDEBAR
+
+//coluna centralizada com sidebar fixo
+.g-column-with-sidebar {
+  margin-bottom:1.25em;
+  padding:0 $container-gutters / 2;
+
+  .g-content {
+    position:relative;
+    margin:0 auto;
+    max-width:961px;
+  }
+
+  .g-aside {
+    display:none;
+    width: $fixed-sidebar-width;
+  }
+
+  @media all and (min-width:bp(12, 1px)) {
+    padding:0;
+
+    .g-content {
+      left: $fixed-sidebar-width / 2;
+      min-height:80vh;
+    }
+
+    .g-aside {
+      display:block;
+    }
+  }
+
+  @media all and (max-width: bp(4)) {
+    padding:0 $gutter;
+  }
+}
+
+
+//conteudo e sidebar lado a lado
+.g-content-inner-sidebar {
+  padding:$gutter * 2 0;
+
+  //mobile
+  @media all and (max-width: bp(8)) {
+    margin:0 auto;
+
+    .g-aside {
+      margin-top:$margin-medium;
+    }
+  }
+
+  //estilos em comum da largura de tablet e desktop
+  @media all and (min-width: bp(8, 1px)) {
+    .g-content {
+      float:left;
+      margin-right:$gutter;
+      width:60%;
+      width: calc(100% - #{grid-px(3, $gutter * 2)});
+    }
+
+    .g-aside {
+      float:right;
+      width: grid-px(3);
+      margin-left:$gutter;
+    }
+  }
+
+  //apenas desktop
+  @media all and (min-width: bp(12, 15px)) {
+    .g-content {
+      width: grid-px(9);
+    }
+  }
+}
+
+
+
+/* =============UTILITARIES============= */
+
+//permite o background ocupar toda a largura da tela, mesmo como a class container
+.g-bg-full {
+  padding-left:1000em !important; padding-right:1000em !important;
+  margin-left:-1000em !important; margin-right:-1000em !important;
+}
+
+
+//alinhamento vertical da altura das colunas
+.g-cols-valign {
+  overflow:hidden;
+  margin-bottom:$margin-medium;
+
+  > div {
+    margin-bottom:$margin-small;
+
+    @media all and (min-width: bp(9)) {
+      margin-bottom: -99999px;
+      padding-bottom: 99999px;
+    }
+  }
+}
+
+
+/* =============MIXINS============= */
+
+.g-3columns {
+  @include clearfix();
+
+  .g-column {
+    @media all and (min-width: bp(4)) {
+      @include columns(3);
+    }
+  }
+}
+
+
+.g-3columns--mobile {
+  .g-column {
+    margin-bottom:$margin-medium;
+  }
+
+  @media all and (min-width: bp(4)) and (max-width: bp(6)) {
+    @include clearfix();
+
+    .g-column {
+      @include columns(2);
+    }
+  }
+
+  @media all and (min-width: bp(6, 1px)) {
+    @include clearfix();
+
+    .g-column {
+      @include columns(3);
+    }
+  }
+}
+
+
+.g-4columns {
+  @include clearfix();
+
+  .g-column {
+    margin-bottom:$margin-medium!important;
+
+    @media all and (min-width: bp(4)) {
+      @include columns(4);
+    }
+
+    @media all and (max-width: bp(7)) {
+      @include columns(2);
+    }
+
+    @media all and (max-width: bp(4)) {
+      @include columns(1);
+    }
+  }
+}

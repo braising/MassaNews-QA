@@ -1,0 +1,35 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-headline-list {
+  .iten {
+    margin:0 0 .5em;
+    @include font-size(16px);
+
+    &:last-of-type {
+      margin-bottom:0;
+    }
+
+    a {
+      display:block;
+      font-weight:bold;
+
+      &:before {
+        display:inline-block;
+        margin-right:0.3em;
+        content:"»";
+      }
+    }
+  }
+}
+
+
+/* =============CUSTOM============= */
+
+
+/* =============MEDIA QUERY============= */
+

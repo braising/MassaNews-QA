@@ -1,0 +1,30 @@
+﻿@section bodyClass{@Html.Raw("pg-esportes tabela-facil")}
+
+<main class="g-main">
+  <div class="t-content g-container">
+    @* <section class="t-module">
+      <h2 class="t-page-color h2">Classificação</h2>
+      @Html.Raw(ViewBag.TbClassificacao)
+    </section> *@
+
+    <section class="t-module">
+      <h2 class="t-page-color h2">Jogos</h2>
+      <div class="table-rounds">
+        <div class="c-slider--table c-slider--table-paranaense">
+          @{ var i = 1; }
+          @foreach (var html in ViewBag.LstRodadas){
+            <div class="group-table" id="table-results-@i">
+              <h4 class="title t-page-color">@(i)ª rodada</h4>
+              @Html.Raw(html)
+            </div>
+            i++;
+          }
+        </div>
+      </div>
+    </section>
+
+    <div class="group-button">
+      <a href="/tags/campeonato-paranaense" class="c-button t-page-button" title="Veja tudo sobre o Paranaense 2017">Tudo sobre o Paranaense</a>
+    </div>
+  </div>
+</main>

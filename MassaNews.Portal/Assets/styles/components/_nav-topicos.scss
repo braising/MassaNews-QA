@@ -1,0 +1,88 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-nav-topicos {
+  display:none;
+  padding: $gutter * 1.5 0;
+  border-bottom:1px solid darken($gray-lightest,5%);
+  background:$brand-primary;
+
+  .inner {
+    text-align:center;
+  }
+
+  li {
+    display:inline-block;
+    //margin-bottom:$gutter * 2;
+  }
+
+  a {
+    display:block;
+    margin:0 15px;
+    color:#fff;
+  }
+
+  /*.hot-news {
+    position:relative;
+    margin:0 3px;
+    padding:10px 10px 10px 25px;
+    background:#fff;
+    color:$brand-primary;
+
+    &:before {
+      position:absolute;
+      left:7px;
+      top:13px;
+      display:block;
+      @include font-icon();
+      content:"\e916";
+      @include font-size(14px);
+      color:#ababab;
+    }
+  }*/
+
+  .guia-massa {
+    position:relative;
+    top:5px;
+
+    .logo-guia-massa {
+      //altura e largura fixos. IE não trata corretamente as medidas do svg
+      width:70px;
+      height:21px;
+
+      path {
+        transition:fill .5s;
+      }
+
+      &:hover path,
+      &:active path,
+      &:focus path {
+        text-decoration:none;
+        fill:$tema-guia;
+      }
+    }
+  }
+
+
+  /* =============MEDIA QUERY============= */
+  @media all and (min-width: bp(9, 1px)) {
+    display:block;
+  }
+}
+
+
+/* =============CUSTOM============= */
+.pg-where{
+  .c-nav-topicos{
+    border-bottom:1px solid darken($tema-where,5%);
+    background: $tema-where;
+
+    a {
+      color:#fff;
+    }
+  }
+}

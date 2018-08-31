@@ -1,0 +1,34 @@
+﻿@model MassaNews.Models.Portal.View.AmpIndexViewModel
+
+<script type="application/ld+json">
+  {
+    "@@context": "http://schema.org",
+    "@@type": "NewsArticle",
+    "mainEntityOfPage":{
+      "@@type":"WebPage",
+      "@@id":"@ViewBag.AmpLink"
+    },
+    "headline": "@Model.Titulo",
+    "image": {
+      "@@type": "ImageObject",
+      "url": "@Model.ImgOpenGraph",
+      "width": 961,
+      "height": 531
+    },
+    "author": {
+      "@@type": "Person",
+      "name": "@(Model.Autores)"
+    },
+    "datePublished": "@Convert.ToDateTime(Model.DataPublicacao).ToString("yyyy-MM-ddT+HH:mm:ss-03:00")",
+    "dateModified": "@Convert.ToDateTime(Model.DataPublicacao).ToString("yyyy-MM-ddT+HH:mm:ss-03:00")",
+    "publisher": {
+      "@@type": "Organization",
+      "name": "Massa News",
+      "logo": {
+        "@@type": "ImageObject",
+        "url": "https://massanews.com/content/images/logos/massa-news.png"
+      }
+    },
+    "description": "@Model.Descricao"
+  }
+</script>

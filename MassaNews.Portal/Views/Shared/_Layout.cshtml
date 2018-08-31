@@ -1,0 +1,197 @@
+﻿@using MassaNews.Service.Util
+
+<!DOCTYPE html>
+<html lang="pt-br">
+@Html.Partial("_Head")
+
+@*
+@{
+  var locationCookie = Request.Cookies["LocationCookie"];
+  var classe = string.Empty;
+  if(locationCookie == null) { classe = "geo-confirm"; }
+}
+*@
+
+<body class="@RenderSection("bodyClass", false)@if(Constants.UrlWeb != "https://massanews.com"){<text> development</text>}">
+
+  @* Honeypot Link *@
+  <a href="/hp-9396a4d143cf" class="u-none" aria-hidden="true">Admin</a>
+
+  @if(Constants.UrlWeb == "https://massanews.com")
+  {
+    @Html.Partial("_GtmNoScript")
+  }
+
+  @* NATAL DE LUZ *@
+  @* <script type="text/javascript">
+    function vote(btnElement)
+    {
+      $(btnElement).html('<i class="fa fa-check"></i> &nbsp;Processando...');
+      $(btnElement).attr("disabled", "disabled");
+
+      var label = $(btnElement).parents('.toolbar').find('.title');
+
+      FB.getLoginStatus(function (response)
+      {
+        statusVoteCallback(response, btnElement, label);
+      });
+    }
+
+    function statusVoteCallback(response, btnElement, label)
+    {
+      var imgId = $(btnElement).data("img")
+
+      if (response.status === 'connected')
+      {
+        FB.api('/me', { fields: 'name, email' }, function (response)
+        {
+          $.post("/natal-de-luz/voto", { IdFacebook: response.id, Email: response.email, Nome: response.name, IncricaoId: imgId }, function (data)
+          {
+            if(data.status == 'ok')
+            {
+              $(btnElement).replaceWith($('<button data-img="' + imgId + '" class="trigger-btn-votado c-button-white c-button--small"><i class="fa fa-check"></i> &nbsp;Votado</button>'));
+              $(label).html(data.label);
+              $('.nanoGalleryThumbnailContainer[data-originalid="' + imgId + '"] .labelImageTitle').html(data.label);
+              currentImage.title = data.label;
+            }
+          });
+        });
+      }
+      else
+      {
+        FB.login(function (response)
+        {
+          if (response.authResponse)
+          {
+            statusVoteCallback(response, btnElement, label);
+          }
+          else {
+            console.log('User cancelled login or did not fully authorize.');
+          }
+        },
+        { scope: 'public_profile,email,user_friends,' });
+      }
+    }
+
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '164634034123946',
+        cookie     : true,  // enable cookies to allow the server to access the session
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v2.5' // use graph api version 2.5
+      });
+        
+      FB.AppEvents.logPageView();
+    };
+
+    // Load the SDK asynchronously
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script> *@
+
+
+
+
+  @* WHERE 15 ANOS *@
+  @*<script type="text/javascript">
+    function vote(btnElement)
+    {
+      $(btnElement).html('<i class="fa fa-check"></i> &nbsp;Processando...');
+      $(btnElement).attr("disabled", "disabled");
+
+      var label = $(btnElement).parents('.toolbar').find('.title');
+
+      FB.getLoginStatus(function (response)
+      {
+        statusVoteCallback(response, btnElement, label);
+      });
+    }
+
+    function statusVoteCallback(response, btnElement, label)
+    {
+      var imgId = $(btnElement).data("img")
+
+      if (response.status === 'connected')
+      {
+        FB.api('/me', { fields: 'name, email' }, function (response)
+        {
+          $.post("/promocao/where-15-anos/voto", { IdFacebook: response.id, Email: response.email, Nome: response.name, IncricaoId: imgId }, function (data)
+          {
+            if(data.status == 'ok')
+            {
+              $(btnElement).replaceWith($('<button data-img="' + imgId + '" class="trigger-btn-votado c-button-white c-button--small"><i class="fa fa-check"></i> &nbsp;Votado</button>'));
+              $(label).html(data.label);
+              $('.nanoGalleryThumbnailContainer[data-originalid="' + imgId + '"] .labelImageTitle').html(data.label);
+              currentImage.title = data.label;
+            }
+          });
+        });
+      }
+      else
+      {
+        FB.login(function (response)
+        {
+          if (response.authResponse)
+          {
+            statusVoteCallback(response, btnElement, label);
+          }
+          else {
+            console.log('User cancelled login or did not fully authorize.');
+          }
+        },
+        { scope: 'public_profile,email,user_friends,' });
+      }
+    }
+
+    window.fbAsyncInit = function ()
+    {
+      FB.init({
+        appId      : '154958548449276',
+        cookie     : true,  // enable cookies to allow the server to access the session
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v2.5' // use graph api version 2.5
+      });
+    };
+
+    // Load the SDK asynchronously
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>*@
+
+  <div class="g-wrapper">
+    @Html.Partial("_FixedBar")
+    @Html.Partial("_Header")
+    @RenderBody()
+    @Html.Partial("_Footer")
+    @Html.Partial("_Search")
+    @Html.Partial("_Geolocation")
+    @Html.Partial("_Video")
+    @*@Html.Partial("_Galeria")*@
+    @Html.Partial("_Loading")
+    @Html.Partial("_ErrorsOrSuggestions")
+    @Html.Partial("_Login")
+    @*@Html.Partial("_ShareEmail")*@
+  </div>
+
+  @* <script src="https://massanews.disqus.com/count.js" id="dsq-count-scr" async></script> *@
+  @*<script src="@Url.Content("~/content/scripts/application.js?v=5")"></script>*@
+  @Scripts.Render("~/bundles/application")
+  @RenderSection("scripts", required: false)
+  @*<script type="text/javascript">
+    $(function () {
+      //Carrega as informações do tempo
+      LoadCityWether();
+    });  
+  </script>*@
+</body>
+</html>

@@ -1,0 +1,138 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+#c-fixed-bar{
+  width: 100%;
+  height: 30px;
+  padding: 0 15px;
+  z-index: 701;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $gray-lightest;
+  border-bottom:1px solid #fff;
+
+  .c-fixed-bar__companies{
+    li{
+      float: left;
+
+      &:first-child{
+        a{
+          padding-left: 0;
+        }
+      }
+
+      &.grupo-massa{
+        a{
+          font-weight: bold;
+        }
+      }
+
+      &.rede-massa{
+        a{
+          color: #001684;
+        }
+      }
+
+      &.massa-news{
+        a{
+          color: #d2232a;
+        }
+      }
+
+      &.massa-fm{
+        a{
+          color: #942670;
+        }
+      }
+
+      &.massa-play{
+        a{
+          color: #274867;
+        }
+      }
+
+      &.where-curitiba{
+        a{
+          color: #ff8000;
+        }
+      }
+
+      a{
+        float: left;
+        padding: 0 15px;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        line-height: 30px;
+        @include font-size(10px);
+      }
+    }
+  }
+
+  .c-fixed-bar__infos{
+    float: right;
+
+    .location,
+    .profile{
+      line-height: 30px;      
+      @include font-size(12px);
+
+      .fa{
+        margin: 0 5px;
+      }
+    }
+
+    .location{
+      padding-left: 20px;
+      float: right;
+    }
+
+    .profile{
+      float: left;
+    }
+  }
+}
+
+/* =============MEDIA QUERY============= */
+@media all and (max-width: bp(8)) {
+  #c-fixed-bar{
+    text-align: center;
+
+    .c-fixed-bar__companies{
+      display: none;
+    }
+
+    .c-fixed-bar__infos{
+      float: none;
+
+      .location,
+      .profile{
+        float: none;
+        display:inline-block;
+      }      
+    }
+  }
+}
+
+@media all and (max-width: bp(5)) {
+  .hide-mobile{
+    display: none;
+  }
+}
+
+/* =============CUSTOM============= */
+.pg-videos{
+  #c-fixed-bar{
+    background-color: $black-special-light;
+    border-bottom:1px solid $black-special-lighter;
+
+    a{
+      color:$black-special-lighter !important;
+    }
+  }
+
+}

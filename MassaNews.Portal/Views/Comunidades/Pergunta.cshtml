@@ -1,0 +1,63 @@
+﻿@model MassaNews.Portal.ViewModels.ComunidadeTopicoPerguntaViewModel
+
+@section bodyClass{@Html.Raw("pg-negocios-da-terra pg-comunidades pg-ask")}
+
+@{
+  // Página
+  ViewBag.Pagina = "ask";
+}
+
+<main class="g-main">
+  <header class="c-topics t-module">
+    <div class="c-communities--header c-communities-page--header">
+      <div class="g-container">
+        <h2 class="title"><a href="/comunidades-virtuais/@Model.TopicoSlug" title="@Model.TopicoTitulo">@Model.TopicoTitulo</a></h2>
+        <p>@Model.TopicoDescricao</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="g-content-inner-sidebar g-container">
+    <section class="g-content">
+      <a href="/comunidades-virtuais/@Model.TopicoSlug" class="c-communities--go-back">« Voltar para @Model.TopicoTitulo</a>
+
+      @if (!Model.CriadoPergunta){        
+        <h1 class="t-page-color">Enviar pergunta</h1>
+        using (Html.BeginForm("Pergunta", "Comunidades", new { @class = "form-ask t-module", id = "form-ask" }, FormMethod.Post))
+        {
+          <input type="hidden" name="Topico" value="@Model.TopicoId" />
+          <input type="hidden" name="form-ask--post" id="form-ask--post" value="">
+          <ul class="c-forms--labels">
+            <li class="input-full">
+              <label for="form-ask--title">Título da pergunta</label>
+              <input type="text" name="Titulo" id="form-ask--title" maxlength="120" placeholder="">
+              <span class="field-validation-error" data-valmsg-for="title" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+              <span class="field-validation-error invalid-title" data-valmsg-for="title" data-valmsg-replace="true" style="display: none;">*E-mail inválido</span>
+            </li>
+          </ul>
+          <ul class="c-forms--labels">
+            <li class="input-full">
+              <label for="form-ask--details">Detalhes da pergunta</label>
+              <textarea name="Descricao" id="form-ask--details" placeholder=""></textarea>
+              <span class="field-validation-error" data-valmsg-for="details" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+            </li>
+          </ul>
+          <ul class="c-forms--labels">
+            <li class="input-full label-no-margin">
+              <button type="submit" data-comunidadepergunta="@Url.Action("CriarPergunta", "Comunidades")" class="form-ask--submit submit small t-page-button c-button btn-ask" title="Enviar pergunta">Enviar pergunta</button>
+            </li>
+          </ul>
+        }
+      } else {
+        <div class="c-pergunta__feedback t-module">
+          <h2 class="t-page-color">@Model.Aviso1</h2>
+          <p>@Model.Aviso2</p>
+
+          <a href="/comunidades-virtuais/@Model.TopicoSlug/pergunta" class="c-button t-page-button mini" title="Fazer outra pergunta">Fazer outra pergunta</a>
+        </div>
+      }
+    </section>
+
+    <aside class="g-aside"></aside>
+  </div>
+</main>

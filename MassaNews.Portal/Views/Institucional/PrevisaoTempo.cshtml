@@ -1,0 +1,214 @@
+﻿@section bodyClass{@Html.Raw("pg-previsao-do-tempo")}
+@using MassaNews.Portal.ViewModels
+@model WeatherForecastViewModel
+
+<main class="g-main">
+  <div class="g-content-inner-sidebar g-container t-content">
+    @if (Model.WeatherPrincipal != null)
+    {
+      <h1 class="title">@Model.WeatherPrincipal.City</h1>
+    }
+    <div class="g-content">
+      <section class="current-city clearfix">
+        @if (Model.WeatherPrincipal != null)
+        {
+          <div class="primary-info">
+            <span class="wi @Model.WeatherPrincipal.Icon icon color-page"></span>
+            <div class="temp">
+              <strong class="value color-page">
+                @if (Model.WeatherPrincipal.Temperature.HasValue)
+                {<text>@Model.WeatherPrincipal.Temperature&deg;</text>} else {<text>N/A</text>}
+              </strong>
+              <span class="min-max-temp">
+                <strong class="max">
+                  <i class="fa fa-long-arrow-up"></i> <span class="valeu">
+                    @if (Model.WeatherPrincipal.TempMaxima.HasValue)
+                    {<text>@Model.WeatherPrincipal.TempMaxima&deg;</text>}
+                    else
+                    {<text>N/A</text>}
+                  </span>
+                </strong>
+                <strong class="min">
+                  <i class="fa fa-long-arrow-down"></i> <span class="valeu">
+                    @if (Model.WeatherPrincipal.TempMinima.HasValue)
+                    {<text>@Model.WeatherPrincipal.TempMinima&deg;</text>}
+                    else
+                    {<text>N/A</text>}
+                  </span>
+                </strong>
+              </span>
+              <strong class="description">@if (!string.IsNullOrEmpty(Model.WeatherPrincipal.Description)) { <text>@Model.WeatherPrincipal.Description</text>} else {<text>N/A</text>}</strong>
+            </div>
+          </div>
+          <div class="secondary-info">
+            <ul>
+              <li>
+                <span class="wi wi-thermometer icon color-page"></span>
+                <div class="infos">
+                  <span class="label u-cut">Sensação térmica</span>
+                  <strong class="valeu">
+                    @if (Model.WeatherPrincipal.SensacaoTermica.HasValue)
+                    {<text>@Model.WeatherPrincipal.SensacaoTermica&deg;</text>}
+                    else
+                    {<text>N/A</text>}
+                  </strong>
+                </div>
+              </li>
+              <li>
+                <span class="wi wi-humidity icon color-page"></span>
+                <div class="infos">
+                  <span class="label u-cut">Umidade</span>
+                  <strong class="valeu">@if (!string.IsNullOrEmpty(Model.WeatherPrincipal.Umidade)) { <text>@Model.WeatherPrincipal.Umidade</text>} else {<text>N/A</text>}</strong>
+                </div>
+              </li>
+              <li>
+                <span class="wi wi-wind from-@if (Model.WeatherPrincipal.DirecaoVento != null && Model.WeatherPrincipal.DirecaoVento.Value.HasValue)
+                {<text>@Model.WeatherPrincipal.DirecaoVento.Value</text>}
+                else
+                {<text>0</text>}-deg icon color-page"></span>
+                <div class="infos">
+                  <span class="label u-cut">Direção do vento</span>
+                  <strong class="valeu">
+                    @if (Model.WeatherPrincipal.DirecaoVento != null)
+                    {<text>@Model.WeatherPrincipal.DirecaoVento.Description</text>}
+                    else
+                    {<text>N/A</text>}
+                  </strong>
+                </div>
+              </li>
+              <li>
+                <span class="wi wi-strong-wind icon color-page"></span>
+                <div class="infos">
+                  <span class="label u-cut">Veloc. do vento</span>
+                  <strong class="valeu">@if (!string.IsNullOrEmpty(Model.WeatherPrincipal.VelocidadeVento)) {<text>@Model.WeatherPrincipal.VelocidadeVento</text>}
+                  else
+                  {<text>N/A</text>}</strong>
+                </div>
+              </li>
+              <li>
+                <span class="wi wi-sunrise icon color-page"></span>
+                <div class="infos">
+                  <span class="label u-cut">Nascer do sol</span>
+                  <strong class="valeu">@if (!string.IsNullOrEmpty(Model.WeatherPrincipal.NascerSol)) {<text>@Model.WeatherPrincipal.NascerSol</text>}
+                  else
+                  {<text>N/A</text>}</strong>
+                </div>
+              </li>
+              <li>
+                <span class="wi wi-sunset icon color-page"></span>
+                <div class="infos">
+                  <span class="label u-cut">Pôr do sol</span>
+                  <strong class="valeu">@if (!string.IsNullOrEmpty(Model.WeatherPrincipal.PorSol)) { <text>@Model.WeatherPrincipal.PorSol</text>
+                    }
+                    else
+                    {<text>N/A</text>}
+</strong>
+                </div>
+              </li>
+            </ul>
+          </div>
+        }
+        else
+        {
+          if (ViewBag.ErrorWeather != null)
+          {
+            @Html.Raw(ViewBag.ErrorWeather)
+          }
+        }
+      </section>
+      @if (Model.WeatherPrincipal != null)
+      {
+        <section class="days clearfix">
+          <ul>
+            @foreach (var weather in Model.WeatherPrincipal.ForecastDays)
+            {
+              <li>
+                <span class="wi @weather.Icon icon color-page"></span>
+                <div class="temp">
+                  <span class="value">@weather.DateFormated</span>
+                  <span class="min-max-temp">
+                    <strong class="max">
+                      <span class="valeu">
+                        @if (weather.TempMax.HasValue)
+                        {<text>@weather.TempMax&deg;</text>}
+                      </span>
+                    </strong>
+                    <strong class="min">
+                      <span class="valeu">
+                        @if (weather.TempMin.HasValue)
+                        {<text>@weather.TempMin&deg;</text>}
+                      </span>
+                    </strong>
+                  </span>
+                </div>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+
+      <section class="cities clearfix">
+        <h2 class="title">Outras cidades do Paraná</h2>
+
+        <ul class="first">
+          @foreach (var primeiraLista in Model.WeatherCities1)
+          {
+            <li class="u-cut">
+              <span class="wi @primeiraLista.Icon icon color-page"></span>
+              <span class="min-max-temp">
+                <strong class="max">
+                  <span class="valeu">
+                    @if (primeiraLista.TempMax.HasValue)
+                    {<text>@primeiraLista.TempMax&deg;</text>}
+                  </span>
+                </strong>
+                <strong class="min">
+                  <span class="valeu">
+                    @if (primeiraLista.TempMin.HasValue)
+                    {<text>@primeiraLista.TempMin&deg;</text>}
+                  </span>
+                </strong>
+              </span>
+              <a href="/previsao-do-tempo/@primeiraLista.CidadeUrl">@primeiraLista.CidadeNome</a>
+            </li>
+          }
+        </ul>
+
+        <ul class="last">
+          @foreach (var segundaLista in Model.WeatherCities2)
+          {
+            <li class="u-cut">
+              <span class="wi @segundaLista.Icon icon color-page"></span>
+              <span class="min-max-temp">
+                <strong class="max">
+                  <span class="valeu">
+                    @if (segundaLista.TempMax.HasValue)
+                    {<text>@segundaLista.TempMax&deg;</text>}
+                  </span>
+                </strong>
+                <strong class="min">
+                  <span class="valeu">
+                    @if (segundaLista.TempMin.HasValue)
+                    {<text>@segundaLista.TempMin&deg;</text>}
+                  </span>
+                </strong>
+              </span>
+              <a href="/previsao-do-tempo/@segundaLista.CidadeUrl">@segundaLista.CidadeNome</a>
+            </li>
+          }
+        </ul>
+      </section>
+
+      <footer>
+        @if (Model.WeatherPrincipal != null){
+          <span>Última atualização: @Model.WeatherPrincipal.UltimaAtualizacao</span> @*09h00 - 21/11*@
+        }
+        <small class="u-block">Fonte: <a href="https://www.yahoo.com/news/weather" target="_blank" rel="nofollow" title="Yahoo Weather"><u>Yahoo Weather</u></a></small>
+      </footer>
+    </div>
+
+    <div class="g-aside">
+      @Html.Partial("_AdArranhaCeuGrande")
+    </div>
+  </div>
+</main>

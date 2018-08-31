@@ -1,0 +1,73 @@
+﻿@model MassaNews.Portal.ViewModels.CategoriaBlogViewModel
+
+@section bodyClass{@Html.Raw("pg-blogs")}
+
+@{
+  var date = DateTime.Now;
+}
+
+<main class="g-main">
+  <div class="g-column-with-sidebar">
+    <div class="g-content t-vertical-padding">
+      @*<div class="c-category-title--sub">
+        <div class="c-category-title c-category-title--center t-page-border">
+          <h2 class="title">Blogs</h2>
+        </div>
+      </div>*@
+      <section class="g-autores">
+        <ul class="c-autores">
+          @foreach (var objBlog in Model.Blogs){
+            <li class="c-autores__iten">
+              <picture class="image">
+                <a href="@Url.Action("BlogPosts", "Blogs", new { categoria = objBlog.CategoriaUrl, blog = objBlog.Url})" title="@objBlog.Titulo">
+                  <img src="@objBlog.Img" width="89" height="89" alt="@objBlog.Titulo">
+                </a>
+              </picture>
+              <div class="texts">
+                <a href="@Url.Action("BlogPosts", "Blogs", new {categoria = objBlog.CategoriaUrl, blog = objBlog.Url})" class="author" title="@objBlog.Titulo">@objBlog.Titulo</a>
+                @if (objBlog.LastPost != null){
+                  <a href="@($"{objBlog.LastPost.UrlFull}.html")" class="post" title="@objBlog.LastPost.Chamada">
+                    @objBlog.LastPost.Chamada
+
+                    @if (objBlog.LastPost.DataPublicacao.Value.ToShortDateString() == date.ToShortDateString()){
+                      <span class="date">@Convert.ToDateTime(objBlog.LastPost.DataPublicacao).ToString("HH\\hmm")</span>
+                    } else {
+                      <span class="date">@Convert.ToDateTime(objBlog.LastPost.DataPublicacao).ToString("dd \\de MMM")</span>
+                    }
+                  </a>
+                }
+              </div>
+            </li>
+          }
+        </ul>
+      </section>
+    </div>
+    <aside class="c-fixed-sidebar g-aside">
+      <div class="nano">
+        <div class="nano-content">
+          <div class="c-fixed-sidebar__title">
+            <h3 class="title">Categorias</h3>
+          </div>
+          <ul class="c-fixed-sidebar__list c-headline--minis">
+            <li class="c-fixed-sidebar__list__iten @if (ViewBag.CategoriaUrl == "todos") { <text> is-current </text> }">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="@Url.Action("Index", "Blogs")" title="Todos">Todos</a>
+                </div>
+              </div>
+            </li>
+            @foreach (var item in Model.Categories){
+              <li class="c-fixed-sidebar__list__iten @if (item.Url == ViewBag.CategoriaUrl) { <text> is-current </text> }">
+                <div class="c-fixed-sidebar__list__link">
+                  <div class="texts">
+                    <a href="@Url.Action("Categoria", "Blogs", new { categoria = item.Url })" title="@item.Titulo">@item.Titulo</a>
+                  </div>
+                </div>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>

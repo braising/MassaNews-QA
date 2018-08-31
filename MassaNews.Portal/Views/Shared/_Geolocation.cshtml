@@ -1,0 +1,22 @@
+﻿<div class="c-dialog" id="modal-geo">
+  <div class="c-dialog__box">
+    @*<button class="c-modal__close c-dialog__close geo-confirm-ok" data-modal="modal-geo"></button>*@
+    <div class="c-dialog__inner">
+      <h3 class="title">Personalize suas notícias! @*<span class="city">@ViewBag.CurrentCity.Nome</span>*@</h3>
+      <p class="description">Selecione sua cidade para oferecermos a melhor cobertura jornalística do Paraná com as notícias da sua região.</p>
+      @*<div class="c-dialog__buttons">
+        <button class="c-button--small c-dialog__close geo-confirm-ok">Ok, está correto</button>
+        <button class="c-button--small btn-select-city">Escolher outra cidade</button>
+      </div>*@
+      <div class="c-dialog__search">
+        <form class="c-dialog__form g-clearfix">
+          <div class="c-dialog__input-large mask-select">
+            @Html.DropDownList("Cidades", null, new { @class = "select-cidades" })
+          </div>
+          <button class="c-button--small geo-confirm-ok c-dialog__close">OK</button>
+        </form>
+      </div>
+      <button class="geo-confirm-parana">Não sou do Paraná</button>
+    </div>
+  </div>
+</div>

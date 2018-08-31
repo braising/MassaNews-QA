@@ -1,0 +1,165 @@
+﻿@model MassaNews.Portal.ViewModels.ContaViewModel
+@using MassaNews.Portal.Models;
+@section bodyClass{@Html.Raw("pg-account pg-infos")}
+@{
+  // Página
+  ViewBag.Pagina = "account";
+}
+<main class="g-main">
+  <div class="g-content-inner-sidebar g-container">
+    @Html.Partial("_AccountSidebar", Model.Usuario)
+    <section class="g-content">
+      <h2>Meus dados</h2>
+      @using (Html.BeginForm())
+      {
+        <ul class="c-forms--labels">
+          <li class="input-full avatar-image">
+            @*<a href="#" rel="modal" data-modal="modal-picture" class="c-button mini gray" title="Alterar foto"><i class="fa fa-image"></i>&nbsp; Alterar foto</a>*@
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-half">
+            <label for="Usuario.PrimeiroNome">Nome</label>
+            <input type="text" name="Usuario.PrimeiroNome" id="Usuario.PrimeiroNome" placeholder="Seu primeiro nome" value="@Model.Usuario.PrimeiroNome">
+            @Html.ValidationMessage("Usuario.PrimeiroNome")
+            @*<span class="field-validation-error" data-valmsg-for="title" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>*@
+          </li>
+          <li class="input-half">
+            <label for="Usuario.UltimoNome">Sobrenome</label>
+            <input type="text" name="Usuario.UltimoNome" id="Usuario.UltimoNome" placeholder="Seu sobrenome" value="@Model.Usuario.UltimoNome">
+            <span class="field-validation-error" data-valmsg-for="title" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-half">
+            <label for="Usuario.Email">E-mail</label>
+            <input type="email" name="Usuario.Email" id="Usuario.Email" placeholder="" value="@Model.Usuario.Email" readonly>
+            <span class="field-validation-error" data-valmsg-for="title" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+          <li class="input-half">
+            <label for="Usuario.Fone">WhatsApp / Fone</label>
+            <input type="tel" name="Usuario.Fone" id="Usuario.Fone" class="trigger-mask-phone" placeholder="" value="@Model.Usuario.Fone">
+            <span class="field-validation-error" data-valmsg-for="title" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-half">
+            <label for="Usuario.Estado">Estado</label>
+            <div class="mask-select">
+              <select name="Usuario.Estado" id="Estado">
+                <option value="">Selecione</option>
+                @foreach (var estado in Model.Estados)
+                {
+                  if (estado.Value == Model.Usuario.Estado)
+                  {
+                    <option value="@estado.Value" selected="selected">@estado.Text</option>
+                  }
+                  else
+                  {
+                    <option value="@estado.Value">@estado.Text</option>
+                  }
+                }
+              </select>
+            </div>
+            <span class="field-validation-error" data-valmsg-for="title" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+          <li class="input-half">
+            <label for="Usuario.Cidade">Cidade</label>
+            <div class="mask-select">
+              <select name="Usuario.Cidade" id="Cidade">
+                <option value="">Selecione</option>
+                @foreach (var cidade in Model.Cidades)
+                {
+                  if (cidade.Value == Model.Usuario.Cidade)
+                  {
+                    <option value="@cidade.Value" selected="selected">@cidade.Text</option>
+                  }
+                  else
+                  {
+                    <option value="@cidade.Value">@cidade.Text</option>
+                  }
+                }
+              </select>
+            </div>
+            <span class="field-validation-error" data-valmsg-for="title" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-half">
+            <label for="Usuario.DataNascimento">Data de nascimento</label>
+            <input type="datetime" name="Usuario.DataNascimento" id="Usuario.Fone" class="trigger-mask-date" placeholder="dd/mm/aaaa" value="@Model.Usuario.DataNascimento">
+            @Html.ValidationMessage("Usuario.DataNascimento")
+            @*<span class="field-validation-error" data-valmsg-for="title" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>*@
+          </li>
+          <li class="input-half">
+            <label for="Usuario.Cpf">CPF</label>
+            <input type="text" name="Usuario.Cpf" id="Usuario.Cpf" class="trigger-mask-cpf" placeholder="000.000.000-00" value="@Model.Usuario.Cpf">
+            @*<input type="tel" name="" id="" class="trigger-mask-cpf" placeholder="000.000.000-00" value="">*@
+            @Html.ValidationMessage("Usuario.Cpf")
+            @*<span class="field-validation-error" data-valmsg-for="title" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>*@
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            <label>Sexo</label>
+            @foreach (var sexo in Model.Sexos)
+            {
+              <div class="radio">
+                <label>
+                  <input class="u-margin-right" type="radio" name="Usuario.Sexo" id="Usuario.Sexo" value="@sexo.Value" @(sexo.Value == Model.Usuario.Sexo ? "checked" : "") />
+                  <span>@sexo.Text</span>
+                </label>
+              </div>
+            }
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full">
+            <label for="Usuario.NoticiasPersonalizadasCheckbox">
+              @if (Model.Usuario.NoticiasPersonalizadas)
+              {
+                <input type="checkbox" name="Usuario.NoticiasPersonalizadasCheckbox" value="1" id="Usuario.NoticiasPersonalizadasCheckbox" checked="checked">
+              }
+              else
+              {
+                <input type="checkbox" name="Usuario.NoticiasPersonalizadasCheckbox" value="1" id="Usuario.NoticiasPersonalizadasCheckbox">
+              }
+              Aceito receber notícias personalizadas do Massa News.
+            </label>
+          </li>
+        </ul>
+        <ul class="c-forms--labels">
+          <li class="input-full label-no-margin">
+            <button type="submit" class="form-ask--submit submit t-page-button c-button small btn-ask" title="Salvar">Salvar</button>
+          </li>
+        </ul>
+      }
+    </section>
+  </div>
+</main>
+
+@section Scripts {
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#Estado').change(function (e) {
+        var uf = this.value;
+        var cidade = $('#Cidade').find('option').remove().end();
+        if (uf == '') {
+          cidade.append('<option value="">Selecione</option>');
+        } else {
+          $.ajax('@Url.Content("~/minha-conta/cidades/")' + uf)
+          .success(function (data) {
+          cidade.append('<option value="">Selecione</option>');
+            for (var i = 0; i < data.length; i++) {
+              var item = data[i];
+              cidade.append('<option value="' + item.Value + '">' + item.Text + '</option>');
+            }
+          })
+          .error(function (data) {
+            window.alert("Ocorreu um erro ao carregar as informações. Detalhes: "+ data)
+          });
+        }
+      });
+    });
+  </script>
+}

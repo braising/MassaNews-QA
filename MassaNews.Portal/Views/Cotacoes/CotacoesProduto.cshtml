@@ -1,0 +1,260 @@
+﻿@section bodyClass{@Html.Raw("pg-negocios-da-terra pg-cotacoes")}
+
+@model MassaNews.Portal.ViewModels.CotacoesCidadeProdutoViewModel
+
+<main class="g-main">
+  <div class="g-content-inner-sidebar g-container t-content">
+    <section class="g-content">
+      <ul class="c-breadcrumb t-module" xmlns:v="http://rdf.data-vocabulary.org/Breadcrumb">
+        <li typeof="v:Breadcrumb"><a href="/" rel="v:url" property="v:title" title="Rede Massa" class="fa fa-home"></a></li>
+        <li typeof="v:Breadcrumb"><a href="/negocios-da-terra" rel="v:url" property="v:title" title="Negócios da Terra">Negócios da Terra</a></li>
+        <li typeof="v:Breadcrumb"><a href="/cotacoes/@Model.Tipo.Slug" rel="v:url" property="v:title" title="Cotações">Cotações</a></li>
+        <li>@Model.Produto.Nome</li>
+      </ul>
+
+      @* <h1 class="t-page-color">Arroz <a href="/cotacoes" class="small"><i class="fa fa-angle-double-left"></i>&nbsp; Voltar para Cotações</a></h1> *@
+      <h1 class="t-page-color">Cotações de @Model.Produto.Nome</h1>
+
+      <ul class="c-forms--labels">
+        <li class="input-half">
+          <label for="produto">Alterar o produto</label>
+          <div class="mask-select">
+            <select name="produto" id="produto">
+                <option>Selecione</option>
+                @foreach (var item in Model.Cotacoes)
+                {
+                    if (item.CotacaoProduto.Url == Model.Produto.Url)
+                    {
+                    <option value="@item.CotacaoProduto.Url" selected>@item.CotacaoProduto.Nome</option>
+                    }
+                    else
+                    {
+                    <option value="@item.CotacaoProduto.Url">@item.CotacaoProduto.Nome</option>
+                    }
+                }
+            </select>
+          </div>
+        </li>
+
+        <li class="input-half">
+          <label for="estado">Estado</label>
+          <div class="mask-selecttttt">
+              <select name="estado" id="estado" disabled>
+                  @if (Model.Tipo.Slug == "parana")
+                  {
+                      <option value="parana" selected data-produto="acucar">Paraná</option>
+                      <option value="santa-catarina" data-produto="acucar">Santa Catarina</option>
+                  }
+                  else
+                  {
+                      <option value="parana" data-produto="acucar">Paraná</option>
+                      <option value="santa-catarina" selected data-produto="acucar">Santa Catarina</option>
+                  }
+
+              </select>
+          </div>
+        </li>
+      </ul>
+
+      @if (Model.CotacoesPorEstado.Count > 0){
+        <table class="table table-bordered t-module">
+          <thead class="thead-light">
+            <tr>
+              <th>Data</th>
+              <th>Média estadual</th>
+            </tr>
+          </thead>
+          <tbody>
+              @for (int i = 0; i < Model.CotacoesPorEstado.Count; i++)
+              {
+              <tr>
+                  <td>@Model.CotacoesPorEstado[i].DataCotacao.ToString("dd/MM/yyyy")</td>
+                  <td>
+                      R$ @Model.CotacoesPorEstado[i].Media.ToString("N2") &nbsp;
+                      @if (i == Model.CotacoesPorEstado.Count - 1)
+                      {
+
+                      }
+                      else if (@Model.CotacoesPorEstado[i].Media > @Model.CotacoesPorEstado[i + 1].Media)
+                      {
+                          <i class="fa fa-arrow-up color-success"></i>
+                      }
+                      else if (@Model.CotacoesPorEstado[i].Media < @Model.CotacoesPorEstado[i + 1].Media)
+                      {
+                          <i class="fa fa-arrow-down color-danger"></i>
+                      }
+                  </td>
+              </tr>
+              }
+          </tbody>
+        </table>
+
+        <div class="filter small clearfix u-margin-bottom">
+          <span class="u-left">Período:</span>
+          <ul class="bar-links bar-filters">
+            <li class="active" data-periodo="30dias"><a href="">30 dias</a></li>
+            <li data-periodo="60dias"><a href="">60 dias</a></li>
+            @*<li><a href="">6 meses</a></li>
+            <li><a href="">1 ano</a></li>
+            <li><a href="">2 anos</a></li>*@
+          </ul>
+        </div>
+        <canvas id="myChart" width="1288" height="400" class="t-module"></canvas>
+      }
+
+      @if (Model.CotacoesPorCidade.Count > 0){
+        <h3 class="h2 t-page-color">Cotação por cidade</h3>
+        <table class="table table-bordered t-module">
+          <thead class="thead-light">
+            <tr>
+              <th>Cidade</th>
+              <th>Data</th>
+              <th>Preço</th>
+            </tr>
+          </thead>
+
+          <tbody>
+              @foreach (var cotacao in Model.CotacoesPorCidade)
+              {
+              <tr>
+                  <td><a href="/cotacoes/@Model.Tipo.Slug/@cotacao.CidadeSlug" class="t-page-color">@cotacao.Cidade</a></td>
+                  <td>@cotacao.DataCotacao.ToString("dd/MM/yyyy")</td>
+                  <td>
+                      R$ @cotacao.Valor.ToString("N2") &nbsp;
+                      @if (cotacao.ValorAnterior == 0)
+                      {
+
+                      }
+                      else if (cotacao.Valor > cotacao.ValorAnterior)
+                      {
+                          <i class="fa fa-arrow-up color-success"></i>
+                      }
+                      else if (cotacao.Valor < cotacao.ValorAnterior)
+                      {
+                          <i class="fa fa-arrow-down color-danger"></i>
+                      }
+                  </td>
+              </tr>
+              }
+          </tbody>
+        </table>
+      }
+    </section>
+
+    <aside class="g-aside">
+      <h3 class="t-page-color">Outros produtos</h3>
+      <ul class="list-itens t-module">
+        @foreach (var cotacao in Model.Cotacoes)
+        {
+            <li><a href="/cotacoes/@cotacao.CotacaoTipo.Slug/produto/@cotacao.CotacaoProduto.Url" class="u-cut">@cotacao.CotacaoProduto.Nome</a></li>
+        }
+      </ul>
+
+      @Html.Partial("_AdRetanguloMedio")
+    </aside>
+  </div>
+</main>
+
+@section scripts{
+  <script type="text/javascript" src="~/Assets/scripts/components/chart.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+      $(document).ready(function () {
+        var perido;
+
+        $('#estado').change(function () {
+            var select = $(this);
+            document.location.href = "/cotacoes/" + select.val() + "/produto/" + select.find(':selected').data('produto');
+        })
+
+        $('#produto').change(function () {
+            var estado = $('#estado').val();
+            var produto = $(this).val();
+            document.location.href = "/cotacoes/" + estado + "/produto/" + produto;
+        })
+
+      var ctx = document.getElementById("myChart").getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [@Model.GraficoLabels30], //["01", "02", "03", "04", "05", "06"],
+          datasets: [{
+            label: 'Média estadual',
+            data: [@Model.GraficoData30], //[250, 120, 150, 230, 20, 100],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero:true
+              }
+            }]
+          }
+        }
+      });
+
+      $(".bar-filters li").on('click', function (event) {
+          $(".bar-filters .active").removeClass('active');
+          $(this).addClass('active');
+
+          periodo = $(this).data('periodo');
+
+          loadCotacao(periodo);
+
+          event.preventDefault();
+      });
+
+      function loadCotacao(periodo) {
+          if (perido == "30dias") {
+
+          var ctx = document.getElementById("myChart").getContext('2d');
+          var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [@Model.GraficoLabels30], //["01", "02", "03", "04", "05", "06"],
+              datasets: [{
+                label: 'Média estadual',
+                data: [@Model.GraficoData30], //[250, 120, 150, 230, 20, 100],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero:true
+                  }
+                }]
+              }
+            }
+          });
+          }
+          else {
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [@Model.GraficoLabels60], //["01", "02", "03", "04", "05", "06"],
+                datasets: [{
+                label: 'Média estadual',
+                data: [@Model.GraficoData60], //[250, 120, 150, 230, 20, 100],
+                borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                yAxes: [{
+                    ticks: {
+                    beginAtZero:true
+                    }
+                }]
+                }
+            }
+            });
+            }
+      }
+    });
+  </script>
+}

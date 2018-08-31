@@ -1,0 +1,31 @@
+﻿@section bodyClass{@Html.Raw("pg-esportes tabela-facil")}
+
+<main class="g-main">
+  <div class="t-content g-container">
+    <section class="t-module">
+      <h2 class="t-page-color h2">Jogos</h2>
+      <div class="table-rounds">
+        <div class="c-slider--table c-slider--table-copa-brasil">
+          @{ var i = 1; }
+          @foreach (var html in ViewBag.LstRodadas){
+            <div class="group-table" id="table-results-@i">
+              <h4 class="title t-page-color">@(i)ª rodada</h4>
+              @Html.Raw(html)
+            </div>
+            i++;
+          }
+        </div>
+      </div>
+
+      <div class="credito">
+        <a href="//www.tabelafacil.com" class="logo-tabela-facil" target="_blank" rel="nofollow" title="Por: Tabela Fácil">
+          <img src="@Url.Content("~/content/images/logos/tabela-facil.gif")" alt="Tabela Fácil - Agência de Resultados Esportivos">
+        </a>
+      </div>
+    </section>
+
+    <div class="group-button">
+      <a href="/tags/copa-do-brasil" class="c-button t-page-button" title="Tudo sobre a Copa do Brasil">Tudo sobre a Copa do Brasil</a>
+    </div>
+  </div>
+</main>

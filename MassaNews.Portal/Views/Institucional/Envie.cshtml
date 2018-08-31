@@ -1,0 +1,89 @@
+﻿@section bodyClass{@Html.Raw("pg-envie-noticia")}
+<div id="fb-root"></div>
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+<main class="g-main">
+  <div class="g-content-inner-sidebar g-container t-content">
+    <section class="g-content">
+      <div class="c-category-title c-category-title--icon">
+        <span class="fa-stack fa-lg color-whatsapp">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+        </span>
+        <h2 class="title">WhatsApp</h2>
+      </div>
+      <span>Adicione o telefone do Massa News e envie sua notícia:</span>
+      <ul class="contact-list">
+        <li><a href="https://api.whatsapp.com/send?phone=5541992807915" target="_blank"><strong class="info">(41) 99280-7915</strong></a></li>
+      </ul>
+
+      <div class="c-category-title c-category-title--icon">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+        <h2 class="title">E-mail</h2>
+      </div>
+      <span>Envie sua notícia pelo e-mail abaixo e não esqueça de anexar fotos, áudios ou vídeos sobre o assunto.</span>
+      <ul class="contact-list">
+        <li><a href="mailto:curitiba@massanews.com" class="info"><strong>curitiba@massanews.com</strong></a></li>
+      </ul>
+
+      <div class="c-category-title c-category-title--icon">
+        <span class="fa-stack fa-lg color-facebook">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+        </span>
+        <h2 class="title">Facebook</h2>
+      </div>
+      <p>1) Curta a página do <b><u><a href="https://www.facebook.com/massanewspr/" title="Massa News no Facebook" target="_blank">Massa News no Facebook</a></u></b></p>
+      <div class="t-margin--bottom">
+        <div class="fb-page" data-href="https://www.facebook.com/massanewspr/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true">
+          <div class="fb-xfbml-parse-ignore">
+            <blockquote cite="https://www.facebook.com/RedeMassaOficial">
+              <a href="https://www.facebook.com/RedeMassaOficial">Rede Massa - Oficial</a>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <p>2) No botão de <b><u><a href="https://www.facebook.com/massanewspr/" target="_blank">mensagens</a></u></b>, envie com detalhes sua notícia, fotos e videos</p>
+    </section>
+
+    <aside class="g-aside">
+      <div class="institucinais__box">
+        <h3 class="title">
+          Importante!
+          <small>Antes de enviar sua notícia, verifique se ela possui:</small>
+        </h3>
+        <ol class="list">
+          <li>Título</li>
+          <li>Descrição rica em detalhes</li>
+          <li>Local</li>
+          <li>Data de acontecimento</li>
+          <li>Fotos, audio ou videos</li>
+          <li>Telefone celular para contato</li>
+        </ol>
+      </div>
+      <div class="institucinais__box">
+        <h3 class="title">Não é permitido</h3>
+        <p>Conteúdo não original, falso ou sem direitos autorais.</p>
+        <p>Conteúdo ofensivo, pornografia, conteúdo obsceno ou sexual explícito.</p>
+        <p>Imagens violentas ou que incitem comportamento violento.</p>
+        <p>Conteúdo racista ou preconceituoso.</p>
+      </div>
+      <div class="institucinais__box">
+        <h3 class="title">Dicas</h3>
+        <p>Ao enviar fotos e vídeo, não esqueça de descrever no seu texto as cenas que aparecem nas imagens.</p>
+        <p>Seja direto e simples ao contar sua história; fazer um roteiro antes da gravação de um vídeo pode ajudar.</p>
+        <p>Verifique a nitidez do áudio e imagem do seu vídeo. Uma boa iluminação é muito importante para a qualidade do vídeo.</p>
+      </div>
+    </aside>
+  </div>
+</main>

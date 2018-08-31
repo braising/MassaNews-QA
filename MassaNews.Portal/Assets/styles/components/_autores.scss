@@ -1,0 +1,96 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-autores {}
+
+.c-autores__iten {
+  @include clearfix();
+  margin-top: 1.5em;
+
+  .image {
+    float:left;
+    margin-right:$gutter;
+    width:89px;
+    height:89px;
+    overflow:hidden;
+
+    img {
+      border-radius:50%;
+    }
+  }
+
+  .texts {
+    float:left;
+    width:60%;
+    width:calc(100% - 89px - #{$gutter});
+    line-height:1.2;
+  }
+
+  .author {
+    display:block;
+    font-weight:bold;
+    @include font-size(16px);
+    color:$tema-blogs;
+  }
+
+  .hat{
+    margin-bottom: 3px;
+    @include font-size(12px);
+    text-transform: uppercase;
+    color: $gray;
+    font-weight: normal;
+
+    a{
+      color: $gray !important;
+      font-weight: normal;
+      display: inline;
+    }
+  }
+
+  .post{
+    @include font-size(14px);
+    line-height: 16px;
+    font-style: italic;
+    display: inline-block;
+  }
+
+  .date {
+    color:$gray;
+    @include font-size(14px);
+
+    &:before {
+      content: '(';
+    }
+
+    &:after {
+      content: ')';
+    }
+  }
+}
+
+
+/* =============CUSTOM============= */
+
+
+/* =============GRID============= */
+.g-autores {
+  @include clearfix();
+
+  .c-autores__iten {
+    @media all and (min-width: bp(5)) and (max-width: bp(8)) {
+      @include columns(2);
+    }
+
+    @media all and (min-width: bp(8, 1px)) {
+      @include columns(3);
+    }
+  }
+}
+
+
+
+/* =============MEDIA QUERY============= */

@@ -1,0 +1,397 @@
+//modulo centralizado com limite de largura
+//pagina 'sobre nos'
+.institucinais__center {
+  margin:0 auto;
+  padding:$margin-large 0;
+  max-width:852px;
+  text-align:center;
+
+  //pagina 'fale conosco'
+  &.institucinais__center--small {
+    max-width:634px;
+  }
+
+  //pagina 'login'
+  &.institucinais__center--xsmall {
+    max-width:400px;
+  }
+
+  .h2 {
+    margin-top:$margin-small;
+
+    &:first-of-type {
+      margin-top:0;
+    }
+  }
+
+  p,
+  .list-default {
+    @include font-size(20px);
+  }
+}
+
+
+.institucinais__box {
+  margin-bottom:$margin-small;
+  padding:$gutter*2;
+  background:$gray-lightest;
+
+  .title {
+    margin-bottom:1em;
+    @include font-size(20px);
+    text-transform:uppercase;
+
+    small {
+      display:block;
+      @include font-size(18px);
+      text-transform:none;
+    }
+  }
+
+  p,
+  .list {
+    margin-bottom:1em;
+    @include font-size(16px);
+    line-height:1.25;
+  }
+
+  .list {
+    list-style:decimal inside;
+  }
+
+  .highlight-center {
+    margin:0;
+    text-align:center;
+    @include font-size(25px);
+
+    a {
+      display:block;
+      font-weight:bold;
+      @include font-size(20px);
+    }
+  }
+}
+
+
+.select-assunto {
+  font-style:italic;
+  @include font-size(20px);
+}
+
+
+//fale conosco assunto
+.area-assuntos {
+  margin:1em 0 10em 0;
+
+  .institucinais__box {
+    display:none;
+  }
+}
+
+
+.institucinais__social {
+  margin-top:25vh;
+
+  @media all and (max-width: bp(8)) {
+    margin-top:5em;
+  }
+
+  .title {
+    margin-bottom:1em;
+    //text-transform:uppercase;
+  }
+}
+
+
+
+.institucinais__nl {
+
+  .c-newsletter__texts {
+    margin:$margin-large 0;
+  }
+
+  .c-newsletter__texts {
+    .title {
+      @include font-size(30px);
+      color:$brand-primary;
+    }
+
+    .subtitle {
+      @include font-size(20px);
+      color:$text-color;
+    }
+  }
+
+  .c-newsletter {
+    margin:$margin-medium -999em;
+    padding:4em 999em 2.5em;
+  }
+
+  .c-newsletter--module {
+    .c-forms--nl {
+      margin:0 auto;
+      max-width:416px;
+
+      .c-forms--labels {
+
+        li {
+          width:100%;
+        }
+
+        .label-none {
+          text-align:center;
+        }
+      }
+    }
+  }
+}
+
+
+// SOBRE
+.pg-sobre{
+  .g-content-inner-sidebar {
+    padding: 0;
+  }
+
+  .person{
+    margin: 0 0 1.5em;
+
+    .name{
+      @include font-size(16px);
+    }
+
+    .description{
+      @include font-size(16px);
+
+      & > span {
+        display: block;
+      }
+
+      .email{
+        text-decoration: underline;
+      }
+
+      .phone,
+      .email a{
+        color: $gray;
+      }
+    }
+  }
+}
+
+// ENVIE SUA NOTÍCIA
+.pg-envie-noticia {
+.contact-list{
+    li{
+      .info{
+        @include font-size(20px);
+      }
+    }
+  }
+
+  @media all and (max-width: bp(6)) {
+    .contact-list{
+      li{
+        margin-bottom: 15px;
+
+        .info{
+          margin-left: 0;
+          display: block;
+          clear: both;
+        }
+      }
+    }
+  }
+}
+
+// PLACAR IMPEACHMENT
+.pg-placar-impeachment{
+  .c-banner {
+    margin: 0;
+    padding: 0; 
+    position: relative;
+    z-index: 2;
+
+    .c-banner__image{
+      width: 100%;
+    }
+  }
+
+  .mask-info{
+    overflow: hidden;
+  }
+
+  iframe{
+    height: 14350px;
+    margin-top: -350px;
+  }
+
+  @media all and (max-width: 1330px) {
+    iframe{
+      height: 14670px;
+    }
+  }
+
+  @media all and (max-width: 1305px) {
+    iframe{
+      height: 16260px;
+    }
+  }
+
+  @media all and (max-width: 1172px) {
+    iframe{
+      height: 18380px;
+    }
+  }
+
+  @media all and (max-width: 1030px) {
+    iframe{
+      height: 21050px;
+    }
+  }
+
+  @media all and (max-width: 890px) {
+    iframe{
+      height: 24850px;
+      margin-top: -310px;
+    }
+  }
+
+  @media all and (max-width: 760px) {
+    iframe{
+      height: 30230px;
+      margin-top: -300px;
+    }
+  }
+
+  @media all and (max-width: 625px) {
+    iframe{
+      height: 39500px;
+      margin-top: -380px;
+    }
+  }
+
+  @media all and (max-width: 485px) {
+    iframe{
+      height: 58400px;
+      margin-top: -440px;
+    }
+  }
+
+  @media all and (max-width: 330px) {
+    iframe{
+      height: 114300px;
+      margin-top: -490px;
+    }
+  }
+}
+
+.banner-placar-impeachment{
+  width: 100%;
+  display: none;
+  text-align: center;
+
+  img{
+    width: 100%;
+  }
+}
+
+@media all and (max-width: bp(8)) {
+  .banner-placar-impeachment{
+    display: block;
+  }
+}
+
+// PLACAR IMPEACHMENT - SENADO
+.pg-placar-impeachment-senado{
+  .c-banner {
+    margin: 0;
+    padding: 0; 
+    position: relative;
+    z-index: 2;
+
+    .c-banner__image{
+      width: 100%;
+    }
+  }
+
+  .mask-info{
+    overflow: hidden;
+  }
+
+  .votacao-camara{
+    img{
+      display: inline-block;
+    }
+
+    .c-button{
+      margin-top: 30px;
+      display: inline-block;
+    }
+  }
+
+  iframe{
+    height: 3400px;
+    margin-top: -480px;
+  }
+
+  @media all and (max-width: 1305px) {
+    iframe{
+      height: 3770px;
+    }
+  }
+
+  @media all and (max-width: 1172px) {
+    iframe{
+      height: 4120px;
+    }
+  }
+
+  @media all and (max-width: 1030px) {
+    iframe{
+      height: 5230px;
+    }
+  }
+
+  @media all and (max-width: 890px) {
+    iframe{
+      height: 5230px;
+      margin-top: -490px;
+    }
+  }
+
+  @media all and (max-width: 760px) {
+    iframe{
+      height: 6100px;
+      margin-top: -390px;
+    }
+  }
+
+  @media all and (max-width: 625px) {
+    iframe{
+      height: 7500px;
+      margin-top: -510px;
+    }
+  }
+
+  @media all and (max-width: 485px) {
+    iframe{
+      height: 10700px;
+      margin-top: -620px;
+    }
+  }
+
+  @media all and (max-width: 330px) {
+    iframe{
+      height: 19500px;
+      margin-top: -700px;
+    }
+  }
+
+  @media all and (max-width: 325px) {
+    iframe{
+      height: 19570px;
+      margin-top: -700px;
+    }
+  }
+}

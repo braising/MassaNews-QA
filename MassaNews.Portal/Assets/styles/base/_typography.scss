@@ -1,0 +1,260 @@
+// ============================================================================
+// FONT-FACE
+// ============================================================================
+
+$fonts-diretory: "../fonts/";
+
+
+// ===== FAMILIA DA FONTE PRINCIPAL =====
+
+//normal (400 / normal)
+@font-face {
+  font-family: 'proxima-nova';
+  src: url('#{$fonts-diretory}ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-diretory}ProximaNova-Regular.otf')  format('opentype'),
+	     url('#{$fonts-diretory}ProximaNova-Regular.woff') format('woff'),
+       url('#{$fonts-diretory}ProximaNova-Regular.ttf')  format('truetype'),
+       url('#{$fonts-diretory}ProximaNova-Regular.svg#ProximaNova-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+//normal italica
+@font-face {
+  font-family: 'proxima-nova';
+  src: url('#{$fonts-diretory}ProximaNova-RegularIt.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-diretory}ProximaNova-RegularIt.otf')  format('opentype'),
+	     url('#{$fonts-diretory}ProximaNova-RegularIt.woff') format('woff'),
+       url('#{$fonts-diretory}ProximaNova-RegularIt.ttf')  format('truetype'),
+       url('#{$fonts-diretory}ProximaNova-RegularIt.svg#ProximaNova-RegularIt') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+
+//negrito (700)
+@font-face {
+  font-family: 'proxima-nova';
+  src: url('#{$fonts-diretory}ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-diretory}ProximaNova-Bold.otf')  format('opentype'),
+	     url('#{$fonts-diretory}ProximaNova-Bold.woff') format('woff'),
+       url('#{$fonts-diretory}ProximaNova-Bold.ttf')  format('truetype'),
+       url('#{$fonts-diretory}ProximaNova-Bold.svg#ProximaNova-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+//negrito italico
+@font-face {
+  font-family: 'proxima-nova';
+  src: url('#{$fonts-diretory}ProximaNova-BoldIt.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-diretory}ProximaNova-BoldIt.otf')  format('opentype'),
+	     url('#{$fonts-diretory}ProximaNova-BoldIt.woff') format('woff'),
+       url('#{$fonts-diretory}ProximaNova-BoldIt.ttf')  format('truetype'),
+       url('#{$fonts-diretory}ProximaNova-BoldIt.svg#ProximaNova-BoldIt') format('svg');
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+
+// // =============================================================================
+// // VARIAVEIS
+// // =============================================================================
+
+// //FONT-FAMILY
+
+// // Familia principal
+// $fonts-base: proxima-nova, Arial, Helvetica, sans-serif;
+
+// // Familia para titulos
+// $fonts-heading: $fonts-base;
+
+// // Familia secundária
+// //$fonts-secondary: 'Adobe Garamond Pro', Arial, sans-serif;
+
+// // Familia serifadas
+// //$fonts-serif:'Adobe Garamond Pro', 'Times New Roman', Times, serif;
+
+
+// //FONT-SIZE
+
+// //font base do html
+// $font-size-base: 16px !default;
+// $font-size-large: ceil(($font-size-base * 1.25)) !default;
+// $font-size-small: ceil(($font-size-base * 0.85)) !default;
+// $paragraph-size: 18px !default;
+
+
+// //LINE-HEIGHT
+
+// $line-height-base:        1.4 !default;
+
+// $line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px
+
+
+
+// =============================================================================
+// MIXINS
+// =============================================================================
+
+//gerar font-size em PX e em REM
+// @mixin font-size($sizeValue) {
+//   font-size: $sizeValue;
+//   font-size: #{$sizeValue / $font-size-base}rem;
+// }
+
+// //melhorar a qualidade das fontes
+// @mixin font-smooth(){
+//   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+//   -webkit-font-smoothing: antialiased;
+// }
+
+// @mixin em-height($height){
+//   height: #{$height / $font-size-base}rem;
+// }
+
+
+
+// =============================================================================
+// HEADINGS
+// =============================================================================
+
+h1, .h1 { @include font-size(36px); }
+h2, .h2 { @include font-size(29px); }
+h3, .h3 { @include font-size(20px); }
+h4, .h4 { @include font-size(16px); }
+h5, .h5 { @include font-size(16px); }
+h6, .h6 { @include font-size(14px); }
+
+@media all and (max-width:800px) {
+  h1, .h1 { @include font-size(28px); }
+  h2, .h2 { @include font-size(22px); }
+  h3, .h3 { @include font-size(18px); }
+}
+
+
+h1, h2, h3, h4,
+.h1, .h2, .h3, .h4 {
+  margin: 0 0 .5em;
+  font-weight:700;
+  line-height:110%;
+  color: $headings-color;
+
+  a,
+  small {
+    display:block;
+    font-weight:bold;
+  }
+}
+
+
+// BODY TEXT
+// -------------------------
+
+p {
+  margin: 0 0 $margin-small;
+  @include font-size($paragraph-size);
+  line-height:1.45;
+  word-break: keep-all;
+
+  //&:last-of-type {margin-bottom:0;}
+
+  &:empty {display:none;}
+
+  small {font-size:80%;}
+}
+
+.lead {
+  margin-bottom: $line-height-computed;
+  font-size: floor(($font-size-base * 1.15));
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+mark,
+.mark {
+  font-weight:bold;
+  color:$brand-primary;
+  background:none;
+}
+
+
+// EMPHASIS & MISC
+// -------------------------
+
+// Ex: (12px small font / 14px base font) * 100% = about 85%
+small,
+.small {
+  font-size: floor((100% * $font-size-small / $font-size-base));
+}
+
+
+// Alignment
+.text-left           { text-align: left; }
+.text-right          { text-align: right; }
+.text-center         { text-align: center; }
+.text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+
+// Transformation
+.text-lowercase      { text-transform: lowercase; }
+.text-uppercase      { text-transform: uppercase; }
+.text-capitalize     { text-transform: capitalize; }
+
+//margins
+.margin-extends      {margin-bottom: 1.5em;}
+
+// Contextual colors
+.text-muted {
+  color: $gray-light;
+}
+
+
+
+
+// LIST OPTIONS
+// -------------------------
+
+.list-default {
+  margin: 0 0 $margin-small;
+  list-style:disc inside;
+  @include font-size($paragraph-size);
+  line-height: 1.45;
+
+  &:last-child {
+    margin-bottom:0;
+  }
+
+  li {
+
+  }
+}
+
+
+// Description Lists
+dl {
+  margin-top: 0; // Remove browser default
+  margin-bottom: $line-height-computed;
+}
+
+dt,
+dd {
+  line-height: $line-height-base;
+}
+
+dt {
+  font-weight: bold;
+  @include font-size(16px);
+}
+
+dd {
+  margin-left: 0; // Undo browser default
+}
+
+
+
+// Addresses
+address {
+  font-style: normal;
+  line-height: $line-height-base;
+}

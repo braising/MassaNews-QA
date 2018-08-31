@@ -1,0 +1,242 @@
+﻿@{
+  MassaNews.Service.Models.Editorial objEditorial = ViewBag.Editorial;
+  List<MassaNews.Service.Models.Categoria> lstCategorias = ViewBag.Categorias;
+  bool exibirCategorias = lstCategorias != null && lstCategorias.Any();
+}
+
+<header class="c-header">
+
+  <div class="c-header__bar">
+    <div class="c-nav">
+      <!--<nav class="c-nav is-open">-->
+      <button class="c-nav__all-bg"></button>
+      <button class="c-nav__toggle action--open">
+        <span class="icon">
+          <span class="stick"></span>
+          <span class="stick"></span>
+          <span class="stick"></span>
+        </span>
+        <span class="text">MENU</span>
+      </button>
+    </div> <!-- c-nav -->
+
+    <div class="c-header__brand">
+      <a href="@Url.Action("Index", "Home")" class="brand-logo" title="Massa News">
+        @if (ViewBag.IsVideo != null && ViewBag.IsVideo){
+          <img src="//cdn.massanews.com/static/images/logos/massa-news-gray-header.svg" alt="Massa News">
+        } else {
+          <img src="//cdn.massanews.com/static/images/logos/massa-news.svg" alt="Massa News">
+        }
+      </a>
+
+      <div class="c-header__center">
+        <a href="@Url.Action("Index", "Home")" class="c-header__center__logo" title="Massa News">
+          <span class="title">Massa News</span>
+          <img src="//cdn.massanews.com/static/images/logos/massa-news.svg" class="logo" alt="Massa News">
+        </a>
+        <span class="date" id="trigger-date"></span>
+
+        @if (ViewBag.ActiveNav != null)
+        {
+          //Interna
+          if (ViewBag.LinkActiveNav != null && ViewBag.ExibirLogo == null && !exibirCategorias)
+          {
+            <div class="c-header__title t-page-color">
+              @*<a href="@Url.Action("Index", "Home")" title="Massa News" class="icon-m"><img src="~/content/images/logos/m.svg" alt="Massa News"></a>*@
+              <a href="@ViewBag.LinkActiveNav" class="c-header__title__link t-page-color" title="Tudo sobre @ViewBag.ActiveNav">@ViewBag.ActiveNav</a>
+            </div>
+          }
+          else
+          {
+            if (ViewBag.ExibirLogo != null && !string.IsNullOrEmpty(objEditorial.IconUrl))
+            {
+              <div class="c-header__title t-page-color c-header__title-secondary c-header__title-@objEditorial.Url @(exibirCategorias ? "c-nav-dropdown__title" : string.Empty)">
+                @* <img src="@Url.Content(string.Format("~/content/images/logos/{0}", objEditorial.IconUrl))" alt="@ViewBag.ActiveNav" class="logo-secondary logo-@objEditorial.Url"> *@
+
+                @if (ViewBag.LinkActiveNav != null){
+                  <a href="@ViewBag.LinkActiveNav" title="@ViewBag.ActiveNav">
+                    <img src="@Url.Content(string.Format("~/content/images/logos/{0}", objEditorial.IconUrl))" alt="@ViewBag.ActiveNav" class="logo-secondary logo-@objEditorial.Url">                
+                  </a>
+                } else {
+                  <img src="@Url.Content(string.Format("~/content/images/logos/{0}", objEditorial.IconUrl))" alt="@ViewBag.ActiveNav" class="logo-secondary logo-@objEditorial.Url">                
+                }
+
+                @if (exibirCategorias)
+                {
+                  <i class="fa fa-angle-down fa-lg c-nav-dropdown__icon"></i>
+                }
+              </div>
+            }
+            else if (exibirCategorias)
+            {
+              <h1 class="c-header__title t-page-color c-nav-dropdown__title">@ViewBag.ActiveNav <i class="fa fa-angle-down fa-lg c-nav-dropdown__icon"></i></h1>
+            }
+            else
+            {
+              <h1 class="c-header__title t-page-color">@ViewBag.ActiveNav</h1>
+              @*<h1 class="c-header__title t-page-color"><a href="@Url.Action("Index", "Home")" title="Massa News" class="icon-m"><img src="~/content/images/logos/m.svg" alt="Massa News"></a> @ViewBag.ActiveNav</h1>*@
+
+            }
+          }
+        }
+      </div>
+    </div>
+
+    <div class="c-header__city">
+      @* <div class="weather">
+        <span class='sky'>
+          <span class='wi @ViewBag.Icon' title='@ViewBag.Description'></span>
+        </span>
+        <span class='temperature'>@if (!string.IsNullOrEmpty(ViewBag.Temperature)) { <text> @ViewBag.Temperature &deg;</text> }</span>
+      </div> *@
+
+      <div class="weather">
+        <a href="@string.Format("/previsao-do-tempo/{0}", ViewBag.CurrentCity.Url)" title="Previsão do Tempo em @ViewBag.City">
+          <span class='sky'>
+            <span class='wi @if (!string.IsNullOrEmpty(ViewBag.Icon)) { @ViewBag.Icon}' data-description='@ViewBag.Description'></span>
+          </span>
+          <span class='temperature'>
+            <span class="item max"><span class="temp">@if(!string.IsNullOrEmpty(ViewBag.TempMax)){<text>@ViewBag.TempMax&deg;</text>}</span><br> <span class="label">Máx</span></span>
+            <span class="item min"><span class="temp">@if(!string.IsNullOrEmpty(ViewBag.TempMin)){<text>@ViewBag.TempMin&deg;</text>}</span><br> <span class="label">Min</span></span>
+          </span>
+        </a>
+      </div>
+
+      <div class="selected-city">
+        <button class="link" rel="modal" data-modal="modal-geo" title="Alterar cidade">
+          <span class="city trigger-get-city-location">@if (string.IsNullOrEmpty(ViewBag.City)) { <text> @ViewBag.CurrentCity.Nome </text> } else { <text> @ViewBag.City </text>}</span>
+          <i class="fa fa-angle-down fa-lg arrow"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="alert-location-update desktop close">
+      <span>Você poderá alterar sua localização a qualquer momento clicando aqui.</span>
+      <div>
+        <a href="#" class="trigger-close-alert-location color-brand link">Ocultar</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="#" class="trigger-open-alert-location color-brand link">Alterar cidade</a>
+      </div>
+    </div>
+
+    <div class="c-header__search">
+      <button class="button-search" rel="modal" data-modal="modal-busca" title="Buscar">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-search fa-stack-1x fa-inverse"></i>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div class="alert-location-update mobile close">
+    <span>Você está vendo conteúdo de <strong class="trigger-get-city-location">@if (string.IsNullOrEmpty(ViewBag.City)) { <text>@ViewBag.CurrentCity.Nome</text> } else { <text>@ViewBag.City</text>}</strong> e região.</span>
+    <div>
+      <a href="#" class="trigger-close-alert-location color-brand link">Ocultar</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a href="#" class="trigger-open-alert-location color-brand link">Alterar cidade</a>
+    </div>
+  </div>
+
+  @if (exibirCategorias)
+  {
+    <section class="c-nav-dropdown">
+      @{
+        var i = 1;
+      }
+      @foreach (var categoria in lstCategorias){
+        <div class="c-nav-dropdown__col @(categoria.Id == ViewBag.MenuCategoriaId ? "active" : string.Empty)">
+          @if (categoria.CategoriaPaiId.HasValue){
+            <a href="@string.Format("/{0}/{1}/{2}", categoria.Editorial.Url, categoria.CategoriaPai.Url, categoria.Url)" class="c-nav-dropdown__col-title t-page-color trigger-menu-dropdown @(categoria.Id == ViewBag.MenuCategoriaId ? "is-open" : string.Empty)" title="@categoria.Titulo">@categoria.Titulo <i class="fa fa-angle-down fa-lg fa-icon"></i></a>
+          } else {
+            <a href="@string.Format("/{0}/{1}", categoria.Editorial.Url, categoria.Url)" class="c-nav-dropdown__col-title t-page-color trigger-menu-dropdown @(categoria.Id == ViewBag.MenuCategoriaId ? "is-open" : string.Empty)" title="@categoria.Titulo">@categoria.Titulo <i class="fa fa-angle-down fa-lg fa-icon"></i></a>
+          }
+
+          <ul class="c-nav-dropdown__list">
+            @foreach (var categoriaFilha in categoria.CategoriasFilhas){
+              <li>
+                <a href="@string.Format("/{0}/{1}/{2}", categoriaFilha.Editorial.Url, categoriaFilha.CategoriaPai.Url, categoriaFilha.Url)" title="@categoriaFilha.Titulo">@categoriaFilha.Titulo</a>
+              </li>
+            }
+          </ul>
+        </div>
+        <div class="div div-@i"></div>
+        i++;
+      }
+
+      @if (!(ViewBag.ExibirLogo ?? false) && objEditorial != null && objEditorial.IconUrl != null)
+      {
+        <hr class="line-logo">
+        <div class="logo">
+          <a href="@Url.Action("WhereCuritiba", "Editorial")" title="Where Curitiba">
+            <img src="@Url.Content(string.Format("~/content/images/logos/{0}", objEditorial.IconUrl))" alt="@objEditorial.Titulo">
+          </a>
+        </div>
+      }
+    </section>
+  }
+
+  @*<section class="c-nav-dropdown">
+    <div class="c-nav-dropdown__col">
+      <!--<div class="c-nav-dropdown__col-title t-page-color">Assuntos quentes</div>-->
+
+      <ul class="c-nav-dropdown__list">
+        <li>
+          <a href="categorias-tags.html" class="" title="">Atlético Paranaense</a>
+        </li>
+        <li>
+          <a href="categorias-tags.html" class="" title="">Coritiba</a>
+        </li>
+        <li>
+          <a href="categorias-tags.html" class="" title="">Paraná Clube</a>
+        </li>
+        <li>
+          <a href="categorias-tags.html" class="" title="">Olimpíadas</a>
+        </li>
+        <li>
+          <a href="categorias-tags.html" class="" title="">Gabriel Medina</a>
+        </li>
+        <li>
+          <a href="categorias-tags.html" class="" title="">Atlético Paranaense</a>
+        </li>
+        <li>
+          <a href="categorias-tags.html" class="" title="">Coritiba</a>
+        </li>
+        <li>
+          <a href="categorias-tags.html" class="" title="">Paraná Clube</a>
+        </li>
+        <li>
+          <a href="categorias-tags.html" class="" title="">Gabriel Medina</a>
+        </li>
+      </ul>
+    </div>
+  </section>*@
+
+  @*<section class="c-nav-dropdown c-nav-dropdown__where">
+    <div class="c-nav-dropdown__col">
+      @if (exibirCategorias)
+      {
+        <ul class="c-nav-dropdown__list">
+          @foreach (var categoria in lstCategorias)
+          {
+            <li>
+              @if (categoria.CategoriaPaiId.HasValue)
+              {
+                <a href="@string.Format("/{0}/{1}/{2}", categoria.Editorial.Url, categoria.CategoriaPai.Url, categoria.Url)" title="@categoria.Titulo">@categoria.Titulo</a>
+              }
+              else
+              {
+                <a href="@string.Format("/{0}/{1}", categoria.Editorial.Url, categoria.Url)" title="@categoria.Titulo">@categoria.Titulo</a>
+              }
+            </li>
+          }
+        </ul>
+      }
+      <!--<div class="back">
+        <a href="categorias-tags.html" title="Voltar para Where Curitiba">Where Curitiba</a>
+        <a href="categorias-tags.html" title="Voltar para Lançamentos">Lançamentos</a>
+        <a href="categorias-tags.html" title="Voltar para Lançamentos">Cultura</a>
+      </div>-->
+    </div>
+  </section>*@
+
+  
+</header>

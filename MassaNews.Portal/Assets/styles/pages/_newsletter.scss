@@ -1,0 +1,26 @@
+.pg-newsletter-update{
+  .send{
+    margin-top: 0;
+  }
+
+  button{
+    &.submit{
+      margin: 0 0 20px 0;
+    }
+  }
+
+  label{
+    &.select-all{
+      margin-bottom: 10px;
+    }
+  }
+
+  @media all and (min-width: bp(7, 1px)) {
+    .options-news{
+      label{
+        width: 30%;
+        float: left;
+      }
+    }
+  }
+}

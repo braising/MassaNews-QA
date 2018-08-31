@@ -1,0 +1,18 @@
+﻿<div class="banner">
+  <div class="g-container">
+    <a href="/promocao/where-15-anos"><img src="@Url.Content("~/content/images/where/where-15-anos/logo.png")" class="logo" alt="Massa News - A notícia em movimento!"></a>
+
+    <div class="text">
+      <h2 class="h1">Qual é a cara de Curitiba para você?</h2>
+      <p>Para participar é fácil. Envie uma selfie ou foto em que você apareça mostrando qual é a cara de Curitiba!</p>
+      <p>Serão escolhidos 5 ganhadores por votação popular pelo site e os outros 10 por um júri técnico.</p>
+      <p>Inscrições abertas de 14 a 28 de novembro.</p>
+      <p>Participe, chame seus amigos!</p>
+      @if (ViewBag.ConcursoAberto){
+        <a href="/promocao/where-15-anos/enviar" class="c-button--white c-button--small" title="Envie sua foto"><i class="fa fa-image"></i>&nbsp;&nbsp; Envie sua foto</a>
+      } else {
+        <h2>Votação encerrada!</h2>
+      }
+    </div>
+  </div>
+</div>

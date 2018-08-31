@@ -1,0 +1,158 @@
+﻿@using MassaNews.Service.Util
+@using Entities.Classes
+@model MassaNews.Portal.Models.BuscaModel
+@section bodyClass{@Html.Raw("pg-busca")}
+
+<main class="g-main">
+  <div class="g-container">
+    <div class="g-content t-vertical-padding">
+      @using (Html.BeginForm("Index", "Busca", FormMethod.Get, new { enctype = "multipart/form-data", @class = "t-module form-search-search trigger-form-loading" }))
+      {
+        <div class="c-search__input-box">
+          <input type="text" class="c-search__input" name="q" value="@ViewBag.SearchWords" autocomplete="off">
+          <button type="submit" class="c-search__submit" value="">
+            <span class="fa-stack">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-search fa-stack-1x fa-inverse"></i>
+            </span>
+          </button>
+        </div>
+      }
+      <div class="c-category-title--sub">
+        <div class="c-category-title c-category-title--responsive t-page-border">
+          @if (Model.Count > 0)
+          {
+            if (ViewBag.Filter == null)
+            {
+              if (Model.Count == 1)
+              {
+                <h2 class="title">@string.Format("{0} resultado encontrado", Model.Count)</h2>
+              }
+              else
+              {
+                <h2 class="title">@string.Format("{0} resultados encontrados", Model.Count)</h2>
+              }
+            }
+            else if (ViewBag.Filter == "noticias" && Model.CountNoticias > 0)
+            {
+              if (Model.CountNoticias == 1)
+              {
+                <h2 class="title">@string.Format("{0} notícia encontrada", Model.CountNoticias)</h2>
+              }
+              else
+              {
+                <h2 class="title">@string.Format("{0} notícias encontradas", Model.CountNoticias)</h2>
+              }
+            }
+            else
+            {
+              <h2 class="title">Nenhum resultado encontrado</h2>
+            }
+          }
+          else
+          {
+            <h2 class="title">Nenhum resultado encontrado</h2>
+          }
+        </div>
+      </div>
+      <section class="c-headline--horz-list">
+        @foreach (var item in Model.Resultados)
+        {
+          <div class="c-headline @string.Format("t-{0}", Theme.All().Where(t => t.Id == item.ThemeId).Single().Value) @if(string.IsNullOrEmpty(item.Img) && item.DestaqueId != Destaque.Galeria.Id){<text>no-image</text>}" data-relevancia="@item.Relevancia" data-dtpub="@item.Data.ToString()">
+              @if (item.DestaqueId == Destaque.Video.Id)
+              {
+                <picture class="image modal-video">
+                  <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                  <a href="@Url.Action("Interna", "Video", new { url = item.Url })" title="@item.Chamada">
+                    <img class="lazy" data-original="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.Img}")" alt="@item.Chamada">
+                  </a>
+                </picture>
+              }
+              else if (item.Img != null)
+              {
+                <picture class="image">
+                  <a href="@Url.Action("Index", "Noticias", new { editorial = item.EditorialUrl, categoria = item.CategoriaUrl, url = item.Url })" title="@item.Titulo">
+                    <img class="lazy" data-original="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", item.Img)" alt="@item.Titulo">
+                  </a>
+                </picture>
+              }
+              <div class="texts">
+                <time class="date" datetime="@Convert.ToDateTime(@item.Data).ToString("yyyy-MM-dd HH:mm")">@Convert.ToDateTime(@item.Data).ToString("dd/MM/yyyy - HH\\hmm")</time>
+                <h2 class="title">
+                  <a href="@Url.Action("Index", "Noticias", new { editorial = item.EditorialUrl, categoria = item.CategoriaUrl, url = item.Url })" title="@item.Titulo">
+                    @*@item.Relevancia -*@ @item.Titulo
+                  </a>
+                </h2>
+              </div>
+          </div>
+        }
+        @if (ViewBag.Paginacao != null)
+        {
+          <nav class="c-pagination">
+            <ul class="pagination">
+              @foreach (var pagina in ViewBag.Paginacao)
+              {
+                <li @if (ViewBag.PaginaAtual == pagina.Value){<text>class="active"</text>}>
+                  <a @{if (pagina.Key == "<") {<text>rel="prev"</text>} else if (pagina.Key == ">") {<text>rel="next"</text>}}
+                     href="@string.Format("/busca/{0}?q={1}&o={2}&p={3}", ViewBag.Filter, Text.UrlEncode(ViewBag.SearchWords), ViewBag.Order, pagina.Value)"
+                     title="@pagina.Key">
+                    @pagina.Key
+                  </a>
+                </li>
+              }
+            </ul>
+          </nav>
+        }
+      </section>
+    </div>
+
+    @* <aside class="c-fixed-sidebar g-aside">
+      <div class="nano">
+        <div class="nano-content">
+          <div class="c-fixed-sidebar__title">
+            <h3 class="title">Filtros</h3>
+          </div>
+          <ul class="c-fixed-sidebar__list c-headline--minis">
+            <li class="c-fixed-sidebar__list__iten @if(ViewBag.Filter == null){<text>is-current</text>}">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="@string.Format("{0}/busca/?q={1}", Constants.UrlWeb, Text.UrlEncode(ViewBag.SearchWords))" title="Todos">
+                    @string.Format("Todos ({0})", Model.Count)
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li class="c-fixed-sidebar__list__iten @if(ViewBag.Filter == "noticias"){<text>is-current</text>}">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="@string.Format("{0}/busca/noticias?q={1}", Constants.UrlWeb, Text.UrlEncode(ViewBag.SearchWords))" title="Notícias">
+                    @string.Format("Notícias ({0})", Model.CountNoticias)
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li class="c-fixed-sidebar__list__iten @if(ViewBag.Filter == "blogs"){<text>is-current</text>}">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="@string.Format("{0}/busca/blogs?q={1}", Constants.UrlWeb, Text.UrlEncode(ViewBag.SearchWords))" title="Posts">
+                    @string.Format("Blogs e opiniões ({0})", Model.CountBlogs)
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li class="c-fixed-sidebar__list__iten">
+              <div class="c-fixed-sidebar__list__link">
+                <div class="texts">
+                  <a href="#" title="Where Curitiba">
+                    Where Curitiba (0)
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside> *@
+
+  </div>
+</main>

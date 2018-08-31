@@ -1,0 +1,357 @@
+﻿@using MassaNews.Service.Util
+@using Entities.Classes
+@using MassaNews.Portal.ViewModels
+
+@model NewsItemViewModel
+
+@{
+  var date = DateTime.Now;
+  var canonical = $"{Constants.UrlWeb}{Url.Action("Index", "Noticias", new { editorial = Model.News.Categoria.Editorial.Url, categoria = Model.News.Categoria.Url, url = Model.News.Url })}";
+}
+
+<article class="c-post" itemscope itemtype="http://schema.org/NewsArticle">
+  <input type="hidden" class="url-post" value="@($"{Model.News.UrlFull}.html")" />
+
+  @if (Model.News.ImgLg != null){
+    <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+      <meta itemprop="url" content="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", Model.News.ImgLg)">
+      <meta itemprop="width" content="961">
+      <meta itemprop="height" content="531">
+    </span>
+  }
+
+  <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://google.com/article" />
+  <header class="c-post__header">
+    <h1 class="title" itemprop="headline">@Model.News.Titulo</h1>
+    <div class="c-post__published">
+      <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <span class="author" itemprop="name">@Model.Autors</span>
+      </span>
+
+      @if (Model.News.Cidade != null){
+        <span class="separator"> | </span>
+        <a href="@string.Format("/tags/{0}", Model.News.Cidade.Url)"><strong class="trigger-get-city">@Model.News.Cidade.Nome</strong></a>
+      }
+
+      <span class="group-date"></span>
+        <span class="separator separator-date"> | </span>
+        <span class="update">Publicado em </span>
+        <time class="date" datetime="@Convert.ToDateTime(Model.News.DataPublicacao).ToString("yyyy-MM-dd HH:mm")">@Convert.ToDateTime(Model.News.DataPublicacao).ToString("dd \\de MMMM \\de yyyy \\| HH\\hmm")</time>
+        @*<button class="button-historic t-page-color"><i class="fa fa-plus-circle"></i></button>*@
+        <meta itemprop="datePublished" content="@Convert.ToDateTime(Model.News.DataPublicacao).ToString("yyyy-MM-dd")T+@Convert.ToDateTime(Model.News.DataPublicacao).ToString("HH:mm:ss")-03:00" />
+        <meta itemprop="dateModified" content="@Convert.ToDateTime(Model.News.DataPublicacao).ToString("yyyy-MM-dd")T+@Convert.ToDateTime(Model.News.DataPublicacao).ToString("HH:mm:ss")-03:00" />
+      </span>
+    </div>
+    @*<div class="c-post__historic">
+        <button class="button-historic-close fa fa-close"></button>
+        <ul class="c-post__historic__list">
+          <li class="iten">
+            <time class="date" datetime="2015-09-01 20:57">01/09 - 20h57:</time>
+            <span class="description">TODO - Histórico de Atualizações</span>
+          </li>
+          <li class="iten">
+            <time class="date" datetime="2015-09-01 20:57">01/09 - 20h58:</time>
+            <span class="description">TODO - Histórico de Atualizações</span>
+          </li>
+          <li class="iten">
+            <time class="date" datetime="2015-09-01 20:57">01/09 - 20h59:</time>
+            <span class="description">TODO - Histórico de Atualizações</span>
+          </li>
+        </ul>
+      </div>*@
+    <div class="c-share">
+      @Html.Partial("_Social", Model.News)
+      <div class="c-share__iten c-share__commentary">
+        @*<a href="#" onclick="loadDisqus($(this), '@Model.News.Url', '@canonical'); return false;" rel="modal" data-modal="modal-comments" data-modal-ref="#" class="c-share__link comment-button-top" title="Comentários">*@
+
+        <a href="#" class="c-share__link c-comments__open-button comment-button trigger-scroll-comments" title="Comentários">
+          <span class="fa-stack c-share__icon">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-comment fa-stack-1x fa-inverse"></i>
+          </span>
+          @* <span class="trigger-comments-count"><span class="fb-comments-count c-share__count" data-href="@canonical"></span></span> *@
+        </a>
+
+        @* <button onclick="loadDisqus($(this), '@Model.News.Hash', '@canonical');" rel="modal" data-modal="modal-comments" data-modal-ref="#" class="c-share__link c-comments__open-button comment-button" title="Comentários">
+          <span class="fa-stack c-share__icon">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-comment fa-stack-1x fa-inverse"></i>
+          </span>
+          <span class="c-share__count disqus-comment-count" data-disqus-url="@canonical">0</span>
+        </button> *@
+      </div>
+    </div>
+  </header>
+
+  <div class="g-clearfix">
+    @if (Model.News.DestaqueId != Destaque.Nenhum.Id)
+    {
+      <div class="c-post__highlight g-clearfix">
+        @if (Model.News.DestaqueId == Destaque.Video.Id){
+          @* Vídeos relacionados *@
+          @*<a href="#" class="trigger-open-mask-video">Abrir máscara</a>*@
+          <div class="u-video-wrapper">
+            <div class="c-post__videos-related u-text-center">
+              <a href="#" class="fa fa-close fa-2x t-page-color close trigger-close-mask-video c-post__videos-close" title="Fechar"></a>
+
+              <div class="c-post__videos-list">
+                <h3 class="title-related-videos">Assista também</h3>
+                @{var index = 1;}
+                @foreach (var item in Model.NewsVideosRelacionados){
+                  <div class="videos--item">
+                    <a href="@Url.Action("Index", "Noticias", new {editorial = item.EditorialUrl, categoria = item.CategoriaUrl, url = item.Url})" title="@item.Chamada" class="c-headline c-headline--videos c-post__videos-link" data-index="@index">
+                      <picture class="image modal-video">
+                        <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                        <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"noticias"}/{item.ImgSm}")" alt="@item.Chamada" style="display: inline;">
+                      </picture>
+                      <div class="texts">
+                        <h3 class="hat">@item.CategoriaUrl - @item.DataPublicacao.Value.ToString("d")</h3>
+                        <h2 class="title">@item.Chamada</h2>
+                      </div>
+                    </a>
+                  </div>
+                  index++;
+                }
+              </div>
+
+              <div class="subscribe">
+                <h3 class="title-related-videos">Inscreva-se no nosso canal</h3>
+                <div class="g-ytsubscribe" data-channelid="UCFoLEYJs_FlU87YbdWun8XA" data-layout="full" data-theme="dark" data-count="default"></div>
+                <script src="https://apis.google.com/js/platform.js"></script>
+              </div>
+            </div>
+            <div id="@($"div{Model.News.Id}")" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+              <span class="u-none" itemprop="name">@Model.News.Titulo</span>
+              <span class="u-none" itemprop="description">@Model.News.Titulo</span>
+              <meta itemprop="thumbnailURL" content="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", Model.News.ImgLg)" />
+              <meta itemprop="embedURL" content="@Model.News.Video" />
+              <meta itemprop="uploadDate" content="@Convert.ToDateTime(Model.News.DataPublicacao).ToString("yyyy-MM-dd")T+@Convert.ToDateTime(Model.News.DataPublicacao).ToString("HH:mm:ss")-03:00" />
+              <iframe id="@($"player{Model.News.Id}")" src="@($"{Model.News.Video}{"&enablejsapi=1"}&origin={Constants.UrlWeb}")" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        }
+        else if (Model.News.DestaqueId == Destaque.Imagem.Id)
+        {
+          <figure class="figure">
+            @* <div class="figure__mask" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+              <img srcset="@string.Format("{0}/{1}/{2} 347w, {0}/{1}/{3} 674w, {0}/{1}/{4} 675w", Constants.UrlDominioEstaticoUploads, "noticias", Model.News.ImgSm, Model.News.ImgMd, Model.News.ImgLg)" src="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", Model.News.ImgLg)" alt="@Model.News.Legenda - @Model.News.Chamada">
+              <meta itemprop="url" content="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", Model.News.ImgLg)">
+              <meta itemprop="width" content="961">
+              <meta itemprop="height" content="531">
+            </div> *@
+            <div class="figure__mask">
+              <img srcset="@string.Format("{0}/{1}/{2} 347w, {0}/{1}/{3} 674w, {0}/{1}/{4} 675w", Constants.UrlDominioEstaticoUploads, "noticias", Model.News.ImgSm, Model.News.ImgMd, Model.News.ImgLg)" src="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", Model.News.ImgLg)" alt="@Model.News.Legenda - @Model.News.Chamada">
+            </div>
+            @if (!string.IsNullOrEmpty(Model.News.Legenda))
+            {
+              <figcaption>@Model.News.Legenda</figcaption>
+            }
+          </figure>
+        }
+        else if (Model.News.DestaqueId == Destaque.Galeria.Id)
+        {
+          if (Model.News.Galeria != null && Model.News.Galeria.Imagens.Any())
+          {
+
+            @Html.Partial("_GaleriaInterna", Model.News)
+
+            @*<section class="c-post-gallery">
+                <a href="#" class="arrow-next trigger-open-next-lightgallery"><i class="fa fa-10x fa-angle-right"></i></a>
+                <a href="#" class="trigger-open-lightgallery u-block">
+                  <img class="c-post-gallery__image" srcset="@string.Format("{0} 347w, {1} 674w, {2} 675w", Model.News.Galerias.FirstOrDefault().Imagens.OrderBy(o=> o.Ordem).FirstOrDefault().ImgSm, Model.News.Galerias.FirstOrDefault().Imagens.OrderBy(o=> o.Ordem).FirstOrDefault().ImgMd, Model.News.Galerias.FirstOrDefault().Imagens.OrderBy(o => o.Ordem).FirstOrDefault().Img)" src="@Model.News.Galerias.FirstOrDefault().Imagens.OrderBy(o => o.Ordem).FirstOrDefault().Img" alt="@Model.News.Chamada">
+                  <meta itemprop="url" content="@Model.News.Galerias.FirstOrDefault().Imagens.FirstOrDefault().Img">
+                  <meta itemprop="width" content="961">
+                  <meta itemprop="height" content="531">
+                </a>
+
+                <div class="trigger-lightgallery lightgallery clearfix">
+                  @{
+                    var index = 1;
+                    var thumbsToShow = 7;
+                    var itensGallery = Model.News.Galerias.FirstOrDefault().Imagens.Count();
+                    var more = itensGallery - thumbsToShow;
+                  }
+                  @foreach (var item in Model.News.Galerias.FirstOrDefault().Imagens.OrderBy(i => i.Ordem)){
+                    <a href="@item.Img" data-sub-html="@item.Descricao" data-loop-index="@index" class="lg-iten lg-iten-@index clearfix @if(@index > @thumbsToShow){<text>other</text>}">
+                      @if(@index == @thumbsToShow && @itensGallery > @thumbsToShow){
+                        <div class="more">
+                          <div class="mask">
+                            <span class="txt">+@more</span>
+                          </div>
+                        </div>
+                      }
+                      <img src="@item.ImgTb" alt="@item.Descricao - @Model.News.Chamada">
+                    </a>
+                    index++;
+                  }
+                </div>
+              </section>*@
+          }
+        }
+        else if (Model.News.DestaqueId == Destaque.Timeline.Id)
+        {
+          @Html.Raw(Model.News.ScriptTimeline)
+        }
+      </div>
+    }
+
+    <div class="c-post__main">
+      <section class="c-post__content" itemprop="articleBody">
+        @Html.Raw(Model.News.Conteudo.Replace("http://cdn.massanews.com", "https://cdn.massanews.com"))
+      </section>
+
+      @if(Model.News.Categoria.Id == 68){
+        <a href="/narussia" title="Massa na Rússia" class="u-margin-top u-block">
+          <img src="@Url.Content("~/content/images/landing/massa-na-russia/massa-na-russia.png")" alt="Massa na Rússia - Tudo sobre o maior evento de Futebol do Mundo!">
+        </a>
+      }
+
+      @if (Model.News.BlogId.HasValue)
+      {
+        <div class="c-post__footer__module c-author-profile c-author-profile__post">
+          <div class="c-author-profile__inner">
+            <span class="c-author-profile__avatar">
+              <img src="@($"{Constants.UrlDominioEstaticoUploads}/{"autores"}/{Model.News.Autores.First().Avatar}")" alt="@Model.News.Autores.First().Nome">
+            </span>
+            <h3 class="c-author-profile__name">
+              <a href="@Url.Action("BlogPosts", "Blogs", new {categoria = Model.News.Blog.Categoria.Url, blog = Model.News.Blog.Url})" class="t-page-color">@Model.News.Autores.First().Nome</a>
+            </h3>
+          </div>
+          <div class="c-author-profile__description">
+            <p class="resume">
+              @Html.Raw(Model.News.Autores.First().Descricao.Length > 100 ? string.Format("{0}...", Model.News.Autores.First().Descricao.Substring(0, 100)) : Model.News.Autores.First().Descricao) <a href="@Url.Action("BlogPosts", "Blogs", new {categoria = Model.News.Blog.Categoria.Url, blog = Model.News.Blog.Url})" class="t-page-color">Veja mais »</a>
+            </p>
+          </div>
+        </div>
+      }
+
+      <footer class="c-post__footer">
+        @if (!string.IsNullOrEmpty(Model.News.Link1) && !string.IsNullOrEmpty(Model.News.ChamadaLink1) || !string.IsNullOrEmpty(Model.News.Link2) && !string.IsNullOrEmpty(Model.News.ChamadaLink2))
+        {
+          <div class="c-post__seetoo c-post__footer__module">
+            <h4 class="title t-page-color">Veja também</h4>
+            <ul class="c-headline-list">
+              @if (!string.IsNullOrEmpty(Model.News.Link1) && !string.IsNullOrEmpty(Model.News.ChamadaLink1))
+              {
+                <li class="iten">
+                  <a href="@Model.News.Link1" title="@Model.News.ChamadaLink1">@Model.News.ChamadaLink1</a>
+                </li>
+              }
+              @if (!string.IsNullOrEmpty(Model.News.Link2) && !string.IsNullOrEmpty(Model.News.ChamadaLink2))
+              {
+                <li class="iten">
+                  <a href="@Model.News.Link2" title="@Model.News.ChamadaLink2">@Model.News.ChamadaLink2</a>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+        <div class="c-post__social c-post__footer__module">
+          <div class="c-share">
+            @Html.Partial("_Social", Model.News)
+          </div>
+
+          <button class="c-report__button" rel="modal" data-modal="modal-reportar" data-modal-ref="#" title="Reportar erros no texto">Reportar erros</button>
+
+          @* @if (ViewBag.AllowComments)
+          {
+            <button onclick="loadDisqus($(this), '@Model.News.Hash', '@canonical');" rel="modal" data-modal="modal-comments" data-modal-ref="#" class="c-comments__open-button c-button--small t-page-button comment-button"><span class="disqus-comment-count" data-disqus-url="@canonical">0</span> Comentários</button>
+          }
+          else
+          {
+            <button class="c-comments__open-button c-button--small t-page-button">COMENTÁRIOS</button>
+          } *@
+        </div>
+
+        @* FACEBOOK COMMENTS *@
+        <div class="c-post__comments c-post__footer__module">
+          @* <h3 class="t-page-color">Deixe o seu comentário</h3> *@
+          <div class="trigger-fb-comments">
+            <div class="fb-comments" data-href="@canonical" data-width="100%" data-mobile="true" data-order-by="social" data-numposts="5"></div>
+          </div>          
+        </div>
+      </footer>
+
+      @* OUTBRAIN *@
+      <div class="OUTBRAIN t-module" data-src="@canonical" data-widget-id="AR_1" data-ob-template="PortalParanáNews"></div>
+    </div>
+
+    <aside class="c-post__sidebar">
+
+      @Html.Partial("_SendNews")
+
+      @Html.Partial("_AdRetanguloMedio")
+
+      @if (Model.Tags.Any())
+      {
+        <div class="c-post__sidebar__learn-more">
+          <h2 class="c-post__sidebar__title t-page-border">Tudo sobre</h2>
+          <section class="c-accordion" role="tablist">
+            @foreach (var tag in Model.Tags)
+            {
+              if (tag.Noticias.Any(n => n.StatusId == Status.Publicada.Id && n.Id != Model.News.Id))
+              {
+                <div class="c-accordion__module">
+                  <div class="c-accordion__tab" role="tab">
+                    <a href="@Url.Action("Tag", "Categorias", new { tag = @tag.Url })" class="c-accordion__title t-page-color">@tag.Titulo</a>
+                  </div>
+                  <div class="c-accordion__tabpanel" role="tabpanel">
+                    <div class="c-headline--minis">
+                      @foreach (var notByTag in tag.Noticias)
+                      {
+                        <div class="c-headline">
+                          @if (!string.IsNullOrEmpty(notByTag.ImgThumb))
+                          {
+                            <picture class="image @if (notByTag.DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(notByTag.Video)){<text>modal-video</text>}">
+                              <a href="@Url.Action("Index", "Noticias", new { editorial = notByTag.Categoria.Editorial.Url, categoria = notByTag.Categoria.Url, url = notByTag.Url })" title="@notByTag.Chamada">
+                                @if (notByTag.DestaqueId == Destaque.Galeria.Id && notByTag.Galeria.Imagens.Any())
+                                {
+                                  @Html.Partial("_LabelImage", new ViewDataDictionary { { "qtde", notByTag.Galeria.Imagens.Count() } })
+                                }
+                                @if (notByTag.DestaqueId == Destaque.Video.Id && !string.IsNullOrEmpty(notByTag.Video))
+                                {
+                                  <i class="fa fa-play-circle fa-2x fa-icon-video"></i>
+                                }
+                                <img src="@string.Format("{0}/{1}/{2}", Constants.UrlDominioEstaticoUploads, "noticias", notByTag.ImgThumb)" alt="@notByTag.Chamada">
+                              </a>
+                            </picture>
+                          }
+                          <div class="texts">
+                            @if (Convert.ToDateTime(notByTag.DataPublicacao).ToShortDateString() == date.ToShortDateString())
+                            {
+                              <time class="date" datetime="@Convert.ToDateTime(@notByTag.DataPublicacao).ToString("yyyy-MM-dd HH:mm")">@Convert.ToDateTime(@notByTag.DataPublicacao).ToString("HH\\hmm")</time>
+                            }
+                            else
+                            {
+                              <time class="date" datetime="@Convert.ToDateTime(@notByTag.DataPublicacao).ToString("yyyy-MM-dd HH:mm")">@Convert.ToDateTime(@notByTag.DataPublicacao).ToString("dd \\de MMM")</time>
+                            }
+                            <h4 class="title">
+                              <a href="@Url.Action("Index", "Noticias", new { editorial = notByTag.Categoria.Editorial.Url, categoria = notByTag.Categoria.Url, url = notByTag.Url })" title="@notByTag.Chamada">
+                                @notByTag.Chamada
+                              </a>
+                            </h4>
+                          </div>
+                        </div>
+                      }
+                    </div>
+                    <div class="c-accordion__tabpanel__footer">
+                      <a href="@Url.Action("Tag", "Categorias", new { tag = @tag.Url })" class="c-button--small t-page-button" title="[texto]">Ver Todas</a>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </section>
+        </div>
+      }
+    </aside>
+  </div>
+  <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+    <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+      <meta itemprop="url" content="https://massanews.com/content/images/logos/massa-news.png">
+      <meta itemprop="width" content="307">
+      <meta itemprop="height" content="75">
+    </div>
+    <meta itemprop="name" content="Massa News">
+  </div>
+</article>

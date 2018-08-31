@@ -1,0 +1,9 @@
+﻿@model MassaNews.Models.Portal.View.AmpIndexViewModel
+
+@section bodyClass{@Html.Raw(string.Format("pg-{0}", ViewBag.ThemeValue))}
+
+@{
+  Layout = "~/Views/Shared/_AmpLayoutPage.cshtml";
+}
+
+@Html.Partial("Amp/_Content", Model) 

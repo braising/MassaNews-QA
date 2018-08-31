@@ -1,0 +1,61 @@
+﻿
+@model MassaNews.Portal.ViewModels.NoticiaModel
+
+@if (ViewBag.ThemeValue != null)
+{
+  @section bodyClass{@Html.Raw(string.Format("pg-{0} pg-{1} pg-post", ViewBag.ThemeValue, ViewBag.Categoria))}
+}
+
+<main class="g-main">
+  <div class="g-column-with-sidebar">
+    <div class="g-content">
+      <div class="adcabecalho-post">
+        @Html.Partial("_AdCabecalho-2")
+      </div>
+
+      @Html.Partial("_NoticiaItem", Model.News)
+    </div>
+    @Html.Partial("_FixedSidebar")
+  </div>
+  @* @Html.Partial("_Comments") *@
+</main>
+
+@* Metas utilizadas pelo js *@
+<meta name="scope-id" content="@ViewBag.ScopeId">
+<meta name="navegation-type" content="@ViewBag.NavigationType">
+<meta name="allow-comments" content="@ViewBag.AllowComments">
+<meta name="news-id" content="@Html.Raw(Model.News.News.Id)">
+
+@section scripts
+{
+  <!-- Modules {Disqus, Infinite Scroll} -->
+  @Scripts.Render("~/bundles/modules")
+  @*<script src="~/Assets/scripts/modules/disqus.js"></script>
+  <script src="~/Assets/scripts/modules/infinityscroll.js"></script>*@
+
+  <script src="//www.youtube.com/player_api"></script>
+  <!-- Modules {News} -->
+  @Scripts.Render("~/bundles/news")
+
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : "154958548449276",
+        cookie     : true,
+        xfbml      : true,
+        version    : "v2.11"
+      });
+
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/pt_BR/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+}

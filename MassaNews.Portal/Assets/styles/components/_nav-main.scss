@@ -1,0 +1,488 @@
+/* Menu styles */
+.menu {
+  width: 260px;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background: #fff;
+  z-index: 1000;
+  position: fixed;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.menu--open {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+  .action--close {
+    right: -49px;
+  }
+}
+
+.menu__wrap {
+  position: absolute;
+  top: 146px;
+  bottom: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.menu__level {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  overflow: hidden;
+  overflow-y: scroll;
+  width: 100%;
+  //width: calc(100% + 33px);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.menu__level--current {
+  visibility: visible;
+}
+
+.menu__item {
+  display: block;
+  //width: calc(100% - 16px);
+  width: 100%;
+  border-bottom: 1px solid #e4e4e4;
+  background: #fff;
+
+  &.menu--regiao{
+    display: none;
+  }
+
+  &.menu-institucionais{
+    font-weight: bold;
+    border-bottom: 0;
+
+    a{
+      padding: 6px 15px;
+    }
+  }
+}
+
+.menu__link {
+  position: relative;
+  display: block;
+  padding: 8px 15px;
+  -webkit-transition: color 0.1s;
+  transition: color 0.1s;
+
+  &:focus {
+    text-decoration: none;
+  }
+
+  &.menu__link-primary{
+    font-weight: bold;
+    @include font-size(18px);
+
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  &.see-all {
+    background: #f2f2f2;
+    font-weight: bold;
+  }
+
+  &.see-all.see-all-no-link {
+    cursor: default;
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+  &.menu--noticias,
+  &.see-all-noticias {
+    color:$tema-noticias;
+  }
+
+  &.menu--esportes,
+  &.see-all-esportes {
+    color:$tema-esportes;
+  }
+
+  &.menu--entretenimento,
+  &.see-all-entretenimento {
+    color:$tema-entretenimento;
+  }
+
+  &.menu--where-curitiba,
+  &.see-all-where-curitiba {
+    color:$tema-where;
+  }
+
+  &.menu--videos,
+  &.see-all-videos {
+    color:$tema-videos;
+  }
+
+  &.menu--blogs,
+  &.see-all-blogs {
+    color:$tema-blogs;
+  }
+
+  &.menu--especiais,
+  &.see-all-especiais {
+    color:$tema-especiais;
+  }
+
+  &.menu--negocios-da-terra,
+  &.see-all-negocios-da-terra {
+    color:$tema-negocios-da-terra;
+  }
+
+  &.menu--desafiando-chefs,
+  &.see-all-desafiando-chefs {
+    color:$tema-desafiando-chefs;
+  }
+
+  &.menu--viajar-e-massa,
+  &.see-all-viajar-e-massa {
+    color:$tema-viajar-e-massa;
+  }
+}
+
+.menu__link[data-submenu]{
+  .fa{
+    position: absolute;
+    top: 30%;
+    margin-top: -1px;
+    right: 15px;
+    color: #999;
+  }
+}
+
+[class^='animate-'],
+[class*=' animate-'] {
+  visibility: visible;
+}
+
+.animate-outToRight .menu__item {
+  -webkit-animation: outToRight 0.4s both cubic-bezier(0.7, 0, 0.3, 1);
+  animation: outToRight 0.4s both cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+@-webkit-keyframes outToRight {
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes outToRight {
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.animate-outToLeft .menu__item {
+  -webkit-animation: outToLeft 0.4s both cubic-bezier(0.7, 0, 0.3, 1);
+  animation: outToLeft 0.4s both cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+@-webkit-keyframes outToLeft {
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes outToLeft {
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.animate-inFromLeft .menu__item {
+  -webkit-animation: inFromLeft 0.4s both cubic-bezier(0.7, 0, 0.3, 1);
+  animation: inFromLeft 0.4s both cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+@-webkit-keyframes inFromLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes inFromLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-inFromRight .menu__item {
+  -webkit-animation: inFromRight 0.4s both cubic-bezier(0.7, 0, 0.3, 1);
+  animation: inFromRight 0.4s both cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+@-webkit-keyframes inFromRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes inFromRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/*
+.menu__breadcrumbs {
+  font-size: 0.65em;
+  line-height: 1;
+  position: relative;
+  padding: 2.5em 3.75em 1.5em 2.5em;
+}
+
+.menu__breadcrumbs a {
+  font-weight: bold;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #5c5edc;
+}
+
+.menu__breadcrumbs a:last-child {
+  pointer-events: none;
+}
+
+.menu__breadcrumbs a:hover {
+  color: #8182e0;
+}
+
+.menu__breadcrumbs a:not(:last-child)::after {
+  display: inline-block;
+  padding: 0 0.5em;
+  color: #33353e;
+}
+
+.menu__breadcrumbs a:not(:last-child):hover::after {
+  color: #33353e;
+}
+*/
+
+.menu__back,
+.menu__home,
+.menu__account {
+  width: 100%;
+  font-size: 14px;
+  top: 105px;
+  left: 0;
+  margin: 0;
+  padding: 10px 15px;
+  color: $gray-lighter;
+  border-top: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: all .2s;
+  display: block;
+  position: absolute;
+
+  &:hover{
+    color: $gray-lighter;
+    text-decoration: none;
+  }
+}
+
+.menu__account{
+  top: 65px;
+}
+
+.menu__back{
+  z-index: 100;
+}
+.menu__home{
+  z-index: 90;
+}
+
+.menu__back--hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.menu__back:hover,
+.menu__back:focus {
+  outline: none;
+}
+
+
+/* Open and close buttons */
+.action {
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.action:focus {
+  outline: none;
+}
+
+.action--close {
+  top: 4px;
+  right: 5px;
+  color: #fff;
+}
+
+.action--close {
+  display: block;
+}
+
+
+/* Mapa */
+.menu--mapa-cobertura{
+  width: 100%;
+  padding: 0 15px 20px 15px;
+  margin-top: 15px;
+  background: #fff;
+
+  & > .menu__link{
+    display: none;
+  }
+
+  & > svg{
+    width: 100%;
+    padding: 0 10px;
+    display: inline;
+  }
+
+  .cls-1,
+  .cls-2,
+  .cls-3,
+  .cls-4,
+  .cls-5{
+    fill: $gray-lighter;
+    border: 2px solid $gray;
+    cursor: pointer;
+
+    stroke: $gray-lightest;
+    stroke-miterlimit:10;
+    stroke-width:4px;
+
+    &:hover,
+    .is-:hover{
+      fill: $gray;
+    }
+  }
+
+  .cls-6{
+    font-size:160px;
+    fill:#fff;
+    font-weight:bold;
+  }
+
+  .cls-7{
+    font-size:36px;
+    fill:$gray;
+    display: none;
+  }
+}
+
+//.sidebar__mais-times,
+.menu--times-futebol{
+  width: 100%;
+  margin: 15px 0 15px 0;
+  background: #fff;
+  float: left;
+
+  & > .menu__link{
+    display: none;
+  }
+
+  .menu--title-custom{
+    padding: 0 15px;
+  }
+
+  // .shild{
+  //   margin: 0 14px 20px!important;
+  // }
+
+  .c-tabs__nav{
+    margin-bottom: 20px;
+  }
+
+  .c-tabs__tabpanel{
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .tbl-st-team{
+    width: calc(100% / 5);
+    margin-bottom: 12px;
+    float: left;
+    text-align: center;
+    display: inline-block;
+  }
+}
+
+.menu--mapa-cobertura,
+.menu--times-futebol{
+  .menu--title-custom{
+    height: 30px;
+    margin-bottom: 10px;
+    line-height: 30px;
+    color: $gray-light;
+    font-weight: bold;
+    display: inline-block;
+  }
+}

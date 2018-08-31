@@ -1,0 +1,221 @@
+﻿@using MassaNews.Service.Util
+
+@* PUBLICIDADE *@
+@* @Html.Partial("_AdCabecalhoGrandeFixed") *@
+
+<footer class="c-footer" itemscope itemtype="http://schema.org/Organization">
+  <link itemprop="url" href="https://massanews.com">
+  <meta itemprop="logo" content="https://massanews.com/content/images/logos/massa-news.png">
+
+  <section class="c-footer__top">
+    <div class="g-container">
+      <div class="col col-institucional">
+        <h4 class="title t-page-color" itemprop="name">Massa News</h4>
+        <ul class="list" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+          <li itemprop="name"><a href="@string.Format("{0}{1}", Constants.UrlWeb, Url.Action("Sobre", "Institucional"))" itemprop="url" title="Sobre nós">Sobre nós</a></li>
+          <li itemprop="name"><a href="@string.Format("{0}{1}", Constants.UrlWeb, Url.Action("Envie", "Institucional"))" itemprop="url" title="Envie sua notícia">Envie sua notícia</a></li>
+          <li itemprop="name"><a href="@string.Format("{0}{1}", Constants.UrlWeb, Url.Action("FaleConosco", "Institucional"))" itemprop="url" title="Contato">Contato</a></li>
+          <li itemprop="name"><a href="@string.Format("{0}{1}", Constants.UrlWeb, Url.Action("Cookies", "Institucional"))" itemprop="url" title="Uso de Cookies">Uso de Cookies</a></li>
+          <li itemprop="name"><a href="https://www.elancers.net/frames/grupo_massa/index.html" itemprop="url" target="_blank" title="Trabalhe conosco">Trabalhe conosco</a></li>
+        </ul>
+      </div>
+      <div class="col col-regioes">
+        @* <h4 class="title t-page-color">Personalize suas notícias por região</h4>
+        <ul class="list">
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="43" title="Campo Mourão">Campo Mourão</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="240" title="Cascavel">Cascavel</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="101" title="Cianorte">Cianorte</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="269" title="Cornélio Procópio">Cornélio Procópio</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="12" title="Curitiba">Curitiba</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="225" title="Foz do Iguaçu">Foz do Iguaçu</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="356" title="Francisco Beltrão">Francisco Beltrão</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="384" title="Guarapuava">Guarapuava</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="308" title="Londrina">Londrina</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="127" title="Maringá">Maringá</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="169" title="Paranavaí">Paranavaí</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="374" title="Pato Branco">Pato Branco</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="332" title="Ponta Grossa">Ponta Grossa</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="295" title="Santo A. da Platina">Santo A. da Platina</a></li>
+          <li><a href="#" class="trigger-geo-update" rel="modal" data-modal="modal-loading" data-geo-id="222" title="Toledo">Toledo</a></li>
+          <li><a href="#" class="show-all t-page-color" rel="modal" data-modal="modal-geo" title="Ver todas as cidades">Ver todas</a></li>
+        </ul> *@
+
+        <h4 class="title t-page-color">Notícias da sua cidade</h4>
+        <ul class="list">
+          <li><a href="/tags/campo-mourao" title="Campo Mourão">Campo Mourão</a></li>
+          <li><a href="/tags/cascavel" title="Cascavel">Cascavel</a></li>
+          <li><a href="/tags/cianorte" title="Cianorte">Cianorte</a></li>
+          <li><a href="/tags/cornelio-procopio" title="Cornélio Procópio">Cornélio Procópio</a></li>
+          <li><a href="/tags/curitiba" title="Curitiba">Curitiba</a></li>
+          <li><a href="/tags/foz-do-iguacu" title="Foz do Iguaçu">Foz do Iguaçu</a></li>
+          <li><a href="/tags/francisco-beltrao" title="Francisco Beltrão">Francisco Beltrão</a></li>
+          <li><a href="/tags/guarapuava" title="Guarapuava">Guarapuava</a></li>
+          <li><a href="/tags/jaguariaiva" title="Jaguariaíva">Jaguariaíva</a></li>
+          <li><a href="/tags/londrina" title="Londrina">Londrina</a></li>
+          <li><a href="/tags/maringa" title="Maringá">Maringá</a></li>
+          <li><a href="/tags/rolandia" title="Rolândia">Rolândia</a></li>
+          <li><a href="/tags/paranagua" title="Paranaguá">Paranaguá</a></li>
+          <li><a href="/tags/paranavai" title="Paranavaí">Paranavaí</a></li>
+          <li><a href="/tags/pato-branco" title="Pato Branco">Pato Branco</a></li>
+          <li><a href="/tags/ponta-grossa" title="Ponta Grossa">Ponta Grossa</a></li>
+          <li><a href="/tags/porecatu" title="Porecatu">Porecatu</a></li>
+          <li><a href="/tags/santo-antonio-da-platina" title="Santo A. da Platina">Santo A. da Platina</a></li>
+          <li><a href="/tags/toledo" title="Telêmaco Borba">Telêmaco Borba</a></li>
+          <li><a href="/tags/telemaco-borba" title="Toledo">Toledo</a></li>
+        </ul>
+      </div>
+      <div class="col col-social">
+        <h4 class="title t-page-color">Acompanhe-nos</h4>
+        <ul class="c-social-links">
+          <li><a href="https://api.whatsapp.com/send?phone=5541992807915" target="_blank" class="icon" title="WhatsApp" itemprop="sameAs">
+            <span class="fa-stack fa-lg color-whatsapp">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+            </span>
+          </a></li>
+          <li><a href="https://www.facebook.com/massanewspr/" target="_blank" class="icon" title="Facebook" itemprop="sameAs">
+            <span class="fa-stack fa-lg color-facebook">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+            </span>
+          </a></li>
+          <li><a href="https://www.youtube.com/c/+massanewspr?sub_confirmation=1" target="_blank" class="icon" title="Youtube" itemprop="sameAs">
+            <span class="fa-stack fa-lg color-youtube">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+            </span>
+          </a></li>
+          <li><a href="https://www.instagram.com/massanews/" target="_blank" class="icon" title="Instagram" itemprop="sameAs">
+            <span class="fa-stack fa-lg color-instagram">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+            </span>
+          </a></li>
+          <li><a href="https://twitter.com/massanewspr" target="_blank" class="icon" title="Twitter" itemprop="sameAs">
+            <span class="fa-stack fa-lg color-twitter">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+            </span>
+          </a></li>
+          @* <li data-tooltip="Siga: MassaNews">
+            <a href="https://www.snapchat.com/add/MassaNews" target="_blank" class="icon" rel="publisher" title="Snapchat" itemprop="sameAs">
+              <span class="fa-stack fa-lg color-snapchat">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-snapchat-ghost fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li> *@
+          <li><a href="https://www.linkedin.com/company/15156099/" target="_blank" class="icon" title="LinkedIn" itemprop="sameAs">
+            <span class="fa-stack fa-lg color-linkedin">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+            </span>
+          </a></li>
+          <li><a href="https://plus.google.com/+Massanewspr" target="_blank" class="icon" rel="publisher" title="Google Plus" itemprop="sameAs">
+            <span class="fa-stack fa-lg color-google-plus">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+            </span>
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="c-footer__bottom">
+    <div class="g-container">
+      <div class="c-links-grupo">
+        @* <h4 class="title">Uma empresa do <a href="http://grupomassa.com.br" target="_blank"><span>Grupo Massa</span></a></h4> *@
+
+        @if (ViewBag.IsVideo != null && ViewBag.IsVideo){
+          <ul class="c-links-grupo__list">
+            <li>
+              <a href="http://grupomassa.com.br?utm_source=MassaNews&utm_medium=footer" title="Grupo Massa" target="_blank" class="logo-grupo-massa">
+                <img src="//cdn.massanews.com/static/images/logos/grupo-massa-vert-gray.svg" alt="Grupo Massa">
+              </a>
+            </li>
+
+            <li>
+              <a href="@Url.Action("Index", "Home")" class="logo-massa-news" title="Massa News">
+                <img src="//cdn.massanews.com/static/images/logos/massa-news-gray.svg" alt="Massa News">
+              </a>
+            </li>
+
+            <li>
+              <a href="https://redemassa.com.br?utm_source=MassaNews&utm_medium=footer" target="_blank" class="logo-rede-massa" title="Rede Massa SBT">
+                <img src="//cdn.massanews.com/static/images/logos/rede-massa-sbt-10-anos-horiz-gray.svg" alt="Rede Massa SBT" class="desktop">
+                <img src="//cdn.massanews.com/static/images/logos/rede-massa-sbt-10-anos-vert-gray-small.svg" alt="Rede Massa SBT" class="mobile">
+              </a>
+            </li>
+
+            <li>
+              <a href="http://massafm.com.br" target="_blank" class="logo-massa-fm" title="Massa FM">
+                <img src="//cdn.massanews.com/static/images/logos/massa-fm-horiz-gray.svg" alt="Massa FM" class="desktop">
+                <img src="//cdn.massanews.com/static/images/logos/massa-fm-vert-gray.svg" alt="Massa FM" class="mobile">
+              </a>
+            </li>
+
+            <li>
+              <a href="http://www.massaplay.com.br?utm_source=MassaNews&utm_medium=footer" target="_blank" class="logo-massa-play" title="Massa Play">
+                <img src="//cdn.massanews.com/static/images/logos/massa-play-horiz-gray.svg" alt="Massa Play" class="desktop">
+                <img src="//cdn.massanews.com/static/images/logos/massa-play-vert-gray.svg" alt="Massa Play" class="mobile">
+              </a>
+            </li>
+
+            <li>
+              <a href="http://massadigital.com?utm_source=MassaNews&utm_medium=footer" target="_blank" class="logo-massa-multidigital" title="Massa Multidigital">
+                <img src="//cdn.massanews.com/static/images/logos/massa-multidigital-horiz-gray.svg" alt="Massa Multidigital" class="desktop">
+                <img src="//cdn.massanews.com/static/images/logos/massa-multidigital-vert-gray.svg" alt="Massa Multidigital" class="mobile">
+              </a>
+            </li>
+          </ul>
+        } else {
+          <ul class="c-links-grupo__list">
+            <li>
+              <a href="http://grupomassa.com.br?utm_source=MassaNews&utm_medium=footer" title="Grupo Massa" target="_blank" class="logo-grupo-massa">
+                <img src="//cdn.massanews.com/static/images/logos/grupo-massa-vert.svg" alt="Grupo Massa">
+              </a>
+            </li>
+
+            <li>
+              <a href="@Url.Action("Index", "Home")" class="logo-massa-news" title="Massa News">
+                <img src="//cdn.massanews.com/static/images/logos/massa-news.svg" alt="Massa News">
+              </a>
+            </li>
+
+            <li>
+              <a href="https://redemassa.com.br?utm_source=MassaNews&utm_medium=footer" target="_blank" class="logo-rede-massa" title="Rede Massa SBT">
+                <img src="//cdn.massanews.com/static/images/logos/rede-massa-sbt-10-anos-horiz-small.svg" alt="Rede Massa" class="desktop">
+                <img src="//cdn.massanews.com/static/images/logos/rede-massa-sbt-10-anos-vert-small.svg" alt="Rede Massa" class="mobile">
+              </a>
+            </li>
+
+            <li>
+              <a href="http://massafm.com.br" target="_blank" class="logo-massa-fm" title="Massa FM">
+                <img src="//cdn.massanews.com/static/images/logos/massa-fm-horiz.svg" alt="Massa FM" class="desktop">
+                <img src="//cdn.massanews.com/static/images/logos/massa-fm-vert.svg" alt="Massa FM" class="mobile">
+              </a>
+            </li>
+
+            <li>
+              <a href="http://www.massaplay.com.br?utm_source=MassaNews&utm_medium=footer" target="_blank" class="logo-massa-play" title="Massa Play">
+                <img src="//cdn.massanews.com/static/images/logos/massa-play-horiz.svg" alt="Massa Play" class="desktop">
+                <img src="//cdn.massanews.com/static/images/logos/massa-play-vert.svg" alt="Massa Play" class="mobile">
+              </a>
+            </li>
+
+            <li>
+              <a href="http://massadigital.com?utm_source=MassaNews&utm_medium=footer" target="_blank" class="logo-massa-multidigital" title="Massa Multidigital">
+                <img src="//cdn.massanews.com/static/images/logos/massa-multidigital-horiz.svg" alt="Massa Multidigital" class="desktop">
+                <img src="//cdn.massanews.com/static/images/logos/massa-multidigital-vert.svg" alt="Massa Multidigital" class="mobile">
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+    </div>
+  </section>
+</footer>
+
+@* Menu principal *@
+@Html.Partial("_Nav")

@@ -1,0 +1,147 @@
+﻿@section bodyClass{@Html.Raw("natal-de-luz pg-natal-de-luz")}
+
+<main class="g-main">
+  @Html.Partial("_HeaderNatalDeLuz")
+
+  <div class="g-container t-content trigger-form-cadastro">
+    <h1 class="text-center t-page-color">Participe ;)</h1>
+
+    <form action="#" method="post" id="form-natal-de-luz" class="form-natal-de-luz">
+      <ul class="c-forms--labels">
+        <li class="input-halffff input-full">
+          <label for="form-inscricao--nome">Nome completo</label>
+          <input type="text" name="form-inscricao--nome" id="form-inscricao--nome" maxlength="120" placeholder="Seu nome" />@*value="teste">*@
+          <span class="field-validation-error" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+        </li>
+        <li class="input-halffff input-full">
+          <label for="form-inscricao--email">E-mail</label>
+          <input type="email" name="form-inscricao--email" id="form-inscricao--email" maxlength="120" placeholder="Seu e-mail" /> @*value="teste@teste.com">*@
+          <span class="field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          <span class="field-validation-error invalid-email" data-valmsg-for="Email" data-valmsg-replace="true" style="display: none;">*E-mail inválido</span>
+        </li>
+        <li class="input-large">
+          <label for="form-inscricao--telefone">Telefone</label>
+          <input type="tel" name="form-inscricao--telefone" id="form-inscricao--telefone" class="trigger-mask-phone" maxlength="120" placeholder="(00) 0000-0000" /> @*value="(85) 99817-0440">*@
+          <span class="field-validation-error" data-valmsg-for="telefone" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          <span class="field-validation-error invalid-telefone" data-valmsg-for="Telefone" data-valmsg-replace="true" style="display: none;">*Telefone inválido</span>
+        </li>
+      </ul>
+      <ul class="c-forms--labels">
+        <li class="input-large">
+          <label for="form-inscricao--nascimento">Data de nascimento</label>
+          <small class="obs">Você deve possuir mais de 18 anos</small>
+          <input type="text" name="form-inscricao--nascimento" id="form-inscricao--nascimento" class="trigger-mask-date" maxlength="120" placeholder="DD/MM/AAAA" /> @*value="01/01/2017">*@
+          <span class="field-validation-error" data-valmsg-for="nascimento" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          <span class="field-validation-error invalid-nascimento" data-valmsg-for="Nascimento" data-valmsg-replace="true" style="display: none;">*Data de nascimento inválida</span>
+        </li>
+      </ul>
+      <ul class="c-forms--labels">
+        <li class="input-large">
+          <label for="form-inscricao--cpf">CPF</label>
+          <input type="text" name="form-inscricao--cpf" id="form-inscricao--cpf" class="trigger-mask-cpffff" maxlength="11" /> @*value="02428312308">*@
+          <span class="field-validation-error" data-valmsg-for="cpf" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          <span class="field-validation-error invalid-cpf" data-valmsg-for="Cpf" data-valmsg-replace="true" style="display: none;">*CPF inválido</span>
+        </li>
+      </ul>
+      <ul class="c-forms--labels">
+        <li class="input-large">
+          <label for="form-inscricao--cidade">Cidade / UF</label>
+          <input type="text" name="form-inscricao--cidade" id="form-inscricao--cidade" value="Curitiba / PR" disabled="" placeholder="Cidade / UF">
+          <span class="field-validation-error" data-valmsg-for="cidade" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          <span class="field-validation-error invalid-cidade" data-valmsg-for="Cidade" data-valmsg-replace="true" style="display: none;">*Data de nascimento inválida</span>
+        </li>
+
+        <li class="input-full">
+          <label>Concurso que deseja participar</label>
+          <label for="form-inscricao--tipo-casa"><input type="radio" name="form-inscricao--tipo" id="form-inscricao--tipo-casa"> Foto da minha <strong>Casa</strong></label>
+          <label for="form-inscricao--tipo-rua"><input type="radio" name="form-inscricao--tipo" id="form-inscricao--tipo-rua"> Foto da minha <strong>Rua</strong></label>
+          <span class="field-validation-error invalid-tipo" data-valmsg-for="Tipo" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+        </li>
+
+        <li class="input-full input-imagem-casa" style="display: none;">
+          <label for="form-inscricao--imagem-casa">Selecione a imagem da sua <strong>Casa</strong></label>
+          <small class="obs">Tamanho máximo da imagem 5MB</small>
+          <input type="file" accept="image/jpg, image/jpeg" name="form-inscricao--imagem-casa" id="form-inscricao--imagem-casa">
+          <span class="field-validation-error invalid-imagem-casa" data-valmsg-for="Imagem" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+        </li>
+
+        <li class="input-full input-imagem-rua" style="display: none;">
+          <label for="form-inscricao--imagem-rua">Selecione a imagem da sua <strong>Rua</strong></label>
+          <small class="obs">Tamanho máximo da imagem 5MB</small>
+          <input type="file" accept="image/jpg, image/jpeg" name="form-inscricao--imagem-rua" id="form-inscricao--imagem-rua" multiple>
+          <span class="field-validation-error invalid-imagem-rua" data-valmsg-for="Imagem" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+        </li>
+
+        <li class="input-full input-imagem-comprovante" style="display: none;">
+          <label for="form-inscricao--imagem-comprovante">Selecione a imagem do <strong>Comprovante de endereço</strong></label>
+          <small class="obs">Tamanho máximo da imagem 5MB</small>
+          <input type="file" accept="image/jpg, image/jpeg" name="form-inscricao--imagem-comprovante" id="form-inscricao--imagem-comprovante">
+          <span class="field-validation-error invalid-imagem-comprovante" data-valmsg-for="Imagem" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+        </li>
+
+        <li class="input-full">
+          <label for="form-inscricao--titulo">Título que descreva sua imagem</label>
+          <small class="obs">Máximo de 60 caracteres</small>
+          <input type="text" name="form-inscricao--titulo" id="form-inscricao--titulo" maxlength="60" placeholder=""/> @*value="teste">*@
+          <span class="field-validation-error" data-valmsg-for="Titulo" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+        </li>
+      </ul>
+      <ul class="c-forms--labels">
+        <li class="input-full">
+          <label for="form-inscricao--regulamento"><input type="checkbox" name="" value="" id="form-inscricao--regulamento"> Li e concordo com o <a href="/natal-de-luz/regulamento" title="Regulamento" target="_blank"><u>regulamento</u></a> do concurso</label>
+          <span class="field-validation-error invalid-regulamento" data-valmsg-for="Regulamento" data-valmsg-replace="true" style="display: none;">*Obrigatório</span>
+          <label for="form-inscricao--news"><input type="checkbox" name="" value="" id="form-inscricao--news"> Aceito receber notícias personalizadas do Massa News</label>
+        </li>
+      </ul>
+
+      <button type="button" class="c-button c-button-natal-de-luz submit block trigger-inscricao-natal-de-luz" title="Enviar">Enviar</button>
+    </form>
+
+    <a href="/natal-de-luz" class="text-center u-block"><i class="fa fa-angle-double-left"></i> voltar</a>
+  </div>
+
+  <div class="g-container t-content trigger-form-cadastro-sucesso u-none">
+    <h1 class="text-center t-page-color">Foto enviada com sucesso</h1>
+
+    <div class="form-natal-de-luz text-center">
+      <p>Sua imagem está sendo analisada pela nossa equipe.</p>
+      <p>Assim que for aprovada, ela irá aparecer na <a href="/natal-de-luz" class="t-page-color"><u>galeria de fotos</u></a> do site para votação.</p>
+      <p>Aproveite e chame seus amigos compartilhando o link do concurso nas redes sociais</p>
+
+      <div class="c-share__iten c-share__whats">
+        <a href="whatsapp://send?text=O%20que%20%C3%A9%20a%20cara%20de%20Curitiba%20para%20voc%C3%AA%3F%20http%3a%2f%2fmassanews.com%2fpromocao%2fnatal-de-luz" data-action="share/whatsapp/share" class="c-share__link" target="_blank" title="WhatsApp">
+          <span class="fa-stack color-whatsapp">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </div>
+      <div class="c-share__iten c-share__facebook">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//massanews.com/natal-de-luz" target="_blank" class="c-share__link" title="Facebook">
+          <span class="fa-stack color-facebook">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </div>
+      <div class="c-share__iten c-share__twitter">
+        <a href="https://twitter.com/intent/tweet?text=Qual%20%C3%A9%20a%20cara%20de%20Curitiba%20para%20voc%C3%AA%3F%20http%3A%2F%2Fmassanews.com%2Fpromocao%2Fnatal-de-luz" class="c-share__link" target="_blank" title="Twitter">
+          <span class="fa-stack color-twitter">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </div>
+      <div class="c-share__iten c-share__googleplus">
+        <a href="@($"https://plus.google.com/share?url=https://massanews.com/natal-de-luz")" class="c-share__link" target="_blank" title="Google Plus">
+          <span class="fa-stack color-google-plus">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </div>
+    </div>     
+
+    <a href="/natal-de-luz" class="text-center u-block"><i class="fa fa-angle-double-left"></i> Voltar para a página do concurso</a>
+  </div>
+</main>

@@ -1,0 +1,55 @@
+﻿<head>
+    <meta charset="utf-8">
+    
+    <title>@Model.Title</title>
+    
+    <meta name="description" content="@Model.Descricao">
+
+    <link rel="canonical" href="@Model.FullOriginalUrl" />
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    @* Fallback to homescreen for Chrome <39 on Android *@
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Massa News">
+    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")">
+
+    @* Add to homescreen for Safari on iOS *@
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Massa News">
+    <link rel="apple-touch-icon" href="@Url.Content("~/content/images/favicons/apple-touch-icon.png")">
+
+    @* Tile icon for Win8 (144x144 + tile color) *@
+    <meta name="msapplication-TileImage" content="@Url.Content("~/content/images/favicons/mstile-144x144.png")">
+    <meta name="msapplication-TileColor" content="#d2232a">
+
+    @* Metatags OpenGraph Facebook *@
+    <meta property="fb:app_id" content="154958548449276">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:url" content="@Model.FullOriginalUrl">
+    <meta property="og:site_name" content="Massa News">
+    <meta property="og:title" content="@Model.Title">
+    <meta property="og:description" content="@Model.Descricao">
+    <meta property="og:image" content="@Model.ImgOpenGraph" />
+
+    @Html.Partial("Amp/_Style")
+    @Html.Partial("Amp/_Schema")
+
+    @if (Model.HasGallery)
+    {
+        @* DESTAQUE GALERIA *@
+        <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+    }
+    @if (Model.HasVideo)
+    {
+        @* DESTAQUE VÍDEO *@
+        <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+    }
+
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+</head>

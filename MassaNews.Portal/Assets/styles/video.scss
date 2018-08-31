@@ -1,0 +1,36 @@
+// ========================================
+//
+// Leia o arquivo README.txt
+// Nele conterá os padrões ultilizados e um resumo de cada modulo importado
+//
+// ========================================
+
+
+// core
+@import 'core';
+
+// base
+@import "base/reset";
+@import "base/breakpoint";
+@import "base/theme";
+@import "base/typography";
+@import 'base/font-awesome/font-awesome';
+@import "base/basic";
+@import "base/grid";
+
+// components
+@import 'components/header';
+@import 'components/button';
+@import 'components/fixed-sidebar';
+@import 'components/headline';
+@import 'components/headline__grids';
+@import 'components/headline-list';
+@import 'components/modal';
+@import 'components/scrollbar';
+@import 'components/social-links';
+
+// pages
+@import 'pages/videos';
+
+// media
+@import 'media/print';

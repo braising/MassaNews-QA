@@ -1,0 +1,1375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.0.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.0.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8D8578ED-9863-4628-B826-162460FCB27B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MassaNews.Portal</RootNamespace>
+    <AssemblyName>MassaNews.Portal</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>true</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ActionMailer.Net, Version=0.7.4.0, Culture=neutral, PublicKeyToken=e62db3114c02a1c2, processorArchitecture=MSIL">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ActionMailer.Net.Mvc, Version=0.7.4.0, Culture=neutral, PublicKeyToken=e62db3114c02a1c2, processorArchitecture=MSIL">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.Core.3.3.11\lib\net45\AWSSDK.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AWSSDK.WAF, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.WAF.3.3.1.13\lib\net45\AWSSDK.WAF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elasticsearch.Net, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elasticsearch.Net.5.3.1\lib\net45\Elasticsearch.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Entities">
+      <HintPath>..\DLL\Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hangfire.Core, Version=1.6.19.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.Core.1.6.19\lib\net45\Hangfire.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.SqlServer, Version=1.6.19.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.SqlServer.1.6.19\lib\net45\Hangfire.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Hashids.net, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hashids.net.1.2.2\lib\net45\Hashids.net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IdentityModel, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IdentityModel.2.5.0\lib\net45\IdentityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="MassaNews.AWS">
+      <HintPath>..\DLL\MassaNews.AWS.dll</HintPath>
+    </Reference>
+    <Reference Include="MassaNews.Models">
+      <HintPath>..\DLL\MassaNews.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="MassaNews.Service, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\MassaNews.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Protocol.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.0\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OpenIdConnect, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OpenIdConnect.3.0.0\lib\net45\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.4.4\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.4.4\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.4.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Nest, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\NEST.5.3.1\lib\net45\Nest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NewRelic.Api.Agent, Version=6.10.1.0, Culture=neutral, PublicKeyToken=06552fced0b33d87, processorArchitecture=MSIL">
+      <HintPath>..\packages\NewRelic.Agent.Api.6.10.1.0\lib\NewRelic.Api.Agent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis.StrongName, Version=1.2.1.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.StrongName.1.2.1\lib\net45\StackExchange.Redis.StrongName.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.0.0.0\lib\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SvgCompressionModule.cs" />
+    <Compile Include="Constraints\DefaultConstraint.cs" />
+    <Compile Include="Controllers\AmpController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BlogsController.cs" />
+    <Compile Include="Controllers\BuscaController.cs" />
+    <Compile Include="Controllers\CampeonatosController.cs" />
+    <Compile Include="Controllers\ComunidadesController.cs" />
+    <Compile Include="Controllers\ContaController.cs" />
+    <Compile Include="Controllers\CotacoesController.cs" />
+    <Compile Include="Controllers\EditorialController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstitucionalController.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\LandController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
+    <Compile Include="Controllers\NewsletterController.cs" />
+    <Compile Include="Controllers\NoticiasController.cs" />
+    <Compile Include="Controllers\PromocaoController.cs" />
+    <Compile Include="Controllers\RoteirosController.cs" />
+    <Compile Include="Controllers\RssController.cs" />
+    <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Controllers\SiteMapController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
+    <Compile Include="Enum\EnqueteEnum.cs" />
+    <Compile Include="Enum\PeriodosSimeparEnum.cs" />
+    <Compile Include="Filters\AppFilter.cs" />
+    <Compile Include="Functions\CookieFx.cs" />
+    <Compile Include="Functions\Pagination.cs" />
+    <Compile Include="Functions\Util.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Comunidade\TopicoPergunta.cs" />
+    <Compile Include="Models\Home\DestaqueBlog.cs" />
+    <Compile Include="Models\Newsletter\NewsletterUnsubscribe.cs" />
+    <Compile Include="Models\RedeMassa\Image.cs" />
+    <Compile Include="Models\RedeMassa\ImageSize.cs" />
+    <Compile Include="Models\RedeMassa\Post.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CategoriaTag.cs" />
+    <Compile Include="ViewModels\ComunidadeTopicoPerguntaViewModel.cs" />
+    <Compile Include="ViewModels\ComunidadeTopicoRespostaViewModel.cs" />
+    <Compile Include="ViewModels\ComunidadeTopicoViewModel.cs" />
+    <Compile Include="ViewModels\ContaViewModel.cs" />
+    <Compile Include="ViewModels\ContaInteracoesViewModel.cs" />
+    <Compile Include="ViewModels\CotacaoEconomiaViewModel.cs" />
+    <Compile Include="ViewModels\CotacoesCidadeProdutoViewModel.cs" />
+    <Compile Include="ViewModels\CotacoesCidadeViewModel.cs" />
+    <Compile Include="ViewModels\CotacoesViewModel.cs" />
+    <Compile Include="ViewModels\Land\LandViewModel.cs" />
+    <Compile Include="ViewModels\NewsletterUnsubscribeViewModel.cs" />
+    <Compile Include="Models\Newsletter\NewsletterUpdate.cs" />
+    <Compile Include="ViewModels\NewsletterUpdateViewModel.cs" />
+    <Compile Include="ViewModels\PrevisaoSimeparViewModel.cs" />
+    <Compile Include="ViewModels\PrevisaoTempoViewModel.cs" />
+    <Compile Include="ViewModels\PromocaoEnviar.cs" />
+    <Compile Include="Models\Roteiros\Destaque.cs" />
+    <Compile Include="Models\Roteiros\DestatqueItem.cs" />
+    <Compile Include="Models\Roteiros\MenuItem.cs" />
+    <Compile Include="Models\Video\MenuItemModel.cs" />
+    <Compile Include="Models\Video\VideoModel.cs" />
+    <Compile Include="ViewModels\DestaqueComTags.cs" />
+    <Compile Include="ViewModels\BaseModel.cs" />
+    <Compile Include="ViewModels\BlogPostViewModel.cs" />
+    <Compile Include="ViewModels\BuscaModel.cs" />
+    <Compile Include="ViewModels\CampeonatoModel.cs" />
+    <Compile Include="ViewModels\CategoriaBlogViewModel.cs" />
+    <Compile Include="ViewModels\CategoriaModel.cs" />
+    <Compile Include="ViewModels\CategoriasDestaquesModel.cs" />
+    <Compile Include="ViewModels\DestaqueVideoViewModel.cs" />
+    <Compile Include="ViewModels\EventoModel.cs" />
+    <Compile Include="ViewModels\GaleriaViewModel.cs" />
+    <Compile Include="ViewModels\GuiaMassaModel.cs" />
+    <Compile Include="ViewModels\HomeIndex.cs" />
+    <Compile Include="ViewModels\Noticia.cs" />
+    <Compile Include="ViewModels\NoticiaNavItem.cs" />
+    <Compile Include="ViewModels\NewsItemViewModel.cs" />
+    <Compile Include="Models\Newsletter\NewsletterSubscribe.cs" />
+    <Compile Include="ViewModels\NoticiaModel.cs" />
+    <Compile Include="ViewModels\PostModel.cs" />
+    <Compile Include="ViewModels\PromocaoIndex.cs" />
+    <Compile Include="ViewModels\PromocaoNatalDeLuzIndex.cs" />
+    <Compile Include="ViewModels\PromocaoNatalDeLuzRuaIndex.cs" />
+    <Compile Include="ViewModels\PromocaoVoto.cs" />
+    <Compile Include="ViewModels\ReportModel.cs" />
+    <Compile Include="ViewModels\RoteirosCategory.cs" />
+    <Compile Include="ViewModels\RoteirosEstablishments.cs" />
+    <Compile Include="ViewModels\RoteirosIndex.cs" />
+    <Compile Include="ViewModels\VideoCategoria.cs" />
+    <Compile Include="ViewModels\VideoIndex.cs" />
+    <Compile Include="ViewModels\VideoInterna.cs" />
+    <Compile Include="ViewModels\WeatherForecastViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ads.txt" />
+    <Content Include="Assets\fonts\font-awesome\fontawesome-webfont.svg" />
+    <Content Include="Assets\fonts\font-icon\demo-files\demo.css" />
+    <Content Include="Assets\fonts\font-icon\demo-files\demo.js" />
+    <Content Include="Assets\fonts\font-icon\demo.html" />
+    <Content Include="Assets\fonts\font-icon\fonts\icomoon.svg" />
+    <Content Include="Assets\fonts\font-icon\Read Me.txt" />
+    <Content Include="Assets\fonts\font-icon\style.css" />
+    <Content Include="Assets\fonts\icomoon.svg" />
+    <Content Include="Assets\fonts\lg.svg" />
+    <Content Include="Assets\fonts\nano\nano_icon_font3.svg" />
+    <Content Include="Assets\fonts\ProximaNova-Bold.svg" />
+    <Content Include="Assets\fonts\ProximaNova-BoldIt.svg" />
+    <Content Include="Assets\fonts\ProximaNova-Regular.svg" />
+    <Content Include="Assets\fonts\ProximaNova-RegularIt.svg" />
+    <Content Include="Assets\fonts\slick.svg" />
+    <Content Include="Assets\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="Assets\fonts\weathericons\weathericons-regular-webfont.svg" />
+    <Content Include="Assets\images\avatar\blogs\afonso-candido-neto.jpg" />
+    <Content Include="Assets\images\avatar\blogs\airton-jose.jpg" />
+    <Content Include="Assets\images\avatar\blogs\antonio-carlos.jpg" />
+    <Content Include="Assets\images\avatar\blogs\bau-digital.jpg" />
+    <Content Include="Assets\images\avatar\blogs\busao-curitiba.jpg" />
+    <Content Include="Assets\images\avatar\blogs\cleo-mattos.jpg" />
+    <Content Include="Assets\images\avatar\blogs\desavesso.jpg" />
+    <Content Include="Assets\images\avatar\blogs\edgar-hampf.jpg" />
+    <Content Include="Assets\images\avatar\blogs\empreendedorismo-e-inovacao.jpg" />
+    <Content Include="Assets\images\avatar\blogs\eugenio-stefanelo.jpg" />
+    <Content Include="Assets\images\avatar\blogs\fernando-ripoli.jpg" />
+    <Content Include="Assets\images\avatar\blogs\fiama-pereira.jpg" />
+    <Content Include="Assets\images\avatar\blogs\fiori-luiz.jpg" />
+    <Content Include="Assets\images\avatar\blogs\flavio-ricco.jpg" />
+    <Content Include="Assets\images\avatar\blogs\futebol-total.jpg" />
+    <Content Include="Assets\images\avatar\blogs\hallorino-jr.jpg" />
+    <Content Include="Assets\images\avatar\blogs\investimento-com-vc.jpg" />
+    <Content Include="Assets\images\avatar\blogs\jose-pedriali.jpg" />
+    <Content Include="Assets\images\avatar\blogs\karlos-kohlbach.jpg" />
+    <Content Include="Assets\images\avatar\blogs\leao-lobo.jpg" />
+    <Content Include="Assets\images\avatar\blogs\mauro-muller.jpg" />
+    <Content Include="Assets\images\avatar\blogs\murilo-gatti.jpg" />
+    <Content Include="Assets\images\avatar\blogs\octavio-henrique-rossi.jpg" />
+    <Content Include="Assets\images\avatar\blogs\pai-do-ninao.jpg" />
+    <Content Include="Assets\images\avatar\blogs\plantao-190.jpg" />
+    <Content Include="Assets\images\avatar\blogs\prestando-contas.jpg" />
+    <Content Include="Assets\images\avatar\blogs\ratinho.jpg" />
+    <Content Include="Assets\images\avatar\blogs\sandro-rodrigues.jpg" />
+    <Content Include="Assets\images\avatar\blogs\saude-e-bem-estar.jpg" />
+    <Content Include="Assets\images\avatar\blogs\seu-direito.jpg" />
+    <Content Include="Assets\images\avatar\blogs\vei-na-boa.jpg" />
+    <Content Include="Assets\images\avatar\editorial\avatar-blogs.jpg" />
+    <Content Include="Assets\images\avatar\editorial\avatar-entretenimento.jpg" />
+    <Content Include="Assets\images\avatar\editorial\avatar-esportes.jpg" />
+    <Content Include="Assets\images\avatar\editorial\avatar-noticias.jpg" />
+    <Content Include="Assets\images\avatar\editorial\avatar-viajar-e-massa.jpg" />
+    <Content Include="Assets\images\avatar\editorial\avatar-videos.jpg" />
+    <Content Include="Assets\images\avatar\editorial\avatar-where-curitiba.jpg" />
+    <Content Include="Assets\images\banners\avatar-massanews.jpg" />
+    <Content Include="Assets\images\banners\avatar-placar-impeachment-senado.jpg" />
+    <Content Include="Assets\images\banners\avatar-placar-impeachment.jpg" />
+    <Content Include="Assets\images\banners\capa-placar-impeachment-senado.jpg" />
+    <Content Include="Assets\images\banners\capa-placar-impeachment.jpg" />
+    <Content Include="Assets\images\banners\envie-sua-noticia-light.jpg" />
+    <Content Include="Assets\images\banners\envie-sua-noticia.png" />
+    <Content Include="Assets\images\banners\placar-impeachment-mobile.jpg" />
+    <Content Include="Assets\images\banners\placar-impeachment.jpg" />
+    <Content Include="Assets\images\banners\sobre-nos.jpg" />
+    <Content Include="Assets\images\banners\tabela-paranaense-2016.jpg" />
+    <Content Include="Assets\images\banners\video-massa-news.jpg" />
+    <Content Include="Assets\images\campanhas\toyota\corolla.png" />
+    <Content Include="Assets\images\campanhas\toyota\outdoor-1400x550.gif" />
+    <Content Include="Assets\images\campanhas\toyota\outdoor-mobile-300x200.gif" />
+    <Content Include="Assets\images\favicons\android-chrome-144x144.png" />
+    <Content Include="Assets\images\favicons\android-chrome-192x192.png" />
+    <Content Include="Assets\images\favicons\android-chrome-36x36.png" />
+    <Content Include="Assets\images\favicons\android-chrome-48x48.png" />
+    <Content Include="Assets\images\favicons\android-chrome-72x72.png" />
+    <Content Include="Assets\images\favicons\android-chrome-96x96.png" />
+    <Content Include="Assets\images\favicons\apple-touch-icon-114x114.png" />
+    <Content Include="Assets\images\favicons\apple-touch-icon-120x120.png" />
+    <Content Include="Assets\images\favicons\apple-touch-icon-144x144.png" />
+    <Content Include="Assets\images\favicons\apple-touch-icon-152x152.png" />
+    <Content Include="Assets\images\favicons\apple-touch-icon-180x180.png" />
+    <Content Include="Assets\images\favicons\apple-touch-icon-57x57.png" />
+    <Content Include="Assets\images\favicons\apple-touch-icon-60x60.png" />
+    <Content Include="Assets\images\favicons\apple-touch-icon-72x72.png" />
+    <Content Include="Assets\images\favicons\apple-touch-icon-76x76.png" />
+    <Content Include="Assets\images\favicons\apple-touch-icon-precomposed.png" />
+    <Content Include="Assets\images\favicons\apple-touch-icon.png" />
+    <Content Include="Assets\images\favicons\favicon-16x16.png" />
+    <Content Include="Assets\images\favicons\favicon-32x32.png" />
+    <Content Include="Assets\images\favicons\favicon-96x96.png" />
+    <Content Include="Assets\images\favicons\mstile-144x144.png" />
+    <Content Include="Assets\images\favicons\mstile-150x150.png" />
+    <Content Include="Assets\images\favicons\mstile-310x150.png" />
+    <Content Include="Assets\images\favicons\mstile-310x310.png" />
+    <Content Include="Assets\images\favicons\mstile-70x70.png" />
+    <Content Include="Assets\images\favicons\safari-pinned-tab.svg" />
+    <Content Include="Assets\images\forums\bg-forums-2.jpg" />
+    <Content Include="Assets\images\forums\bg.jpg" />
+    <Content Include="Assets\images\forums\logo-comunidades-virtuais.png" />
+    <Content Include="Assets\images\icons\font\arrow-bottom.svg" />
+    <Content Include="Assets\images\icons\font\arrow-left.svg" />
+    <Content Include="Assets\images\icons\font\arrow-right.svg" />
+    <Content Include="Assets\images\icons\font\arrow-top.svg" />
+    <Content Include="Assets\images\icons\font\close.svg" />
+    <Content Include="Assets\images\icons\font\commentary.svg" />
+    <Content Include="Assets\images\icons\font\drag.svg" />
+    <Content Include="Assets\images\icons\font\facebook.svg" />
+    <Content Include="Assets\images\icons\font\gallery.svg" />
+    <Content Include="Assets\images\icons\font\googleplus.svg" />
+    <Content Include="Assets\images\icons\font\guia-massa.svg" />
+    <Content Include="Assets\images\icons\font\image.svg" />
+    <Content Include="Assets\images\icons\font\instagram.svg" />
+    <Content Include="Assets\images\icons\font\list.svg" />
+    <Content Include="Assets\images\icons\font\mail.svg" />
+    <Content Include="Assets\images\icons\font\minus.svg" />
+    <Content Include="Assets\images\icons\font\next.svg" />
+    <Content Include="Assets\images\icons\font\play.svg" />
+    <Content Include="Assets\images\icons\font\plus.svg" />
+    <Content Include="Assets\images\icons\font\pointer-bottom.svg" />
+    <Content Include="Assets\images\icons\font\pointer-left.svg" />
+    <Content Include="Assets\images\icons\font\pointer-right.svg" />
+    <Content Include="Assets\images\icons\font\pointer-top.svg" />
+    <Content Include="Assets\images\icons\font\prev.svg" />
+    <Content Include="Assets\images\icons\font\search.svg" />
+    <Content Include="Assets\images\icons\font\share.svg" />
+    <Content Include="Assets\images\icons\font\twitter.svg" />
+    <Content Include="Assets\images\icons\font\whats.svg" />
+    <Content Include="Assets\images\icons\font\youtube.svg" />
+    <Content Include="Assets\images\icons\guia-massa.svg" />
+    <Content Include="Assets\images\icons\shild\sprite-team.png" />
+    <Content Include="Assets\images\icons\sprite-servicos.png" />
+    <Content Include="Assets\images\icons\table\img-sort-asce.gif" />
+    <Content Include="Assets\images\icons\table\img-sort-desce.gif" />
+    <Content Include="Assets\images\icons\table\img-stand-down.gif" />
+    <Content Include="Assets\images\icons\table\img-stand-up.gif" />
+    <Content Include="Assets\images\landing\bck\avatar.png" />
+    <Content Include="Assets\images\landing\bck\top-mobile.png" />
+    <Content Include="Assets\images\landing\bck\top.png" />
+    <Content Include="Assets\images\landing\curitiba-criativa\avatar.png" />
+    <Content Include="Assets\images\landing\curitiba-criativa\top-mobile.jpg" />
+    <Content Include="Assets\images\landing\curitiba-criativa\top.jpg" />
+    <Content Include="Assets\images\landing\desafiando-chefs\avatar.png" />
+    <Content Include="Assets\images\landing\desafiando-chefs\bg.png" />
+    <Content Include="Assets\images\landing\desafiando-chefs\top-mobile.jpg" />
+    <Content Include="Assets\images\landing\desafiando-chefs\top.jpg" />
+    <Content Include="Assets\images\landing\educacao-financeira\avatar.png" />
+    <Content Include="Assets\images\landing\educacao-financeira\top-mobile.gif" />
+    <Content Include="Assets\images\landing\educacao-financeira\top.gif" />
+    <Content Include="Assets\images\landing\farol-do-saber-e-inovacao\avatar.png" />
+    <Content Include="Assets\images\landing\farol-do-saber-e-inovacao\top-mobile.gif" />
+    <Content Include="Assets\images\landing\farol-do-saber-e-inovacao\top.gif" />
+    <Content Include="Assets\images\landing\massa-na-russia\avatar.png" />
+    <Content Include="Assets\images\landing\massa-na-russia\banners-tabela.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\bg-black-small.png" />
+    <Content Include="Assets\images\landing\massa-na-russia\bg-black.png" />
+    <Content Include="Assets\images\landing\massa-na-russia\bg-regua-massa-na-russia.png" />
+    <Content Include="Assets\images\landing\massa-na-russia\logo-massa-na-russia.png" />
+    <Content Include="Assets\images\landing\massa-na-russia\massa-na-russia.png" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\curitiba\ana-fhernandes.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\curitiba\eduardo-scola.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\curitiba\eleandro-passaia.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\curitiba\et.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\curitiba\kelly-pedrita.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\curitiba\mauro-mueller.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\curitiba\thays-beleze.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\londrina\derri.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\londrina\fiori-luiz.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\londrina\marcio-alcantara.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\ponta-grossa\candido-neto.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\ponta-grossa\jocelito.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\ponta-grossa\priscila-koteski.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\participantes\ponta-grossa\william-batista.jpg" />
+    <Content Include="Assets\images\landing\massa-na-russia\patrocinio\logo-ford-center.png" />
+    <Content Include="Assets\images\landing\massa-na-russia\patrocinio\logo-multimoney.png" />
+    <Content Include="Assets\images\landing\massa-na-russia\patrocinio\logo-picnic.png" />
+    <Content Include="Assets\images\landing\massa-na-russia\patrocinio\logo-worldtour.png" />
+    <Content Include="Assets\images\landing\massa-na-russia\patrocinio\_logo-ford-center.png" />
+    <Content Include="Assets\images\landing\natal-de-luz\avatar.jpg" />
+    <Content Include="Assets\images\landing\natal-de-luz\bg.jpg" />
+    <Content Include="Assets\images\landing\natal-de-luz\loading.gif" />
+    <Content Include="Assets\images\landing\natal-de-luz\logo.png" />
+    <Content Include="Assets\images\landing\transmita-calor\avatar.png" />
+    <Content Include="Assets\images\landing\transmita-calor\top-mobile.gif" />
+    <Content Include="Assets\images\landing\transmita-calor\top.gif" />
+    <Content Include="Assets\images\landing\viaje-pelos-campos-gerais\avatar.png" />
+    <Content Include="Assets\images\landing\viaje-pelos-campos-gerais\top-mobile.gif" />
+    <Content Include="Assets\images\landing\viaje-pelos-campos-gerais\top.gif" />
+    <Content Include="Assets\images\logos\clientes\unilutus.png" />
+    <Content Include="Assets\images\logos\desafiando-chefs.png" />
+    <Content Include="Assets\images\logos\grupo-massa-vert-gray.svg" />
+    <Content Include="Assets\images\logos\grupo-massa-vert.svg" />
+    <Content Include="Assets\images\logos\m.svg" />
+    <Content Include="Assets\images\logos\massa-fm-horiz-gray.svg" />
+    <Content Include="Assets\images\logos\massa-fm-horiz.svg" />
+    <Content Include="Assets\images\logos\massa-fm-vert-gray.svg" />
+    <Content Include="Assets\images\logos\massa-fm-vert.svg" />
+    <Content Include="Assets\images\logos\massa-multidigital-horiz-gray.svg" />
+    <Content Include="Assets\images\logos\massa-multidigital-horiz.svg" />
+    <Content Include="Assets\images\logos\massa-multidigital-vert-gray.svg" />
+    <Content Include="Assets\images\logos\massa-multidigital-vert.svg" />
+    <Content Include="Assets\images\logos\massa-news-250x40.png" />
+    <Content Include="Assets\images\logos\massa-news-gray-header.svg" />
+    <Content Include="Assets\images\logos\massa-news-gray.svg" />
+    <Content Include="Assets\images\logos\massa-news.png" />
+    <Content Include="Assets\images\logos\massa-news.svg" />
+    <Content Include="Assets\images\logos\massa-play-horiz-gray.svg" />
+    <Content Include="Assets\images\logos\massa-play-horiz.svg" />
+    <Content Include="Assets\images\logos\massa-play-vert-gray.svg" />
+    <Content Include="Assets\images\logos\massa-play-vert.svg" />
+    <Content Include="Assets\images\logos\multimoney.png" />
+    <Content Include="Assets\images\logos\negocios-da-terra-horiz.svg" />
+    <Content Include="Assets\images\logos\rede-massa-horiz-gray.svg" />
+    <Content Include="Assets\images\logos\rede-massa-horiz.svg" />
+    <Content Include="Assets\images\logos\rede-massa-vert-gray.svg" />
+    <Content Include="Assets\images\logos\rede-massa-vert.svg" />
+    <Content Include="Assets\images\logos\sprite-logos-grupo-massa-small.png" />
+    <Content Include="Assets\images\logos\sprite-logos-grupo-massa.png" />
+    <Content Include="Assets\images\logos\tabela-facil.gif" />
+    <Content Include="Assets\images\logos\where-curitiba-horiz-gray.svg" />
+    <Content Include="Assets\images\logos\where-curitiba-horiz.png" />
+    <Content Include="Assets\images\logos\where-curitiba-horiz.svg" />
+    <Content Include="Assets\images\logos\where-curitiba-vert-gray.svg" />
+    <Content Include="Assets\images\logos\where-curitiba-vert.svg" />
+    <Content Include="Assets\images\logos\_negocios-da-terra-horiz.svg" />
+    <Content Include="Assets\images\placeholders\avatar-logo.png" />
+    <Content Include="Assets\images\placeholders\avatar.jpg" />
+    <Content Include="Assets\images\placeholders\no-avatar.png" />
+    <Content Include="Assets\images\publicidade\horizontal.jpg" />
+    <Content Include="Assets\images\publicidade\quadrado.jpg" />
+    <Content Include="Assets\images\publicidade\quadrado2.jpg" />
+    <Content Include="Assets\images\publicidade\vertical.jpg" />
+    <Content Include="Assets\images\quiz-unifil\avatar-old.jpg" />
+    <Content Include="Assets\images\quiz-unifil\avatar.jpg" />
+    <Content Include="Assets\images\quiz-unifil\bg-quiz-unifil.jpg" />
+    <Content Include="Assets\images\share\aspas-direita.gif" />
+    <Content Include="Assets\images\share\aspas-esquerda.gif" />
+    <Content Include="Assets\images\share\botao.gif" />
+    <Content Include="Assets\images\share\logo-massa-news.png" />
+    <Content Include="Assets\images\slider\ajax-loader.gif" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-123.jpg" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-124.jpg" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-125.jpg" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-126.jpg" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-127.jpg" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-128.jpg" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-129.jpg" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-130.jpg" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-131.jpg" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-132.jpg" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-133.jpg" />
+    <Content Include="Assets\images\where\edicoes\where-curitiba-134.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\avatar.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\bg.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\jurados\adriano-catenzaro.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\jurados\daniel-sorrentino.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\jurados\eloi-zanetti.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\loading.gif" />
+    <Content Include="Assets\images\where\where-15-anos\logo.png" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\large\1.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\large\2.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\large\3.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\large\4.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\large\5.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\large\6.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\large\7.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\large\8.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\medium\10.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\small\10.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\xlarge\10.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\xsmall\10.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\xxlarge\10.jpg" />
+    <Content Include="Assets\images\where\where-15-anos\mosaic\xxxlarge\10.jpg" />
+    <Content Include="Assets\scripts\application\main.js" />
+    <Content Include="Assets\scripts\application\track.js" />
+    <Content Include="Assets\scripts\application\web.js" />
+    <Content Include="Assets\scripts\components\accordion.js" />
+    <Content Include="Assets\scripts\components\chart.js" />
+    <Content Include="Assets\scripts\components\gallery.js" />
+    <Content Include="Assets\scripts\components\header.js" />
+    <Content Include="Assets\scripts\components\modal.js" />
+    <Content Include="Assets\scripts\components\nav-dropdown.js" />
+    <Content Include="Assets\scripts\components\nav-main.js" />
+    <Content Include="Assets\scripts\components\sliders.js" />
+    <Content Include="Assets\scripts\components\table.js" />
+    <Content Include="Assets\scripts\components\tabs.js" />
+    <Content Include="Assets\scripts\modules\disqus.js" />
+    <Content Include="Assets\scripts\modules\infinityscroll.js" />
+    <Content Include="Assets\scripts\natal-de-luz\jquery.nanogallery.min.js" />
+    <Content Include="Assets\scripts\news\news.js" />
+    <Content Include="Assets\scripts\quiz-unifil\quiz-unifil.js" />
+    <Content Include="Assets\scripts\util\apply-external-link.js" />
+    <Content Include="Assets\scripts\util\responsive-images.js" />
+    <Content Include="Assets\scripts\vendor\fastclick.js" />
+    <Content Include="Assets\scripts\vendor\jquery-menu.min.js" />
+    <Content Include="Assets\scripts\vendor\jquery.js" />
+    <Content Include="Assets\scripts\vendor\jquery.lazyload.js" />
+    <Content Include="Assets\scripts\vendor\jquery.mask.min.js" />
+    <Content Include="Assets\scripts\vendor\jquery.nanoscroller.min.js" />
+    <Content Include="Assets\scripts\vendor\jquery.ticker.min.js" />
+    <Content Include="Assets\scripts\vendor\lightgallery.js" />
+    <Content Include="Assets\scripts\vendor\slick.min.js" />
+    <Content Include="Assets\scripts\videos\video-category.js" />
+    <Content Include="Assets\scripts\videos\video.js" />
+    <Content Include="Assets\scripts\where-15-anos\jquery.nanogallery.min.js" />
+    <Content Include="Assets\styles\post-content.css" />
+    <Content Include="Assets\styles\README.txt" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\lg.svg" />
+    <Content Include="Content\fonts\nano\nano_icon_font3.svg" />
+    <Content Include="Content\fonts\slick.svg" />
+    <Content Include="Content\fonts\weathericons\weathericons-regular-webfont.svg" />
+    <Content Include="Content\images\avatar\blogs\afonso-candido-neto.jpg" />
+    <Content Include="Content\images\avatar\blogs\airton-jose.jpg" />
+    <Content Include="Content\images\avatar\blogs\antonio-carlos.jpg" />
+    <Content Include="Content\images\avatar\blogs\bau-digital.jpg" />
+    <Content Include="Content\images\avatar\blogs\busao-curitiba.jpg" />
+    <Content Include="Content\images\avatar\blogs\cleo-mattos.jpg" />
+    <Content Include="Content\images\avatar\blogs\desavesso.jpg" />
+    <Content Include="Content\images\avatar\blogs\edgar-hampf.jpg" />
+    <Content Include="Content\images\avatar\blogs\empreendedorismo-e-inovacao.jpg" />
+    <Content Include="Content\images\avatar\blogs\eugenio-stefanelo.jpg" />
+    <Content Include="Content\images\avatar\blogs\fernando-ripoli.jpg" />
+    <Content Include="Content\images\avatar\blogs\fiama-pereira.jpg" />
+    <Content Include="Content\images\avatar\blogs\fiori-luiz.jpg" />
+    <Content Include="Content\images\avatar\blogs\flavio-ricco.jpg" />
+    <Content Include="Content\images\avatar\blogs\futebol-total.jpg" />
+    <Content Include="Content\images\avatar\blogs\hallorino-jr.jpg" />
+    <Content Include="Content\images\avatar\blogs\investimento-com-vc.jpg" />
+    <Content Include="Content\images\avatar\blogs\jose-pedriali.jpg" />
+    <Content Include="Content\images\avatar\blogs\karlos-kohlbach.jpg" />
+    <Content Include="Content\images\avatar\blogs\leao-lobo.jpg" />
+    <Content Include="Content\images\avatar\blogs\mauro-muller.jpg" />
+    <Content Include="Content\images\avatar\blogs\murilo-gatti.jpg" />
+    <Content Include="Content\images\avatar\blogs\octavio-henrique-rossi.jpg" />
+    <Content Include="Content\images\avatar\blogs\pai-do-ninao.jpg" />
+    <Content Include="Content\images\avatar\blogs\plantao-190.jpg" />
+    <Content Include="Content\images\avatar\blogs\prestando-contas.jpg" />
+    <Content Include="Content\images\avatar\blogs\ratinho.jpg" />
+    <Content Include="Content\images\avatar\blogs\sandro-rodrigues.jpg" />
+    <Content Include="Content\images\avatar\blogs\saude-e-bem-estar.jpg" />
+    <Content Include="Content\images\avatar\blogs\seu-direito.jpg" />
+    <Content Include="Content\images\avatar\blogs\vei-na-boa.jpg" />
+    <Content Include="Content\images\avatar\editorial\avatar-blogs.jpg" />
+    <Content Include="Content\images\avatar\editorial\avatar-entretenimento.jpg" />
+    <Content Include="Content\images\avatar\editorial\avatar-esportes.jpg" />
+    <Content Include="Content\images\avatar\editorial\avatar-noticias.jpg" />
+    <Content Include="Content\images\avatar\editorial\avatar-viajar-e-massa.jpg" />
+    <Content Include="Content\images\avatar\editorial\avatar-videos.jpg" />
+    <Content Include="Content\images\avatar\editorial\avatar-where-curitiba.jpg" />
+    <Content Include="Content\images\banners\avatar-massanews.jpg" />
+    <Content Include="Content\images\banners\avatar-placar-impeachment-senado.jpg" />
+    <Content Include="Content\images\banners\avatar-placar-impeachment.jpg" />
+    <Content Include="Content\images\banners\capa-placar-impeachment-senado.jpg" />
+    <Content Include="Content\images\banners\capa-placar-impeachment.jpg" />
+    <Content Include="Content\images\banners\envie-sua-noticia-light.jpg" />
+    <Content Include="Content\images\banners\placar-impeachment-mobile.jpg" />
+    <Content Include="Content\images\banners\tabela-paranaense-2016.jpg" />
+    <Content Include="Content\images\campanhas\toyota\corolla.png" />
+    <Content Include="Content\images\campanhas\toyota\outdoor-1400x550.gif" />
+    <Content Include="Content\images\campanhas\toyota\outdoor-mobile-300x200.gif" />
+    <Content Include="Content\images\forums\bg-forums-2.jpg" />
+    <Content Include="Content\images\forums\bg.jpg" />
+    <Content Include="Content\images\forums\logo-comunidades-virtuais.png" />
+    <Content Include="Content\images\icons\shild\sprite-team.png" />
+    <Content Include="Content\images\banners\placar-impeachment.jpg" />
+    <Content Include="Content\images\icons\table\img-sort-asce.gif" />
+    <Content Include="Content\images\icons\table\img-sort-desce.gif" />
+    <Content Include="Content\images\icons\table\img-stand-down.gif" />
+    <Content Include="Content\images\icons\table\img-stand-up.gif" />
+    <Content Include="Content\images\landing\bck\avatar.png" />
+    <Content Include="Content\images\landing\bck\top-mobile.png" />
+    <Content Include="Content\images\landing\bck\top.png" />
+    <Content Include="Content\images\landing\curitiba-criativa\avatar.png" />
+    <Content Include="Content\images\landing\curitiba-criativa\top-mobile.jpg" />
+    <Content Include="Content\images\landing\curitiba-criativa\top.jpg" />
+    <Content Include="Content\images\landing\desafiando-chefs\avatar.png" />
+    <Content Include="Content\images\landing\desafiando-chefs\bg.png" />
+    <Content Include="Content\images\landing\desafiando-chefs\top-mobile.jpg" />
+    <Content Include="Content\images\landing\desafiando-chefs\top.jpg" />
+    <Content Include="Content\images\landing\educacao-financeira\avatar.png" />
+    <Content Include="Content\images\landing\educacao-financeira\top-mobile.gif" />
+    <Content Include="Content\images\landing\educacao-financeira\top.gif" />
+    <Content Include="Content\images\landing\farol-do-saber-e-inovacao\avatar.png" />
+    <Content Include="Content\images\landing\farol-do-saber-e-inovacao\top-mobile.gif" />
+    <Content Include="Content\images\landing\farol-do-saber-e-inovacao\top.gif" />
+    <Content Include="Content\images\landing\massa-na-russia\avatar.png" />
+    <Content Include="Content\images\landing\massa-na-russia\banners-tabela.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\bg-black-small.png" />
+    <Content Include="Content\images\landing\massa-na-russia\bg-black.png" />
+    <Content Include="Content\images\landing\massa-na-russia\bg-regua-massa-na-russia.png" />
+    <Content Include="Content\images\landing\massa-na-russia\logo-massa-na-russia.png" />
+    <Content Include="Content\images\landing\massa-na-russia\massa-na-russia.png" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\curitiba\ana-fhernandes.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\curitiba\eduardo-scola.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\curitiba\eleandro-passaia.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\curitiba\et.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\curitiba\kelly-pedrita.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\curitiba\mauro-mueller.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\curitiba\thays-beleze.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\londrina\derri.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\londrina\fiori-luiz.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\londrina\marcio-alcantara.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\ponta-grossa\candido-neto.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\ponta-grossa\jocelito.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\ponta-grossa\priscila-koteski.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\participantes\ponta-grossa\william-batista.jpg" />
+    <Content Include="Content\images\landing\massa-na-russia\patrocinio\logo-ford-center.png" />
+    <Content Include="Content\images\landing\massa-na-russia\patrocinio\logo-multimoney.png" />
+    <Content Include="Content\images\landing\massa-na-russia\patrocinio\logo-picnic.png" />
+    <Content Include="Content\images\landing\massa-na-russia\patrocinio\logo-worldtour.png" />
+    <Content Include="Content\images\landing\massa-na-russia\patrocinio\_logo-ford-center.png" />
+    <Content Include="Content\images\landing\natal-de-luz\avatar.jpg" />
+    <Content Include="Content\images\landing\natal-de-luz\bg.jpg" />
+    <Content Include="Content\images\landing\natal-de-luz\loading.gif" />
+    <Content Include="Content\images\landing\natal-de-luz\logo.png" />
+    <Content Include="Content\images\landing\transmita-calor\avatar.png" />
+    <Content Include="Content\images\landing\transmita-calor\top-mobile.gif" />
+    <Content Include="Content\images\landing\transmita-calor\top.gif" />
+    <Content Include="Content\images\landing\viaje-pelos-campos-gerais\avatar.png" />
+    <Content Include="Content\images\landing\viaje-pelos-campos-gerais\top-mobile.gif" />
+    <Content Include="Content\images\landing\viaje-pelos-campos-gerais\top.gif" />
+    <Content Include="Content\images\logos\clientes\unilutus.png" />
+    <Content Include="Content\images\logos\desafiando-chefs.png" />
+    <Content Include="Content\images\logos\grupo-massa-vert-gray.svg" />
+    <Content Include="Content\images\logos\grupo-massa-vert.svg" />
+    <Content Include="Content\images\logos\m.svg" />
+    <Content Include="Content\images\logos\massa-fm-horiz-gray.svg" />
+    <Content Include="Content\images\logos\massa-fm-vert-gray.svg" />
+    <Content Include="Content\images\logos\massa-multidigital-horiz-gray.svg" />
+    <Content Include="Content\images\logos\massa-multidigital-horiz.svg" />
+    <Content Include="Content\images\logos\massa-multidigital-vert-gray.svg" />
+    <Content Include="Content\images\logos\massa-multidigital-vert.svg" />
+    <Content Include="Content\images\logos\massa-news-250x40.png" />
+    <Content Include="Content\images\logos\massa-news-gray-header.svg" />
+    <Content Include="Content\images\logos\massa-news-gray.svg" />
+    <Content Include="Content\images\logos\massa-play-horiz-gray.svg" />
+    <Content Include="Content\images\logos\massa-play-vert-gray.svg" />
+    <Content Include="Content\images\logos\multimoney.png" />
+    <Content Include="Content\images\logos\negocios-da-terra-horiz.svg" />
+    <Content Include="Content\images\logos\rede-massa-horiz-gray.svg" />
+    <Content Include="Content\images\logos\rede-massa-vert-gray.svg" />
+    <Content Include="Content\images\logos\tabela-facil.gif" />
+    <Content Include="Content\images\logos\where-curitiba-horiz-gray.svg" />
+    <Content Include="Content\images\logos\where-curitiba-horiz.png" />
+    <Content Include="Content\images\logos\where-curitiba-horiz.svg" />
+    <Content Include="Content\images\logos\where-curitiba-vert-gray.svg" />
+    <Content Include="Content\images\logos\where-curitiba-vert.svg" />
+    <Content Include="Content\images\logos\_negocios-da-terra-horiz.svg" />
+    <Content Include="Content\images\quiz-unifil\avatar-old.jpg" />
+    <Content Include="Content\images\quiz-unifil\avatar.jpg" />
+    <Content Include="Content\images\quiz-unifil\bg-quiz-unifil.jpg" />
+    <Content Include="Content\images\share\aspas-direita.gif" />
+    <Content Include="Content\images\share\aspas-esquerda.gif" />
+    <Content Include="Content\images\share\botao.gif" />
+    <Content Include="Content\images\share\logo-massa-news.png" />
+    <Content Include="Content\images\slider\ajax-loader.gif" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-123.jpg" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-124.jpg" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-125.jpg" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-126.jpg" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-127.jpg" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-128.jpg" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-129.jpg" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-130.jpg" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-131.jpg" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-132.jpg" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-133.jpg" />
+    <Content Include="Content\images\where\edicoes\where-curitiba-134.jpg" />
+    <Content Include="Content\images\where\where-15-anos\avatar.jpg" />
+    <Content Include="Content\images\where\where-15-anos\bg.jpg" />
+    <Content Include="Content\images\where\where-15-anos\jurados\adriano-catenzaro.jpg" />
+    <Content Include="Content\images\where\where-15-anos\jurados\daniel-sorrentino.jpg" />
+    <Content Include="Content\images\where\where-15-anos\jurados\eloi-zanetti.jpg" />
+    <Content Include="Content\images\where\where-15-anos\loading.gif" />
+    <Content Include="Content\images\where\where-15-anos\logo.png" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\large\1.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\large\2.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\large\3.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\large\4.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\large\5.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\large\6.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\large\7.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\large\8.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\medium\10.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\small\10.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\xlarge\10.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\xsmall\10.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\xxlarge\10.jpg" />
+    <Content Include="Content\images\where\where-15-anos\mosaic\xxxlarge\10.jpg" />
+    <Content Include="Content\styles\application-1.css" />
+    <Content Include="Content\styles\post-content.css" />
+    <Content Include="Assets\styles\components\_sidebar.scss" />
+    <Content Include="Assets\fonts\lg.eot" />
+    <Content Include="Assets\fonts\lg.ttf" />
+    <Content Include="Assets\fonts\lg.woff" />
+    <Content Include="Assets\styles\components\_lightgallery.scss" />
+    <Content Include="Content\fonts\lg.eot" />
+    <Content Include="Content\fonts\lg.ttf" />
+    <Content Include="Content\fonts\lg.woff" />
+    <Content Include="Assets\fonts\font-awesome\fontawesome-webfont.eot" />
+    <Content Include="Assets\fonts\font-awesome\fontawesome-webfont.ttf" />
+    <Content Include="Assets\fonts\font-awesome\fontawesome-webfont.woff" />
+    <Content Include="Assets\fonts\font-awesome\fontawesome-webfont.woff2" />
+    <Content Include="Assets\fonts\font-awesome\FontAwesome.otf" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\font-awesome\FontAwesome.otf" />
+    <Content Include="Assets\styles\base\font-awesome\_animated.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_bordered-pulled.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_core.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_custom.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_fixed-width.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_font-awesome.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_icons.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_larger.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_list.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_mixins.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_path.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_rotated-flipped.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_screen-reader.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_stacked.scss" />
+    <Content Include="Assets\styles\base\font-awesome\_variables.scss" />
+    <Content Include="Content\styles\video.css" />
+    <Content Include="robots-prod.txt" />
+    <Content Include="Views\Roteiros\_EstablishmentItem.cshtml" />
+    <Content Include="Views\Roteiros\_FixedSidebar.cshtml" />
+    <Content Include="Views\Shared\_AdCabecalhoGrande.cshtml" />
+    <Content Include="Views\Shared\_DestaqueComTags.cshtml" />
+    <Content Include="Views\browserconfig.xml" />
+    <Content Include="Content\fonts\font-icon\demo-files\demo.css" />
+    <Content Include="Content\fonts\font-icon\demo-files\demo.js" />
+    <Content Include="Content\fonts\font-icon\demo.html" />
+    <Content Include="Content\fonts\font-icon\fonts\icomoon.svg" />
+    <Content Include="Content\fonts\font-icon\Read Me.txt" />
+    <Content Include="Content\fonts\font-icon\style.css" />
+    <Content Include="Content\fonts\icomoon.svg" />
+    <Content Include="Content\fonts\ProximaNova-Bold.svg" />
+    <Content Include="Content\fonts\ProximaNova-BoldIt.svg" />
+    <Content Include="Content\fonts\ProximaNova-Regular.svg" />
+    <Content Include="Content\fonts\ProximaNova-RegularIt.svg" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="Content\images\banners\envie-sua-noticia.png" />
+    <Content Include="Content\images\banners\sobre-nos.jpg" />
+    <Content Include="Content\images\banners\video-massa-news.jpg" />
+    <Content Include="Content\images\favicons\android-chrome-144x144.png" />
+    <Content Include="Content\images\favicons\android-chrome-192x192.png" />
+    <Content Include="Content\images\favicons\android-chrome-36x36.png" />
+    <Content Include="Content\images\favicons\android-chrome-48x48.png" />
+    <Content Include="Content\images\favicons\android-chrome-72x72.png" />
+    <Content Include="Content\images\favicons\android-chrome-96x96.png" />
+    <Content Include="Content\images\favicons\apple-touch-icon-114x114.png" />
+    <Content Include="Content\images\favicons\apple-touch-icon-120x120.png" />
+    <Content Include="Content\images\favicons\apple-touch-icon-144x144.png" />
+    <Content Include="Content\images\favicons\apple-touch-icon-152x152.png" />
+    <Content Include="Content\images\favicons\apple-touch-icon-180x180.png" />
+    <Content Include="Content\images\favicons\apple-touch-icon-57x57.png" />
+    <Content Include="Content\images\favicons\apple-touch-icon-60x60.png" />
+    <Content Include="Content\images\favicons\apple-touch-icon-72x72.png" />
+    <Content Include="Content\images\favicons\apple-touch-icon-76x76.png" />
+    <Content Include="Content\images\favicons\apple-touch-icon-precomposed.png" />
+    <Content Include="Content\images\favicons\apple-touch-icon.png" />
+    <Content Include="Content\images\favicons\favicon-16x16.png" />
+    <Content Include="Content\images\favicons\favicon-32x32.png" />
+    <Content Include="Content\images\favicons\favicon-96x96.png" />
+    <Content Include="Content\images\favicons\mstile-144x144.png" />
+    <Content Include="Content\images\favicons\mstile-150x150.png" />
+    <Content Include="Content\images\favicons\mstile-310x150.png" />
+    <Content Include="Content\images\favicons\mstile-310x310.png" />
+    <Content Include="Content\images\favicons\mstile-70x70.png" />
+    <Content Include="Content\images\favicons\safari-pinned-tab.svg" />
+    <Content Include="Content\images\icons\font\arrow-bottom.svg" />
+    <Content Include="Content\images\icons\font\arrow-left.svg" />
+    <Content Include="Content\images\icons\font\arrow-right.svg" />
+    <Content Include="Content\images\icons\font\arrow-top.svg" />
+    <Content Include="Content\images\icons\font\close.svg" />
+    <Content Include="Content\images\icons\font\commentary.svg" />
+    <Content Include="Content\images\icons\font\drag.svg" />
+    <Content Include="Content\images\icons\font\facebook.svg" />
+    <Content Include="Content\images\icons\font\gallery.svg" />
+    <Content Include="Content\images\icons\font\googleplus.svg" />
+    <Content Include="Content\images\icons\font\guia-massa.svg" />
+    <Content Include="Content\images\icons\font\image.svg" />
+    <Content Include="Content\images\icons\font\instagram.svg" />
+    <Content Include="Content\images\icons\font\list.svg" />
+    <Content Include="Content\images\icons\font\mail.svg" />
+    <Content Include="Content\images\icons\font\minus.svg" />
+    <Content Include="Content\images\icons\font\next.svg" />
+    <Content Include="Content\images\icons\font\play.svg" />
+    <Content Include="Content\images\icons\font\plus.svg" />
+    <Content Include="Content\images\icons\font\pointer-bottom.svg" />
+    <Content Include="Content\images\icons\font\pointer-left.svg" />
+    <Content Include="Content\images\icons\font\pointer-right.svg" />
+    <Content Include="Content\images\icons\font\pointer-top.svg" />
+    <Content Include="Content\images\icons\font\prev.svg" />
+    <Content Include="Content\images\icons\font\search.svg" />
+    <Content Include="Content\images\icons\font\share.svg" />
+    <Content Include="Content\images\icons\font\twitter.svg" />
+    <Content Include="Content\images\icons\font\whats.svg" />
+    <Content Include="Content\images\icons\font\youtube.svg" />
+    <Content Include="Content\images\icons\guia-massa.svg" />
+    <Content Include="Content\images\icons\sprite-servicos.png" />
+    <Content Include="Content\images\logos\massa-news.png" />
+    <Content Include="Content\images\logos\massa-news.svg" />
+    <Content Include="Content\images\logos\sprite-logos-grupo-massa-small.png" />
+    <Content Include="Content\images\logos\sprite-logos-grupo-massa.png" />
+    <Content Include="Content\images\logos\massa-fm-horiz.svg" />
+    <Content Include="Content\images\logos\massa-fm-vert.svg" />
+    <Content Include="Content\images\logos\massa-play-horiz.svg" />
+    <Content Include="Content\images\logos\massa-play-vert.svg" />
+    <Content Include="Content\images\logos\rede-massa-horiz.svg" />
+    <Content Include="Content\images\logos\rede-massa-vert.svg" />
+    <Content Include="Content\images\placeholders\avatar.jpg" />
+    <Content Include="Content\images\placeholders\no-avatar.png" />
+    <Content Include="Content\images\publicidade\horizontal.jpg" />
+    <Content Include="Content\images\publicidade\quadrado.jpg" />
+    <Content Include="Content\images\publicidade\quadrado2.jpg" />
+    <Content Include="Content\images\publicidade\vertical.jpg" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Views\Shared\_ResumoTabela.cshtml" />
+    <Content Include="Views\Shared\_SendNews.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="Content\fonts\font-icon\fonts\icomoon.eot" />
+    <Content Include="Content\fonts\font-icon\fonts\icomoon.ttf" />
+    <Content Include="Content\fonts\font-icon\fonts\icomoon.woff" />
+    <Content Include="Content\fonts\font-icon\selection.json" />
+    <Content Include="Content\fonts\icomoon.eot" />
+    <Content Include="Content\fonts\icomoon.ttf" />
+    <Content Include="Content\fonts\icomoon.woff" />
+    <Content Include="Content\fonts\ProximaNova-Bold.eot" />
+    <Content Include="Content\fonts\ProximaNova-Bold.otf" />
+    <Content Include="Content\fonts\ProximaNova-Bold.ttf" />
+    <Content Include="Content\fonts\ProximaNova-Bold.woff" />
+    <Content Include="Content\fonts\ProximaNova-BoldIt.eot" />
+    <Content Include="Content\fonts\ProximaNova-BoldIt.otf" />
+    <Content Include="Content\fonts\ProximaNova-BoldIt.ttf" />
+    <Content Include="Content\fonts\ProximaNova-BoldIt.woff" />
+    <Content Include="Content\fonts\ProximaNova-Regular.eot" />
+    <Content Include="Content\fonts\ProximaNova-Regular.otf" />
+    <Content Include="Content\fonts\ProximaNova-Regular.ttf" />
+    <Content Include="Content\fonts\ProximaNova-Regular.woff" />
+    <Content Include="Content\fonts\ProximaNova-RegularIt.eot" />
+    <Content Include="Content\fonts\ProximaNova-RegularIt.otf" />
+    <Content Include="Content\fonts\ProximaNova-RegularIt.ttf" />
+    <Content Include="Content\fonts\ProximaNova-RegularIt.woff" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.woff2" />
+    <Content Include="Assets\fonts\.gitkeep" />
+    <Content Include="Assets\fonts\font-icon\fonts\icomoon.eot" />
+    <Content Include="Assets\fonts\font-icon\fonts\icomoon.ttf" />
+    <Content Include="Assets\fonts\font-icon\fonts\icomoon.woff" />
+    <Content Include="Assets\fonts\font-icon\selection.json" />
+    <Content Include="Assets\fonts\icomoon.eot" />
+    <Content Include="Assets\fonts\icomoon.ttf" />
+    <Content Include="Assets\fonts\icomoon.woff" />
+    <Content Include="Assets\fonts\ProximaNova-Bold.eot" />
+    <Content Include="Assets\fonts\ProximaNova-Bold.otf" />
+    <Content Include="Assets\fonts\ProximaNova-Bold.ttf" />
+    <Content Include="Assets\fonts\ProximaNova-Bold.woff" />
+    <Content Include="Assets\fonts\ProximaNova-BoldIt.eot" />
+    <Content Include="Assets\fonts\ProximaNova-BoldIt.otf" />
+    <Content Include="Assets\fonts\ProximaNova-BoldIt.ttf" />
+    <Content Include="Assets\fonts\ProximaNova-BoldIt.woff" />
+    <Content Include="Assets\fonts\ProximaNova-Regular.eot" />
+    <Content Include="Assets\fonts\ProximaNova-Regular.otf" />
+    <Content Include="Assets\fonts\ProximaNova-Regular.ttf" />
+    <Content Include="Assets\fonts\ProximaNova-Regular.woff" />
+    <Content Include="Assets\fonts\ProximaNova-RegularIt.eot" />
+    <Content Include="Assets\fonts\ProximaNova-RegularIt.otf" />
+    <Content Include="Assets\fonts\ProximaNova-RegularIt.ttf" />
+    <Content Include="Assets\fonts\ProximaNova-RegularIt.woff" />
+    <Content Include="Assets\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="Assets\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="Assets\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="Assets\fonts\weathericons-regular-webfont.woff2" />
+    <Content Include="Assets\styles\base\_basic.scss" />
+    <Content Include="Assets\styles\base\_breakpoint.scss" />
+    <Content Include="Assets\styles\base\_font-icons.scss" />
+    <Content Include="Assets\styles\base\_grid.scss" />
+    <Content Include="Assets\styles\base\_reset.scss" />
+    <Content Include="Assets\styles\base\_theme.scss" />
+    <Content Include="Assets\styles\base\_typography.scss" />
+    <Content Include="Assets\styles\components\_accordion.scss" />
+    <Content Include="Assets\styles\components\_author-profile.scss" />
+    <Content Include="Assets\styles\components\_autores.scss" />
+    <Content Include="Assets\styles\components\_banner.scss" />
+    <Content Include="Assets\styles\components\_button.scss" />
+    <Content Include="Assets\styles\components\_category-title.scss" />
+    <Content Include="Assets\styles\components\_dialog.scss" />
+    <Content Include="Assets\styles\components\_event.scss" />
+    <Content Include="Assets\styles\components\_fixed-sidebar.scss" />
+    <Content Include="Assets\styles\components\_footer.scss" />
+    <Content Include="Assets\styles\components\_gallery.scss" />
+    <Content Include="Assets\styles\components\_header.scss" />
+    <Content Include="Assets\styles\components\_headline-list.scss" />
+    <Content Include="Assets\styles\components\_headline.scss" />
+    <Content Include="Assets\styles\components\_headline__grids.scss" />
+    <Content Include="Assets\styles\components\_links-grupo.scss" />
+    <Content Include="Assets\styles\components\_loader.scss" />
+    <Content Include="Assets\styles\components\_modal.scss" />
+    <Content Include="Assets\styles\components\_nav-aux.scss" />
+    <Content Include="Assets\styles\components\_nav-dropdown.scss" />
+    <Content Include="Assets\styles\components\_nav-main.scss" />
+    <Content Include="Assets\styles\components\_nav-topicos.scss" />
+    <Content Include="Assets\styles\components\_nav.scss" />
+    <Content Include="Assets\styles\components\_newsletter.scss" />
+    <Content Include="Assets\styles\components\_pagination.scss" />
+    <Content Include="Assets\styles\components\_post.scss" />
+    <Content Include="Assets\styles\components\_post__content.scss" />
+    <Content Include="Assets\styles\components\_publicidade.scss" />
+    <Content Include="Assets\styles\components\_report.scss" />
+    <Content Include="Assets\styles\components\_scrollbar.scss" />
+    <Content Include="Assets\styles\components\_search.scss" />
+    <Content Include="Assets\styles\components\_servicos.scss" />
+    <Content Include="Assets\styles\components\_share.scss" />
+    <Content Include="Assets\styles\components\_slider.scss" />
+    <Content Include="Assets\styles\components\_social-links.scss" />
+    <Content Include="Assets\styles\components\_table.scss" />
+    <Content Include="Assets\styles\components\_tabs.scss" />
+    <Content Include="Assets\styles\pages\_institucionais.scss" />
+    <Content Include="Assets\styles\util\_utility-class.scss" />
+    <Content Include="Assets\styles\vendor\.gitkeep" />
+    <Content Include="Assets\styles\vendor\_normalize.scss" />
+    <Content Include="Assets\fonts\slick.eot" />
+    <Content Include="Assets\fonts\slick.ttf" />
+    <Content Include="Assets\fonts\slick.woff" />
+    <Content Include="Assets\styles\vendor\_jquery.fancybox.scss" />
+    <Content Include="Assets\styles\vendor\_slick-theme.scss" />
+    <Content Include="Assets\styles\vendor\_slick.scss" />
+    <Content Include="Content\fonts\slick.eot" />
+    <Content Include="Content\fonts\slick.ttf" />
+    <Content Include="Content\fonts\slick.woff" />
+    <Content Include="Assets\styles\components\_component-template.scss" />
+    <Content Include="Views\Shared\_Head.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Shared\_Nav.cshtml" />
+    <Content Include="Views\Shared\_Search.cshtml" />
+    <Content Include="manifest.json" />
+    <Content Include="Assets\styles\media\_print.scss" />
+    <Content Include="Assets\styles\video.scss" />
+    <Content Include="Assets\styles\pages\_videos.scss" />
+    <Content Include="Assets\styles\components\_regua.scss" />
+    <Content Include="Assets\fonts\nano\nano_icon_font3.eot" />
+    <Content Include="Assets\fonts\nano\nano_icon_font3.ttf" />
+    <Content Include="Assets\fonts\nano\nano_icon_font3.woff" />
+    <Content Include="Content\fonts\nano\nano_icon_font3.eot" />
+    <Content Include="Content\fonts\nano\nano_icon_font3.ttf" />
+    <Content Include="Content\fonts\nano\nano_icon_font3.woff" />
+    <Content Include="Assets\styles\pages\_newsletter.scss" />
+    <Content Include="Assets\styles\pages\_previsao-do-tempo.scss" />
+    <Content Include="Assets\styles\pages\_roteiros.scss" />
+    <Content Include="Assets\styles\pages\_where-15-anos.scss" />
+    <Content Include="Assets\styles\pages\_quiz-unifil.scss" />
+    <Content Include="Content\fonts\weathericons\weathericons-regular-webfont.eot" />
+    <Content Include="Content\fonts\weathericons\weathericons-regular-webfont.ttf" />
+    <Content Include="Content\fonts\weathericons\weathericons-regular-webfont.woff" />
+    <Content Include="Content\fonts\weathericons\weathericons-regular-webfont.woff2" />
+    <Content Include="Assets\fonts\weathericons\weathericons-regular-webfont.eot" />
+    <Content Include="Assets\fonts\weathericons\weathericons-regular-webfont.ttf" />
+    <Content Include="Assets\fonts\weathericons\weathericons-regular-webfont.woff" />
+    <Content Include="Assets\fonts\weathericons\weathericons-regular-webfont.woff2" />
+    <Content Include="Assets\styles\application-1.scss" />
+    <Content Include="Assets\styles\_core.scss" />
+    <Content Include="Assets\styles\core\_functions.scss" />
+    <Content Include="Assets\styles\core\_mixins.scss" />
+    <Content Include="Assets\styles\core\_variables.scss" />
+    <Content Include="Assets\styles\components\_form.scss" />
+    <Content Include="Assets\styles\components\_headline-full__grids.scss" />
+    <Content Include="Assets\styles\components\_headline-inner-photo.scss" />
+    <Content Include="Assets\styles\base\_weather-icons.scss" />
+    <Content Include="Assets\styles\_application-2.scss" />
+    <Content Include="Assets\styles\pages\_landing.scss" />
+    <Content Include="Assets\styles\components\_breadcrumb.scss" />
+    <Content Include="Assets\styles\components\_dollar.scss" />
+    <Content Include="Assets\styles\components\_comments-box.scss" />
+    <Content Include="Assets\styles\pages\_cotacoes.scss" />
+    <Content Include="Assets\styles\pages\_account.scss" />
+    <Content Include="Assets\styles\pages\_comunidades.scss" />
+    <Content Include="Assets\styles\pages\_natal-de-luz.scss" />
+    <Content Include="Assets\styles\components\_fixed-bar.scss" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\QA.pubxml" />
+    <None Include="Properties\PublishProfiles\PROD.pubxml" />
+    <None Include="Properties\PublishProfiles\PRE.pubxml" />
+    <Content Include="Views\Shared\_Newsletter.cshtml" />
+    <Content Include="Views\Noticias\Index.cshtml" />
+    <Content Include="Views\Noticias\_FixedSidebar.cshtml" />
+    <Content Include="Views\Noticias\_Social.cshtml" />
+    <Content Include="Views\Shared\_Geolocation.cshtml" />
+    <Content Include="Views\Institucional\Sobre.cshtml" />
+    <Content Include="Views\Institucional\Cookies.cshtml" />
+    <Content Include="Views\Institucional\FaleConosco.cshtml" />
+    <Content Include="Views\Institucional\Envie.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
+    <Content Include="Views\Shared\_LastestNews.cshtml" />
+    <Content Include="Views\Shared\_PopularNews.cshtml" />
+    <Content Include="Views\Editorial\Editorial.cshtml" />
+    <Content Include="Views\Categorias\Tag.cshtml" />
+    <Content Include="Views\Blogs\Categoria.cshtml" />
+    <Content Include="Views\Shared\_ErrorsOrSuggestions.cshtml" />
+    <Content Include="Views\Categorias\Parana.cshtml" />
+    <Content Include="Views\Busca\Index.cshtml" />
+    <Content Include="Views\Shared\_Video.cshtml" />
+    <Content Include="Views\Shared\_Galeria.cshtml" />
+    <Content Include="Views\Video\Index.cshtml" />
+    <Content Include="Views\Editorial\Foto.cshtml" />
+    <Content Include="Views\Noticias\_NavItem.cshtml" />
+    <Content Include="Views\Noticias\_NoticiaItem.cshtml" />
+    <Content Include="Views\Categorias\Lastest.cshtml" />
+    <Content Include="Views\Shared\_AdArranhaCeuGrande.cshtml" />
+    <Content Include="Views\Shared\_AdCabecalho.cshtml" />
+    <Content Include="Views\Shared\_AdRetanguloMedio.cshtml" />
+    <Content Include="Views\Shared\_Loading.cshtml" />
+    <Content Include="Views\Mail\SendMailReport.html.cshtml" />
+    <Content Include="Views\Shared\_AdRetanguloMedio-2.cshtml" />
+    <Content Include="Views\Home\_CategoriasDestaques.cshtml" />
+    <Content Include="Views\Shared\_WhereRevista.cshtml" />
+    <Content Include="Views\Shared\_WhereSocial.cshtml" />
+    <Content Include="Views\Shared\Template\_One.cshtml" />
+    <Content Include="Views\Shared\_Dfp.cshtml" />
+    <Content Include="Views\Institucional\PlacarImpeachment.cshtml" />
+    <Content Include="Views\Shared\_AdRetanguloMini-2.cshtml" />
+    <Content Include="Views\Shared\_AdRetanguloMini.cshtml" />
+    <Content Include="Views\Institucional\PlacarImpeachmentSenado.cshtml" />
+    <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\_AmpLayoutPage.cshtml" />
+    <Content Include="Views\Amp\Noticias.cshtml" />
+    <Content Include="Views\Shared\Amp\_Analytics.cshtml" />
+    <Content Include="Views\Shared\Amp\_Content.cshtml" />
+    <Content Include="Views\Shared\Amp\_Head.cshtml" />
+    <Content Include="Views\Shared\Amp\_Header.cshtml" />
+    <Content Include="Views\Shared\Amp\_Schema.cshtml" />
+    <Content Include="Views\Shared\Amp\_Style.cshtml" />
+    <Content Include="Views\Shared\Amp\_Social.cshtml" />
+    <Content Include="Views\Shared\Amp\_Ad.cshtml" />
+    <Content Include="Views\Campeonatos\copa-do-brasil-2016.cshtml" />
+    <Content Include="Views\Campeonatos\libertadores-2016.cshtml" />
+    <Content Include="Views\Shared\_LabelImage.cshtml" />
+    <Content Include="Views\Noticias\_GaleriaInterna.cshtml" />
+    <Content Include="Views\Video\Interna.cshtml" />
+    <Content Include="Views\Video\Categoria.cshtml" />
+    <Content Include="Views\Shared\_DestaqueVideos.cshtml" />
+    <Content Include="Views\Video\_LastNewsItem.cshtml" />
+    <Content Include="Views\Video\_CategoriaSections.cshtml" />
+    <Content Include="Views\Shared\_Comments.cshtml" />
+    <Content Include="Views\Blogs\BlogPosts.cshtml" />
+    <Content Include="Views\Blogs\_Autor.cshtml" />
+    <Content Include="Views\Shared\_ShareEmail.cshtml" />
+    <Content Include="Views\Shared\Template\_Two.cshtml" />
+    <Content Include="Views\Shared\Template\_Three.cshtml" />
+    <Content Include="Views\Home\Regua.cshtml" />
+    <Content Include="Views\Institucional\ATochaOlimpica.cshtml" />
+    <Content Include="Views\Institucional\CalendarioCompeticoes.cshtml" />
+    <Content Include="Views\Institucional\LegadoOlimpico.cshtml" />
+    <Content Include="Views\Shared\_ReguaOlimpiadasLinks.cshtml" />
+    <Content Include="Views\Roteiros\Index.cshtml" />
+    <Content Include="Views\Roteiros\RoteirosCategoria.cshtml" />
+    <Content Include="Views\Roteiros\RoteirosMapa.cshtml" />
+    <Content Include="Views\Shared\Amp\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\Template\_OneFull.cshtml" />
+    <Content Include="Views\Shared\Template\_ThreeFull.cshtml" />
+    <Content Include="Views\Shared\Template\_FourFull.cshtml" />
+    <Content Include="Views\Shared\Template\_Five.cshtml" />
+    <Content Include="Views\Shared\Template\_TwoFull.cshtml" />
+    <Content Include="Views\Shared\_ReguaEleicoesLinks.cshtml" />
+    <Content Include="Views\Roteiros\Categoria.cshtml" />
+    <Content Include="Views\Roteiros\Establishment.cshtml" />
+    <Content Include="Views\Roteiros\_NavItem.cshtml" />
+    <Content Include="Views\Roteiros\_Social.cshtml" />
+    <Content Include="Views\Roteiros\_RoteirosPost.cshtml" />
+    <Content Include="Views\Roteiros\_GaleriaInterna.cshtml" />
+    <Content Include="Views\Institucional\CandidatosEleicoes.cshtml" />
+    <Content Include="Views\Institucional\CalendarioEleicoes.cshtml" />
+    <Content Include="Views\Institucional\WhereAniversario.cshtml" />
+    <Content Include="Views\Promocao\Index.cshtml" />
+    <Content Include="Views\Promocao\Enviar.cshtml" />
+    <Content Include="Views\Promocao\Premiacao.cshtml" />
+    <Content Include="Views\Promocao\Regulamento.cshtml" />
+    <Content Include="Views\Institucional\PrevisaoTempo.cshtml" />
+    <Content Include="Views\Shared\_GtmScript.cshtml" />
+    <Content Include="Views\Shared\_GtmNoScript.cshtml" />
+    <Content Include="Views\Institucional\PrevisaoTempoSimepar.cshtml" />
+    <Content Include="Views\Newsletter\Update.cshtml" />
+    <Content Include="Views\Newsletter\Unsubscribe.cshtml" />
+    <Content Include="Views\Shared\_AdRetanguloMedioFloat.cshtml" />
+    <Content Include="Views\Shared\Template\_Six.cshtml" />
+    <Content Include="Views\Shared\_AdCabecalho-2.cshtml" />
+    <Content Include="Views\Institucional\QuizUnifil.cshtml" />
+    <Content Include="Views\Shared\_AdOutdoor.cshtml" />
+    <Content Include="Views\Categorias\_ListNewsPage.cshtml" />
+    <Content Include="Views\Home\_Blogs.cshtml" />
+    <Content Include="Views\Shared\_AdFullPage.cshtml" />
+    <Content Include="Views\Land\LandBCK.cshtml" />
+    <Content Include="Views\Shared\_AdCabecalhoGrandeFixed.cshtml" />
+    <Content Include="Views\Land\DesafiandoChefs.cshtml" />
+    <Content Include="Views\Cotacoes\Cotacoes.cshtml" />
+    <Content Include="Views\Shared\_DestaqueEditorialPorCategoria.cshtml" />
+    <Content Include="Views\Cotacoes\CotacoesCidade.cshtml" />
+    <Content Include="Views\Cotacoes\CotacoesProduto.cshtml" />
+    <Content Include="Views\Promocao\_HeaderNatalDeLuz.cshtml" />
+    <Content Include="Views\Promocao\IndexRua.cshtml" />
+    <Content Include="Views\Land\FarolDoSaberEInovacao.cshtml" />
+    <Content Include="Views\Categorias\LastestEditorial.cshtml" />
+    <Content Include="Views\Categorias\_ListNewPageHighlight.cshtml" />
+    <Content Include="Views\Shared\_Times.cshtml" />
+    <Content Include="Views\Land\ViajePelosCamposGerais.cshtml" />
+    <Content Include="Views\Shared\_CotacoesDolarMobile.cshtml" />
+    <Content Include="Views\Shared\_CotacoesDolar.cshtml" />
+    <Content Include="Views\Comunidades\Topicos.cshtml" />
+    <Content Include="Views\Shared\Comunidades\_Topicos.cshtml" />
+    <Content Include="Views\Comunidades\TopicosRespostas.cshtml" />
+    <Content Include="Views\Conta\Index.cshtml" />
+    <Content Include="Views\Conta\Cadastro.cshtml" />
+    <Content Include="Views\Conta\Entrar.cshtml" />
+    <Content Include="Views\Conta\Interacoes.cshtml" />
+    <Content Include="Views\Conta\Senha.cshtml" />
+    <Content Include="Views\Comunidades\Pergunta.cshtml" />
+    <Content Include="Views\Shared\_FixedBar.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Conta\_AccountSidebar.cshtml" />
+    <Content Include="Views\Campeonatos\brasileirao-serie-a.cshtml" />
+    <Content Include="Views\Campeonatos\brasileirao-serie-b.cshtml" />
+    <Content Include="Views\Land\EducacaoFinanceira.cshtml" />
+    <Content Include="Views\Land\TransmitaCalor.cshtml" />
+    <Content Include="Views\Campeonatos\massa-news-na-russia.cshtml" />
+    <Content Include="Views\Shared\Template\_Line.cshtml" />
+    <Content Include="Views\Land\MassaNaRussia.cshtml" />
+    <Content Include="Views\Shared\MassaNaRussia\_Header.cshtml" />
+    <Content Include="Views\Land\CuritibaCriativa.cshtml" />
+    <None Include="Web.PRE.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.PROD.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.QA.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="Views\Campeonatos\paranaense.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\AWSSDK.WAF.3.3.1.13\analyzers\dotnet\cs\AWSSDK.WAF.CodeAnalysis.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PROD|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PRE|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <Optimize>true</Optimize>
+    <DefineConstants>
+    </DefineConstants>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="AfterBuild" Condition="$(IsTFSBuild) == 'True'">
+    <ItemGroup>
+      <DeleteAfterBuild Include="$(WebProjectOutputDir)\Web.*.config" />
+    </ItemGroup>
+    <TransformXml Source="Web.config" Transform="$(ProjectConfigTransformFileName)" Destination="$(WebProjectOutputDir)\Web.config" />
+    <Delete Files="@(DeleteAfterBuild)" />
+  </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.0.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.0.1\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+</Project>

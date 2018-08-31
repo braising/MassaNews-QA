@@ -1,0 +1,90 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-search {
+
+}
+
+
+.c-search__input-box {
+  position:relative;
+  margin:0 0 1em;
+  border:1px solid $gray-light;
+  border-radius:$border-radius-large;
+
+  .c-search__input {
+    width:100%;
+    border:0;
+    padding:10px 30px 10px 20px;
+    @include font-size(20px);
+    color:#808080;
+  }
+
+  .c-search__submit {
+    position:absolute;
+    right:10px;
+    top:50%;
+    margin-top:-16px;
+    border:0;
+    background:transparent;
+    color:$brand-primary;
+  }
+}
+
+
+.c-search__term-list {
+
+  li {
+    display:inline-block;
+  }
+
+  a {
+    display:block;
+    margin:0 1em 1em 0;
+    padding:5px 1em;
+    @include font-size(20px);
+    background:$gray-lightest;
+
+    b {
+
+    }
+  }
+}
+
+
+.c-search__latest {
+  margin-top:3em;
+  text-align:center;
+
+  li {
+    display:inline-block;
+    @include font-size(20px);
+  }
+
+  .text {
+    font-weight:bold;
+  }
+
+  a {
+    display:block;
+    padding:0 1em;
+  }
+
+  .item {
+    border-right:1px solid $gray-darker;
+  }
+
+  li:last-child .item {
+   border:0;
+  }
+}
+
+
+/* =============CUSTOM============= */
+
+
+/* =============MEDIA QUERY============= */

@@ -1,0 +1,171 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-footer {
+  position:relative;
+  z-index:$zindex-footer;
+}
+
+.c-footer__top {
+  padding:3em 0;
+  background:$gray-lightest;
+
+  .title {
+    margin-bottom:1em;
+    @include font-size(20px);
+    //text-transform:uppercase;
+  }
+
+  .list {
+    li {
+      @include font-size(14px);
+      margin-bottom:.7em;
+    }
+  }
+}
+
+.c-footer__bottom {
+  padding:2em 0;
+  background:#fff;
+}
+
+
+/* =============CUSTOM============= */
+// VÍDEOS
+.pg-videos{
+  .c-footer__top{
+    background-color: $black-special-light;
+  }
+
+  .c-footer__bottom{
+    background-color: $black-special;
+  }
+
+  .c-social-links{
+    .fa-stack{
+      color: $gray-dark;
+    }
+  }
+
+  .c-links-grupo{
+    .c-links-grupo__list{
+      .logo-grupo-massa{
+        border-color:$black-special-lighter;
+      }
+    }
+  }
+
+  @media all and (min-width: bp(9, 1px)) {
+    .c-footer__top{
+      .col{
+        border-right:1px solid $black-special-lighter;
+      }
+    }
+  }
+}
+
+// VÍDEOS
+.pg-post{
+  .c-footer {
+    display: none;
+  }
+}
+
+
+
+/* =============MEDIA QUERY============= */
+@media all and (min-width: bp(9, 1px)) {
+
+  .c-footer__top {
+    .col {
+      float:left;
+      min-height:10em;
+      padding:0 2% 0 3.5%;
+      border-right:1px solid $gray-lighter;
+
+      &:first-of-type {
+        padding-left:0;
+      }
+
+      &:last-of-type {
+        padding-right:0;
+        border:0;
+      }
+    }
+
+    .col-institucional {
+      width:16.66666%;
+    }
+
+    .col-regioes {
+      width:52%;
+
+      .list {
+        li {
+          display:inline-block;
+          vertical-align:top;
+          margin-right:2%;
+          width:30%;
+        }
+
+        .show-all {
+          font-weight:bold;
+          color:$brand-primary;
+        }
+      }
+    }
+
+    .col-social {
+      width:30%;
+    }
+  }
+}
+
+@media all and (min-width: bp(12)) {
+  .c-footer__top {
+    .col-regioes {
+      width:58.33334;
+
+      .list {
+
+        li {
+          width:22%;
+        }
+      }
+    }
+
+    .col-social {
+      width:25%;
+    }
+  }
+}
+
+@media all and (max-width: bp(9)) {
+  .c-footer__top {
+    .title {
+      //@include font-size(30px);
+    }
+
+    .col {
+      text-align:center;
+    }
+
+    .col-institucional {
+      margin-bottom:$margin-large;
+
+      .list {
+        li{
+          @include font-size(18px);
+        }
+      }
+    }
+
+    .col-regioes {
+      display:none;
+    }
+  }
+}

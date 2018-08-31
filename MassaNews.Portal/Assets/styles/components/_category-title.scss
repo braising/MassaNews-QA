@@ -1,0 +1,257 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-category-title {
+  position:relative;
+  margin-bottom:1.2em;
+  padding:0 50px 0 0;
+  border-bottom:1px solid $brand-primary;
+
+  .title {
+    display:inline-block;
+    margin:0 0 .25em 0;
+    @include font-size(36px);
+    color:$gray-darker;
+
+    &.title-logo{
+      margin: 0;
+
+      .logo{
+        max-width: 200px;
+      }
+    }
+  }
+
+  .c-category--nav{
+    li{
+      padding: 0 $gutter * 3;
+      margin: $gutter 0 $gutter * 2 0;
+      display: inline-block;
+      text-transform: uppercase;
+
+      &.active{
+        font-weight: bold;
+      }
+    }
+  }
+
+  .logo-guia-massa {
+    //altura e largura fixos. IE não trata corretamente as medidas do svg
+    width:150px;
+    height:45px;
+    fill: $tema-guia;
+  }
+
+  .link-see-all {
+    position:absolute;
+    bottom:8px;
+    right:0;
+    z-index:8;
+    color:$brand-primary;
+    @include opacity-hover();
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+  .sub-categories {
+    display:inline-block;
+
+    li {
+      display:inline-block;
+      margin-left:2em;
+    }
+
+    a {
+      display:block;
+      color:$link-color !important;
+    }
+  }
+
+
+  .c-category-title__controls {
+    position:absolute;
+    right:0;
+    bottom:.5em;
+
+    .controls__btn {
+      display:inline-block;
+      margin-right:1.3em;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration:none;
+      }
+
+      &:last-of-type {
+        margin-right:0;
+      }
+
+      &.is-current {
+        font-weight:bold;
+      }
+    }
+
+    @media all and (max-width: bp(6)) {
+      position:static;
+      margin:1em 0;
+    }
+  }
+
+
+  /* =============CUSTOM============= */
+  .c-category-title--sub & {
+    .title {
+      @include font-size(24px);
+    }
+  }
+
+
+  &.c-category-title--center {
+    padding-right:0;
+    text-align:center;
+  }
+
+
+  &.c-category-title--icon {
+    margin:$margin-small 0;
+    padding-bottom:1em;
+    border-color:$gray-light !important;
+
+    &:first-of-type {
+      margin-top:0;
+    }
+
+    .title {
+      @include font-size(30px);
+
+      span {
+        position:relative;
+        top:12px;
+        @include font-size(50px);
+      }
+    }
+
+    .icon-mail {
+      color:$gray-light;
+    }
+
+    .icon-facebook {
+      color:$color-facebook;
+    }
+  }
+
+
+  &.c-category-title--gray {
+    .title{
+      color:$gray-darker!important;
+
+      & > a{
+        color:$gray-darker!important;
+      }
+    }
+  }
+
+  &.c-category-title--dropdown{
+    .icon-dropdown{
+      display: none;
+    }
+  }
+
+
+  &.c-category-title--small {
+    .title {
+      @include font-size(20px);
+    }
+  }
+
+  // NEGÓCIOS DA TERRA
+  &.t-negocios-da-terra{
+    .title{
+      &.title-logo{
+        .logo{
+          width: 140px;
+          padding: 5px 0;
+        }
+      }
+    }
+  }
+
+
+  /* =============MEDIA QUERY============= */
+  @media all and (max-width: bp(12)) {
+    &.c-category-title--responsive {
+      padding-right:0;
+    }
+
+    .sub-categories {
+      display:none;
+    }
+  }
+
+
+  @media all and (max-width: bp(7)) {
+    .c-category-title--sub & .title,
+    .title {
+      @include font-size(22px);
+    }
+  }
+
+  @media all and (max-width: bp(10)) {
+    &.c-category-title--videos{
+      .c-category--nav{
+        li{
+          padding: 0 15px;
+          @include font-size(12px);
+        }
+      }
+    }
+  }
+
+  @media all and (max-width: bp(8)) {
+    &.c-category-title--videos{
+      .c-category--nav{
+        li{
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+
+  @media all and (max-width: bp(7)) {
+    &.c-category-title--videos{
+      .c-category--nav{
+        li{
+          width: 100%;
+          margin: 10px 0;
+        }
+      }
+    }
+  }
+
+
+  @media all and (max-width: bp(8)) {
+    &.c-category-title--dropdown{
+      .title{
+        cursor: pointer;
+
+        .icon-dropdown{
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+
+@media all and (max-width: bp(8)) {
+  .c-category--nav{
+    display: none;
+  }
+}

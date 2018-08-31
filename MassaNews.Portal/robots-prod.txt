@@ -1,0 +1,16 @@
+User-Agent: *
+Allow: /
+Disallow: /52387530/
+Disallow: /*/*/preview/
+Disallow: /changecidade
+Disallow: /Noticia/LoadNexNavegationLink
+Disallow: /Noticia/LoadNexNews
+Disallow: /institucional/reportar
+Disallow: /newsletter/subscribe
+Disallow: /*?Cidades=*
+Disallow: /*&Cidades=*
+Disallow: /eyeblaster*
+Disallow: /hp-9396a4d143cf
+
+Sitemap: https://massanews.com/sitemap.xml
+Sitemap: https://massanews.com/sitemap-news.xml

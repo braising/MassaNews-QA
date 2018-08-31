@@ -1,0 +1,86 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-share {
+  margin: 0 $gutter 0 0;
+
+  /* =============CUSTOM============= */
+  .c-post__social & {
+    display:inline-block;
+  }
+}
+
+.c-share__iten {
+  display:inline-block;
+  margin-right:5px;
+
+  &:last-of-type {
+    margin-right:0;
+  }
+}
+
+.c-share__link {
+
+  &:hover,
+  &:focus {
+    text-decoration:none;
+  }
+
+  @include opacity-hover(.85);
+}
+
+.c-share__count {
+  position: relative;
+  top: 0;
+  margin-left: 4px;
+  padding: 0 8px;
+  display: inline-block;
+  border:1px solid #ccc;
+  height: 18px;
+  background: #fff;
+  font-size:12px;
+  line-height: 18px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  color:#777;
+
+  &:before,
+  &:after {
+    top: 3px;
+    border-width: 5px 5px 5px 0;
+    border-style: solid;
+    content: "";
+    position: absolute;
+    display: block;
+  }
+
+  &:before {
+    left: -6px;
+    border-color: transparent #ccc;
+  }
+
+  &:after {
+    left: -5px;
+    border-color: transparent #fff;
+  }
+}
+
+
+/* =============MEDIA QUERY============= */
+
+@media all and (min-width: bp(10)) {
+  .c-share__whats {
+    display: none;
+  }
+}
+
+// @media all and (max-width: bp(10)) {
+//   .c-share__commentary{
+//     display: none;
+//   }
+// }

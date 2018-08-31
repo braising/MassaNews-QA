@@ -1,0 +1,95 @@
+/* =============VARIABLES============= */
+
+
+/* =============MIXINS============= */
+
+
+/* =============SELECTORS============= */
+.c-newsletter {
+  padding-left:3%;
+  padding-right:3%;
+
+  .c-forms--nl {
+
+    label {
+      color:#fff;
+    }
+  }
+
+  .is-hide {
+    display:none;
+  }
+
+  .field-validation-error {
+    color:#fff !important;
+  }
+}
+
+.c-newsletter__texts {
+  text-align:center;
+  color:#fff;
+
+  .title {
+    margin-bottom:5px;
+    @include font-size(24px);
+    color:#fff;
+    text-transform:uppercase;
+  }
+
+  .subtitle {
+
+  }
+}
+
+.c-newsletter__feedback {
+  margin:0 auto 1.5em;
+  max-width:grid-px(6);
+  color:#fff;
+  text-align:center;
+}
+
+
+/* =============CUSTOM============= */
+.c-newsletter--module {
+  .c-newsletter {
+    padding:2em 3% .8em;
+    background:$brand-primary;
+
+    .c-forms--nl {
+      margin:#{$gutter * 4} auto 0;
+      max-width:grid-px(8);
+
+      .input-medium input {
+        border:0;
+      }
+    }
+  }
+}
+
+.pg-mnews .c-newsletter {
+
+}
+
+
+/* =============MEDIA QUERY============= */
+@media all and (max-width:bp(10)){
+  .c-newsletter {
+
+    .c-forms--nl {
+      max-width:grid-px(6) !important;
+    }
+
+    .c-forms--labels li {
+      float:none;
+      width:100%;
+    }
+
+    .label-none {
+      text-align:center;
+    }
+
+    .submit {
+      margin-right:0;
+    }
+  }
+}

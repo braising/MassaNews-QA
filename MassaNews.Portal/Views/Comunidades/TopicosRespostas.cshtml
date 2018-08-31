@@ -1,0 +1,282 @@
+﻿@model MassaNews.Portal.ViewModels.ComunidadeTopicoRespostaViewModel
+@section bodyClass{@Html.Raw("pg-negocios-da-terra pg-comunidades pg-topico")}
+@{
+  // Página
+  ViewBag.Pagina = "topico";
+}
+<style type="text/css">
+  .curtido > .link.up i {
+    color: #39aa17;
+  }
+
+  .ncurtido > .link.down i {
+    color: #ff0000;
+  }
+</style>
+<main class="g-main">
+  <header class="c-topics t-module">
+    <div class="c-communities--header c-communities-page--header">
+      <div class="g-container">
+        <a href="/comunidades-virtuais/@Model.Pergunta.Slug" class="h5 u-margin-bottom u-inline-block">« @Model.Pergunta.Topico</a>
+        <h2 class="title">@Model.Pergunta.Pergunta</h2>
+        <p>@Model.Pergunta.Descricao</p>
+        <p>
+          Por: <strong>@Model.Pergunta.Usuario</strong>
+          <br>Em: <strong>@Model.Pergunta.Data.ToString("dd/MM/yyyy")</strong>
+        </p>
+        @if (MassaNews.Portal.Models.CurrentUser.Valido)
+        {
+          <a href="#answer" class="c-button small trigger-scroll" title="Responder">Responder</a>
+        }
+        else
+        {
+          <a href="/minha-conta/entrar" class="c-button small" title="Responder">Responder</a>
+        }
+      </div>
+    </div>
+  </header>
+  <div class="g-content-inner-sidebar g-container">
+    <section class="g-content">
+      @Html.Partial("_AdCabecalho")
+
+      <a href="/comunidades-virtuais/@Model.Pergunta.Slug" class="c-communities--go-back">« Voltar para @Model.Pergunta.Topico</a>
+
+      <div class="c-answers t-module u-full-float">
+        @if (Model.Pergunta.QtdResposta == 0)
+        {
+          <p>Seja o primeiro a enviar uma resposta.</p>
+        }
+        else if (Model.Pergunta.QtdResposta == 1)
+        {
+          <h3 class="h2 t-page-color">@Model.Pergunta.QtdResposta resposta</h3>
+        }
+        else
+        {
+          <h3 class="h2 t-page-color">@Model.Pergunta.QtdResposta respostas</h3>
+        }
+
+        @if (Model.ComunidadeRespostas.Count() > 0)
+        {
+          <ul class="c-answers--items">
+            @foreach (var resposta in Model.ComunidadeRespostas)
+            {
+              <li class="c-answers--item c-answers--item--specialist clearfix" id="res-@resposta.Id">
+                @if (resposta.IsEspecialista)
+                {
+                  <h4 class="c-answers--item-autor u-block">@resposta.Usuario <span class="label">Especialista</span></h4>
+                }
+                else
+                {
+                  <h4 class="c-answers--item-autor u-block">@resposta.Usuario</h4>
+                }
+                <span class="c-answers--item-date u-block">@resposta.Data.ToString("dd/MM/yyyy")</span>
+                <div class="c-answers--item-text">
+                  <p>@resposta.Resposta</p>
+                </div>
+                @if (MassaNews.Portal.Models.CurrentUser.Valido)
+                {
+                  var classCurtida = resposta.UserCurtida ? "curtido" : "";
+                  var classNaoCurtida = resposta.UserNaoCurtida ? "ncurtido" : "";
+
+                  <div class="c-answers--item--interaction @classCurtida @classNaoCurtida">
+                    <a href="javascript:void(0)" class="link reply" data-respostaId="@resposta.Id"><i class="fa fa-comment"></i> Comentar</a>
+                    @*<a href="cancelar_@resposta.Id#" class="link reply"><i class="fa fa-close"></i> Cancelar</a>*@
+                    <a href="javascript:void(0)" class="link up" data-tipo="r" data-id="@resposta.Id"><i class="fa fa-thumbs-up"></i> <span class="counter">@resposta.CountCurtida</span></a>
+                    <a href="javascript:void(0)" class="link down" data-tipo="r" data-id="@resposta.Id"><i class="fa fa-thumbs-down"></i> <span class="counter">@resposta.CountNaoCurtida</span></a>
+                  </div>
+                  using (Html.BeginForm("CriarComentario", "Comunidades", new { respostaId = resposta.Id }, FormMethod.Post, new { @class = "form-ask t-module", id = "form-ask" }))
+                  {
+                    <div class="c-answers--item--comment-form divcomentario" data-id="@resposta.Id">
+                      <textarea name="Comentario" id="form-ask--comment" cols="30" rows="10" class="answer-input"></textarea>
+                      <button class="c-button t-page-button mini" data-comunidadecomentario="@Url.Action("CriarComentario", "Comunidades")" title="Enviar comentário">Enviar comentário</button>
+                    </div>
+                  }
+                }
+                else
+                {
+                  <div class="c-answers--item--interaction">
+                    <a href="javascript:void(0)" class="link up"><i class="fa fa-thumbs-up"></i> <span class="counter">@resposta.CountCurtida</span></a>
+                    <a href="javascript:void(0)" class="link down"><i class="fa fa-thumbs-down"></i> <span class="counter">@resposta.CountNaoCurtida</span></a>
+                  </div>
+                }
+                @foreach (var comentario in resposta.Comentarios)
+                {
+                  <div class="c-answers--item--comments">
+                    <div class="c-answers--item--comment">
+                      @if (comentario.IsEspecialista)
+                      {
+                        <h4 class="h6 c-answers--item-autor u-block">@comentario.Usuario <span class="label">Especialista</span></h4>
+                      }
+                      else
+                      {
+                        <h4 class="h6 c-answers--item-autor u-block">@comentario.Usuario</h4>
+                      }
+                      <div class="c-answers--item-comments-text">
+                        <p>@comentario.Comentario</p>
+                      </div>
+                      @if (MassaNews.Portal.Models.CurrentUser.Valido)
+                      {
+                        var classCurtida = comentario.UserCurtida ? "curtido" : "";
+                        var classNaoCurtida = comentario.UserNaoCurtida ? "ncurtido" : "";
+
+                        <div class="c-answers--item--interaction @classCurtida @classNaoCurtida">
+                          <a href="javascript:void(0)" class="link up" data-tipo="c" data-id="@comentario.Id"><i class="fa fa-thumbs-up"></i> <span class="counter">@comentario.CountCurtida</span></a>
+                          <a href="javascript:void(0)" class="link down" data-tipo="c" data-id="@comentario.Id"><i class="fa fa-thumbs-down"></i> <span class="counter">@comentario.CountNaoCurtida</span></a>
+                        </div>
+                      }
+                      else
+                      {
+                        <div class="c-answers--item--interaction">
+                          <a href="javascript:void(0)" class="link up"><i class="fa fa-thumbs-up"></i> <span class="counter">@comentario.CountCurtida</span></a>
+                          <a href="javascript:void(0)" class="link up"><i class="fa fa-thumbs-down"></i> <span class="counter">@comentario.CountNaoCurtida</span></a>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+              </li>
+            }
+          </ul>
+        }
+      </div>
+      @if (MassaNews.Portal.Models.CurrentUser.Valido)
+      {
+        <div id="answer" class="answer t-module clearfix">
+          @using (Html.BeginForm("CriarResposta", "Comunidades", new { perguntaId = Model.Pergunta.Id }, FormMethod.Post, new { @class = "form-ask t-module", id = "form-ask" }))
+          {
+            <input type="hidden" name="form-ask--post" id="form-ask--post" value="">
+            <h3 class="h2 t-page-color">Sua resposta</h3>
+            <textarea name="Resposta" id="form-ask--answer" cols="30" rows="10" class="answer-input" required></textarea>
+            <button type="submit" data-comunidaderesposta="@Url.Action("CriarResposta", "Comunidades")" class="form-ask--submit c-button t-page-button mini" title="Enviar resposta">Enviar resposta</button>
+            @*<button class="c-button t-page-button mini">Enviar resposta</button>*@
+          }
+        </div>
+      }
+    </section>
+    <aside class="g-aside">
+      @if (Model.ComunidadeEspecialistas != null)
+      {
+        <div class="sidebar__especialista">
+          @if (Model.ComunidadeEspecialistas.Count() > 0)
+          {
+            <h3 class="title t-page-color">Especialista</h3>
+          }
+          @foreach (var especialista in Model.ComunidadeEspecialistas)
+          {
+            <section class="c-author-profile">
+              <div class="c-author-profile__inner">
+                @if (especialista.Img != null){
+                  <span class="c-author-profile__avatar">
+                    <img src="https://cdn.massanews.com/uploads/comunidades-virtuais/especialistas/@especialista.Img" alt="@especialista.Nome">
+                  </span>
+                }
+                <h3 class="c-author-profile__name t-page-color">@especialista.Nome</h3>
+              </div>
+              @if (especialista.Descricao != null){
+                <div class="c-author-profile__description">
+                  <p class="resume">@especialista.Descricao</p>
+                </div>
+              }
+            </section>
+          }
+        </div>
+      }
+      @if (Model.ComunidadeVideos != null)
+      {
+        <div class="sidebar__videos">
+          @if (Model.ComunidadeVideos.Count() > 0)
+          {
+            <h3 class="title t-page-color">Vídeos</h3>
+          }
+          @foreach (var video in Model.ComunidadeVideos)
+          {
+            <div class="c-headline t-comunidades" data-position="2">
+              <picture class="image modal-video">
+                <i class="fa fa-play-circle fa-6x fa-icon-video"></i>
+                <a href="@video.Link" target="_blank" title="@video.Titulo">
+                  <img src="//cdn.massanews.com/uploads/comunidades-virtuais/videos/@video.Img" alt="@video.Titulo">
+                </a>
+              </picture>
+              <div class="texts">
+                <h2 class="title">
+                  <a href="@video.Link" target="_blank" title="@video.Titulo">
+                    @video.Titulo
+                  </a>
+                </h2>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </aside>
+  </div>
+</main>
+@section scripts{
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+      $(".divcomentario").hide();
+
+      $(".reply").click(function () {
+        var id = $(this).attr('data-respostaId');
+
+        if ($(this).context.innerText == ' Comentar') {
+          $(this).context.innerHTML = '<i class="fa fa-close"></i> Cancelar';
+
+          $("div").each(function () {
+            if ($(this).data('id') == id) {
+              $(this).show();
+            }
+          });
+        }
+        else {
+          $(this).context.innerHTML = '<i class="fa fa-comment"></i> Comentar';
+          $("div").each(function () {
+            if ($(this).data('id') == id) {
+              $(this).hide();
+            }
+          });
+        }
+      });
+
+      $('.up, .down').click(function () {
+        var element = $(this);
+        var tipo = element.data('tipo');
+        var id = element.data('id');
+        var curtida = element.hasClass('up');
+
+        if (id !== undefined && tipo !== undefined) {
+          $.ajax({
+          method: "POST",
+          url: "@Url.Action("Curtir")",
+          data: { tipo: tipo, id: id, curtida: curtida },
+        })
+        .done(function (data) {
+          console.log(data);
+          if (data.Sucesso) {
+            var className = 'curtido';
+            if (!data.Curtida)
+              className = 'ncurtido';
+            var parent = element.parent();
+            parent.removeClass('curtido');
+            parent.removeClass('ncurtido');
+            parent.addClass(className);
+
+            parent.find('.link.up > span.counter').html(data.CountCurtida)
+            parent.find('.link.down > span.counter').html(data.CountNaoCurtida)
+          }
+          })
+        .fail(function (data) {
+          console.log(data);
+          //TODO: melhorar tratamento de erro
+          alert('Desculpe, não foi possível concluir sua solicitação.');
+          });
+        }
+        else {
+          window.location.href = "/minha-conta/entrar";
+          //alert('É necessário se logar.')
+        }
+        //alert('tipo: ' + tipo + ', id: ' + id + ', curtida: ' + curtida);
+      });
+    });
+  </script>
+}
