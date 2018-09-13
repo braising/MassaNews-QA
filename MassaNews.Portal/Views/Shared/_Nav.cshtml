@@ -145,7 +145,7 @@
     <ul data-menu="submenu-2" class="menu__level level-1">
       <li class="menu__item" itemprop="name"><a class="menu__link see-all see-all-esportes" itemprop="url" href="@Url.Action("Esportes", "Editorial")" title="Esportes">Esportes</a></li>
       <li class="menu__item" itemprop="name"><a class="menu__link" data-submenu="submenu-2-1" href="#">Futebol<i class="fa fa-angle-right fa-lg"></i></a></li>
-      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/narussia">Massa na Rússia</a></li>
+      @* <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="/narussia">Massa na Rússia</a></li> *@
       <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "basquete" })">Basquete</a></li>
       <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "futsal" })">Futsal</a></li>
       <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EsportesWithCategory", "Categorias", new { categoria = "olimpiadas" })">Olimpíadas</a></li>
@@ -202,9 +202,9 @@
     <!-- Submenu 4 -->
     <ul data-menu="submenu-4" class="menu__level level-1">
       <li class="menu__item"><a class="menu__link see-all see-all-no-link trigger-no-click" href="#">Especiais</a></li>
+      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("FestivalGastronomico", "Land")">Festival Gastronômico</a></li>
       <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("CuritibaCriativa", "Land")">Curitiba Criativa</a></li>
       <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("EducacaoFinanceira", "Land")">Educação Financeira</a></li>
-      <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("TransmitaCalor", "Land")">Nós Transmitimos Calor</a></li>
       <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("ViajePelosCamposGerais", "Land")">Viaje pelos Campos Gerais</a></li>
       <li class="menu__item" itemprop="name"><a class="menu__link" itemprop="url" href="@Url.Action("DesafiandoChefs", "Land")">Desafiando Chefs</a></li>
     </ul>

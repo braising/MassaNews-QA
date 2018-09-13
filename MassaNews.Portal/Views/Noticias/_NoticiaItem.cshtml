@@ -200,12 +200,6 @@
         @Html.Raw(Model.News.Conteudo.Replace("http://cdn.massanews.com", "https://cdn.massanews.com"))
       </section>
 
-      @if(Model.News.Categoria.Id == 68){
-        <a href="/narussia" title="Massa na Rússia" class="u-margin-top u-block">
-          <img src="@Url.Content("~/content/images/landing/massa-na-russia/massa-na-russia.png")" alt="Massa na Rússia - Tudo sobre o maior evento de Futebol do Mundo!">
-        </a>
-      }
-
       @if (Model.News.BlogId.HasValue)
       {
         <div class="c-post__footer__module c-author-profile c-author-profile__post">

@@ -230,6 +230,10 @@ namespace MassaNews.Portal.Controllers
       if (tag == "curitiba-criativa")
         return new RedirectResult("/curitiba-criativa", true);
 
+      // Festival Gastronômico
+      if (tag == "festival-gastronomico")
+        return new RedirectResult("/festival-gastronomico", true);
+
       #region Log Tag
       if (Constants.LogTags && Request.ServerVariables["HTTP_X_FORWARDED_FOR"] != null)
       {
@@ -426,6 +430,10 @@ namespace MassaNews.Portal.Controllers
       // Curitiba Criativa
       if (categoryUrl == "curitiba-criativa")
         return new RedirectResult("/curitiba-criativa", true);
+
+      // Festival Gastronômico
+      if (categoryUrl == "festival-gastronomico")
+        return new RedirectResult("/festival-gastronomico", true);
 
       var isCategory = Service.Models.Categoria.IsCategoryByUrl(categoryUrl);
 

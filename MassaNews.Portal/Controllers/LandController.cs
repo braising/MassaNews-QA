@@ -555,7 +555,7 @@ namespace MassaNews.Portal.Controllers
       {
         Title = "Curitiba Criativa - Massa News",
         Description = "Curitiba Criativa - Massa News",
-        Robots = "noindex, nofollow",
+        Robots = "index, follow",
         Canonical = $"{Constants.UrlWeb}/curitiba-criativa",
         ImgOpenGraph = $"{Constants.UrlWeb}/content/images/landing/curitiba-criativa/avatar.png"
       };
@@ -605,6 +605,78 @@ namespace MassaNews.Portal.Controllers
 
       // Página
       ViewBag.Pagina = "curitiba-criativa";
+
+      //return the model to the view
+      return View(model);
+    }
+
+
+    [Route("festival-gastronomico")]
+    [HttpGet]
+    [OutputCache(Duration = 60, VaryByCustom = "Location", VaryByParam = "*", Location = OutputCacheLocation.ServerAndClient)]
+    public ActionResult FestivalGastronomico(int p = 1)
+    {
+      //get the tag
+      var tagUrl = "festival-gastronomico";
+
+      //get the tag
+      var objTag = Tag.GetByUrl(tagUrl);
+
+      //Init the model
+      var model = new LandViewModel()
+      {
+        Title = "Festival Gastronômico - 3ª Edição - Massa News",
+        Description = "O Festival Gastronômico está em sua 3ª Edição para promover mais uma vez o que há de melhor na gastronomia iguaçuense e da região.",
+        Robots = "index, follow",
+        Canonical = $"{Constants.UrlWeb}/festival-gastronomico",
+        ImgOpenGraph = $"{Constants.UrlWeb}/content/images/landing/festival-gastronomico/avatar.jpg"
+      };
+
+      //Set the news
+      if (p == 1)
+      {
+        model.Highlights = objTag.GetLastestNews(p - 1, 5, null, true).ToList();
+        model.NewsList = objTag.GetNewsList(p - 1, 20, model.Highlights.Select(s=> s.Id).ToList()).ToList();
+      }
+      else
+      {
+        model.Highlights = null;
+        model.NewsList = objTag.GetNewsList(p - 1, 20, null).ToList();
+      }
+
+      //Get the news count 
+      var nRowsCount = model.NewsList.Any() ? model.NewsList.First().Total : 0;
+
+      //get the number of pages 
+      var pages = Convert.ToInt32(Math.Ceiling(((double)nRowsCount / 20)));
+
+      //Add pagination if has more than one page
+      if (pages > 1)
+        ViewBag.Paginacao = Pagination.AddPagination(p, Convert.ToInt32(pages), 5, true);
+
+      //Vídeos
+      // var sectionTransmitaCalor = new DestaqueVideoViewModel.VideoSection{
+      //   Url = "festival-gastronomico",
+      //   Title = "festival-gastronomico",
+      //   Videos = NoticiaSrv.GetLastestVideoNewsByTag(4, 796).Select(VideoModel.Map),
+      //   ButtonText = "Ver todos os vídeos",
+      //   ButtonUrl = "/videos"
+      // };
+
+      // var objModel = new DestaqueVideoViewModel
+      // {
+      //   Titulo = "Vídeos",
+      //   Url = "https://www.youtube.com/user/redemassa?sub_confirmation=1",
+      //   Sections = { sectionTransmitaCalor }
+      // };
+
+      // model.DestaqueVideo = objModel;
+
+      //Set viewbag's
+      ViewBag.ActiveNav = "Festival Gastronômico";
+
+      // Página
+      ViewBag.Pagina = "festival-gastronomico";
 
       //return the model to the view
       return View(model);
